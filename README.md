@@ -94,6 +94,7 @@ arbovirus-brazil-portable/
 ├── tools/                    # raw-source re-download + archive comparison (see docs/DATA_SOURCES.md)
 ├── docs/
 │   ├── DATA_SOURCES.md           # raw-data URLs, access date, checksums, Source Data index
+│   ├── LITERATURE_CONTEXT.md     # results set against four recent papers + references
 │   ├── RESULTS_SUMMARY.md/html   # ORIGINAL 2016–2025 narrative (see note below)
 │   ├── README_original.md        # original project README (Python era)
 │   ├── R_PORT_NOTES.md           # Python → R port: method mapping, verification, known differences
@@ -134,7 +135,9 @@ Figures carry no in-plot titles. Text for the captions is generated with them:
 - `outputs/figure_exclusions_state_years.csv`: state-years without SINAN records.
 
 Draft captions for every figure, with a methods/limitations paragraph, are in
-[`docs/FIGURE_CAPTIONS.md`](docs/FIGURE_CAPTIONS.md).
+[`docs/FIGURE_CAPTIONS.md`](docs/FIGURE_CAPTIONS.md). How the results relate to recent literature
+(temperature and dengue transmission, *Aedes* oviposition, reporting bias across arboviruses, dengue
+serotype turnover) is in [`docs/LITERATURE_CONTEXT.md`](docs/LITERATURE_CONTEXT.md).
 
 ## License and data
 The code is released under the [MIT License](LICENSE); see [`CITATION.cff`](CITATION.cff) to cite it.

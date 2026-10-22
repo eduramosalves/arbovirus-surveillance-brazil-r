@@ -157,3 +157,25 @@ for each figure and year are given in `outputs/figure_exclusions.csv`.
   annualised from the reported months.
 - In Supplementary Figure S1, classes are pooled over all years so that colours are comparable
   across years; years with low incidence therefore fall mostly in class 1.
+- A SINAN serotype value of `0`, which is not a serotype, is labelled `codigo_0` in `clinical_tables/`. It
+  appears from 2021 (134,407 records in 2023, about three times all valid typed records that year) and is not
+  counted as a typed case in the shares quoted in `docs/LITERATURE_CONTEXT.md`.
+
+**Limitations from recent literature** (sources and detail in
+[`LITERATURE_CONTEXT.md`](LITERATURE_CONTEXT.md)).
+- Notifications are not incidence. Reporting and diagnosis differ between states and between diseases (Lim et
+  al. 2025), so differences between states in Figure 6 and Supplementary Figure S2A can partly reflect who is
+  tested and reported. Chikungunya and Zika are especially prone to misdiagnosis and under-reporting.
+- The case definition differs by disease (dengue: probable cases; chikungunya and Zika: all notifications).
+  Published laboratory-confirmed dengue series (for example de Lima et al. 2026 for Brazil and Ceará) count
+  different cases, so absolute numbers and incidence are not comparable.
+- Climate is the monthly mean of hourly INMET readings, averaged over each state's stations, with lags of 0–2
+  months. There are no humidity, minimum, maximum or daily-range variables, and the lag window ends where a
+  two-month optimum has been reported (Liu et al. 2023). The DLNM optimum temperatures are not comparable with
+  thresholds based on daily maximum or minimum temperature.
+- The unit is the state. The results do not describe vector abundance or transmission inside a city, where
+  oviposition is spatially concentrated and only weakly related to temperature and humidity (Moura et al. 2020).
+- There are no data on dengue vaccination (Qdenga/TAK-003, Butantan-DV) for 2024–2026, no viral lineage data,
+  and serotype typing covers 0.2–3.0% of notifications in 2016–2025 and 7.1% in 2026 (January–September). The
+  national typed records show DENV-3 rising from 0.9% of typed cases in 2024 to 14.0% in 2025 and 29.9% in 2026;
+  this is not shown in Figure 7, which ends in 2025.
