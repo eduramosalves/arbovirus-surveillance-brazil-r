@@ -78,7 +78,7 @@ r16 <- sapply(2017:2025, function(y) nat("ZIKV", 2016) / nat("ZIKV", y))
 add("zika_ratio_min", min(r16), S_F1); add("zika_ratio_max", max(r16), S_F1)
 cw <- f1[Virus == "Chikungunya" & Geography != "Brazil"]
 cwm <- cw[which.max(cw[[4]])]
-add("chik_regmax_region", RC[[cwm$Geography]], S_F1); add("chik_regmax_year", cwm$Year, S_F1); add("chik_regmax_val", cwm[[4]], S_F1)
+add("chik_regmax_region", c(Norte = "North", Nordeste = "Northeast", Sudeste = "Southeast", Sul = "South", `Centro-Oeste` = "Central-West")[[cwm$Geography]], S_F1); add("chik_regmax_year", cwm$Year, S_F1); add("chik_regmax_val", cwm[[4]], S_F1)
 
 # ---------------- seasonality (db, complete years 2016-2025) ----------------
 S_SEAS <- "db/normalized_fact_cases.csv (2016-2025 pooled by calendar month)"
@@ -179,11 +179,6 @@ countsig <- function(df, term, src, tag) {
 ps <- rd("outputs/glm_negbin_per_state.csv"); lg <- rd("outputs/glm_negbin_lagged.csv")
 for (t in c("Temp_Avg", "Rain_mm")) countsig(ps, t, "outputs/glm_negbin_per_state.csv", "glms")
 for (t in c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Rain_mm", "Rain_Lag1", "Rain_Lag2")) countsig(lg, t, "outputs/glm_negbin_lagged.csv", "glml")
-# DLNM
-dl <- rd("outputs/2026-10-08/additional/dlnm_summary.csv")
-for (i in seq_len(nrow(dl))) { d <- c(Dengue = "DENV", Chikungunya = "CHIKV", Zika = "ZIKV")[[dl$Virus[i]]]
-  add(paste0("dlnm.", d, ".opt"), dl$Temp_optimum_C[i], "outputs/2026-10-08/additional/dlnm_summary.csv"); add(paste0("dlnm.", d, ".irr"), dl$IRR_at_optimum[i], "outputs/2026-10-08/additional/dlnm_summary.csv") }
-
 # ---------------- bootstrap ----------------
 for (f in c("cases", "incidence")) { b <- rd(sprintf("outputs/bootstrap_ci_95_%s.csv", f))
   for (i in seq_len(nrow(b))) { k <- paste0("boot.", f, ".", b$Disease[i]); s <- sprintf("outputs/bootstrap_ci_95_%s.csv", f)
@@ -215,9 +210,9 @@ agg7 <- function(file, sh, tag, vir) {
 }
 agg7("source_data/Figure7.xlsx", "Fig7C_Hospitalization", "cl.DENV.hosp", "Dengue")
 agg7("source_data/Figure7.xlsx", "Fig7D_Serotype", "cl.DENV.sero", "Dengue")
-agg7("source_data/Figure7.xlsx", "Fig7A_ELISA", "cl.DENV.elisa", "Dengue")
+agg7("source_data/Figure7.xlsx", "Fig7A_NS1", "cl.DENV.ns1", "Dengue")
 agg7("source_data/Figure7.xlsx", "Fig7B_IgM", "cl.DENV.igm", "Dengue")
-agg7("source_data/Figure8.xlsx", "Fig8A1_Chik_Classfic", "cl.CHIKV.class", "Chikungunya")
+agg7("source_data/Figure8.xlsx", "Fig8A1_Chik_Classifi", "cl.CHIKV.class", "Chikungunya")
 agg7("source_data/Figure8.xlsx", "Fig8A2_Chik_Criteria", "cl.CHIKV.crit", "Chikungunya")
 agg7("source_data/Figure8.xlsx", "Fig8A3_Chik_Evolutio", "cl.CHIKV.evo", "Chikungunya")
 agg7("source_data/Figure8.xlsx", "Fig8B1_Zika_Classifi", "cl.ZIKV.class", "Zika")
@@ -232,18 +227,51 @@ for (y in sort(unique(z7$Year))) { zz <- z7[Year == y & Category != "Ign/Blank"]
 # hospitalization share among known
 hz <- sheet("source_data/Figure7.xlsx", "Fig7C_Hospitalization")[, .(n = sum(Count)), by = Category]
 add("cl.DENV.hosp.share_known", hz[Category == "Positive"]$n / (hz[Category == "Positive"]$n + hz[Category == "Negative"]$n), "source_data/Figure7.xlsx / Fig7C_Hospitalization")
-# discard shares in the clinical tables (2016-2025; chikungunya 2017-2025)
+# classification in the clinical tables (discarded notifications are not in them)
 dz <- sheet("source_data/Figure8.xlsx", "Fig8B1_Zika_Classifi")[, .(n = sum(Count)), by = Category]
-add("cl.ZIKV.disc_share", dz[Category == "Discarded"]$n / sum(dz$n), "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi")
-dc <- sheet("source_data/Figure8.xlsx", "Fig8A1_Chik_Classfic")[, .(n = sum(Count)), by = Category]
-add("cl.CHIKV.disc_share", dc[Category == "Descarded"]$n / sum(dc$n), "source_data/Figure8.xlsx / Fig8A1_Chik_Classfic")
-add("cl.CHIKV.disc", dc[Category == "Descarded"]$n, "source_data/Figure8.xlsx / Fig8A1_Chik_Classfic")
-add("cl.CHIKV.conf", dc[Category == "Chikungunya"]$n, "source_data/Figure8.xlsx / Fig8A1_Chik_Classfic")
-add("cl.CHIKV.class.all", sum(dc$n), "source_data/Figure8.xlsx / Fig8A1_Chik_Classfic")
-add("cl.ZIKV.disc", dz[Category == "Discarded"]$n, "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi")
-add("cl.ZIKV.conf", dz[Category == "Confirmed"]$n, "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi")
-add("cl.ZIKV.incl", dz[Category == "Inconclusive"]$n, "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi")
-add("cl.ZIKV.class.all", sum(dz$n), "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi")
+dc <- sheet("source_data/Figure8.xlsx", "Fig8A1_Chik_Classifi")[, .(n = sum(Count)), by = Category]
+S8A1 <- "source_data/Figure8.xlsx / Fig8A1_Chik_Classifi"; S8B1 <- "source_data/Figure8.xlsx / Fig8B1_Zika_Classifi"
+add("cl.CHIKV.conf", dc[Category == "Chikungunya"]$n, S8A1); add("cl.CHIKV.incl", dc[Category == "Inconclusive"]$n, S8A1)
+add("cl.CHIKV.class.ign", dc[Category == "Ign/Blank"]$n, S8A1); add("cl.CHIKV.class.all", sum(dc$n), S8A1)
+add("cl.ZIKV.conf", dz[Category == "Confirmed"]$n, S8B1); add("cl.ZIKV.incl", dz[Category == "Inconclusive"]$n, S8B1)
+add("cl.ZIKV.class.ign", dz[Category == "Ign/Blank"]$n, S8B1); add("cl.ZIKV.class.all", sum(dz$n), S8B1)
+
+# discarded notifications (excluded from every analysis and table), per disease and year
+S_DC <- "clinical_tables/discarded_counts.csv"
+dd <- fread(S_DC)
+for (d in DIS) { x <- dd[Disease == d]
+  add(paste0("disc.", d, ".notif"), sum(x$Notifications - x$After_date_cap), S_DC)
+  add(paste0("disc.", d, ".disc"), sum(x$Discarded), S_DC); add(paste0("disc.", d, ".cases"), sum(x$Cases), S_DC)
+  add(paste0("disc.", d, ".late"), sum(x$After_date_cap), S_DC)
+  add(paste0("disc.", d, ".share"), sum(x$Discarded) / sum(x$Notifications - x$After_date_cap), S_DC)
+  for (i in seq_len(nrow(x))) add(paste0("disc.", d, ".y", x$Year[i]), x$Discarded[i], S_DC) }
+
+# pooled model with lags 0-2 entered jointly (one model per virus; Temp_Cum0_2 / Rain_Cum0_2 = sum of the three lag terms)
+S_PL <- "outputs/glm_negbin_pooled_lagged.csv"
+pl <- fread(S_PL)
+for (v in names(vmap)) { d <- vmap[[v]]
+  for (t in c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Temp_Cum0_2", "Rain_mm", "Rain_Lag1", "Rain_Lag2", "Rain_Cum0_2")) {
+    r <- pl[Virus == v & Term == t]; k <- paste0("glmpl.", d, ".", t)
+    crit <- (log(r$IRR_CI_U) - log(r$IRR_CI_L)) / (2 * r$SE)
+    add(paste0(k, ".irr"), r$IRR, S_PL); add(paste0(k, ".lo"), r$IRR_CI_L, S_PL); add(paste0(k, ".hi"), r$IRR_CI_U, S_PL)
+    add(paste0(k, ".p"), r$p_value, S_PL); add(paste0(k, ".coef"), r$Coef, S_PL); add(paste0(k, ".se"), r$SE, S_PL)
+    if (startsWith(t, "Rain")) for (m in c(10, 100)) {
+      add(paste0(k, ".irr", m), exp(m * r$Coef), paste0(S_PL, " (exp(", m, " x Coef))"))
+      add(paste0(k, ".lo", m), exp(m * (r$Coef - crit * r$SE)), paste0(S_PL, " (exp(", m, " x (Coef - crit x SE)))"))
+      add(paste0(k, ".hi", m), exp(m * (r$Coef + crit * r$SE)), paste0(S_PL, " (exp(", m, " x (Coef + crit x SE)))")) } }
+  add(paste0("glmpl.", d, ".n"), pl[Virus == v & Term == "Temp_Avg"]$n, S_PL); add(paste0("glmpl.", d, ".alpha"), pl[Virus == v & Term == "Temp_Avg"]$alpha, S_PL)
+  # lag (0, 1, 2) with the largest coefficient
+  for (vr in c("Temp", "Rain")) { tt <- if (vr == "Temp") c("Temp_Avg", "Temp_Lag1", "Temp_Lag2") else c("Rain_mm", "Rain_Lag1", "Rain_Lag2")
+    cf <- sapply(tt, function(tm) pl[Virus == v & Term == tm]$Coef); add(paste0("glmpl.", d, ".", vr, ".maxlag"), which.max(cf) - 1, S_PL)
+    ps_ <- sapply(tt, function(tm) pl[Virus == v & Term == tm]$p_value); add(paste0("glmpl.", d, ".", vr, ".nsig"), sum(ps_ < 0.05), S_PL) } }
+
+# metadata of the SINAN download
+S_MAN <- "raw/sources_manifest.csv"
+mf <- fread(S_MAN)[source == "sinan"]
+fmt_day <- function(x) sub(" 0", " ", format(x, "%B %d, %Y"))
+add("meta.sinan_access", fmt_day(as.Date(max(substr(mf$accessed_utc, 1, 10)))), S_MAN)
+lm26 <- as.POSIXct(mf[grepl("26\\.csv", file)]$last_modified, format = "%a, %d %b %Y %H:%M:%S", tz = "GMT")
+add("meta.sinan_release", fmt_day(as.Date(max(lm26))), paste0(S_MAN, " (latest Last-Modified of the 2026 files)"))
 
 # ---------------- exclusions (figure_exclusions.csv) ----------------
 fe <- fread("outputs/figure_exclusions.csv")
@@ -284,8 +312,6 @@ add("clim.temp_mean", mean(clim$Temp_Avg, na.rm = TRUE), "db/normalized_fact_cli
 
 add("cl.ZIKV.preg.tri_sum", sum(sheet("source_data/Figure8.xlsx", "Fig8B4_Zika_Pregnanc")[Category %in% c("1º Trimester", "2º Trimester", "3º Trimester")]$Count), "source_data/Figure8.xlsx / Fig8B4_Zika_Pregnanc")
 for (y in sort(unique(cts$Year))) add(paste0("ct.sero_code0.", y), sum(cts[Year == y & Category == "codigo_0"]$Count), S_CT)
-er <- fread("outputs/2026-10-08/additional/dlnm_exposure_response.csv", encoding = "UTF-8")
-add("dlnm.ref.Temp", unique(er[Predictor == "Temp"]$Reference)[1], "outputs/2026-10-08/additional/dlnm_exposure_response.csv")
 
 for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Trend == tr][order(p_value)]
   for (i in seq_len(nrow(z))) { k <- paste0("mkr.", d, ".", tr, ".", i)
@@ -306,6 +332,24 @@ for (spec in list(c("Figure 7A", "elisa"), c("Figure 7B", "igm"))) { z <- fe_all
   if (nrow(z)) add(paste0("fe.DENV.", spec[2], ".pct2025"), z$pct_excluded[1], "outputs/figure_exclusions.csv")
   z2 <- fe_all[Figure == spec[1] & Virus == "Dengue" & as.character(Year) %in% as.character(2016:2024)]
   add(paste0("fe.DENV.", spec[2], ".pctmin1624"), min(z2$pct_excluded), "outputs/figure_exclusions.csv"); add(paste0("fe.DENV.", spec[2], ".pctmax1624"), max(z2$pct_excluded), "outputs/figure_exclusions.csv") }
+
+# FDR-significant trends: names by direction
+for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Trend == tr & Significant_FDR %in% TRUE][order(q_value)]
+  add(paste0("mkfdr_n.", d, ".", tr), nrow(z), S_MK); add(paste0("mkfdr_names.", d, ".", tr), join_names(z$UF), S_MK)
+  add(paste0("mkfdr_maxq.", d, ".", tr), if (nrow(z)) max(z$q_value) else NA_real_, S_MK)
+  zz <- mk[V == d & Trend == tr]; add(paste0("mk_all_names.", d, ".", tr), join_names(zz[order(p_value)]$UF), S_MK) }
+
+# state-years without any SINAN notification record (the files, not the discarded ones)
+S_GAP <- "outputs/figure_exclusions_state_years.csv"
+gp <- fread(S_GAP, encoding = "UTF-8")
+gp[, uf := nm2uf[strip(Location_Name)]]
+gp_txt <- gp[, .(dis = paste(sub("Chikungunya", "chikungunya", Virus), collapse = " and ")), by = .(uf, Year)]
+add("gap.n", nrow(gp), S_GAP)
+add("gap.text", if (nrow(gp_txt)) paste0("The national SINAN files contain no ", paste(sprintf("%s notification for %s in %d", gsub("Zika", "Zika", gp_txt$dis), unname(UFNAME[gp_txt$uf]), gp_txt$Year), collapse = "; and no "), ", so ",
+                                         if (nrow(gp) > 1) "these state-years are" else "that state-year is", " missing, not zero.") else "", S_GAP)
+
+# zero months introduced by the case definition (state-months without a case)
+add("zero.rows", sum(D$Cases == 0), S_DB)
 
 # ---------------- write ----------------
 out <- rbindlist(rows); setnames(out, "id", "key")

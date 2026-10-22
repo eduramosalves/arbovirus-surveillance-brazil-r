@@ -49,12 +49,22 @@ zr, dr = load(RED)
 sha = hashlib.sha256(ORIG.read_bytes()).hexdigest()
 check("original file hash unchanged", sha == "e8e68cf28b2f2074fa27218eb20ce86dc1ab050faab0bb8023174137f6866869", sha[:16])
 
+_orig_cm = etree.fromstring(zipfile.ZipFile("original.docx").read("word/comments.xml"))
+ORIG23 = next("".join(t.text or "" for t in c.iter(q("t"))) for c in _orig_cm if c.get(q("id")) == "23")
+
 for label, z, d in (("clean", zc, dc), ("redline", zr, dr)):
     # ---- comments
     cm = etree.fromstring(z.read("word/comments.xml"))
     ids = [int(c.get(q("id"))) for c in cm]
-    orig_ids = [3, 4, 5, 6, 7, 8, 9] + list(range(11, 24))
-    check(label + ": all 20 original comments kept", all(i in ids for i in orig_ids), len(ids))
+    # round 2: every comment of the file the user edited (their 8 instructions, Galileu's 19, earlier threads) must survive
+    # unchanged; the two comments the user deleted (23 and 43) must not come back
+    snap = etree.fromstring(open("user/word/comments.xml", "rb").read())
+    snap_c = {int(c.get(q("id"))): (c.get(q("author")), "".join(t.text or "" for t in c.iter(q("t")))) for c in snap}
+    out_c = {int(c.get(q("id"))): (c.get(q("author")), "".join(t.text or "" for t in c.iter(q("t")))) for c in cm}
+    missing = [i for i in snap_c if out_c.get(i) != snap_c[i]]
+    check(label + ": all %d comments of the user's edited file kept unchanged" % len(snap_c), not missing, missing or len(ids))
+    check(label + ": deleted comments 23 and 43 stay deleted", 23 not in snap_c and 43 not in snap_c and
+          not any(t == ORIG23 for (a, t) in out_c.values()))
     starts = [int(e.get(q("id"))) for e in d.iter(q("commentRangeStart"))]
     ends = [int(e.get(q("id"))) for e in d.iter(q("commentRangeEnd"))]
     refs = [int(e.get(q("id"))) for e in d.iter(q("commentReference"))]

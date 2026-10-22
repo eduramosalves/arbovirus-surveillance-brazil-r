@@ -28,7 +28,6 @@ OUT <- path_root("alt_results")
 dir.create(OUT, showWarnings = FALSE)
 
 VIRUS_ORDER <- c("Dengue", "Chikungunya", "Zika")
-VIRUS_COLOR <- c(Dengue = "#d7263d", Chikungunya = "#1b998b", Zika = "#2e86ab")
 
 theme_alt <- function() {
   theme_mpl(8.5, grid = FALSE) + theme(plot.title = element_text(size = 11, face = "bold"), axis.title = element_text(size = 10),

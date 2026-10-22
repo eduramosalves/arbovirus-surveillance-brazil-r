@@ -222,7 +222,7 @@ FIGURE_OF <- c(
   Dengue_03_sex = "Figure 5B", Chikungunya_03_sex = "Figure 5B", Zika_03_sex = "Figure 5B",
   geo_07_combined_map = "Figure 6",
   geo_05_lisa_clusters = "Figure S2A", geo_06_trend_map = "Figure S2B",
-  Dengue_02_ELISA = "Figure 7A", Dengue_02_IgM = "Figure 7B", Dengue_02_hospitalization = "Figure 7C", Dengue_03_serotype = "Figure 7D",
+  Dengue_02_NS1 = "Figure 7A", Dengue_02_IgM = "Figure 7B", Dengue_02_hospitalization = "Figure 7C", Dengue_03_serotype = "Figure 7D",
   Chikungunya_03_classification = "Figure 8A", Chikungunya_03_criteria = "Figure 8A", Chikungunya_03_evolution = "Figure 8A",
   Zika_03_classification = "Figure 8B", Zika_03_criteria = "Figure 8B", Zika_03_evolution = "Figure 8B", Zika_03_pregnancy = "Figure 8B",
   glm_fig1_pooled_climate_irr = "GLM Figure 1", glm_fig2_per_state_heatmap = "GLM Figure 2", glm_fig3_lag_profile = "GLM Figure 3",
@@ -275,6 +275,10 @@ mpl_colours <- function(name, n = 256) mpl_cmap(name)(seq(0, 1, length.out = n))
 
 # matplotlib scatter `s` (points^2) -> ggplot point size (mm)
 mpl_s_to_size <- function(s) sqrt(s) / ggplot2::.pt
+
+# One colour per virus for every figure (the manuscript uses it throughout). Chikungunya is green, not
+# orange, so it is not confused with dengue (red).
+VIRUS_COLOR <- c(Dengue = "#d7263d", Chikungunya = "#1b998b", Zika = "#2e86ab")
 
 # matplotlib "tab10" colour cycle
 TAB10 <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf")

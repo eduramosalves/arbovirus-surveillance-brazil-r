@@ -1,1288 +1,1288 @@
 Level,Geo,Pair,Lag_months,CCF
-national,Brazil,Dengue-Chikungunya,-6,-0.0035302267124065778
-national,Brazil,Dengue-Chikungunya,-5,0.056564011717662246
-national,Brazil,Dengue-Chikungunya,-4,0.15987894926811236
-national,Brazil,Dengue-Chikungunya,-3,0.3515386580195209
-national,Brazil,Dengue-Chikungunya,-2,0.591562938111671
-national,Brazil,Dengue-Chikungunya,-1,0.7531301798501827
-national,Brazil,Dengue-Chikungunya,0,0.7361714321433545
-national,Brazil,Dengue-Chikungunya,1,0.541267083425614
-national,Brazil,Dengue-Chikungunya,2,0.3138636814424208
-national,Brazil,Dengue-Chikungunya,3,0.15869162733099812
-national,Brazil,Dengue-Chikungunya,4,0.0785331968695383
-national,Brazil,Dengue-Chikungunya,5,0.036691776438457585
-national,Brazil,Dengue-Chikungunya,6,0.011147964848518224
-national,Brazil,Dengue-Zika,-6,0.009160730252401796
-national,Brazil,Dengue-Zika,-5,0.013338922878268595
-national,Brazil,Dengue-Zika,-4,0.031177922641868205
-national,Brazil,Dengue-Zika,-3,0.08248012489176887
-national,Brazil,Dengue-Zika,-2,0.16860243775726008
-national,Brazil,Dengue-Zika,-1,0.2500500202472608
-national,Brazil,Dengue-Zika,0,0.2734255157903117
-national,Brazil,Dengue-Zika,1,0.2268110858815067
-national,Brazil,Dengue-Zika,2,0.16454069464807322
-national,Brazil,Dengue-Zika,3,0.1252395073821126
-national,Brazil,Dengue-Zika,4,0.08186466183426838
-national,Brazil,Dengue-Zika,5,0.039625579088282535
-national,Brazil,Dengue-Zika,6,0.026345697447967827
-national,Brazil,Chikungunya-Zika,-6,0.027453732658349154
-national,Brazil,Chikungunya-Zika,-5,0.04327187192643248
-national,Brazil,Chikungunya-Zika,-4,0.035030176303333896
-national,Brazil,Chikungunya-Zika,-3,0.025726437750494623
-national,Brazil,Chikungunya-Zika,-2,0.08085418676424494
-national,Brazil,Chikungunya-Zika,-1,0.220619564596043
-national,Brazil,Chikungunya-Zika,0,0.3232792946697233
-national,Brazil,Chikungunya-Zika,1,0.2973310096189094
-national,Brazil,Chikungunya-Zika,2,0.21759773198849283
-national,Brazil,Chikungunya-Zika,3,0.16651656335384787
-national,Brazil,Chikungunya-Zika,4,0.09762766591329117
-national,Brazil,Chikungunya-Zika,5,0.03401362736728392
-national,Brazil,Chikungunya-Zika,6,0.0038486615035600003
-region,Centro-Oeste,Dengue-Chikungunya,-6,-0.07328315211731744
-region,Centro-Oeste,Dengue-Chikungunya,-5,-0.06725267141886461
-region,Centro-Oeste,Dengue-Chikungunya,-4,-0.08027951650668419
-region,Centro-Oeste,Dengue-Chikungunya,-3,-0.09947881000344237
-region,Centro-Oeste,Dengue-Chikungunya,-2,-0.09264319742688194
-region,Centro-Oeste,Dengue-Chikungunya,-1,-0.03592874807470911
-region,Centro-Oeste,Dengue-Chikungunya,0,0.0716558583741419
-region,Centro-Oeste,Dengue-Chikungunya,1,0.1343821261816001
-region,Centro-Oeste,Dengue-Chikungunya,2,0.11841900125637661
-region,Centro-Oeste,Dengue-Chikungunya,3,0.08159679123685085
-region,Centro-Oeste,Dengue-Chikungunya,4,0.053033079420966175
-region,Centro-Oeste,Dengue-Chikungunya,5,0.03130035668607989
-region,Centro-Oeste,Dengue-Chikungunya,6,0.02565043530469821
-region,Centro-Oeste,Dengue-Zika,-6,-0.012633235535245164
-region,Centro-Oeste,Dengue-Zika,-5,-0.014202143473117924
-region,Centro-Oeste,Dengue-Zika,-4,-0.007137801252129139
-region,Centro-Oeste,Dengue-Zika,-3,0.03656490023830574
-region,Centro-Oeste,Dengue-Zika,-2,0.1220475611581084
-region,Centro-Oeste,Dengue-Zika,-1,0.22008368959895397
-region,Centro-Oeste,Dengue-Zika,0,0.26252333383174165
-region,Centro-Oeste,Dengue-Zika,1,0.2433118238579826
-region,Centro-Oeste,Dengue-Zika,2,0.2330522011004873
-region,Centro-Oeste,Dengue-Zika,3,0.22212797190099723
-region,Centro-Oeste,Dengue-Zika,4,0.13851738165578653
-region,Centro-Oeste,Dengue-Zika,5,0.0538796157617196
-region,Centro-Oeste,Dengue-Zika,6,0.03327392595662448
-region,Centro-Oeste,Chikungunya-Zika,-6,0.042244765944646365
-region,Centro-Oeste,Chikungunya-Zika,-5,0.05373013203821853
-region,Centro-Oeste,Chikungunya-Zika,-4,0.062015912379437016
-region,Centro-Oeste,Chikungunya-Zika,-3,0.07407799847442535
-region,Centro-Oeste,Chikungunya-Zika,-2,0.09572505120528102
-region,Centro-Oeste,Chikungunya-Zika,-1,0.11353727460639673
-region,Centro-Oeste,Chikungunya-Zika,0,0.11679531512862683
-region,Centro-Oeste,Chikungunya-Zika,1,0.1164837459242867
-region,Centro-Oeste,Chikungunya-Zika,2,0.12262835638473447
-region,Centro-Oeste,Chikungunya-Zika,3,0.14333512641197185
-region,Centro-Oeste,Chikungunya-Zika,4,0.16113249211079914
-region,Centro-Oeste,Chikungunya-Zika,5,0.13597601625347974
-region,Centro-Oeste,Chikungunya-Zika,6,0.11924356993325143
-region,Nordeste,Dengue-Chikungunya,-6,-0.016953007310817617
-region,Nordeste,Dengue-Chikungunya,-5,0.030074671495161968
-region,Nordeste,Dengue-Chikungunya,-4,0.08538231659052914
-region,Nordeste,Dengue-Chikungunya,-3,0.17968316453931826
-region,Nordeste,Dengue-Chikungunya,-2,0.322715756130302
-region,Nordeste,Dengue-Chikungunya,-1,0.4943095402582427
-region,Nordeste,Dengue-Chikungunya,0,0.5639446781453771
-region,Nordeste,Dengue-Chikungunya,1,0.4325521841431369
-region,Nordeste,Dengue-Chikungunya,2,0.23201407959326145
-region,Nordeste,Dengue-Chikungunya,3,0.11710872039913842
-region,Nordeste,Dengue-Chikungunya,4,0.079536008128517
-region,Nordeste,Dengue-Chikungunya,5,0.06502812640138388
-region,Nordeste,Dengue-Chikungunya,6,0.040185139453369344
-region,Nordeste,Dengue-Zika,-6,0.021973682257746166
-region,Nordeste,Dengue-Zika,-5,0.05044866845095863
-region,Nordeste,Dengue-Zika,-4,0.10052026110160506
-region,Nordeste,Dengue-Zika,-3,0.1932620196370433
-region,Nordeste,Dengue-Zika,-2,0.34018230896269536
-region,Nordeste,Dengue-Zika,-1,0.5394096490502708
-region,Nordeste,Dengue-Zika,0,0.660739332640857
-region,Nordeste,Dengue-Zika,1,0.5559903202371729
-region,Nordeste,Dengue-Zika,2,0.39652831797166793
-region,Nordeste,Dengue-Zika,3,0.34354390392439377
-region,Nordeste,Dengue-Zika,4,0.23502029567371185
-region,Nordeste,Dengue-Zika,5,0.14343720350238354
-region,Nordeste,Dengue-Zika,6,0.07662801943990408
-region,Nordeste,Chikungunya-Zika,-6,0.045574829976710564
-region,Nordeste,Chikungunya-Zika,-5,0.07244661671494176
-region,Nordeste,Chikungunya-Zika,-4,0.08152967002247694
-region,Nordeste,Chikungunya-Zika,-3,0.05970094056890745
-region,Nordeste,Chikungunya-Zika,-2,0.10011259441574524
-region,Nordeste,Chikungunya-Zika,-1,0.31464728582102414
-region,Nordeste,Chikungunya-Zika,0,0.504721680875351
-region,Nordeste,Chikungunya-Zika,1,0.4590302309637321
-region,Nordeste,Chikungunya-Zika,2,0.3425457975398515
-region,Nordeste,Chikungunya-Zika,3,0.33074799429547613
-region,Nordeste,Chikungunya-Zika,4,0.22830877599092386
-region,Nordeste,Chikungunya-Zika,5,0.13339853336766097
-region,Nordeste,Chikungunya-Zika,6,0.058962931929834865
-region,Norte,Dengue-Chikungunya,-6,-0.17817389875075243
-region,Norte,Dengue-Chikungunya,-5,-0.0836755997006075
-region,Norte,Dengue-Chikungunya,-4,-0.0668041444962518
-region,Norte,Dengue-Chikungunya,-3,-0.1046336430503661
-region,Norte,Dengue-Chikungunya,-2,-0.11210580162436908
-region,Norte,Dengue-Chikungunya,-1,-0.07677465555662816
-region,Norte,Dengue-Chikungunya,0,-0.002005806367983288
-region,Norte,Dengue-Chikungunya,1,0.004662768137963482
-region,Norte,Dengue-Chikungunya,2,-0.02798240024010595
-region,Norte,Dengue-Chikungunya,3,-0.014234276962927126
-region,Norte,Dengue-Chikungunya,4,0.05541204074954259
-region,Norte,Dengue-Chikungunya,5,0.10251636853769568
-region,Norte,Dengue-Chikungunya,6,0.07706154801395779
-region,Norte,Dengue-Zika,-6,0.05146834278014833
-region,Norte,Dengue-Zika,-5,0.08571407202955762
-region,Norte,Dengue-Zika,-4,0.12247617825262798
-region,Norte,Dengue-Zika,-3,0.18339618457928858
-region,Norte,Dengue-Zika,-2,0.30087867771461957
-region,Norte,Dengue-Zika,-1,0.4009105742764027
-region,Norte,Dengue-Zika,0,0.4816116216977717
-region,Norte,Dengue-Zika,1,0.4183643275323507
-region,Norte,Dengue-Zika,2,0.32606543778146024
-region,Norte,Dengue-Zika,3,0.2703286615891668
-region,Norte,Dengue-Zika,4,0.2640605456208013
-region,Norte,Dengue-Zika,5,0.22380564154494606
-region,Norte,Dengue-Zika,6,0.12352039557933958
-region,Norte,Chikungunya-Zika,-6,-0.0706215797268469
-region,Norte,Chikungunya-Zika,-5,-0.17839671810434657
-region,Norte,Chikungunya-Zika,-4,-0.2586361625723312
-region,Norte,Chikungunya-Zika,-3,-0.27855954860366
-region,Norte,Chikungunya-Zika,-2,-0.22082608759404668
-region,Norte,Chikungunya-Zika,-1,-0.16538821332996692
-region,Norte,Chikungunya-Zika,0,-0.15333109858561794
-region,Norte,Chikungunya-Zika,1,-0.19628911434086824
-region,Norte,Chikungunya-Zika,2,-0.17829286139674902
-region,Norte,Chikungunya-Zika,3,-0.1406006433921788
-region,Norte,Chikungunya-Zika,4,-0.08738697369261891
-region,Norte,Chikungunya-Zika,5,-0.09553289227273741
-region,Norte,Chikungunya-Zika,6,-0.1709300431603129
-region,Sudeste,Dengue-Chikungunya,-6,0.08299593692851374
-region,Sudeste,Dengue-Chikungunya,-5,0.13241940004191258
-region,Sudeste,Dengue-Chikungunya,-4,0.2637778001907477
-region,Sudeste,Dengue-Chikungunya,-3,0.4810876474269318
-region,Sudeste,Dengue-Chikungunya,-2,0.6923516421918224
-region,Sudeste,Dengue-Chikungunya,-1,0.7941944261269821
-region,Sudeste,Dengue-Chikungunya,0,0.7347797249942339
-region,Sudeste,Dengue-Chikungunya,1,0.5354263419421634
-region,Sudeste,Dengue-Chikungunya,2,0.3300173059959346
-region,Sudeste,Dengue-Chikungunya,3,0.18721995538340866
-region,Sudeste,Dengue-Chikungunya,4,0.09713383043978907
-region,Sudeste,Dengue-Chikungunya,5,0.04663239684950718
-region,Sudeste,Dengue-Chikungunya,6,0.017206930320739118
-region,Sudeste,Dengue-Zika,-6,0.02857596742643395
-region,Sudeste,Dengue-Zika,-5,0.020708406603213648
-region,Sudeste,Dengue-Zika,-4,0.0282587013272069
-region,Sudeste,Dengue-Zika,-3,0.06813725617789335
-region,Sudeste,Dengue-Zika,-2,0.1321120174948627
-region,Sudeste,Dengue-Zika,-1,0.18852215054362076
-region,Sudeste,Dengue-Zika,0,0.20054464533173513
-region,Sudeste,Dengue-Zika,1,0.16495941632381
-region,Sudeste,Dengue-Zika,2,0.11542243558018801
-region,Sudeste,Dengue-Zika,3,0.07063261271425307
-region,Sudeste,Dengue-Zika,4,0.021642652987076565
-region,Sudeste,Dengue-Zika,5,-0.022543186774874734
-region,Sudeste,Dengue-Zika,6,-0.009147109793429897
-region,Sudeste,Chikungunya-Zika,-6,0.03318394494286026
-region,Sudeste,Chikungunya-Zika,-5,0.031271493649475866
-region,Sudeste,Chikungunya-Zika,-4,0.04128121383626474
-region,Sudeste,Chikungunya-Zika,-3,0.05852523726264902
-region,Sudeste,Chikungunya-Zika,-2,0.061844811198604056
-region,Sudeste,Chikungunya-Zika,-1,0.06243821819339753
-region,Sudeste,Chikungunya-Zika,0,0.059782042314812274
-region,Sudeste,Chikungunya-Zika,1,0.05252060998895049
-region,Sudeste,Chikungunya-Zika,2,0.04781180272194018
-region,Sudeste,Chikungunya-Zika,3,0.055586863372622565
-region,Sudeste,Chikungunya-Zika,4,0.07575142200533483
-region,Sudeste,Chikungunya-Zika,5,0.06764013139967247
-region,Sudeste,Chikungunya-Zika,6,0.04689902202216949
-region,Sul,Dengue-Chikungunya,-6,0.008617003805207898
-region,Sul,Dengue-Chikungunya,-5,-0.005426243508196171
-region,Sul,Dengue-Chikungunya,-4,-0.025585213573708174
-region,Sul,Dengue-Chikungunya,-3,-0.05976421697941125
-region,Sul,Dengue-Chikungunya,-2,-0.16231410304453187
-region,Sul,Dengue-Chikungunya,-1,-0.3202983140434754
-region,Sul,Dengue-Chikungunya,0,-0.40463536253723065
-region,Sul,Dengue-Chikungunya,1,-0.3540786225759124
-region,Sul,Dengue-Chikungunya,2,-0.22947953121551806
-region,Sul,Dengue-Chikungunya,3,-0.11859112217575762
-region,Sul,Dengue-Chikungunya,4,-0.05737284124111939
-region,Sul,Dengue-Chikungunya,5,-0.03971809347663455
-region,Sul,Dengue-Chikungunya,6,-0.03665020438167034
-region,Sul,Dengue-Zika,-6,-0.0020047828224492486
-region,Sul,Dengue-Zika,-5,0.004545921461272632
-region,Sul,Dengue-Zika,-4,0.016587474595683972
-region,Sul,Dengue-Zika,-3,0.03861914665856726
-region,Sul,Dengue-Zika,-2,0.06175748579256348
-region,Sul,Dengue-Zika,-1,0.07371792091811129
-region,Sul,Dengue-Zika,0,0.05886228022682958
-region,Sul,Dengue-Zika,1,0.03146076374732438
-region,Sul,Dengue-Zika,2,0.013845322494764174
-region,Sul,Dengue-Zika,3,0.01611524260056708
-region,Sul,Dengue-Zika,4,0.011645760111882224
-region,Sul,Dengue-Zika,5,-0.023544886722772825
-region,Sul,Dengue-Zika,6,-0.04460649086264759
-region,Sul,Chikungunya-Zika,-6,-0.007689197592927577
-region,Sul,Chikungunya-Zika,-5,-0.003244673219507982
-region,Sul,Chikungunya-Zika,-4,-0.0032541069194069864
-region,Sul,Chikungunya-Zika,-3,2.5277416128077765e-05
-region,Sul,Chikungunya-Zika,-2,0.040296390768188424
-region,Sul,Chikungunya-Zika,-1,0.12803126444021717
-region,Sul,Chikungunya-Zika,0,0.19786201551928834
-region,Sul,Chikungunya-Zika,1,0.14859973487002306
-region,Sul,Chikungunya-Zika,2,0.0794969606496212
-region,Sul,Chikungunya-Zika,3,0.06347616145374711
-region,Sul,Chikungunya-Zika,4,0.07987218841888005
-region,Sul,Chikungunya-Zika,5,0.11380304784238775
-region,Sul,Chikungunya-Zika,6,0.13479324699538064
-state,Acre,Dengue-Chikungunya,-6,0.04449395359961045
-state,Acre,Dengue-Chikungunya,-5,0.03064843870263395
-state,Acre,Dengue-Chikungunya,-4,0.03776280147080164
-state,Acre,Dengue-Chikungunya,-3,0.06341668662980254
-state,Acre,Dengue-Chikungunya,-2,0.1535009510533954
-state,Acre,Dengue-Chikungunya,-1,0.32177287905002233
-state,Acre,Dengue-Chikungunya,0,0.4918746621875507
-state,Acre,Dengue-Chikungunya,1,0.41595947050720267
-state,Acre,Dengue-Chikungunya,2,0.2335170322913509
-state,Acre,Dengue-Chikungunya,3,0.07955662278170435
-state,Acre,Dengue-Chikungunya,4,0.015811355379405638
-state,Acre,Dengue-Chikungunya,5,-0.0006530663098930601
-state,Acre,Dengue-Chikungunya,6,0.007074393730031413
-state,Acre,Dengue-Zika,-6,0.007423909593274692
-state,Acre,Dengue-Zika,-5,0.010725017119988176
-state,Acre,Dengue-Zika,-4,0.04123252327383005
-state,Acre,Dengue-Zika,-3,0.11097814378491928
-state,Acre,Dengue-Zika,-2,0.2238736669153599
-state,Acre,Dengue-Zika,-1,0.3533511917965542
-state,Acre,Dengue-Zika,0,0.44533075145742756
-state,Acre,Dengue-Zika,1,0.35222506668507114
-state,Acre,Dengue-Zika,2,0.15860046944419648
-state,Acre,Dengue-Zika,3,0.04119649073611365
-state,Acre,Dengue-Zika,4,0.053512963210993095
-state,Acre,Dengue-Zika,5,0.053055098072136625
-state,Acre,Dengue-Zika,6,0.049429874471123285
-state,Acre,Chikungunya-Zika,-6,0.04881535049723521
-state,Acre,Chikungunya-Zika,-5,0.007063325305186052
-state,Acre,Chikungunya-Zika,-4,0.04314270266611661
-state,Acre,Chikungunya-Zika,-3,0.10534642886555867
-state,Acre,Chikungunya-Zika,-2,0.2741420108402796
-state,Acre,Chikungunya-Zika,-1,0.5711675185402261
-state,Acre,Chikungunya-Zika,0,0.8360743963559901
-state,Acre,Chikungunya-Zika,1,0.5775713600727064
-state,Acre,Chikungunya-Zika,2,0.2084867373957257
-state,Acre,Chikungunya-Zika,3,0.08156253826641577
-state,Acre,Chikungunya-Zika,4,0.06216537180533483
-state,Acre,Chikungunya-Zika,5,0.06728892227807022
-state,Acre,Chikungunya-Zika,6,0.07619215380728986
-state,Alagoas,Dengue-Chikungunya,-6,-0.0147941086330026
-state,Alagoas,Dengue-Chikungunya,-5,0.021531552708847906
-state,Alagoas,Dengue-Chikungunya,-4,0.0802516971746723
-state,Alagoas,Dengue-Chikungunya,-3,0.18629439332486372
-state,Alagoas,Dengue-Chikungunya,-2,0.3526113103858849
-state,Alagoas,Dengue-Chikungunya,-1,0.5588211182518628
-state,Alagoas,Dengue-Chikungunya,0,0.7126588796544228
-state,Alagoas,Dengue-Chikungunya,1,0.7204110863202551
-state,Alagoas,Dengue-Chikungunya,2,0.6127344479413902
-state,Alagoas,Dengue-Chikungunya,3,0.4341325437805637
-state,Alagoas,Dengue-Chikungunya,4,0.2902839981481781
-state,Alagoas,Dengue-Chikungunya,5,0.19610032684234807
-state,Alagoas,Dengue-Chikungunya,6,0.13109627443196092
-state,Alagoas,Dengue-Zika,-6,0.047761741173739776
-state,Alagoas,Dengue-Zika,-5,0.07565036000661347
-state,Alagoas,Dengue-Zika,-4,0.11359909033524279
-state,Alagoas,Dengue-Zika,-3,0.17029702666749932
-state,Alagoas,Dengue-Zika,-2,0.24463345370494818
-state,Alagoas,Dengue-Zika,-1,0.35005353129747363
-state,Alagoas,Dengue-Zika,0,0.44092381921655716
-state,Alagoas,Dengue-Zika,1,0.45508485657359643
-state,Alagoas,Dengue-Zika,2,0.40156650466735727
-state,Alagoas,Dengue-Zika,3,0.32686634323867897
-state,Alagoas,Dengue-Zika,4,0.25572181001513167
-state,Alagoas,Dengue-Zika,5,0.18187885358983824
-state,Alagoas,Dengue-Zika,6,0.07700777581472783
-state,Alagoas,Chikungunya-Zika,-6,0.12340829168226856
-state,Alagoas,Chikungunya-Zika,-5,0.22376248133437898
-state,Alagoas,Chikungunya-Zika,-4,0.3531795051721939
-state,Alagoas,Chikungunya-Zika,-3,0.5375517679354942
-state,Alagoas,Chikungunya-Zika,-2,0.6957043334791206
-state,Alagoas,Chikungunya-Zika,-1,0.7591048955267335
-state,Alagoas,Chikungunya-Zika,0,0.7367971238713314
-state,Alagoas,Chikungunya-Zika,1,0.6236369623412392
-state,Alagoas,Chikungunya-Zika,2,0.4630070863645577
-state,Alagoas,Chikungunya-Zika,3,0.34125685730257854
-state,Alagoas,Chikungunya-Zika,4,0.23734881259424223
-state,Alagoas,Chikungunya-Zika,5,0.14984921871680776
-state,Alagoas,Chikungunya-Zika,6,0.047746200249900964
-state,Amapa,Dengue-Chikungunya,-6,0.1741884076730724
-state,Amapa,Dengue-Chikungunya,-5,0.27120108158331446
-state,Amapa,Dengue-Chikungunya,-4,0.3665052291883381
-state,Amapa,Dengue-Chikungunya,-3,0.44881732422326237
-state,Amapa,Dengue-Chikungunya,-2,0.5210958528234793
-state,Amapa,Dengue-Chikungunya,-1,0.6284226796684517
-state,Amapa,Dengue-Chikungunya,0,0.6987827599398688
-state,Amapa,Dengue-Chikungunya,1,0.6772012062151629
-state,Amapa,Dengue-Chikungunya,2,0.5852723564013482
-state,Amapa,Dengue-Chikungunya,3,0.47562693815696344
-state,Amapa,Dengue-Chikungunya,4,0.4155765024385257
-state,Amapa,Dengue-Chikungunya,5,0.3521697976460421
-state,Amapa,Dengue-Chikungunya,6,0.21352884375345557
-state,Amapa,Dengue-Zika,-6,0.07092475533252084
-state,Amapa,Dengue-Zika,-5,0.13934354335497107
-state,Amapa,Dengue-Zika,-4,0.20539813560083675
-state,Amapa,Dengue-Zika,-3,0.2548308322033486
-state,Amapa,Dengue-Zika,-2,0.2959811863793345
-state,Amapa,Dengue-Zika,-1,0.35927397997933885
-state,Amapa,Dengue-Zika,0,0.41590788188444205
-state,Amapa,Dengue-Zika,1,0.4032853700819532
-state,Amapa,Dengue-Zika,2,0.3652435872477405
-state,Amapa,Dengue-Zika,3,0.31673882164356154
-state,Amapa,Dengue-Zika,4,0.29313095551248197
-state,Amapa,Dengue-Zika,5,0.2548798043711298
-state,Amapa,Dengue-Zika,6,0.1935486478879842
-state,Amapa,Chikungunya-Zika,-6,0.12031193791176696
-state,Amapa,Chikungunya-Zika,-5,0.23383438206637394
-state,Amapa,Chikungunya-Zika,-4,0.3311094255420976
-state,Amapa,Chikungunya-Zika,-3,0.451533164192041
-state,Amapa,Chikungunya-Zika,-2,0.5543706522531033
-state,Amapa,Chikungunya-Zika,-1,0.5862985275919781
-state,Amapa,Chikungunya-Zika,0,0.6910260741154691
-state,Amapa,Chikungunya-Zika,1,0.5908260854393905
-state,Amapa,Chikungunya-Zika,2,0.4936728359389302
-state,Amapa,Chikungunya-Zika,3,0.41243580144245884
-state,Amapa,Chikungunya-Zika,4,0.28874071464021084
-state,Amapa,Chikungunya-Zika,5,0.15930294992007785
-state,Amapa,Chikungunya-Zika,6,0.12724952503872924
-state,Amazonas,Dengue-Chikungunya,-6,0.09565248884915219
-state,Amazonas,Dengue-Chikungunya,-5,0.07175462721617037
-state,Amazonas,Dengue-Chikungunya,-4,-0.011930649067063768
-state,Amazonas,Dengue-Chikungunya,-3,-0.05952980481312241
-state,Amazonas,Dengue-Chikungunya,-2,0.03269309192794862
-state,Amazonas,Dengue-Chikungunya,-1,0.13900455641428447
-state,Amazonas,Dengue-Chikungunya,0,0.2499626019531488
-state,Amazonas,Dengue-Chikungunya,1,0.2780733680609386
-state,Amazonas,Dengue-Chikungunya,2,0.2171259647384693
-state,Amazonas,Dengue-Chikungunya,3,0.10294033894013284
-state,Amazonas,Dengue-Chikungunya,4,-0.01108646854514021
-state,Amazonas,Dengue-Chikungunya,5,-0.009805596929514096
-state,Amazonas,Dengue-Chikungunya,6,0.04980681874078234
-state,Amazonas,Dengue-Zika,-6,0.004065049395368462
-state,Amazonas,Dengue-Zika,-5,0.010491415530048407
-state,Amazonas,Dengue-Zika,-4,0.06361828356128478
-state,Amazonas,Dengue-Zika,-3,0.15835269777028033
-state,Amazonas,Dengue-Zika,-2,0.26674632126120107
-state,Amazonas,Dengue-Zika,-1,0.3215802597407877
-state,Amazonas,Dengue-Zika,0,0.3342629104463722
-state,Amazonas,Dengue-Zika,1,0.2668457860954476
-state,Amazonas,Dengue-Zika,2,0.176827723745687
-state,Amazonas,Dengue-Zika,3,0.08263851212962092
-state,Amazonas,Dengue-Zika,4,0.04785942482824603
-state,Amazonas,Dengue-Zika,5,0.01628657214233416
-state,Amazonas,Dengue-Zika,6,0.008834222079013868
-state,Amazonas,Chikungunya-Zika,-6,0.28307007205311707
-state,Amazonas,Chikungunya-Zika,-5,0.2682127363278973
-state,Amazonas,Chikungunya-Zika,-4,0.3256027249634589
-state,Amazonas,Chikungunya-Zika,-3,0.4697476791060273
-state,Amazonas,Chikungunya-Zika,-2,0.5542838024944049
-state,Amazonas,Chikungunya-Zika,-1,0.5657909566033631
-state,Amazonas,Chikungunya-Zika,0,0.4365772725811997
-state,Amazonas,Chikungunya-Zika,1,0.1637251770841272
-state,Amazonas,Chikungunya-Zika,2,0.04130544917958063
-state,Amazonas,Chikungunya-Zika,3,-0.06788493534965072
-state,Amazonas,Chikungunya-Zika,4,-0.10576583677348397
-state,Amazonas,Chikungunya-Zika,5,-0.07403462860403881
-state,Amazonas,Chikungunya-Zika,6,0.02447480800301905
-state,Bahia,Dengue-Chikungunya,-6,0.019492363524364335
-state,Bahia,Dengue-Chikungunya,-5,0.0147820691850068
-state,Bahia,Dengue-Chikungunya,-4,0.01337971685377436
-state,Bahia,Dengue-Chikungunya,-3,0.05776513117416493
-state,Bahia,Dengue-Chikungunya,-2,0.21888959137873568
-state,Bahia,Dengue-Chikungunya,-1,0.46227417854885283
-state,Bahia,Dengue-Chikungunya,0,0.5724224716655579
-state,Bahia,Dengue-Chikungunya,1,0.43240571342999984
-state,Bahia,Dengue-Chikungunya,2,0.23514244448828558
-state,Bahia,Dengue-Chikungunya,3,0.11743710957730233
-state,Bahia,Dengue-Chikungunya,4,0.05474148630328814
-state,Bahia,Dengue-Chikungunya,5,0.03574533288845307
-state,Bahia,Dengue-Chikungunya,6,0.03437430787048265
-state,Bahia,Dengue-Zika,-6,0.013724042785114163
-state,Bahia,Dengue-Zika,-5,0.010465406911339363
-state,Bahia,Dengue-Zika,-4,0.016541968658848927
-state,Bahia,Dengue-Zika,-3,0.05166307469318397
-state,Bahia,Dengue-Zika,-2,0.13439095784472013
-state,Bahia,Dengue-Zika,-1,0.2355284735222012
-state,Bahia,Dengue-Zika,0,0.26334771727267003
-state,Bahia,Dengue-Zika,1,0.17999574749119934
-state,Bahia,Dengue-Zika,2,0.09275880363488286
-state,Bahia,Dengue-Zika,3,0.06277039808931247
-state,Bahia,Dengue-Zika,4,0.033801435062111605
-state,Bahia,Dengue-Zika,5,0.03942688596740482
-state,Bahia,Dengue-Zika,6,0.05766021912409677
-state,Bahia,Chikungunya-Zika,-6,0.029921414001546433
-state,Bahia,Chikungunya-Zika,-5,0.032034238874032804
-state,Bahia,Chikungunya-Zika,-4,0.07554726393068137
-state,Bahia,Chikungunya-Zika,-3,0.19880612960605187
-state,Bahia,Chikungunya-Zika,-2,0.3903183787147464
-state,Bahia,Chikungunya-Zika,-1,0.6423856742698582
-state,Bahia,Chikungunya-Zika,0,0.7084356964670377
-state,Bahia,Chikungunya-Zika,1,0.4493529236244915
-state,Bahia,Chikungunya-Zika,2,0.2191397158919174
-state,Bahia,Chikungunya-Zika,3,0.1955422086231248
-state,Bahia,Chikungunya-Zika,4,0.1552639019769391
-state,Bahia,Chikungunya-Zika,5,0.12991489754077418
-state,Bahia,Chikungunya-Zika,6,0.127976666432448
-state,Ceara,Dengue-Chikungunya,-6,-0.02455925721311669
-state,Ceara,Dengue-Chikungunya,-5,-0.011897901531787346
-state,Ceara,Dengue-Chikungunya,-4,-0.01423583653122386
-state,Ceara,Dengue-Chikungunya,-3,0.017668511434251463
-state,Ceara,Dengue-Chikungunya,-2,0.10326324062076662
-state,Ceara,Dengue-Chikungunya,-1,0.30177723083155106
-state,Ceara,Dengue-Chikungunya,0,0.5778911768441872
-state,Ceara,Dengue-Chikungunya,1,0.6819286254151502
-state,Ceara,Dengue-Chikungunya,2,0.49133460547754815
-state,Ceara,Dengue-Chikungunya,3,0.30259769663920133
-state,Ceara,Dengue-Chikungunya,4,0.18532850093684397
-state,Ceara,Dengue-Chikungunya,5,0.12550031361204975
-state,Ceara,Dengue-Chikungunya,6,0.10423838332593179
-state,Ceara,Dengue-Zika,-6,0.13086315119529085
-state,Ceara,Dengue-Zika,-5,0.12978741210956074
-state,Ceara,Dengue-Zika,-4,0.16411933438508017
-state,Ceara,Dengue-Zika,-3,0.2747776878408646
-state,Ceara,Dengue-Zika,-2,0.39888127063152007
-state,Ceara,Dengue-Zika,-1,0.5745043166540416
-state,Ceara,Dengue-Zika,0,0.6859010593271259
-state,Ceara,Dengue-Zika,1,0.49845056798480464
-state,Ceara,Dengue-Zika,2,0.20166422867324824
-state,Ceara,Dengue-Zika,3,0.043446445813509586
-state,Ceara,Dengue-Zika,4,-0.009109408063877706
-state,Ceara,Dengue-Zika,5,-0.007236740701549737
-state,Ceara,Dengue-Zika,6,0.027180271488659168
-state,Ceara,Chikungunya-Zika,-6,0.06727318083164668
-state,Ceara,Chikungunya-Zika,-5,0.07022744454909033
-state,Ceara,Chikungunya-Zika,-4,0.11042666267367988
-state,Ceara,Chikungunya-Zika,-3,0.13746324672744412
-state,Ceara,Chikungunya-Zika,-2,0.20024815965419376
-state,Ceara,Chikungunya-Zika,-1,0.27592429864951024
-state,Ceara,Chikungunya-Zika,0,0.1811274873014606
-state,Ceara,Chikungunya-Zika,1,-0.05032906860586292
-state,Ceara,Chikungunya-Zika,2,-0.1462489015052014
-state,Ceara,Chikungunya-Zika,3,-0.12163233931558515
-state,Ceara,Chikungunya-Zika,4,-0.09126353166238285
-state,Ceara,Chikungunya-Zika,5,-0.06882551346539255
-state,Ceara,Chikungunya-Zika,6,-0.05786904286399908
-state,Distrito Federal,Dengue-Chikungunya,-6,0.0155234419263977
-state,Distrito Federal,Dengue-Chikungunya,-5,0.03197541914326923
-state,Distrito Federal,Dengue-Chikungunya,-4,0.08272307246532017
-state,Distrito Federal,Dengue-Chikungunya,-3,0.18938318210029761
-state,Distrito Federal,Dengue-Chikungunya,-2,0.3621214988658825
-state,Distrito Federal,Dengue-Chikungunya,-1,0.5368955934850229
-state,Distrito Federal,Dengue-Chikungunya,0,0.5855392984567265
-state,Distrito Federal,Dengue-Chikungunya,1,0.4640773653443736
-state,Distrito Federal,Dengue-Chikungunya,2,0.2504143867909896
-state,Distrito Federal,Dengue-Chikungunya,3,0.08316370605424692
-state,Distrito Federal,Dengue-Chikungunya,4,0.02275420702149649
-state,Distrito Federal,Dengue-Chikungunya,5,0.0008546690058235698
-state,Distrito Federal,Dengue-Chikungunya,6,-0.014252951937058141
-state,Distrito Federal,Dengue-Zika,-6,-0.005185367456643951
-state,Distrito Federal,Dengue-Zika,-5,0.005395079932387382
-state,Distrito Federal,Dengue-Zika,-4,0.020657725667118383
-state,Distrito Federal,Dengue-Zika,-3,0.052879238479193666
-state,Distrito Federal,Dengue-Zika,-2,0.09178322749996572
-state,Distrito Federal,Dengue-Zika,-1,0.12628899725435108
-state,Distrito Federal,Dengue-Zika,0,0.14078870078061007
-state,Distrito Federal,Dengue-Zika,1,0.12448916558908332
-state,Distrito Federal,Dengue-Zika,2,0.09302842789623651
-state,Distrito Federal,Dengue-Zika,3,0.06439947278704145
-state,Distrito Federal,Dengue-Zika,4,0.042621412665439506
-state,Distrito Federal,Dengue-Zika,5,0.02512880919847233
-state,Distrito Federal,Dengue-Zika,6,0.013685096995944087
-state,Distrito Federal,Chikungunya-Zika,-6,0.19515511987987536
-state,Distrito Federal,Chikungunya-Zika,-5,0.3212006011299606
-state,Distrito Federal,Chikungunya-Zika,-4,0.3922255375343223
-state,Distrito Federal,Chikungunya-Zika,-3,0.5080360772323971
-state,Distrito Federal,Chikungunya-Zika,-2,0.5682043878111085
-state,Distrito Federal,Chikungunya-Zika,-1,0.6168438624910128
-state,Distrito Federal,Chikungunya-Zika,0,0.6253983461272072
-state,Distrito Federal,Chikungunya-Zika,1,0.5527866361076089
-state,Distrito Federal,Chikungunya-Zika,2,0.4369097557792661
-state,Distrito Federal,Chikungunya-Zika,3,0.3167177854326521
-state,Distrito Federal,Chikungunya-Zika,4,0.22450578251657954
-state,Distrito Federal,Chikungunya-Zika,5,0.0490788151351707
-state,Distrito Federal,Chikungunya-Zika,6,-0.062264330024308395
-state,Espirito Santo,Dengue-Chikungunya,-6,0.18225914674212107
-state,Espirito Santo,Dengue-Chikungunya,-5,0.17732257640109395
-state,Espirito Santo,Dengue-Chikungunya,-4,0.17296997155100996
-state,Espirito Santo,Dengue-Chikungunya,-3,0.20845587786312736
-state,Espirito Santo,Dengue-Chikungunya,-2,0.34547134402943686
-state,Espirito Santo,Dengue-Chikungunya,-1,0.5600492361728469
-state,Espirito Santo,Dengue-Chikungunya,0,0.7700257538610066
-state,Espirito Santo,Dengue-Chikungunya,1,0.7890288558261251
-state,Espirito Santo,Dengue-Chikungunya,2,0.6545049889441037
-state,Espirito Santo,Dengue-Chikungunya,3,0.5049525903784876
-state,Espirito Santo,Dengue-Chikungunya,4,0.39666225687230716
-state,Espirito Santo,Dengue-Chikungunya,5,0.32086997104222886
-state,Espirito Santo,Dengue-Chikungunya,6,0.2729427098588875
-state,Espirito Santo,Dengue-Zika,-6,0.25075764135568956
-state,Espirito Santo,Dengue-Zika,-5,0.22584832991494308
-state,Espirito Santo,Dengue-Zika,-4,0.23730368793677106
-state,Espirito Santo,Dengue-Zika,-3,0.3228336313037929
-state,Espirito Santo,Dengue-Zika,-2,0.46660513958993616
-state,Espirito Santo,Dengue-Zika,-1,0.6484984507659507
-state,Espirito Santo,Dengue-Zika,0,0.7563614021641654
-state,Espirito Santo,Dengue-Zika,1,0.6734792978734945
-state,Espirito Santo,Dengue-Zika,2,0.5070907605398953
-state,Espirito Santo,Dengue-Zika,3,0.3596705213085362
-state,Espirito Santo,Dengue-Zika,4,0.24378504409523857
-state,Espirito Santo,Dengue-Zika,5,0.1508831949018637
-state,Espirito Santo,Dengue-Zika,6,0.08279511753142992
-state,Espirito Santo,Chikungunya-Zika,-6,0.3541763010359491
-state,Espirito Santo,Chikungunya-Zika,-5,0.35441205921540947
-state,Espirito Santo,Chikungunya-Zika,-4,0.37099638982463296
-state,Espirito Santo,Chikungunya-Zika,-3,0.41662089381838224
-state,Espirito Santo,Chikungunya-Zika,-2,0.4662390725646682
-state,Espirito Santo,Chikungunya-Zika,-1,0.524584535601226
-state,Espirito Santo,Chikungunya-Zika,0,0.5177846608539308
-state,Espirito Santo,Chikungunya-Zika,1,0.41045650966324165
-state,Espirito Santo,Chikungunya-Zika,2,0.29752842734747975
-state,Espirito Santo,Chikungunya-Zika,3,0.20246341625570774
-state,Espirito Santo,Chikungunya-Zika,4,0.13453123924597335
-state,Espirito Santo,Chikungunya-Zika,5,0.08866298465804967
-state,Espirito Santo,Chikungunya-Zika,6,0.04237703693960529
-state,Goias,Dengue-Chikungunya,-6,0.009105245650059936
-state,Goias,Dengue-Chikungunya,-5,0.07647457151383429
-state,Goias,Dengue-Chikungunya,-4,0.19976168386643145
-state,Goias,Dengue-Chikungunya,-3,0.38545688550190516
-state,Goias,Dengue-Chikungunya,-2,0.5907572359188161
-state,Goias,Dengue-Chikungunya,-1,0.7388442816605054
-state,Goias,Dengue-Chikungunya,0,0.7831003260035214
-state,Goias,Dengue-Chikungunya,1,0.6868833768282415
-state,Goias,Dengue-Chikungunya,2,0.5052737346165155
-state,Goias,Dengue-Chikungunya,3,0.30885721087785156
-state,Goias,Dengue-Chikungunya,4,0.15061162091591462
-state,Goias,Dengue-Chikungunya,5,0.06427521497178858
-state,Goias,Dengue-Chikungunya,6,0.011053872985968483
-state,Goias,Dengue-Zika,-6,0.02236879357586168
-state,Goias,Dengue-Zika,-5,0.054460364134250566
-state,Goias,Dengue-Zika,-4,0.12224886385340053
-state,Goias,Dengue-Zika,-3,0.1902665827010018
-state,Goias,Dengue-Zika,-2,0.25224496405201136
-state,Goias,Dengue-Zika,-1,0.34736039311147576
-state,Goias,Dengue-Zika,0,0.4100539140055832
-state,Goias,Dengue-Zika,1,0.4033302629331203
-state,Goias,Dengue-Zika,2,0.2962624848306002
-state,Goias,Dengue-Zika,3,0.17958930606141535
-state,Goias,Dengue-Zika,4,0.0768578307453416
-state,Goias,Dengue-Zika,5,0.006312823364992853
-state,Goias,Dengue-Zika,6,-0.02965262343052303
-state,Goias,Chikungunya-Zika,-6,0.0455945143289297
-state,Goias,Chikungunya-Zika,-5,0.09131119276750156
-state,Goias,Chikungunya-Zika,-4,0.16005650071294564
-state,Goias,Chikungunya-Zika,-3,0.2224147241933019
-state,Goias,Chikungunya-Zika,-2,0.2767774705042642
-state,Goias,Chikungunya-Zika,-1,0.32311133219216864
-state,Goias,Chikungunya-Zika,0,0.3275545916653513
-state,Goias,Chikungunya-Zika,1,0.2881416970333746
-state,Goias,Chikungunya-Zika,2,0.21637454829267727
-state,Goias,Chikungunya-Zika,3,0.18077910114896378
-state,Goias,Chikungunya-Zika,4,0.16148683846330286
-state,Goias,Chikungunya-Zika,5,0.08150235472894105
-state,Goias,Chikungunya-Zika,6,0.025469149590157468
-state,Maranhao,Dengue-Chikungunya,-6,0.05249729783680564
-state,Maranhao,Dengue-Chikungunya,-5,0.04808975164773505
-state,Maranhao,Dengue-Chikungunya,-4,0.08401102427850632
-state,Maranhao,Dengue-Chikungunya,-3,0.0843215898741989
-state,Maranhao,Dengue-Chikungunya,-2,0.09572730760593727
-state,Maranhao,Dengue-Chikungunya,-1,0.23112794463083924
-state,Maranhao,Dengue-Chikungunya,0,0.5485637021824052
-state,Maranhao,Dengue-Chikungunya,1,0.6479540974972285
-state,Maranhao,Dengue-Chikungunya,2,0.529571668387463
-state,Maranhao,Dengue-Chikungunya,3,0.3640334866548161
-state,Maranhao,Dengue-Chikungunya,4,0.21821507566585627
-state,Maranhao,Dengue-Chikungunya,5,0.0945897724305828
-state,Maranhao,Dengue-Chikungunya,6,0.06187168894188765
-state,Maranhao,Dengue-Zika,-6,0.04260153099920514
-state,Maranhao,Dengue-Zika,-5,0.04526068810441391
-state,Maranhao,Dengue-Zika,-4,0.07130846128897496
-state,Maranhao,Dengue-Zika,-3,0.12245320471216896
-state,Maranhao,Dengue-Zika,-2,0.3332565669532037
-state,Maranhao,Dengue-Zika,-1,0.6597816471928131
-state,Maranhao,Dengue-Zika,0,0.8457607975046062
-state,Maranhao,Dengue-Zika,1,0.748103952857907
-state,Maranhao,Dengue-Zika,2,0.5341210426807047
-state,Maranhao,Dengue-Zika,3,0.4106600182666471
-state,Maranhao,Dengue-Zika,4,0.3342116359490024
-state,Maranhao,Dengue-Zika,5,0.22309121997205864
-state,Maranhao,Dengue-Zika,6,0.18546054969717438
-state,Maranhao,Chikungunya-Zika,-6,0.07036708359919075
-state,Maranhao,Chikungunya-Zika,-5,0.08658655600292747
-state,Maranhao,Chikungunya-Zika,-4,0.15014770642744496
-state,Maranhao,Chikungunya-Zika,-3,0.28770533415561744
-state,Maranhao,Chikungunya-Zika,-2,0.5873439416225978
-state,Maranhao,Chikungunya-Zika,-1,0.7529241586447185
-state,Maranhao,Chikungunya-Zika,0,0.6001936858216822
-state,Maranhao,Chikungunya-Zika,1,0.30001141420844096
-state,Maranhao,Chikungunya-Zika,2,0.14877370859923753
-state,Maranhao,Chikungunya-Zika,3,0.14121110118487376
-state,Maranhao,Chikungunya-Zika,4,0.13113991729630753
-state,Maranhao,Chikungunya-Zika,5,0.1046331818065718
-state,Maranhao,Chikungunya-Zika,6,0.14538744137355622
-state,Mato Grosso,Dengue-Chikungunya,-6,-0.019792480180497198
-state,Mato Grosso,Dengue-Chikungunya,-5,-0.01587468675332906
-state,Mato Grosso,Dengue-Chikungunya,-4,-0.02073716333963947
-state,Mato Grosso,Dengue-Chikungunya,-3,-0.02176094574895996
-state,Mato Grosso,Dengue-Chikungunya,-2,0.02986007578335662
-state,Mato Grosso,Dengue-Chikungunya,-1,0.15937581099650183
-state,Mato Grosso,Dengue-Chikungunya,0,0.3190818746611474
-state,Mato Grosso,Dengue-Chikungunya,1,0.3429172222634717
-state,Mato Grosso,Dengue-Chikungunya,2,0.2565817508461951
-state,Mato Grosso,Dengue-Chikungunya,3,0.2144893687969439
-state,Mato Grosso,Dengue-Chikungunya,4,0.1677760662777858
-state,Mato Grosso,Dengue-Chikungunya,5,0.08851370950989476
-state,Mato Grosso,Dengue-Chikungunya,6,0.05723160895159888
-state,Mato Grosso,Dengue-Zika,-6,-0.0025051535506557484
-state,Mato Grosso,Dengue-Zika,-5,-0.011868145946372142
-state,Mato Grosso,Dengue-Zika,-4,-0.018589722876115565
-state,Mato Grosso,Dengue-Zika,-3,-0.006089085931289542
-state,Mato Grosso,Dengue-Zika,-2,0.07136792150195852
-state,Mato Grosso,Dengue-Zika,-1,0.25459673364718205
-state,Mato Grosso,Dengue-Zika,0,0.40196899323064783
-state,Mato Grosso,Dengue-Zika,1,0.384409570982052
-state,Mato Grosso,Dengue-Zika,2,0.3664455086923983
-state,Mato Grosso,Dengue-Zika,3,0.34146574963190984
-state,Mato Grosso,Dengue-Zika,4,0.16556360969894207
-state,Mato Grosso,Dengue-Zika,5,0.08805643840740707
-state,Mato Grosso,Dengue-Zika,6,0.0825211854695253
-state,Mato Grosso,Chikungunya-Zika,-6,0.007418026514060825
-state,Mato Grosso,Chikungunya-Zika,-5,0.012222803113123055
-state,Mato Grosso,Chikungunya-Zika,-4,0.013189803006301733
-state,Mato Grosso,Chikungunya-Zika,-3,0.017406086355753345
-state,Mato Grosso,Chikungunya-Zika,-2,0.04116137157953813
-state,Mato Grosso,Chikungunya-Zika,-1,0.06698810483818377
-state,Mato Grosso,Chikungunya-Zika,0,0.07291561669324162
-state,Mato Grosso,Chikungunya-Zika,1,0.0754825309996608
-state,Mato Grosso,Chikungunya-Zika,2,0.12831395449519958
-state,Mato Grosso,Chikungunya-Zika,3,0.28595366810467854
-state,Mato Grosso,Chikungunya-Zika,4,0.20976817628052272
-state,Mato Grosso,Chikungunya-Zika,5,0.13937646239512522
-state,Mato Grosso,Chikungunya-Zika,6,0.11605321764217567
-state,Mato Grosso do Sul,Dengue-Chikungunya,-6,-0.03487731230557787
-state,Mato Grosso do Sul,Dengue-Chikungunya,-5,-0.028233949768300466
-state,Mato Grosso do Sul,Dengue-Chikungunya,-4,-0.04025416825851164
-state,Mato Grosso do Sul,Dengue-Chikungunya,-3,-0.05846539401318054
-state,Mato Grosso do Sul,Dengue-Chikungunya,-2,-0.060280681023671824
-state,Mato Grosso do Sul,Dengue-Chikungunya,-1,-0.024806514858272902
-state,Mato Grosso do Sul,Dengue-Chikungunya,0,0.023017336359220715
-state,Mato Grosso do Sul,Dengue-Chikungunya,1,0.029007610369193398
-state,Mato Grosso do Sul,Dengue-Chikungunya,2,0.016663048650031622
-state,Mato Grosso do Sul,Dengue-Chikungunya,3,0.010272330231446669
-state,Mato Grosso do Sul,Dengue-Chikungunya,4,0.014391437273755237
-state,Mato Grosso do Sul,Dengue-Chikungunya,5,0.0056917423798562294
-state,Mato Grosso do Sul,Dengue-Chikungunya,6,-0.0039240867629312
-state,Mato Grosso do Sul,Dengue-Zika,-6,0.03214130235056118
-state,Mato Grosso do Sul,Dengue-Zika,-5,0.030973380165589214
-state,Mato Grosso do Sul,Dengue-Zika,-4,0.0399530097300643
-state,Mato Grosso do Sul,Dengue-Zika,-3,0.11103714678108359
-state,Mato Grosso do Sul,Dengue-Zika,-2,0.2475176018718193
-state,Mato Grosso do Sul,Dengue-Zika,-1,0.39516235684293516
-state,Mato Grosso do Sul,Dengue-Zika,0,0.4996885154619925
-state,Mato Grosso do Sul,Dengue-Zika,1,0.4639480763040049
-state,Mato Grosso do Sul,Dengue-Zika,2,0.3380566898001423
-state,Mato Grosso do Sul,Dengue-Zika,3,0.15034817788682459
-state,Mato Grosso do Sul,Dengue-Zika,4,0.03392322707225332
-state,Mato Grosso do Sul,Dengue-Zika,5,-0.0023804546678493272
-state,Mato Grosso do Sul,Dengue-Zika,6,-0.028460454993840548
-state,Mato Grosso do Sul,Chikungunya-Zika,-6,0.12040122323337665
-state,Mato Grosso do Sul,Chikungunya-Zika,-5,0.16259366678258821
-state,Mato Grosso do Sul,Chikungunya-Zika,-4,0.22394371618820755
-state,Mato Grosso do Sul,Chikungunya-Zika,-3,0.2932709340950057
-state,Mato Grosso do Sul,Chikungunya-Zika,-2,0.29479680005368125
-state,Mato Grosso do Sul,Chikungunya-Zika,-1,0.28537255032072656
-state,Mato Grosso do Sul,Chikungunya-Zika,0,0.23927206415659685
-state,Mato Grosso do Sul,Chikungunya-Zika,1,0.16961770642120927
-state,Mato Grosso do Sul,Chikungunya-Zika,2,0.03615881346083235
-state,Mato Grosso do Sul,Chikungunya-Zika,3,-0.019777760341499438
-state,Mato Grosso do Sul,Chikungunya-Zika,4,0.011409300292062271
-state,Mato Grosso do Sul,Chikungunya-Zika,5,0.022272379272342057
-state,Mato Grosso do Sul,Chikungunya-Zika,6,0.007593419981807425
-state,Minas Gerais,Dengue-Chikungunya,-6,0.03417300647371135
-state,Minas Gerais,Dengue-Chikungunya,-5,0.06847411275105847
-state,Minas Gerais,Dengue-Chikungunya,-4,0.1600358765004256
-state,Minas Gerais,Dengue-Chikungunya,-3,0.34534263354662137
-state,Minas Gerais,Dengue-Chikungunya,-2,0.603568405339241
-state,Minas Gerais,Dengue-Chikungunya,-1,0.7971198283930322
-state,Minas Gerais,Dengue-Chikungunya,0,0.7660512869662619
-state,Minas Gerais,Dengue-Chikungunya,1,0.5363506649344149
-state,Minas Gerais,Dengue-Chikungunya,2,0.29866329274126163
-state,Minas Gerais,Dengue-Chikungunya,3,0.15289592868377128
-state,Minas Gerais,Dengue-Chikungunya,4,0.07599010718447828
-state,Minas Gerais,Dengue-Chikungunya,5,0.036223051837538905
-state,Minas Gerais,Dengue-Chikungunya,6,0.013307764319784763
-state,Minas Gerais,Dengue-Zika,-6,0.0029705973297225
-state,Minas Gerais,Dengue-Zika,-5,0.006000480926850516
-state,Minas Gerais,Dengue-Zika,-4,0.018769910482391745
-state,Minas Gerais,Dengue-Zika,-3,0.06493607089456156
-state,Minas Gerais,Dengue-Zika,-2,0.16136895604143703
-state,Minas Gerais,Dengue-Zika,-1,0.2633179693250519
-state,Minas Gerais,Dengue-Zika,0,0.29191465810116485
-state,Minas Gerais,Dengue-Zika,1,0.2221908077329125
-state,Minas Gerais,Dengue-Zika,2,0.15016168400189564
-state,Minas Gerais,Dengue-Zika,3,0.13009777118377117
-state,Minas Gerais,Dengue-Zika,4,0.07969684623527418
-state,Minas Gerais,Dengue-Zika,5,0.025566614100950912
-state,Minas Gerais,Dengue-Zika,6,0.0035762448749571242
-state,Minas Gerais,Chikungunya-Zika,-6,-0.002758701544658382
-state,Minas Gerais,Chikungunya-Zika,-5,-0.0036813875539723692
-state,Minas Gerais,Chikungunya-Zika,-4,-0.0066989468205468266
-state,Minas Gerais,Chikungunya-Zika,-3,-0.010896222571034266
-state,Minas Gerais,Chikungunya-Zika,-2,-0.023583242266296996
-state,Minas Gerais,Chikungunya-Zika,-1,-0.047199777272341696
-state,Minas Gerais,Chikungunya-Zika,0,-0.04606505671901499
-state,Minas Gerais,Chikungunya-Zika,1,-0.01964313153464432
-state,Minas Gerais,Chikungunya-Zika,2,-0.00027551413889088564
-state,Minas Gerais,Chikungunya-Zika,3,0.01599314216861154
-state,Minas Gerais,Chikungunya-Zika,4,0.022353151385725866
-state,Minas Gerais,Chikungunya-Zika,5,0.015803274238296704
-state,Minas Gerais,Chikungunya-Zika,6,0.010035313656017663
-state,Para,Dengue-Chikungunya,-6,0.059820843241773315
-state,Para,Dengue-Chikungunya,-5,0.06922647622443572
-state,Para,Dengue-Chikungunya,-4,0.07115346937095589
-state,Para,Dengue-Chikungunya,-3,0.06777602200143523
-state,Para,Dengue-Chikungunya,-2,0.1600889260262222
-state,Para,Dengue-Chikungunya,-1,0.34949975673277645
-state,Para,Dengue-Chikungunya,0,0.4514567979134179
-state,Para,Dengue-Chikungunya,1,0.3252651800561698
-state,Para,Dengue-Chikungunya,2,0.1322372192488675
-state,Para,Dengue-Chikungunya,3,0.00028535563125248924
-state,Para,Dengue-Chikungunya,4,-0.031276916133515305
-state,Para,Dengue-Chikungunya,5,-0.029289100129345155
-state,Para,Dengue-Chikungunya,6,-0.05961535206742213
-state,Para,Dengue-Zika,-6,0.08619645478615155
-state,Para,Dengue-Zika,-5,0.08120137024062078
-state,Para,Dengue-Zika,-4,0.09053572315665485
-state,Para,Dengue-Zika,-3,0.14230780303008225
-state,Para,Dengue-Zika,-2,0.2694068868377441
-state,Para,Dengue-Zika,-1,0.3379264924483219
-state,Para,Dengue-Zika,0,0.2807784960198911
-state,Para,Dengue-Zika,1,0.13055110648390283
-state,Para,Dengue-Zika,2,0.05416526525662596
-state,Para,Dengue-Zika,3,0.05042559362076519
-state,Para,Dengue-Zika,4,0.07041507721164392
-state,Para,Dengue-Zika,5,0.07134991684148066
-state,Para,Dengue-Zika,6,0.05660382023928916
-state,Para,Chikungunya-Zika,-6,-0.004672342450938972
-state,Para,Chikungunya-Zika,-5,-0.059191549882561284
-state,Para,Chikungunya-Zika,-4,-0.10825875158325096
-state,Para,Chikungunya-Zika,-3,-0.13261811502282259
-state,Para,Chikungunya-Zika,-2,-0.16505087769632118
-state,Para,Chikungunya-Zika,-1,-0.22268172891369817
-state,Para,Chikungunya-Zika,0,-0.3620077628883063
-state,Para,Chikungunya-Zika,1,-0.4955048572862106
-state,Para,Chikungunya-Zika,2,-0.45112859495174673
-state,Para,Chikungunya-Zika,3,-0.42751505553635255
-state,Para,Chikungunya-Zika,4,-0.3655148401246567
-state,Para,Chikungunya-Zika,5,-0.30585343128502535
-state,Para,Chikungunya-Zika,6,-0.25711008120625634
-state,Paraiba,Dengue-Chikungunya,-6,0.06307064912385499
-state,Paraiba,Dengue-Chikungunya,-5,0.11981294683779992
-state,Paraiba,Dengue-Chikungunya,-4,0.20595135768091538
-state,Paraiba,Dengue-Chikungunya,-3,0.33122037631513834
-state,Paraiba,Dengue-Chikungunya,-2,0.4677218932483171
-state,Paraiba,Dengue-Chikungunya,-1,0.6228463767064674
-state,Paraiba,Dengue-Chikungunya,0,0.7538670533737379
-state,Paraiba,Dengue-Chikungunya,1,0.7711969290286428
-state,Paraiba,Dengue-Chikungunya,2,0.7036356623878498
-state,Paraiba,Dengue-Chikungunya,3,0.5489706541019846
-state,Paraiba,Dengue-Chikungunya,4,0.38887752305706
-state,Paraiba,Dengue-Chikungunya,5,0.2663739494160553
-state,Paraiba,Dengue-Chikungunya,6,0.15241245301452636
-state,Paraiba,Dengue-Zika,-6,0.1019982131606869
-state,Paraiba,Dengue-Zika,-5,0.15113671616859653
-state,Paraiba,Dengue-Zika,-4,0.2388587331130899
-state,Paraiba,Dengue-Zika,-3,0.3474379794766329
-state,Paraiba,Dengue-Zika,-2,0.4674956022833313
-state,Paraiba,Dengue-Zika,-1,0.6455612684224432
-state,Paraiba,Dengue-Zika,0,0.7684543649558543
-state,Paraiba,Dengue-Zika,1,0.6523336530663782
-state,Paraiba,Dengue-Zika,2,0.4624612805505691
-state,Paraiba,Dengue-Zika,3,0.2944030537659962
-state,Paraiba,Dengue-Zika,4,0.17202022731999353
-state,Paraiba,Dengue-Zika,5,0.08282797387706282
-state,Paraiba,Dengue-Zika,6,-0.002421093311560624
-state,Paraiba,Chikungunya-Zika,-6,0.13893780752172882
-state,Paraiba,Chikungunya-Zika,-5,0.2159932385096255
-state,Paraiba,Chikungunya-Zika,-4,0.2951020721116294
-state,Paraiba,Chikungunya-Zika,-3,0.4508429119751486
-state,Paraiba,Chikungunya-Zika,-2,0.6094609768928405
-state,Paraiba,Chikungunya-Zika,-1,0.6749080996337301
-state,Paraiba,Chikungunya-Zika,0,0.6525959141925177
-state,Paraiba,Chikungunya-Zika,1,0.43422103976928866
-state,Paraiba,Chikungunya-Zika,2,0.269716247732062
-state,Paraiba,Chikungunya-Zika,3,0.2026257679809827
-state,Paraiba,Chikungunya-Zika,4,0.11419769990520398
-state,Paraiba,Chikungunya-Zika,5,0.04168083172698349
-state,Paraiba,Chikungunya-Zika,6,-0.030379590992725417
-state,Parana,Dengue-Chikungunya,-6,0.007373484988482524
-state,Parana,Dengue-Chikungunya,-5,-0.014679931034482785
-state,Parana,Dengue-Chikungunya,-4,-0.04677732299440121
-state,Parana,Dengue-Chikungunya,-3,-0.10161028629957608
-state,Parana,Dengue-Chikungunya,-2,-0.22115190102770702
-state,Parana,Dengue-Chikungunya,-1,-0.34822345470912774
-state,Parana,Dengue-Chikungunya,0,-0.4028089415274138
-state,Parana,Dengue-Chikungunya,1,-0.353706338551629
-state,Parana,Dengue-Chikungunya,2,-0.25329457460381244
-state,Parana,Dengue-Chikungunya,3,-0.15127842524371102
-state,Parana,Dengue-Chikungunya,4,-0.08049417409440576
-state,Parana,Dengue-Chikungunya,5,-0.04581347392644194
-state,Parana,Dengue-Chikungunya,6,-0.02698729731676225
-state,Parana,Dengue-Zika,-6,0.00862376721419525
-state,Parana,Dengue-Zika,-5,0.01099499596550153
-state,Parana,Dengue-Zika,-4,0.014220650093720904
-state,Parana,Dengue-Zika,-3,0.02201038520233627
-state,Parana,Dengue-Zika,-2,0.04271703381845015
-state,Parana,Dengue-Zika,-1,0.07749149651444587
-state,Parana,Dengue-Zika,0,0.08717475587834836
-state,Parana,Dengue-Zika,1,0.06220213651352283
-state,Parana,Dengue-Zika,2,0.026389434097880353
-state,Parana,Dengue-Zika,3,-0.005474998654303605
-state,Parana,Dengue-Zika,4,-0.06574828883286178
-state,Parana,Dengue-Zika,5,-0.08319804614677406
-state,Parana,Dengue-Zika,6,-0.06749250699755863
-state,Parana,Chikungunya-Zika,-6,-0.0045869437917832965
-state,Parana,Chikungunya-Zika,-5,0.0009613667781547548
-state,Parana,Chikungunya-Zika,-4,0.007256628912978043
-state,Parana,Chikungunya-Zika,-3,0.021943882310975413
-state,Parana,Chikungunya-Zika,-2,0.066935539925233
-state,Parana,Chikungunya-Zika,-1,0.14475238065942309
-state,Parana,Chikungunya-Zika,0,0.19867226448712025
-state,Parana,Chikungunya-Zika,1,0.14007008275773292
-state,Parana,Chikungunya-Zika,2,0.08085634287613047
-state,Parana,Chikungunya-Zika,3,0.09404543899391292
-state,Parana,Chikungunya-Zika,4,0.13363366712051264
-state,Parana,Chikungunya-Zika,5,0.15388746263708922
-state,Parana,Chikungunya-Zika,6,0.17270919827267767
-state,Pernambuco,Dengue-Chikungunya,-6,0.017354215112869546
-state,Pernambuco,Dengue-Chikungunya,-5,0.03898041173753349
-state,Pernambuco,Dengue-Chikungunya,-4,0.08061850163463535
-state,Pernambuco,Dengue-Chikungunya,-3,0.1940904707966946
-state,Pernambuco,Dengue-Chikungunya,-2,0.41770231810648195
-state,Pernambuco,Dengue-Chikungunya,-1,0.6728986231779718
-state,Pernambuco,Dengue-Chikungunya,0,0.8240878961397236
-state,Pernambuco,Dengue-Chikungunya,1,0.7915085778897754
-state,Pernambuco,Dengue-Chikungunya,2,0.6195200251369417
-state,Pernambuco,Dengue-Chikungunya,3,0.42004539606150443
-state,Pernambuco,Dengue-Chikungunya,4,0.24514067120985553
-state,Pernambuco,Dengue-Chikungunya,5,0.15260507469674833
-state,Pernambuco,Dengue-Chikungunya,6,0.09733168901471805
-state,Pernambuco,Dengue-Zika,-6,0.01717877174770211
-state,Pernambuco,Dengue-Zika,-5,0.061878221601252385
-state,Pernambuco,Dengue-Zika,-4,0.147222728958956
-state,Pernambuco,Dengue-Zika,-3,0.29132597936870336
-state,Pernambuco,Dengue-Zika,-2,0.41991776978555817
-state,Pernambuco,Dengue-Zika,-1,0.5336481144633322
-state,Pernambuco,Dengue-Zika,0,0.5593664015749349
-state,Pernambuco,Dengue-Zika,1,0.4265269162973811
-state,Pernambuco,Dengue-Zika,2,0.22598721980670314
-state,Pernambuco,Dengue-Zika,3,0.11203221672201374
-state,Pernambuco,Dengue-Zika,4,0.0720129441820987
-state,Pernambuco,Dengue-Zika,5,0.059414823313592144
-state,Pernambuco,Dengue-Zika,6,0.033298180039289534
-state,Pernambuco,Chikungunya-Zika,-6,0.03416657574663113
-state,Pernambuco,Chikungunya-Zika,-5,0.07351368458800528
-state,Pernambuco,Chikungunya-Zika,-4,0.13033258085982044
-state,Pernambuco,Chikungunya-Zika,-3,0.2538084256737949
-state,Pernambuco,Chikungunya-Zika,-2,0.37571743475126956
-state,Pernambuco,Chikungunya-Zika,-1,0.4861566590403936
-state,Pernambuco,Chikungunya-Zika,0,0.5973179385576983
-state,Pernambuco,Chikungunya-Zika,1,0.4972776530689505
-state,Pernambuco,Chikungunya-Zika,2,0.29646049945526803
-state,Pernambuco,Chikungunya-Zika,3,0.16119787634456686
-state,Pernambuco,Chikungunya-Zika,4,0.10752589221878998
-state,Pernambuco,Chikungunya-Zika,5,0.08832135274000245
-state,Pernambuco,Chikungunya-Zika,6,0.07012352592859564
-state,Piaui,Dengue-Chikungunya,-6,-0.013609400464703455
-state,Piaui,Dengue-Chikungunya,-5,-0.010468393365419446
-state,Piaui,Dengue-Chikungunya,-4,0.014692639592414443
-state,Piaui,Dengue-Chikungunya,-3,0.10281738262608398
-state,Piaui,Dengue-Chikungunya,-2,0.3023213025239632
-state,Piaui,Dengue-Chikungunya,-1,0.5869360755476627
-state,Piaui,Dengue-Chikungunya,0,0.7837588843530198
-state,Piaui,Dengue-Chikungunya,1,0.6736559357337057
-state,Piaui,Dengue-Chikungunya,2,0.38798380291374424
-state,Piaui,Dengue-Chikungunya,3,0.17414089476144917
-state,Piaui,Dengue-Chikungunya,4,0.07464759067022633
-state,Piaui,Dengue-Chikungunya,5,0.039188203557415
-state,Piaui,Dengue-Chikungunya,6,0.03144649667034309
-state,Piaui,Dengue-Zika,-6,0.01831857880254066
-state,Piaui,Dengue-Zika,-5,0.011551699420639893
-state,Piaui,Dengue-Zika,-4,0.03486759620938768
-state,Piaui,Dengue-Zika,-3,0.15687330946654204
-state,Piaui,Dengue-Zika,-2,0.37549357028749414
-state,Piaui,Dengue-Zika,-1,0.6240330748085338
-state,Piaui,Dengue-Zika,0,0.5820915229019159
-state,Piaui,Dengue-Zika,1,0.3764610964929189
-state,Piaui,Dengue-Zika,2,0.20599726637046883
-state,Piaui,Dengue-Zika,3,0.0755752145157904
-state,Piaui,Dengue-Zika,4,0.004440797088972163
-state,Piaui,Dengue-Zika,5,-0.0012815873572912585
-state,Piaui,Dengue-Zika,6,0.01697547792101191
-state,Piaui,Chikungunya-Zika,-6,0.01095137754950873
-state,Piaui,Chikungunya-Zika,-5,-0.010476000547962792
-state,Piaui,Chikungunya-Zika,-4,0.022440956715521827
-state,Piaui,Chikungunya-Zika,-3,0.17637627910184003
-state,Piaui,Chikungunya-Zika,-2,0.5309283652671183
-state,Piaui,Chikungunya-Zika,-1,0.800056556730049
-state,Piaui,Chikungunya-Zika,0,0.7057494717526308
-state,Piaui,Chikungunya-Zika,1,0.3932877183380336
-state,Piaui,Chikungunya-Zika,2,0.16117004484524136
-state,Piaui,Chikungunya-Zika,3,0.02584980186171075
-state,Piaui,Chikungunya-Zika,4,-0.024021045080054333
-state,Piaui,Chikungunya-Zika,5,-0.02061946544215647
-state,Piaui,Chikungunya-Zika,6,-0.01735112857735365
-state,Rio Grande do Norte,Dengue-Chikungunya,-6,-0.001997603600107553
-state,Rio Grande do Norte,Dengue-Chikungunya,-5,0.05367987941937097
-state,Rio Grande do Norte,Dengue-Chikungunya,-4,0.13431918164285564
-state,Rio Grande do Norte,Dengue-Chikungunya,-3,0.2802619252410269
-state,Rio Grande do Norte,Dengue-Chikungunya,-2,0.3937691601176778
-state,Rio Grande do Norte,Dengue-Chikungunya,-1,0.5936638921980185
-state,Rio Grande do Norte,Dengue-Chikungunya,0,0.8649546173234958
-state,Rio Grande do Norte,Dengue-Chikungunya,1,0.8774644001322672
-state,Rio Grande do Norte,Dengue-Chikungunya,2,0.6912513466423921
-state,Rio Grande do Norte,Dengue-Chikungunya,3,0.5065789229134473
-state,Rio Grande do Norte,Dengue-Chikungunya,4,0.3001978860337328
-state,Rio Grande do Norte,Dengue-Chikungunya,5,0.15384242979590484
-state,Rio Grande do Norte,Dengue-Chikungunya,6,0.05441033021073989
-state,Rio Grande do Norte,Dengue-Zika,-6,-0.012818338600398724
-state,Rio Grande do Norte,Dengue-Zika,-5,0.0336269628688633
-state,Rio Grande do Norte,Dengue-Zika,-4,0.12560130151830617
-state,Rio Grande do Norte,Dengue-Zika,-3,0.2874946918692891
-state,Rio Grande do Norte,Dengue-Zika,-2,0.4134717870031073
-state,Rio Grande do Norte,Dengue-Zika,-1,0.6180046367448206
-state,Rio Grande do Norte,Dengue-Zika,0,0.837800376890245
-state,Rio Grande do Norte,Dengue-Zika,1,0.724475852118068
-state,Rio Grande do Norte,Dengue-Zika,2,0.46809881442934664
-state,Rio Grande do Norte,Dengue-Zika,3,0.28206863708046914
-state,Rio Grande do Norte,Dengue-Zika,4,0.14176762254792574
-state,Rio Grande do Norte,Dengue-Zika,5,0.058924401110067186
-state,Rio Grande do Norte,Dengue-Zika,6,0.007311417492151632
-state,Rio Grande do Norte,Chikungunya-Zika,-6,-0.00664453522843292
-state,Rio Grande do Norte,Chikungunya-Zika,-5,0.06533732766180333
-state,Rio Grande do Norte,Chikungunya-Zika,-4,0.1715468769067662
-state,Rio Grande do Norte,Chikungunya-Zika,-3,0.33101963929249056
-state,Rio Grande do Norte,Chikungunya-Zika,-2,0.48265439083918843
-state,Rio Grande do Norte,Chikungunya-Zika,-1,0.6892435462572588
-state,Rio Grande do Norte,Chikungunya-Zika,0,0.8073562377862444
-state,Rio Grande do Norte,Chikungunya-Zika,1,0.6012651373086976
-state,Rio Grande do Norte,Chikungunya-Zika,2,0.3744541604513035
-state,Rio Grande do Norte,Chikungunya-Zika,3,0.23495926733833022
-state,Rio Grande do Norte,Chikungunya-Zika,4,0.11435694749057049
-state,Rio Grande do Norte,Chikungunya-Zika,5,0.05826989186242655
-state,Rio Grande do Norte,Chikungunya-Zika,6,0.022066771334552388
-state,Rio Grande do Sul,Dengue-Chikungunya,-6,-0.015702954826511867
-state,Rio Grande do Sul,Dengue-Chikungunya,-5,-0.006150322290236164
-state,Rio Grande do Sul,Dengue-Chikungunya,-4,0.022143864911656593
-state,Rio Grande do Sul,Dengue-Chikungunya,-3,0.12520153017050092
-state,Rio Grande do Sul,Dengue-Chikungunya,-2,0.2917909073720521
-state,Rio Grande do Sul,Dengue-Chikungunya,-1,0.3215164751631779
-state,Rio Grande do Sul,Dengue-Chikungunya,0,0.14987637867131706
-state,Rio Grande do Sul,Dengue-Chikungunya,1,-0.05264092340397477
-state,Rio Grande do Sul,Dengue-Chikungunya,2,-0.07544794345638942
-state,Rio Grande do Sul,Dengue-Chikungunya,3,-0.0431435042277205
-state,Rio Grande do Sul,Dengue-Chikungunya,4,-0.016217959006426783
-state,Rio Grande do Sul,Dengue-Chikungunya,5,-0.02829815798464462
-state,Rio Grande do Sul,Dengue-Chikungunya,6,-0.05392901539038041
-state,Rio Grande do Sul,Dengue-Zika,-6,-0.03112772961859881
-state,Rio Grande do Sul,Dengue-Zika,-5,-0.026564812292254308
-state,Rio Grande do Sul,Dengue-Zika,-4,0.0055352292362898636
-state,Rio Grande do Sul,Dengue-Zika,-3,0.051955541844631255
-state,Rio Grande do Sul,Dengue-Zika,-2,0.036485924528656434
-state,Rio Grande do Sul,Dengue-Zika,-1,0.011386837960703965
-state,Rio Grande do Sul,Dengue-Zika,0,0.013281771214825192
-state,Rio Grande do Sul,Dengue-Zika,1,0.016591873747642035
-state,Rio Grande do Sul,Dengue-Zika,2,0.013491408040966345
-state,Rio Grande do Sul,Dengue-Zika,3,0.0329027358479264
-state,Rio Grande do Sul,Dengue-Zika,4,0.07461737004716558
-state,Rio Grande do Sul,Dengue-Zika,5,0.054999213959320226
-state,Rio Grande do Sul,Dengue-Zika,6,-0.0032834748642982547
-state,Rio Grande do Sul,Chikungunya-Zika,-6,0.0057558675330891375
-state,Rio Grande do Sul,Chikungunya-Zika,-5,0.005664771904560749
-state,Rio Grande do Sul,Chikungunya-Zika,-4,-0.00994124527454074
-state,Rio Grande do Sul,Chikungunya-Zika,-3,-0.02831684179315155
-state,Rio Grande do Sul,Chikungunya-Zika,-2,0.03002824292367568
-state,Rio Grande do Sul,Chikungunya-Zika,-1,0.1614652446639187
-state,Rio Grande do Sul,Chikungunya-Zika,0,0.21574626537152594
-state,Rio Grande do Sul,Chikungunya-Zika,1,0.051191630262433424
-state,Rio Grande do Sul,Chikungunya-Zika,2,-0.07674988265535536
-state,Rio Grande do Sul,Chikungunya-Zika,3,-0.08787131190525849
-state,Rio Grande do Sul,Chikungunya-Zika,4,-0.026440994442898276
-state,Rio Grande do Sul,Chikungunya-Zika,5,0.07677982986745492
-state,Rio Grande do Sul,Chikungunya-Zika,6,0.02813813048212222
-state,Rio de Janeiro,Dengue-Chikungunya,-6,0.01001092834042449
-state,Rio de Janeiro,Dengue-Chikungunya,-5,0.013292311947875541
-state,Rio de Janeiro,Dengue-Chikungunya,-4,0.018643756595016207
-state,Rio de Janeiro,Dengue-Chikungunya,-3,0.031047162309946665
-state,Rio de Janeiro,Dengue-Chikungunya,-2,0.059068015050244296
-state,Rio de Janeiro,Dengue-Chikungunya,-1,0.10232472056738563
-state,Rio de Janeiro,Dengue-Chikungunya,0,0.13095579525536047
-state,Rio de Janeiro,Dengue-Chikungunya,1,0.11666282812759862
-state,Rio de Janeiro,Dengue-Chikungunya,2,0.08618151550128013
-state,Rio de Janeiro,Dengue-Chikungunya,3,0.0566993129222804
-state,Rio de Janeiro,Dengue-Chikungunya,4,0.03325458517495938
-state,Rio de Janeiro,Dengue-Chikungunya,5,0.01767386310443746
-state,Rio de Janeiro,Dengue-Chikungunya,6,0.009844702146529855
-state,Rio de Janeiro,Dengue-Zika,-6,0.00571093386907641
-state,Rio de Janeiro,Dengue-Zika,-5,0.013474821599484174
-state,Rio de Janeiro,Dengue-Zika,-4,0.03651457723208437
-state,Rio de Janeiro,Dengue-Zika,-3,0.08224305424975378
-state,Rio de Janeiro,Dengue-Zika,-2,0.1274336437996397
-state,Rio de Janeiro,Dengue-Zika,-1,0.1633572868078248
-state,Rio de Janeiro,Dengue-Zika,0,0.18050569694631177
-state,Rio de Janeiro,Dengue-Zika,1,0.163146062709081
-state,Rio de Janeiro,Dengue-Zika,2,0.14068327333263247
-state,Rio de Janeiro,Dengue-Zika,3,0.12179280571002626
-state,Rio de Janeiro,Dengue-Zika,4,0.11760570521834626
-state,Rio de Janeiro,Dengue-Zika,5,0.10922226395493229
-state,Rio de Janeiro,Dengue-Zika,6,0.07322868369102896
-state,Rio de Janeiro,Chikungunya-Zika,-6,0.015614729967115283
-state,Rio de Janeiro,Chikungunya-Zika,-5,0.03696538289733344
-state,Rio de Janeiro,Chikungunya-Zika,-4,0.08134468771159287
-state,Rio de Janeiro,Chikungunya-Zika,-3,0.13269039539032107
-state,Rio de Janeiro,Chikungunya-Zika,-2,0.1460843747690895
-state,Rio de Janeiro,Chikungunya-Zika,-1,0.1261898222370161
-state,Rio de Janeiro,Chikungunya-Zika,0,0.08698740055218546
-state,Rio de Janeiro,Chikungunya-Zika,1,0.05054970516057734
-state,Rio de Janeiro,Chikungunya-Zika,2,0.023546273109132973
-state,Rio de Janeiro,Chikungunya-Zika,3,0.012536332303309177
-state,Rio de Janeiro,Chikungunya-Zika,4,0.01951378339814244
-state,Rio de Janeiro,Chikungunya-Zika,5,0.02742824356390894
-state,Rio de Janeiro,Chikungunya-Zika,6,0.008536164901594053
-state,Rondonia,Dengue-Chikungunya,-6,-0.0024416393496173566
-state,Rondonia,Dengue-Chikungunya,-5,-0.00656809231000639
-state,Rondonia,Dengue-Chikungunya,-4,-0.00493927061147581
-state,Rondonia,Dengue-Chikungunya,-3,0.014976787756028747
-state,Rondonia,Dengue-Chikungunya,-2,0.0521252876384473
-state,Rondonia,Dengue-Chikungunya,-1,0.050546645355804075
-state,Rondonia,Dengue-Chikungunya,0,-0.03177939782043109
-state,Rondonia,Dengue-Chikungunya,1,-0.13086930572618904
-state,Rondonia,Dengue-Chikungunya,2,-0.17595689536914585
-state,Rondonia,Dengue-Chikungunya,3,-0.14096613062582988
-state,Rondonia,Dengue-Chikungunya,4,-0.08564520709070358
-state,Rondonia,Dengue-Chikungunya,5,-0.056045481598703976
-state,Rondonia,Dengue-Chikungunya,6,-0.04608458733098657
-state,Rondonia,Dengue-Zika,-6,-0.002370415188036472
-state,Rondonia,Dengue-Zika,-5,-0.01894667621241436
-state,Rondonia,Dengue-Zika,-4,-0.04265128267203878
-state,Rondonia,Dengue-Zika,-3,-0.035649344040854125
-state,Rondonia,Dengue-Zika,-2,0.04774947544793861
-state,Rondonia,Dengue-Zika,-1,0.08705267918321676
-state,Rondonia,Dengue-Zika,0,0.019605161484314397
-state,Rondonia,Dengue-Zika,1,-0.0890189486042311
-state,Rondonia,Dengue-Zika,2,-0.17835704325501395
-state,Rondonia,Dengue-Zika,3,-0.16720889121263488
-state,Rondonia,Dengue-Zika,4,-0.11419091465559984
-state,Rondonia,Dengue-Zika,5,-0.08116094231277325
-state,Rondonia,Dengue-Zika,6,-0.08603340325682435
-state,Rondonia,Chikungunya-Zika,-6,-0.007582119114918775
-state,Rondonia,Chikungunya-Zika,-5,0.0028796348804261485
-state,Rondonia,Chikungunya-Zika,-4,-0.021408351115512238
-state,Rondonia,Chikungunya-Zika,-3,0.012191253782837684
-state,Rondonia,Chikungunya-Zika,-2,0.15125119871673895
-state,Rondonia,Chikungunya-Zika,-1,0.3957624525884183
-state,Rondonia,Chikungunya-Zika,0,0.6054039134536037
-state,Rondonia,Chikungunya-Zika,1,0.5932495455965996
-state,Rondonia,Chikungunya-Zika,2,0.4387772096597849
-state,Rondonia,Chikungunya-Zika,3,0.25217839173581996
-state,Rondonia,Chikungunya-Zika,4,0.13601550256908512
-state,Rondonia,Chikungunya-Zika,5,0.07091372634567975
-state,Rondonia,Chikungunya-Zika,6,-0.0044971791391201195
-state,Roraima,Dengue-Chikungunya,-6,-0.04336527302505956
-state,Roraima,Dengue-Chikungunya,-5,-0.018230168090271955
-state,Roraima,Dengue-Chikungunya,-4,0.0014639650079065203
-state,Roraima,Dengue-Chikungunya,-3,0.0186038247012194
-state,Roraima,Dengue-Chikungunya,-2,0.043996642570687104
-state,Roraima,Dengue-Chikungunya,-1,0.07300396777477554
-state,Roraima,Dengue-Chikungunya,0,0.10528475574014573
-state,Roraima,Dengue-Chikungunya,1,0.11848408081569918
-state,Roraima,Dengue-Chikungunya,2,0.11015169132838905
-state,Roraima,Dengue-Chikungunya,3,0.07956974275924887
-state,Roraima,Dengue-Chikungunya,4,0.036768583718243875
-state,Roraima,Dengue-Chikungunya,5,0.007398615954470187
-state,Roraima,Dengue-Chikungunya,6,-0.002072383362985793
-state,Roraima,Dengue-Zika,-6,-0.0012572548407859656
-state,Roraima,Dengue-Zika,-5,0.05384972894573073
-state,Roraima,Dengue-Zika,-4,0.10659507982457424
-state,Roraima,Dengue-Zika,-3,0.14776128351542514
-state,Roraima,Dengue-Zika,-2,0.20055366238659325
-state,Roraima,Dengue-Zika,-1,0.2598227833874022
-state,Roraima,Dengue-Zika,0,0.24679256664059668
-state,Roraima,Dengue-Zika,1,0.17933489951815512
-state,Roraima,Dengue-Zika,2,0.1509637132785249
-state,Roraima,Dengue-Zika,3,0.13730080731677954
-state,Roraima,Dengue-Zika,4,0.09397059814960552
-state,Roraima,Dengue-Zika,5,0.03140043007053369
-state,Roraima,Dengue-Zika,6,-0.024092938104948378
-state,Roraima,Chikungunya-Zika,-6,0.21448826609552657
-state,Roraima,Chikungunya-Zika,-5,0.3321467885817841
-state,Roraima,Chikungunya-Zika,-4,0.4579877510835257
-state,Roraima,Chikungunya-Zika,-3,0.5595962928325896
-state,Roraima,Chikungunya-Zika,-2,0.689589302328401
-state,Roraima,Chikungunya-Zika,-1,0.7909515417382832
-state,Roraima,Chikungunya-Zika,0,0.7955811445021586
-state,Roraima,Chikungunya-Zika,1,0.6016000877762127
-state,Roraima,Chikungunya-Zika,2,0.3948221740375865
-state,Roraima,Chikungunya-Zika,3,0.20348924525092166
-state,Roraima,Chikungunya-Zika,4,0.08718511734073357
-state,Roraima,Chikungunya-Zika,5,-0.015170941852411893
-state,Roraima,Chikungunya-Zika,6,-0.11575971172456041
-state,Santa Catarina,Dengue-Chikungunya,-6,0.009311264532541384
-state,Santa Catarina,Dengue-Chikungunya,-5,0.00969310446172744
-state,Santa Catarina,Dengue-Chikungunya,-4,0.0034305990481659993
-state,Santa Catarina,Dengue-Chikungunya,-3,-0.02879583156639361
-state,Santa Catarina,Dengue-Chikungunya,-2,-0.17396430415828262
-state,Santa Catarina,Dengue-Chikungunya,-1,-0.37521746682126833
-state,Santa Catarina,Dengue-Chikungunya,0,-0.3988687108940436
-state,Santa Catarina,Dengue-Chikungunya,1,-0.25439013879861067
-state,Santa Catarina,Dengue-Chikungunya,2,-0.09953404594169431
-state,Santa Catarina,Dengue-Chikungunya,3,-0.024950506609904947
-state,Santa Catarina,Dengue-Chikungunya,4,-0.011294830677107752
-state,Santa Catarina,Dengue-Chikungunya,5,-0.024885493331628723
-state,Santa Catarina,Dengue-Chikungunya,6,-0.04808715623828818
-state,Santa Catarina,Dengue-Zika,-6,0.0031871305438411104
-state,Santa Catarina,Dengue-Zika,-5,0.008916614200864023
-state,Santa Catarina,Dengue-Zika,-4,0.01135223500416441
-state,Santa Catarina,Dengue-Zika,-3,0.07460375723944802
-state,Santa Catarina,Dengue-Zika,-2,0.15393042873727408
-state,Santa Catarina,Dengue-Zika,-1,0.12826831024553265
-state,Santa Catarina,Dengue-Zika,0,0.004529592575362638
-state,Santa Catarina,Dengue-Zika,1,-0.06886905197514634
-state,Santa Catarina,Dengue-Zika,2,-0.05855467161795084
-state,Santa Catarina,Dengue-Zika,3,-0.02333517288135386
-state,Santa Catarina,Dengue-Zika,4,-0.012729076797184869
-state,Santa Catarina,Dengue-Zika,5,-0.01637167912789519
-state,Santa Catarina,Dengue-Zika,6,-0.0287504944000953
-state,Santa Catarina,Chikungunya-Zika,-6,-0.01170609959393859
-state,Santa Catarina,Chikungunya-Zika,-5,-0.00878804982957822
-state,Santa Catarina,Chikungunya-Zika,-4,-0.014271779833784004
-state,Santa Catarina,Chikungunya-Zika,-3,-0.04530103275462
-state,Santa Catarina,Chikungunya-Zika,-2,-0.0464796082273948
-state,Santa Catarina,Chikungunya-Zika,-1,0.061573716036614025
-state,Santa Catarina,Chikungunya-Zika,0,0.28787844331534285
-state,Santa Catarina,Chikungunya-Zika,1,0.2960799747098626
-state,Santa Catarina,Chikungunya-Zika,2,0.19239094639961613
-state,Santa Catarina,Chikungunya-Zika,3,0.10868953838140748
-state,Santa Catarina,Chikungunya-Zika,4,0.06451474568321665
-state,Santa Catarina,Chikungunya-Zika,5,0.04361113279384764
-state,Santa Catarina,Chikungunya-Zika,6,0.028501334922607435
-state,Sao Paulo,Dengue-Chikungunya,-6,-0.00588062570956975
-state,Sao Paulo,Dengue-Chikungunya,-5,-0.0005518438678365305
-state,Sao Paulo,Dengue-Chikungunya,-4,0.011134118487244804
-state,Sao Paulo,Dengue-Chikungunya,-3,0.09650745098742543
-state,Sao Paulo,Dengue-Chikungunya,-2,0.24330368562869278
-state,Sao Paulo,Dengue-Chikungunya,-1,0.3679734841084932
-state,Sao Paulo,Dengue-Chikungunya,0,0.42250933979445704
-state,Sao Paulo,Dengue-Chikungunya,1,0.35866496324605296
-state,Sao Paulo,Dengue-Chikungunya,2,0.24656938182535929
-state,Sao Paulo,Dengue-Chikungunya,3,0.15427296512491215
-state,Sao Paulo,Dengue-Chikungunya,4,0.10456916633843603
-state,Sao Paulo,Dengue-Chikungunya,5,0.09332093653756109
-state,Sao Paulo,Dengue-Chikungunya,6,0.1144122326058224
-state,Sao Paulo,Dengue-Zika,-6,0.007413878990381752
-state,Sao Paulo,Dengue-Zika,-5,0.0035941409880184522
-state,Sao Paulo,Dengue-Zika,-4,0.00413252693860731
-state,Sao Paulo,Dengue-Zika,-3,0.04081687225562085
-state,Sao Paulo,Dengue-Zika,-2,0.09464483738969895
-state,Sao Paulo,Dengue-Zika,-1,0.16617072291321086
-state,Sao Paulo,Dengue-Zika,0,0.22059225651619618
-state,Sao Paulo,Dengue-Zika,1,0.2099760277675198
-state,Sao Paulo,Dengue-Zika,2,0.1660687981794083
-state,Sao Paulo,Dengue-Zika,3,0.13207830486717898
-state,Sao Paulo,Dengue-Zika,4,0.12566508652690148
-state,Sao Paulo,Dengue-Zika,5,0.11155408531961727
-state,Sao Paulo,Dengue-Zika,6,0.11227210451238955
-state,Sao Paulo,Chikungunya-Zika,-6,-0.004347797461743732
-state,Sao Paulo,Chikungunya-Zika,-5,-0.0018009571804373313
-state,Sao Paulo,Chikungunya-Zika,-4,0.002009962388688363
-state,Sao Paulo,Chikungunya-Zika,-3,0.014570507035771816
-state,Sao Paulo,Chikungunya-Zika,-2,0.04405446158785948
-state,Sao Paulo,Chikungunya-Zika,-1,0.11110819435245711
-state,Sao Paulo,Chikungunya-Zika,0,0.17517638490493045
-state,Sao Paulo,Chikungunya-Zika,1,0.18217647613788876
-state,Sao Paulo,Chikungunya-Zika,2,0.16225813403190853
-state,Sao Paulo,Chikungunya-Zika,3,0.13052824874107452
-state,Sao Paulo,Chikungunya-Zika,4,0.11544515313711529
-state,Sao Paulo,Chikungunya-Zika,5,0.08764888305128221
-state,Sao Paulo,Chikungunya-Zika,6,0.08780657660030196
-state,Sergipe,Dengue-Chikungunya,-6,0.11176208688153633
-state,Sergipe,Dengue-Chikungunya,-5,0.1255405773573112
-state,Sergipe,Dengue-Chikungunya,-4,0.14058395698728848
-state,Sergipe,Dengue-Chikungunya,-3,0.1600164658321119
-state,Sergipe,Dengue-Chikungunya,-2,0.20342076420854305
-state,Sergipe,Dengue-Chikungunya,-1,0.23840624503419275
-state,Sergipe,Dengue-Chikungunya,0,0.29084254524691616
-state,Sergipe,Dengue-Chikungunya,1,0.25293969879557016
-state,Sergipe,Dengue-Chikungunya,2,0.18464257134315148
-state,Sergipe,Dengue-Chikungunya,3,0.07748845989910796
-state,Sergipe,Dengue-Chikungunya,4,0.03757918838794633
-state,Sergipe,Dengue-Chikungunya,5,0.01758693011120387
-state,Sergipe,Dengue-Chikungunya,6,0.012379479045275647
-state,Sergipe,Dengue-Zika,-6,0.2504434952449582
-state,Sergipe,Dengue-Zika,-5,0.26817224019867036
-state,Sergipe,Dengue-Zika,-4,0.25817654276970975
-state,Sergipe,Dengue-Zika,-3,0.29405756361753616
-state,Sergipe,Dengue-Zika,-2,0.34819645504070457
-state,Sergipe,Dengue-Zika,-1,0.38845603744448737
-state,Sergipe,Dengue-Zika,0,0.36725181862983447
-state,Sergipe,Dengue-Zika,1,0.20019397185466553
-state,Sergipe,Dengue-Zika,2,-0.01231062306949228
-state,Sergipe,Dengue-Zika,3,-0.14111992681096064
-state,Sergipe,Dengue-Zika,4,-0.15839152678125187
-state,Sergipe,Dengue-Zika,5,-0.15137079568878906
-state,Sergipe,Dengue-Zika,6,-0.15653818772820502
-state,Sergipe,Chikungunya-Zika,-6,0.3178326421975802
-state,Sergipe,Chikungunya-Zika,-5,0.3042045216066935
-state,Sergipe,Chikungunya-Zika,-4,0.3319508138783704
-state,Sergipe,Chikungunya-Zika,-3,0.3568047835641649
-state,Sergipe,Chikungunya-Zika,-2,0.44191872236346946
-state,Sergipe,Chikungunya-Zika,-1,0.5573674546727541
-state,Sergipe,Chikungunya-Zika,0,0.6058417879671661
-state,Sergipe,Chikungunya-Zika,1,0.4836179966958757
-state,Sergipe,Chikungunya-Zika,2,0.3005655605086608
-state,Sergipe,Chikungunya-Zika,3,0.16610558633271794
-state,Sergipe,Chikungunya-Zika,4,0.08721566080852663
-state,Sergipe,Chikungunya-Zika,5,0.052938845490250505
-state,Sergipe,Chikungunya-Zika,6,0.025721578762076907
-state,Tocantins,Dengue-Chikungunya,-6,-0.15460921097907926
-state,Tocantins,Dengue-Chikungunya,-5,-0.0790510851352638
-state,Tocantins,Dengue-Chikungunya,-4,-0.05109047829736217
-state,Tocantins,Dengue-Chikungunya,-3,-0.043368979311994856
-state,Tocantins,Dengue-Chikungunya,-2,-0.01203584481042953
-state,Tocantins,Dengue-Chikungunya,-1,0.04136339279515135
-state,Tocantins,Dengue-Chikungunya,0,0.0898020903630159
-state,Tocantins,Dengue-Chikungunya,1,0.10076191383010262
-state,Tocantins,Dengue-Chikungunya,2,0.1282611442226082
-state,Tocantins,Dengue-Chikungunya,3,0.22913705532861187
-state,Tocantins,Dengue-Chikungunya,4,0.33248002298201146
-state,Tocantins,Dengue-Chikungunya,5,0.37350485053439725
-state,Tocantins,Dengue-Chikungunya,6,0.30713945868321746
-state,Tocantins,Dengue-Zika,-6,-0.012039658426621799
-state,Tocantins,Dengue-Zika,-5,0.06033397918569818
-state,Tocantins,Dengue-Zika,-4,0.11788651173661668
-state,Tocantins,Dengue-Zika,-3,0.17283921004308656
-state,Tocantins,Dengue-Zika,-2,0.2319901625281107
-state,Tocantins,Dengue-Zika,-1,0.2972658286894294
-state,Tocantins,Dengue-Zika,0,0.36147228932573366
-state,Tocantins,Dengue-Zika,1,0.3103085259613556
-state,Tocantins,Dengue-Zika,2,0.21265935378159614
-state,Tocantins,Dengue-Zika,3,0.16890696608658257
-state,Tocantins,Dengue-Zika,4,0.18095297054973003
-state,Tocantins,Dengue-Zika,5,0.1949087696377067
-state,Tocantins,Dengue-Zika,6,0.12027414122282672
-state,Tocantins,Chikungunya-Zika,-6,0.024263990189040963
-state,Tocantins,Chikungunya-Zika,-5,0.008226802431350664
-state,Tocantins,Chikungunya-Zika,-4,-0.018815590464028715
-state,Tocantins,Chikungunya-Zika,-3,-0.027253232410299102
-state,Tocantins,Chikungunya-Zika,-2,0.07830411185236699
-state,Tocantins,Chikungunya-Zika,-1,0.27214011583102443
-state,Tocantins,Chikungunya-Zika,0,0.4045999567573187
-state,Tocantins,Chikungunya-Zika,1,0.3586189949083237
-state,Tocantins,Chikungunya-Zika,2,0.2528162468181363
-state,Tocantins,Chikungunya-Zika,3,0.11944212199395166
-state,Tocantins,Chikungunya-Zika,4,0.035564011021957866
-state,Tocantins,Chikungunya-Zika,5,0.01733810325229987
-state,Tocantins,Chikungunya-Zika,6,-0.005087184174177878
+national,Brazil,Dengue-Chikungunya,-6,0.006152784035435079
+national,Brazil,Dengue-Chikungunya,-5,0.07566195511587033
+national,Brazil,Dengue-Chikungunya,-4,0.19215391584811525
+national,Brazil,Dengue-Chikungunya,-3,0.38773614006574186
+national,Brazil,Dengue-Chikungunya,-2,0.6129460212416141
+national,Brazil,Dengue-Chikungunya,-1,0.7462612665865693
+national,Brazil,Dengue-Chikungunya,0,0.7121820281621417
+national,Brazil,Dengue-Chikungunya,1,0.5216518298377886
+national,Brazil,Dengue-Chikungunya,2,0.31135827257836063
+national,Brazil,Dengue-Chikungunya,3,0.16992796514302347
+national,Brazil,Dengue-Chikungunya,4,0.08908879048921645
+national,Brazil,Dengue-Chikungunya,5,0.042089292475980686
+national,Brazil,Dengue-Chikungunya,6,0.010034049675585268
+national,Brazil,Dengue-Zika,-6,0.0036048450847669623
+national,Brazil,Dengue-Zika,-5,0.007956531116536663
+national,Brazil,Dengue-Zika,-4,0.01826835384035441
+national,Brazil,Dengue-Zika,-3,0.04978756511140595
+national,Brazil,Dengue-Zika,-2,0.10640952333985532
+national,Brazil,Dengue-Zika,-1,0.165687584786783
+national,Brazil,Dengue-Zika,0,0.19030892974026423
+national,Brazil,Dengue-Zika,1,0.1658184813364218
+national,Brazil,Dengue-Zika,2,0.12985218230703613
+national,Brazil,Dengue-Zika,3,0.11400132180070523
+national,Brazil,Dengue-Zika,4,0.10562746507600095
+national,Brazil,Dengue-Zika,5,0.10206683889874614
+national,Brazil,Dengue-Zika,6,0.07779060573259734
+national,Brazil,Chikungunya-Zika,-6,0.032814499878100416
+national,Brazil,Chikungunya-Zika,-5,0.054484242556834435
+national,Brazil,Chikungunya-Zika,-4,0.04317691668807483
+national,Brazil,Chikungunya-Zika,-3,0.010579153400324788
+national,Brazil,Chikungunya-Zika,-2,0.027024009946135606
+national,Brazil,Chikungunya-Zika,-1,0.12592120420581804
+national,Brazil,Chikungunya-Zika,0,0.20108830593737492
+national,Brazil,Chikungunya-Zika,1,0.18504149992100888
+national,Brazil,Chikungunya-Zika,2,0.13422426343172522
+national,Brazil,Chikungunya-Zika,3,0.10722141442070993
+national,Brazil,Chikungunya-Zika,4,0.08245168863057095
+national,Brazil,Chikungunya-Zika,5,0.07713904289044313
+national,Brazil,Chikungunya-Zika,6,0.05810226433866534
+region,Centro-Oeste,Dengue-Chikungunya,-6,-0.06230494374195622
+region,Centro-Oeste,Dengue-Chikungunya,-5,-0.05856340882924599
+region,Centro-Oeste,Dengue-Chikungunya,-4,-0.09102287841307839
+region,Centro-Oeste,Dengue-Chikungunya,-3,-0.14395052707516526
+region,Centro-Oeste,Dengue-Chikungunya,-2,-0.17642239716352875
+region,Centro-Oeste,Dengue-Chikungunya,-1,-0.1523101757390822
+region,Centro-Oeste,Dengue-Chikungunya,0,-0.04450824810945499
+region,Centro-Oeste,Dengue-Chikungunya,1,0.05788933077084317
+region,Centro-Oeste,Dengue-Chikungunya,2,0.0936753531704893
+region,Centro-Oeste,Dengue-Chikungunya,3,0.1034982795148774
+region,Centro-Oeste,Dengue-Chikungunya,4,0.09073586196782889
+region,Centro-Oeste,Dengue-Chikungunya,5,0.06664707145590852
+region,Centro-Oeste,Dengue-Chikungunya,6,0.049903773554691506
+region,Centro-Oeste,Dengue-Zika,-6,-0.0008887649197727606
+region,Centro-Oeste,Dengue-Zika,-5,-0.004930129696971367
+region,Centro-Oeste,Dengue-Zika,-4,-0.0064062680992517185
+region,Centro-Oeste,Dengue-Zika,-3,0.020969800473167613
+region,Centro-Oeste,Dengue-Zika,-2,0.08536783648930739
+region,Centro-Oeste,Dengue-Zika,-1,0.15813645501562268
+region,Centro-Oeste,Dengue-Zika,0,0.19468668834690203
+region,Centro-Oeste,Dengue-Zika,1,0.16850733855902403
+region,Centro-Oeste,Dengue-Zika,2,0.12961712629627212
+region,Centro-Oeste,Dengue-Zika,3,0.07684543395671474
+region,Centro-Oeste,Dengue-Zika,4,0.001247717068872591
+region,Centro-Oeste,Dengue-Zika,5,-0.019529643585187467
+region,Centro-Oeste,Dengue-Zika,6,-0.012480138551564534
+region,Centro-Oeste,Chikungunya-Zika,-6,0.018916080221373827
+region,Centro-Oeste,Chikungunya-Zika,-5,0.014595815367211724
+region,Centro-Oeste,Chikungunya-Zika,-4,0.007885506997833936
+region,Centro-Oeste,Chikungunya-Zika,-3,-0.002860620751964029
+region,Centro-Oeste,Chikungunya-Zika,-2,-0.01067880410359726
+region,Centro-Oeste,Chikungunya-Zika,-1,-0.000272753457843751
+region,Centro-Oeste,Chikungunya-Zika,0,0.015117032185932612
+region,Centro-Oeste,Chikungunya-Zika,1,0.01900782535571565
+region,Centro-Oeste,Chikungunya-Zika,2,0.018527752580544045
+region,Centro-Oeste,Chikungunya-Zika,3,0.012566891870592147
+region,Centro-Oeste,Chikungunya-Zika,4,0.01495134455809403
+region,Centro-Oeste,Chikungunya-Zika,5,0.03584393569140517
+region,Centro-Oeste,Chikungunya-Zika,6,0.0432706662860806
+region,Nordeste,Dengue-Chikungunya,-6,-0.013236483061540379
+region,Nordeste,Dengue-Chikungunya,-5,0.026456777029974902
+region,Nordeste,Dengue-Chikungunya,-4,0.0698815157268112
+region,Nordeste,Dengue-Chikungunya,-3,0.14571855635623535
+region,Nordeste,Dengue-Chikungunya,-2,0.25871015693206845
+region,Nordeste,Dengue-Chikungunya,-1,0.3993920790908823
+region,Nordeste,Dengue-Chikungunya,0,0.4699273146281043
+region,Nordeste,Dengue-Chikungunya,1,0.3685537631472646
+region,Nordeste,Dengue-Chikungunya,2,0.19845966051152408
+region,Nordeste,Dengue-Chikungunya,3,0.10401100743316766
+region,Nordeste,Dengue-Chikungunya,4,0.07920404011894104
+region,Nordeste,Dengue-Chikungunya,5,0.07183753789545554
+region,Nordeste,Dengue-Chikungunya,6,0.05102534658293344
+region,Nordeste,Dengue-Zika,-6,0.029030017987039105
+region,Nordeste,Dengue-Zika,-5,0.05170415825111463
+region,Nordeste,Dengue-Zika,-4,0.08978628321511796
+region,Nordeste,Dengue-Zika,-3,0.15274138515507116
+region,Nordeste,Dengue-Zika,-2,0.24927048880969124
+region,Nordeste,Dengue-Zika,-1,0.39212259741908856
+region,Nordeste,Dengue-Zika,0,0.49954169572822
+region,Nordeste,Dengue-Zika,1,0.4465764910698281
+region,Nordeste,Dengue-Zika,2,0.3470916302786953
+region,Nordeste,Dengue-Zika,3,0.35680404947114785
+region,Nordeste,Dengue-Zika,4,0.32578904017578153
+region,Nordeste,Dengue-Zika,5,0.29806511866716306
+region,Nordeste,Dengue-Zika,6,0.225911422905865
+region,Nordeste,Chikungunya-Zika,-6,0.061297127638217
+region,Nordeste,Chikungunya-Zika,-5,0.09130956054791699
+region,Nordeste,Chikungunya-Zika,-4,0.09105434163554102
+region,Nordeste,Chikungunya-Zika,-3,0.03330074163143493
+region,Nordeste,Chikungunya-Zika,-2,0.028807833379493948
+region,Nordeste,Chikungunya-Zika,-1,0.20695407328077486
+region,Nordeste,Chikungunya-Zika,0,0.3653314153378195
+region,Nordeste,Chikungunya-Zika,1,0.3249973042256596
+region,Nordeste,Chikungunya-Zika,2,0.2384427318575566
+region,Nordeste,Chikungunya-Zika,3,0.25834471132350195
+region,Nordeste,Chikungunya-Zika,4,0.23315999099223042
+region,Nordeste,Chikungunya-Zika,5,0.20335199351074343
+region,Nordeste,Chikungunya-Zika,6,0.11944973611244332
+region,Norte,Dengue-Chikungunya,-6,-0.14730370061441206
+region,Norte,Dengue-Chikungunya,-5,-0.07973635691517598
+region,Norte,Dengue-Chikungunya,-4,-0.0851119867006877
+region,Norte,Dengue-Chikungunya,-3,-0.13761865578001267
+region,Norte,Dengue-Chikungunya,-2,-0.17412111395743415
+region,Norte,Dengue-Chikungunya,-1,-0.17892833470243075
+region,Norte,Dengue-Chikungunya,0,-0.14511477990028018
+region,Norte,Dengue-Chikungunya,1,-0.12610431280185877
+region,Norte,Dengue-Chikungunya,2,-0.13124284187305546
+region,Norte,Dengue-Chikungunya,3,-0.074166280998906
+region,Norte,Dengue-Chikungunya,4,0.0032088541079474107
+region,Norte,Dengue-Chikungunya,5,0.038175553320948324
+region,Norte,Dengue-Chikungunya,6,0.012631022880496471
+region,Norte,Dengue-Zika,-6,0.0703392670853582
+region,Norte,Dengue-Zika,-5,0.07069737748235151
+region,Norte,Dengue-Zika,-4,0.09006882584281382
+region,Norte,Dengue-Zika,-3,0.13507410482837132
+region,Norte,Dengue-Zika,-2,0.22870429872396683
+region,Norte,Dengue-Zika,-1,0.3112462337930583
+region,Norte,Dengue-Zika,0,0.37614002878557873
+region,Norte,Dengue-Zika,1,0.34534578208204536
+region,Norte,Dengue-Zika,2,0.30100512542951036
+region,Norte,Dengue-Zika,3,0.2838801989997894
+region,Norte,Dengue-Zika,4,0.28275912684362614
+region,Norte,Dengue-Zika,5,0.2102952387533431
+region,Norte,Dengue-Zika,6,0.12683411339242295
+region,Norte,Chikungunya-Zika,-6,-0.028131730763258644
+region,Norte,Chikungunya-Zika,-5,-0.18845846212350376
+region,Norte,Chikungunya-Zika,-4,-0.3029653892036692
+region,Norte,Chikungunya-Zika,-3,-0.3664854777823439
+region,Norte,Chikungunya-Zika,-2,-0.37968669833894475
+region,Norte,Chikungunya-Zika,-1,-0.41643626932959077
+region,Norte,Chikungunya-Zika,0,-0.5018280041094448
+region,Norte,Chikungunya-Zika,1,-0.545965856092832
+region,Norte,Chikungunya-Zika,2,-0.51313784937812
+region,Norte,Chikungunya-Zika,3,-0.4871144080888032
+region,Norte,Chikungunya-Zika,4,-0.47133690798781014
+region,Norte,Chikungunya-Zika,5,-0.4741461457306923
+region,Norte,Chikungunya-Zika,6,-0.46527285225375087
+region,Sudeste,Dengue-Chikungunya,-6,0.07986439776352457
+region,Sudeste,Dengue-Chikungunya,-5,0.14054958731635964
+region,Sudeste,Dengue-Chikungunya,-4,0.28644523512982933
+region,Sudeste,Dengue-Chikungunya,-3,0.5120513854214035
+region,Sudeste,Dengue-Chikungunya,-2,0.7193300659908195
+region,Sudeste,Dengue-Chikungunya,-1,0.8069689880467348
+region,Sudeste,Dengue-Chikungunya,0,0.734919944698688
+region,Sudeste,Dengue-Chikungunya,1,0.5319615699140194
+region,Sudeste,Dengue-Chikungunya,2,0.32985337990642427
+region,Sudeste,Dengue-Chikungunya,3,0.19055800910938472
+region,Sudeste,Dengue-Chikungunya,4,0.09873217964851659
+region,Sudeste,Dengue-Chikungunya,5,0.04386084799951387
+region,Sudeste,Dengue-Chikungunya,6,0.007562774123300652
+region,Sudeste,Dengue-Zika,-6,0.004756918058335037
+region,Sudeste,Dengue-Zika,-5,0.006749797061556121
+region,Sudeste,Dengue-Zika,-4,0.01792441763036151
+region,Sudeste,Dengue-Zika,-3,0.052088126142261014
+region,Sudeste,Dengue-Zika,-2,0.10574482405742805
+region,Sudeste,Dengue-Zika,-1,0.15720260614505482
+region,Sudeste,Dengue-Zika,0,0.1753263013328383
+region,Sudeste,Dengue-Zika,1,0.15439823214856274
+region,Sudeste,Dengue-Zika,2,0.12014325160114647
+region,Sudeste,Dengue-Zika,3,0.0950996368152922
+region,Sudeste,Dengue-Zika,4,0.08540240872361816
+region,Sudeste,Dengue-Zika,5,0.0895298169758938
+region,Sudeste,Dengue-Zika,6,0.07958019048818292
+region,Sudeste,Chikungunya-Zika,-6,0.002638474168555606
+region,Sudeste,Chikungunya-Zika,-5,0.007494143362415713
+region,Sudeste,Chikungunya-Zika,-4,0.02015057354969194
+region,Sudeste,Chikungunya-Zika,-3,0.03184883238644811
+region,Sudeste,Chikungunya-Zika,-2,0.019837473003489797
+region,Sudeste,Chikungunya-Zika,-1,-0.0016835481688350046
+region,Sudeste,Chikungunya-Zika,0,-0.02044346860927285
+region,Sudeste,Chikungunya-Zika,1,-0.024672077257667558
+region,Sudeste,Chikungunya-Zika,2,-0.018970700341383265
+region,Sudeste,Chikungunya-Zika,3,-0.012597414941080387
+region,Sudeste,Chikungunya-Zika,4,-0.007780224388265904
+region,Sudeste,Chikungunya-Zika,5,-0.003091686602426882
+region,Sudeste,Chikungunya-Zika,6,0.004048431577869184
+region,Sul,Dengue-Chikungunya,-6,0.004662551133203129
+region,Sul,Dengue-Chikungunya,-5,-0.010296389462354151
+region,Sul,Dengue-Chikungunya,-4,-0.035607141596941706
+region,Sul,Dengue-Chikungunya,-3,-0.08411677271735586
+region,Sul,Dengue-Chikungunya,-2,-0.2015505393485369
+region,Sul,Dengue-Chikungunya,-1,-0.3589578313162826
+region,Sul,Dengue-Chikungunya,0,-0.42294936833186725
+region,Sul,Dengue-Chikungunya,1,-0.3502856624091485
+region,Sul,Dengue-Chikungunya,2,-0.2167670117096109
+region,Sul,Dengue-Chikungunya,3,-0.10538732995417742
+region,Sul,Dengue-Chikungunya,4,-0.04569223285245139
+region,Sul,Dengue-Chikungunya,5,-0.02194616057356708
+region,Sul,Dengue-Chikungunya,6,-0.008664460653270903
+region,Sul,Dengue-Zika,-6,-0.0014125551926075857
+region,Sul,Dengue-Zika,-5,-0.0009610089996016226
+region,Sul,Dengue-Zika,-4,0.0064656159600226274
+region,Sul,Dengue-Zika,-3,0.023620388993604937
+region,Sul,Dengue-Zika,-2,0.051172508503100865
+region,Sul,Dengue-Zika,-1,0.08145022341258296
+region,Sul,Dengue-Zika,0,0.07508425432495602
+region,Sul,Dengue-Zika,1,0.04057830355280979
+region,Sul,Dengue-Zika,2,0.010304106212757772
+region,Sul,Dengue-Zika,3,0.005981873624624748
+region,Sul,Dengue-Zika,4,0.005274348300747622
+region,Sul,Dengue-Zika,5,-0.0036382338936504694
+region,Sul,Dengue-Zika,6,-0.017419551116019342
+region,Sul,Chikungunya-Zika,-6,-0.004531130107395389
+region,Sul,Chikungunya-Zika,-5,-0.0067822065787004355
+region,Sul,Chikungunya-Zika,-4,-0.004197952445143479
+region,Sul,Chikungunya-Zika,-3,-0.007686167713745979
+region,Sul,Chikungunya-Zika,-2,-0.005188897192890296
+region,Sul,Chikungunya-Zika,-1,0.005495522060903437
+region,Sul,Chikungunya-Zika,0,0.012284524042196168
+region,Sul,Chikungunya-Zika,1,0.007361148824936004
+region,Sul,Chikungunya-Zika,2,0.0019604175499097812
+region,Sul,Chikungunya-Zika,3,-0.029558695202661023
+region,Sul,Chikungunya-Zika,4,-0.03958146422832477
+region,Sul,Chikungunya-Zika,5,-0.034212882770264214
+region,Sul,Chikungunya-Zika,6,-0.0013986979605307536
+state,Acre,Dengue-Chikungunya,-6,0.03758867639472387
+state,Acre,Dengue-Chikungunya,-5,0.021995691582127514
+state,Acre,Dengue-Chikungunya,-4,0.002053109828978534
+state,Acre,Dengue-Chikungunya,-3,0.02001224014064356
+state,Acre,Dengue-Chikungunya,-2,0.1075766439600176
+state,Acre,Dengue-Chikungunya,-1,0.277589694390225
+state,Acre,Dengue-Chikungunya,0,0.49167683058475237
+state,Acre,Dengue-Chikungunya,1,0.4669622533708172
+state,Acre,Dengue-Chikungunya,2,0.3175453088460888
+state,Acre,Dengue-Chikungunya,3,0.10241907027286283
+state,Acre,Dengue-Chikungunya,4,-0.008904905897942482
+state,Acre,Dengue-Chikungunya,5,0.0011617056078641662
+state,Acre,Dengue-Chikungunya,6,0.02802049167002285
+state,Acre,Dengue-Zika,-6,-0.05333674414383979
+state,Acre,Dengue-Zika,-5,-0.04424053250859309
+state,Acre,Dengue-Zika,-4,0.005037327550028285
+state,Acre,Dengue-Zika,-3,0.11979903085984768
+state,Acre,Dengue-Zika,-2,0.31044711362278005
+state,Acre,Dengue-Zika,-1,0.45302630882798983
+state,Acre,Dengue-Zika,0,0.499816407115814
+state,Acre,Dengue-Zika,1,0.465889694449402
+state,Acre,Dengue-Zika,2,0.40615295106497595
+state,Acre,Dengue-Zika,3,0.3608078362237452
+state,Acre,Dengue-Zika,4,0.24300309586206686
+state,Acre,Dengue-Zika,5,0.11299400675828775
+state,Acre,Dengue-Zika,6,0.07687455754005496
+state,Acre,Chikungunya-Zika,-6,-0.012855225604934793
+state,Acre,Chikungunya-Zika,-5,0.027029626471199053
+state,Acre,Chikungunya-Zika,-4,0.10375536153063544
+state,Acre,Chikungunya-Zika,-3,0.2216210260405645
+state,Acre,Chikungunya-Zika,-2,0.42846850573741524
+state,Acre,Chikungunya-Zika,-1,0.4988683212268089
+state,Acre,Chikungunya-Zika,0,0.6131408768932617
+state,Acre,Chikungunya-Zika,1,0.6595471376488472
+state,Acre,Chikungunya-Zika,2,0.4427139539183569
+state,Acre,Chikungunya-Zika,3,0.46228589686217236
+state,Acre,Chikungunya-Zika,4,0.28088350774497894
+state,Acre,Chikungunya-Zika,5,0.15786585251016005
+state,Acre,Chikungunya-Zika,6,0.09489630473522571
+state,Alagoas,Dengue-Chikungunya,-6,-0.022664622662784028
+state,Alagoas,Dengue-Chikungunya,-5,0.010877576574564538
+state,Alagoas,Dengue-Chikungunya,-4,0.06633221523994688
+state,Alagoas,Dengue-Chikungunya,-3,0.17114728315471445
+state,Alagoas,Dengue-Chikungunya,-2,0.3402833566471603
+state,Alagoas,Dengue-Chikungunya,-1,0.551878137416423
+state,Alagoas,Dengue-Chikungunya,0,0.7140016729230408
+state,Alagoas,Dengue-Chikungunya,1,0.7255244634519358
+state,Alagoas,Dengue-Chikungunya,2,0.6149301855379724
+state,Alagoas,Dengue-Chikungunya,3,0.4342501118143022
+state,Alagoas,Dengue-Chikungunya,4,0.28753961162984804
+state,Alagoas,Dengue-Chikungunya,5,0.19306147870262294
+state,Alagoas,Dengue-Chikungunya,6,0.13105090124155883
+state,Alagoas,Dengue-Zika,-6,0.037414683800795594
+state,Alagoas,Dengue-Zika,-5,0.058913630542065935
+state,Alagoas,Dengue-Zika,-4,0.0887802002488422
+state,Alagoas,Dengue-Zika,-3,0.1396586694083885
+state,Alagoas,Dengue-Zika,-2,0.21023148167820027
+state,Alagoas,Dengue-Zika,-1,0.30123687118765935
+state,Alagoas,Dengue-Zika,0,0.37520243502960554
+state,Alagoas,Dengue-Zika,1,0.38292503885067775
+state,Alagoas,Dengue-Zika,2,0.3471436172592664
+state,Alagoas,Dengue-Zika,3,0.2971846053262134
+state,Alagoas,Dengue-Zika,4,0.24907886854612346
+state,Alagoas,Dengue-Zika,5,0.20105690780850674
+state,Alagoas,Dengue-Zika,6,0.12040579705705208
+state,Alagoas,Chikungunya-Zika,-6,0.11271742590981378
+state,Alagoas,Chikungunya-Zika,-5,0.19667064934316106
+state,Alagoas,Chikungunya-Zika,-4,0.32363896883998794
+state,Alagoas,Chikungunya-Zika,-3,0.5028958959983247
+state,Alagoas,Chikungunya-Zika,-2,0.6545620344096429
+state,Alagoas,Chikungunya-Zika,-1,0.7154601367985536
+state,Alagoas,Chikungunya-Zika,0,0.6822615190611905
+state,Alagoas,Chikungunya-Zika,1,0.549776150186216
+state,Alagoas,Chikungunya-Zika,2,0.3913125329668726
+state,Alagoas,Chikungunya-Zika,3,0.2782296309689934
+state,Alagoas,Chikungunya-Zika,4,0.18764435666445298
+state,Alagoas,Chikungunya-Zika,5,0.12138965460776983
+state,Alagoas,Chikungunya-Zika,6,0.04991442231101461
+state,Amapa,Dengue-Chikungunya,-6,0.24061549719807981
+state,Amapa,Dengue-Chikungunya,-5,0.36489867958282457
+state,Amapa,Dengue-Chikungunya,-4,0.43375541064489315
+state,Amapa,Dengue-Chikungunya,-3,0.48828881037173893
+state,Amapa,Dengue-Chikungunya,-2,0.5914942572815746
+state,Amapa,Dengue-Chikungunya,-1,0.7326182602359758
+state,Amapa,Dengue-Chikungunya,0,0.7734958226066017
+state,Amapa,Dengue-Chikungunya,1,0.6400926576905853
+state,Amapa,Dengue-Chikungunya,2,0.4653218076806376
+state,Amapa,Dengue-Chikungunya,3,0.36848861140257516
+state,Amapa,Dengue-Chikungunya,4,0.3459178601433552
+state,Amapa,Dengue-Chikungunya,5,0.2822638769041097
+state,Amapa,Dengue-Chikungunya,6,0.14941905346751283
+state,Amapa,Dengue-Zika,-6,0.03721781286229072
+state,Amapa,Dengue-Zika,-5,0.13743234588812386
+state,Amapa,Dengue-Zika,-4,0.22320189316026534
+state,Amapa,Dengue-Zika,-3,0.28855573914091315
+state,Amapa,Dengue-Zika,-2,0.3512404398461856
+state,Amapa,Dengue-Zika,-1,0.45404711677316995
+state,Amapa,Dengue-Zika,0,0.5828270121402188
+state,Amapa,Dengue-Zika,1,0.6163677664284319
+state,Amapa,Dengue-Zika,2,0.5838988100470911
+state,Amapa,Dengue-Zika,3,0.5297017613168962
+state,Amapa,Dengue-Zika,4,0.5001227647843834
+state,Amapa,Dengue-Zika,5,0.4376552377323955
+state,Amapa,Dengue-Zika,6,0.30714495142881565
+state,Amapa,Chikungunya-Zika,-6,-0.05339473267567772
+state,Amapa,Chikungunya-Zika,-5,0.0783317246139743
+state,Amapa,Chikungunya-Zika,-4,0.16838189123407707
+state,Amapa,Chikungunya-Zika,-3,0.2150767759541917
+state,Amapa,Chikungunya-Zika,-2,0.2662516955510163
+state,Amapa,Chikungunya-Zika,-1,0.35052363677291937
+state,Amapa,Chikungunya-Zika,0,0.48938217464719996
+state,Amapa,Chikungunya-Zika,1,0.4649349476677172
+state,Amapa,Chikungunya-Zika,2,0.40478844369836425
+state,Amapa,Chikungunya-Zika,3,0.4048539354871112
+state,Amapa,Chikungunya-Zika,4,0.3990704939695367
+state,Amapa,Chikungunya-Zika,5,0.3681691161668367
+state,Amapa,Chikungunya-Zika,6,0.27790466763805793
+state,Amazonas,Dengue-Chikungunya,-6,0.17347362536324942
+state,Amazonas,Dengue-Chikungunya,-5,0.0551225921347023
+state,Amazonas,Dengue-Chikungunya,-4,-0.06796326815494495
+state,Amazonas,Dengue-Chikungunya,-3,-0.11922820128220538
+state,Amazonas,Dengue-Chikungunya,-2,-0.044079250514590794
+state,Amazonas,Dengue-Chikungunya,-1,0.039894491422920945
+state,Amazonas,Dengue-Chikungunya,0,0.11011949321942958
+state,Amazonas,Dengue-Chikungunya,1,0.1264973168142657
+state,Amazonas,Dengue-Chikungunya,2,0.07839504034987915
+state,Amazonas,Dengue-Chikungunya,3,0.012848005008285849
+state,Amazonas,Dengue-Chikungunya,4,-0.05765617757518541
+state,Amazonas,Dengue-Chikungunya,5,-0.03725751569507571
+state,Amazonas,Dengue-Chikungunya,6,0.021414974435605177
+state,Amazonas,Dengue-Zika,-6,0.007910933405048936
+state,Amazonas,Dengue-Zika,-5,0.01090058414958661
+state,Amazonas,Dengue-Zika,-4,0.05729366932646499
+state,Amazonas,Dengue-Zika,-3,0.14782036529610684
+state,Amazonas,Dengue-Zika,-2,0.25327341901346223
+state,Amazonas,Dengue-Zika,-1,0.30661945882645086
+state,Amazonas,Dengue-Zika,0,0.3180679286955744
+state,Amazonas,Dengue-Zika,1,0.2563783447496353
+state,Amazonas,Dengue-Zika,2,0.1690242107190454
+state,Amazonas,Dengue-Zika,3,0.07881196883594292
+state,Amazonas,Dengue-Zika,4,0.04675524204227286
+state,Amazonas,Dengue-Zika,5,0.00678693795018921
+state,Amazonas,Dengue-Zika,6,-0.025118422770158407
+state,Amazonas,Chikungunya-Zika,-6,0.32421646719923586
+state,Amazonas,Chikungunya-Zika,-5,0.27247337231278146
+state,Amazonas,Chikungunya-Zika,-4,0.24207541159524443
+state,Amazonas,Chikungunya-Zika,-3,0.3102301779642515
+state,Amazonas,Chikungunya-Zika,-2,0.36994904234576503
+state,Amazonas,Chikungunya-Zika,-1,0.3415134258578219
+state,Amazonas,Chikungunya-Zika,0,0.24988837784937556
+state,Amazonas,Chikungunya-Zika,1,-0.013642113817797875
+state,Amazonas,Chikungunya-Zika,2,-0.1572129524640068
+state,Amazonas,Chikungunya-Zika,3,-0.20966109344901537
+state,Amazonas,Chikungunya-Zika,4,-0.23025091700142566
+state,Amazonas,Chikungunya-Zika,5,-0.18931413435561759
+state,Amazonas,Chikungunya-Zika,6,-0.13293555676098828
+state,Bahia,Dengue-Chikungunya,-6,0.013394324489466551
+state,Bahia,Dengue-Chikungunya,-5,0.008589011561498825
+state,Bahia,Dengue-Chikungunya,-4,0.0024497272392075328
+state,Bahia,Dengue-Chikungunya,-3,0.02694021323380644
+state,Bahia,Dengue-Chikungunya,-2,0.14741638919667013
+state,Bahia,Dengue-Chikungunya,-1,0.35670001254603717
+state,Bahia,Dengue-Chikungunya,0,0.47685646794956893
+state,Bahia,Dengue-Chikungunya,1,0.37891587480169053
+state,Bahia,Dengue-Chikungunya,2,0.2158191397841072
+state,Bahia,Dengue-Chikungunya,3,0.11683112093456612
+state,Bahia,Dengue-Chikungunya,4,0.05923228500402836
+state,Bahia,Dengue-Chikungunya,5,0.04064034751400091
+state,Bahia,Dengue-Chikungunya,6,0.03798656955426547
+state,Bahia,Dengue-Zika,-6,0.009423471645554337
+state,Bahia,Dengue-Zika,-5,0.010227207497286872
+state,Bahia,Dengue-Zika,-4,0.01718078267116102
+state,Bahia,Dengue-Zika,-3,0.039232349773007325
+state,Bahia,Dengue-Zika,-2,0.09471195831954501
+state,Bahia,Dengue-Zika,-1,0.1787571612930148
+state,Bahia,Dengue-Zika,0,0.21952749713539466
+state,Bahia,Dengue-Zika,1,0.1627348819988788
+state,Bahia,Dengue-Zika,2,0.09223367916485357
+state,Bahia,Dengue-Zika,3,0.07827938221502326
+state,Bahia,Dengue-Zika,4,0.07545828577833814
+state,Bahia,Dengue-Zika,5,0.0930186432195538
+state,Bahia,Dengue-Zika,6,0.10233203760339799
+state,Bahia,Chikungunya-Zika,-6,0.03263814090467625
+state,Bahia,Chikungunya-Zika,-5,0.041514898683531726
+state,Bahia,Chikungunya-Zika,-4,0.09532109498604109
+state,Bahia,Chikungunya-Zika,-3,0.22588536132323742
+state,Bahia,Chikungunya-Zika,-2,0.4110023723994611
+state,Bahia,Chikungunya-Zika,-1,0.6637628340641261
+state,Bahia,Chikungunya-Zika,0,0.7338480462255587
+state,Bahia,Chikungunya-Zika,1,0.4747680251155311
+state,Bahia,Chikungunya-Zika,2,0.24365809120595758
+state,Bahia,Chikungunya-Zika,3,0.22942164290740794
+state,Bahia,Chikungunya-Zika,4,0.2183925091080037
+state,Bahia,Chikungunya-Zika,5,0.2064923472978452
+state,Bahia,Chikungunya-Zika,6,0.19834329874797535
+state,Ceara,Dengue-Chikungunya,-6,-0.019841289968168495
+state,Ceara,Dengue-Chikungunya,-5,-0.009525672428198285
+state,Ceara,Dengue-Chikungunya,-4,-0.019284024455712232
+state,Ceara,Dengue-Chikungunya,-3,0.0034939278100363223
+state,Ceara,Dengue-Chikungunya,-2,0.08093038583428365
+state,Ceara,Dengue-Chikungunya,-1,0.2782263409982809
+state,Ceara,Dengue-Chikungunya,0,0.5626989158267269
+state,Ceara,Dengue-Chikungunya,1,0.6642702951077933
+state,Ceara,Dengue-Chikungunya,2,0.4745040738649297
+state,Ceara,Dengue-Chikungunya,3,0.28796406898909627
+state,Ceara,Dengue-Chikungunya,4,0.17276304474107887
+state,Ceara,Dengue-Chikungunya,5,0.11564320566825888
+state,Ceara,Dengue-Chikungunya,6,0.09393453988225994
+state,Ceara,Dengue-Zika,-6,0.15813332965554225
+state,Ceara,Dengue-Zika,-5,0.1472791771482282
+state,Ceara,Dengue-Zika,-4,0.186654717123246
+state,Ceara,Dengue-Zika,-3,0.3026497806985489
+state,Ceara,Dengue-Zika,-2,0.3891471710982142
+state,Ceara,Dengue-Zika,-1,0.5036796682779496
+state,Ceara,Dengue-Zika,0,0.5003841157800395
+state,Ceara,Dengue-Zika,1,0.301537789808746
+state,Ceara,Dengue-Zika,2,0.11553092175848816
+state,Ceara,Dengue-Zika,3,1.9493176635269716e-05
+state,Ceara,Dengue-Zika,4,-0.016480739635598197
+state,Ceara,Dengue-Zika,5,0.012114777656160813
+state,Ceara,Dengue-Zika,6,0.0485197416941713
+state,Ceara,Chikungunya-Zika,-6,0.09907179882502991
+state,Ceara,Chikungunya-Zika,-5,0.09665677602466446
+state,Ceara,Chikungunya-Zika,-4,0.1473772545186777
+state,Ceara,Chikungunya-Zika,-3,0.163336928860868
+state,Ceara,Chikungunya-Zika,-2,0.171471587043379
+state,Ceara,Chikungunya-Zika,-1,0.11058570830772158
+state,Ceara,Chikungunya-Zika,0,-0.10976244555995827
+state,Ceara,Chikungunya-Zika,1,-0.2957719238333001
+state,Ceara,Chikungunya-Zika,2,-0.29422416046700894
+state,Ceara,Chikungunya-Zika,3,-0.19948705884330803
+state,Ceara,Chikungunya-Zika,4,-0.11538737817430132
+state,Ceara,Chikungunya-Zika,5,-0.10031221456322419
+state,Ceara,Chikungunya-Zika,6,-0.10925491076892672
+state,Distrito Federal,Dengue-Chikungunya,-6,0.03893854298112378
+state,Distrito Federal,Dengue-Chikungunya,-5,0.04014744429862357
+state,Distrito Federal,Dengue-Chikungunya,-4,0.07586930151774948
+state,Distrito Federal,Dengue-Chikungunya,-3,0.11500710114509587
+state,Distrito Federal,Dengue-Chikungunya,-2,0.13405533359944188
+state,Distrito Federal,Dengue-Chikungunya,-1,0.09861716494651275
+state,Distrito Federal,Dengue-Chikungunya,0,0.06375777216152546
+state,Distrito Federal,Dengue-Chikungunya,1,0.0629871189545737
+state,Distrito Federal,Dengue-Chikungunya,2,-0.005652931106486427
+state,Distrito Federal,Dengue-Chikungunya,3,-0.09946689904733046
+state,Distrito Federal,Dengue-Chikungunya,4,-0.10150314174728016
+state,Distrito Federal,Dengue-Chikungunya,5,-0.0639366461674012
+state,Distrito Federal,Dengue-Chikungunya,6,-0.0459577033096096
+state,Distrito Federal,Dengue-Zika,-6,-0.007560802321343075
+state,Distrito Federal,Dengue-Zika,-5,-0.004862090145775475
+state,Distrito Federal,Dengue-Zika,-4,0.008942036862210076
+state,Distrito Federal,Dengue-Zika,-3,0.0360192666926851
+state,Distrito Federal,Dengue-Zika,-2,0.06172114876300756
+state,Distrito Federal,Dengue-Zika,-1,0.08223424641057657
+state,Distrito Federal,Dengue-Zika,0,0.08506655897447492
+state,Distrito Federal,Dengue-Zika,1,0.06943378364749271
+state,Distrito Federal,Dengue-Zika,2,0.04540416323236127
+state,Distrito Federal,Dengue-Zika,3,0.018695982508057183
+state,Distrito Federal,Dengue-Zika,4,0.00945421370724024
+state,Distrito Federal,Dengue-Zika,5,0.008770283228491996
+state,Distrito Federal,Dengue-Zika,6,0.007323352462769422
+state,Distrito Federal,Chikungunya-Zika,-6,-0.01590795218339562
+state,Distrito Federal,Chikungunya-Zika,-5,0.014866003689999081
+state,Distrito Federal,Chikungunya-Zika,-4,0.06213712880853028
+state,Distrito Federal,Chikungunya-Zika,-3,0.14432485975187576
+state,Distrito Federal,Chikungunya-Zika,-2,0.24574537302952076
+state,Distrito Federal,Chikungunya-Zika,-1,0.33510304868841717
+state,Distrito Federal,Chikungunya-Zika,0,0.40880259167593236
+state,Distrito Federal,Chikungunya-Zika,1,0.3464425843078073
+state,Distrito Federal,Chikungunya-Zika,2,0.25565377846284115
+state,Distrito Federal,Chikungunya-Zika,3,0.10916531925593055
+state,Distrito Federal,Chikungunya-Zika,4,0.0256071209283956
+state,Distrito Federal,Chikungunya-Zika,5,0.0037564808965672683
+state,Distrito Federal,Chikungunya-Zika,6,0.019517208204006663
+state,Espirito Santo,Dengue-Chikungunya,-6,0.002011971484345566
+state,Espirito Santo,Dengue-Chikungunya,-5,-0.04160812002814016
+state,Espirito Santo,Dengue-Chikungunya,-4,-0.07428738425913749
+state,Espirito Santo,Dengue-Chikungunya,-3,-0.03890403497194669
+state,Espirito Santo,Dengue-Chikungunya,-2,0.08726609555507323
+state,Espirito Santo,Dengue-Chikungunya,-1,0.27595199226717976
+state,Espirito Santo,Dengue-Chikungunya,0,0.482364249732738
+state,Espirito Santo,Dengue-Chikungunya,1,0.5929911777675215
+state,Espirito Santo,Dengue-Chikungunya,2,0.564568377461885
+state,Espirito Santo,Dengue-Chikungunya,3,0.46920878915681674
+state,Espirito Santo,Dengue-Chikungunya,4,0.3694542069087833
+state,Espirito Santo,Dengue-Chikungunya,5,0.30198388141515675
+state,Espirito Santo,Dengue-Chikungunya,6,0.2741063761688372
+state,Espirito Santo,Dengue-Zika,-6,0.06664984664539059
+state,Espirito Santo,Dengue-Zika,-5,0.09932982668693861
+state,Espirito Santo,Dengue-Zika,-4,0.15266905322773494
+state,Espirito Santo,Dengue-Zika,-3,0.25094871326393126
+state,Espirito Santo,Dengue-Zika,-2,0.3448402344861053
+state,Espirito Santo,Dengue-Zika,-1,0.41973610128953237
+state,Espirito Santo,Dengue-Zika,0,0.4421669653853654
+state,Espirito Santo,Dengue-Zika,1,0.39830206794770884
+state,Espirito Santo,Dengue-Zika,2,0.3280129331835053
+state,Espirito Santo,Dengue-Zika,3,0.20996208350151294
+state,Espirito Santo,Dengue-Zika,4,0.10825237590767056
+state,Espirito Santo,Dengue-Zika,5,0.03904878413779686
+state,Espirito Santo,Dengue-Zika,6,0.0003888891981759443
+state,Espirito Santo,Chikungunya-Zika,-6,0.1125674770319909
+state,Espirito Santo,Chikungunya-Zika,-5,0.08120435746569306
+state,Espirito Santo,Chikungunya-Zika,-4,0.03031245239317722
+state,Espirito Santo,Chikungunya-Zika,-3,-0.013405526184681103
+state,Espirito Santo,Chikungunya-Zika,-2,-0.07829338015834704
+state,Espirito Santo,Chikungunya-Zika,-1,-0.09991198079362737
+state,Espirito Santo,Chikungunya-Zika,0,-0.10481666260198583
+state,Espirito Santo,Chikungunya-Zika,1,-0.10949339054086779
+state,Espirito Santo,Chikungunya-Zika,2,-0.1519903845501922
+state,Espirito Santo,Chikungunya-Zika,3,-0.2200384210287164
+state,Espirito Santo,Chikungunya-Zika,4,-0.2489078975623185
+state,Espirito Santo,Chikungunya-Zika,5,-0.2593525397452627
+state,Espirito Santo,Chikungunya-Zika,6,-0.23221046962926833
+state,Goias,Dengue-Chikungunya,-6,0.025626043300912678
+state,Goias,Dengue-Chikungunya,-5,0.09444878346720367
+state,Goias,Dengue-Chikungunya,-4,0.21842000214203483
+state,Goias,Dengue-Chikungunya,-3,0.3945401463254826
+state,Goias,Dengue-Chikungunya,-2,0.5815501238982971
+state,Goias,Dengue-Chikungunya,-1,0.7109879958739165
+state,Goias,Dengue-Chikungunya,0,0.7352405689774221
+state,Goias,Dengue-Chikungunya,1,0.6448137633263652
+state,Goias,Dengue-Chikungunya,2,0.472319394771357
+state,Goias,Dengue-Chikungunya,3,0.290666075309071
+state,Goias,Dengue-Chikungunya,4,0.13976902544230058
+state,Goias,Dengue-Chikungunya,5,0.053140548967203896
+state,Goias,Dengue-Chikungunya,6,-0.00408407614735572
+state,Goias,Dengue-Zika,-6,0.011141647606955246
+state,Goias,Dengue-Zika,-5,0.023574748704895333
+state,Goias,Dengue-Zika,-4,0.024660548249445628
+state,Goias,Dengue-Zika,-3,0.0006694298924688379
+state,Goias,Dengue-Zika,-2,-0.0012889031755305798
+state,Goias,Dengue-Zika,-1,0.05187492453884003
+state,Goias,Dengue-Zika,0,0.1479608727210689
+state,Goias,Dengue-Zika,1,0.1978829398593536
+state,Goias,Dengue-Zika,2,0.15186074065179875
+state,Goias,Dengue-Zika,3,0.0832128100763941
+state,Goias,Dengue-Zika,4,0.01560673175991913
+state,Goias,Dengue-Zika,5,-0.020465654670338236
+state,Goias,Dengue-Zika,6,-0.030046052634088827
+state,Goias,Chikungunya-Zika,-6,0.04589861711813037
+state,Goias,Chikungunya-Zika,-5,0.055753201111016844
+state,Goias,Chikungunya-Zika,-4,0.057655062435558874
+state,Goias,Chikungunya-Zika,-3,0.05836306164278353
+state,Goias,Chikungunya-Zika,-2,0.05457432301761311
+state,Goias,Chikungunya-Zika,-1,0.052628852382278865
+state,Goias,Chikungunya-Zika,0,0.046719628937203876
+state,Goias,Chikungunya-Zika,1,0.04258168495717877
+state,Goias,Chikungunya-Zika,2,0.03915467462061128
+state,Goias,Chikungunya-Zika,3,0.03925764414683679
+state,Goias,Chikungunya-Zika,4,0.05516430695289499
+state,Goias,Chikungunya-Zika,5,0.04969250042584053
+state,Goias,Chikungunya-Zika,6,0.0271436540899818
+state,Maranhao,Dengue-Chikungunya,-6,0.06709089423487351
+state,Maranhao,Dengue-Chikungunya,-5,0.05684315061752379
+state,Maranhao,Dengue-Chikungunya,-4,0.08583589988277503
+state,Maranhao,Dengue-Chikungunya,-3,0.06798287692252278
+state,Maranhao,Dengue-Chikungunya,-2,0.05519199025196035
+state,Maranhao,Dengue-Chikungunya,-1,0.16165945531115017
+state,Maranhao,Dengue-Chikungunya,0,0.4741732471304446
+state,Maranhao,Dengue-Chikungunya,1,0.6185763585024011
+state,Maranhao,Dengue-Chikungunya,2,0.533946294358646
+state,Maranhao,Dengue-Chikungunya,3,0.3791811423310499
+state,Maranhao,Dengue-Chikungunya,4,0.23716935868760045
+state,Maranhao,Dengue-Chikungunya,5,0.11674495904496132
+state,Maranhao,Dengue-Chikungunya,6,0.07925220969660021
+state,Maranhao,Dengue-Zika,-6,0.07004743524671049
+state,Maranhao,Dengue-Zika,-5,0.08900375398750124
+state,Maranhao,Dengue-Zika,-4,0.12128432096057441
+state,Maranhao,Dengue-Zika,-3,0.1504007135458685
+state,Maranhao,Dengue-Zika,-2,0.3138684263365794
+state,Maranhao,Dengue-Zika,-1,0.5758051144054435
+state,Maranhao,Dengue-Zika,0,0.7496387169482744
+state,Maranhao,Dengue-Zika,1,0.7093895577632785
+state,Maranhao,Dengue-Zika,2,0.5508423962805079
+state,Maranhao,Dengue-Zika,3,0.4474607682782855
+state,Maranhao,Dengue-Zika,4,0.4542148060293503
+state,Maranhao,Dengue-Zika,5,0.43085550185328736
+state,Maranhao,Dengue-Zika,6,0.3854408990136873
+state,Maranhao,Chikungunya-Zika,-6,0.07497254442702263
+state,Maranhao,Chikungunya-Zika,-5,0.09949530157106712
+state,Maranhao,Chikungunya-Zika,-4,0.160605952434029
+state,Maranhao,Chikungunya-Zika,-3,0.3070165405765186
+state,Maranhao,Chikungunya-Zika,-2,0.6238404998402902
+state,Maranhao,Chikungunya-Zika,-1,0.7920048992509688
+state,Maranhao,Chikungunya-Zika,0,0.5926321387297359
+state,Maranhao,Chikungunya-Zika,1,0.2342292593734495
+state,Maranhao,Chikungunya-Zika,2,0.06539411248834245
+state,Maranhao,Chikungunya-Zika,3,0.05983957255912896
+state,Maranhao,Chikungunya-Zika,4,0.06276433866993185
+state,Maranhao,Chikungunya-Zika,5,0.06848873676112488
+state,Maranhao,Chikungunya-Zika,6,0.1968027111986368
+state,Mato Grosso,Dengue-Chikungunya,-6,-0.006357769526197071
+state,Mato Grosso,Dengue-Chikungunya,-5,-0.007690942932205108
+state,Mato Grosso,Dengue-Chikungunya,-4,-0.015233986019913137
+state,Mato Grosso,Dengue-Chikungunya,-3,-0.01628203070352863
+state,Mato Grosso,Dengue-Chikungunya,-2,0.03791418431593442
+state,Mato Grosso,Dengue-Chikungunya,-1,0.17161476501928669
+state,Mato Grosso,Dengue-Chikungunya,0,0.34109637963891476
+state,Mato Grosso,Dengue-Chikungunya,1,0.35080694380665856
+state,Mato Grosso,Dengue-Chikungunya,2,0.23931098470948806
+state,Mato Grosso,Dengue-Chikungunya,3,0.18705997011761955
+state,Mato Grosso,Dengue-Chikungunya,4,0.13830870094586942
+state,Mato Grosso,Dengue-Chikungunya,5,0.07229205973963027
+state,Mato Grosso,Dengue-Chikungunya,6,0.05106083387192033
+state,Mato Grosso,Dengue-Zika,-6,-0.002003681611986728
+state,Mato Grosso,Dengue-Zika,-5,-0.009141695951327413
+state,Mato Grosso,Dengue-Zika,-4,-0.016474046501845592
+state,Mato Grosso,Dengue-Zika,-3,-0.00943046598304336
+state,Mato Grosso,Dengue-Zika,-2,0.054468122814248746
+state,Mato Grosso,Dengue-Zika,-1,0.2230253412017985
+state,Mato Grosso,Dengue-Zika,0,0.3732295635886871
+state,Mato Grosso,Dengue-Zika,1,0.349396331899238
+state,Mato Grosso,Dengue-Zika,2,0.3049689135336355
+state,Mato Grosso,Dengue-Zika,3,0.23418362885741484
+state,Mato Grosso,Dengue-Zika,4,0.08525241399062435
+state,Mato Grosso,Dengue-Zika,5,0.03521561687292636
+state,Mato Grosso,Dengue-Zika,6,0.02975754809770457
+state,Mato Grosso,Chikungunya-Zika,-6,-0.005836955391787814
+state,Mato Grosso,Chikungunya-Zika,-5,-0.009944675887086158
+state,Mato Grosso,Chikungunya-Zika,-4,-0.01729357745704203
+state,Mato Grosso,Chikungunya-Zika,-3,-0.02750336499139161
+state,Mato Grosso,Chikungunya-Zika,-2,-0.026411799162652228
+state,Mato Grosso,Chikungunya-Zika,-1,-0.005122969909493645
+state,Mato Grosso,Chikungunya-Zika,0,0.013864370550170153
+state,Mato Grosso,Chikungunya-Zika,1,0.018689200762317056
+state,Mato Grosso,Chikungunya-Zika,2,0.033569658532107347
+state,Mato Grosso,Chikungunya-Zika,3,0.10607551238644913
+state,Mato Grosso,Chikungunya-Zika,4,0.08110835816635614
+state,Mato Grosso,Chikungunya-Zika,5,0.059776220895606164
+state,Mato Grosso,Chikungunya-Zika,6,0.057078059197112785
+state,Mato Grosso do Sul,Dengue-Chikungunya,-6,-0.016525688557628926
+state,Mato Grosso do Sul,Dengue-Chikungunya,-5,-0.011834481121521022
+state,Mato Grosso do Sul,Dengue-Chikungunya,-4,-0.013149376941008538
+state,Mato Grosso do Sul,Dengue-Chikungunya,-3,-0.0100994002213952
+state,Mato Grosso do Sul,Dengue-Chikungunya,-2,-0.0008597455452268316
+state,Mato Grosso do Sul,Dengue-Chikungunya,-1,0.02594638513291038
+state,Mato Grosso do Sul,Dengue-Chikungunya,0,0.053810428279210745
+state,Mato Grosso do Sul,Dengue-Chikungunya,1,0.05218819823306133
+state,Mato Grosso do Sul,Dengue-Chikungunya,2,0.03307058387009443
+state,Mato Grosso do Sul,Dengue-Chikungunya,3,0.024852527497299333
+state,Mato Grosso do Sul,Dengue-Chikungunya,4,0.029685352923537675
+state,Mato Grosso do Sul,Dengue-Chikungunya,5,0.02796245610486092
+state,Mato Grosso do Sul,Dengue-Chikungunya,6,0.018493449589164497
+state,Mato Grosso do Sul,Dengue-Zika,-6,0.00966390449452699
+state,Mato Grosso do Sul,Dengue-Zika,-5,0.012360714195350953
+state,Mato Grosso do Sul,Dengue-Zika,-4,0.011454755407519128
+state,Mato Grosso do Sul,Dengue-Zika,-3,0.04944295752052617
+state,Mato Grosso do Sul,Dengue-Zika,-2,0.15436449679755188
+state,Mato Grosso do Sul,Dengue-Zika,-1,0.32784866975599597
+state,Mato Grosso do Sul,Dengue-Zika,0,0.48389104644912423
+state,Mato Grosso do Sul,Dengue-Zika,1,0.5128391222340434
+state,Mato Grosso do Sul,Dengue-Zika,2,0.4611230508360724
+state,Mato Grosso do Sul,Dengue-Zika,3,0.3641673085718702
+state,Mato Grosso do Sul,Dengue-Zika,4,0.1921208727712994
+state,Mato Grosso do Sul,Dengue-Zika,5,0.043149742837608654
+state,Mato Grosso do Sul,Dengue-Zika,6,0.004308604673975697
+state,Mato Grosso do Sul,Chikungunya-Zika,-6,0.045291548737616184
+state,Mato Grosso do Sul,Chikungunya-Zika,-5,0.058223767841147356
+state,Mato Grosso do Sul,Chikungunya-Zika,-4,0.08674332834418685
+state,Mato Grosso do Sul,Chikungunya-Zika,-3,0.13481920993419044
+state,Mato Grosso do Sul,Chikungunya-Zika,-2,0.1711960958969847
+state,Mato Grosso do Sul,Chikungunya-Zika,-1,0.16252395113509532
+state,Mato Grosso do Sul,Chikungunya-Zika,0,0.16638297586583167
+state,Mato Grosso do Sul,Chikungunya-Zika,1,0.15975290761188288
+state,Mato Grosso do Sul,Chikungunya-Zika,2,0.10093547851203723
+state,Mato Grosso do Sul,Chikungunya-Zika,3,0.10285994555828293
+state,Mato Grosso do Sul,Chikungunya-Zika,4,0.04905234947645285
+state,Mato Grosso do Sul,Chikungunya-Zika,5,0.01881385453597775
+state,Mato Grosso do Sul,Chikungunya-Zika,6,-0.006634504057863103
+state,Minas Gerais,Dengue-Chikungunya,-6,0.030125483992333064
+state,Minas Gerais,Dengue-Chikungunya,-5,0.06793687642110831
+state,Minas Gerais,Dengue-Chikungunya,-4,0.165551266862129
+state,Minas Gerais,Dengue-Chikungunya,-3,0.3588752566573125
+state,Minas Gerais,Dengue-Chikungunya,-2,0.6230591050799519
+state,Minas Gerais,Dengue-Chikungunya,-1,0.8156466490653345
+state,Minas Gerais,Dengue-Chikungunya,0,0.7792717945713595
+state,Minas Gerais,Dengue-Chikungunya,1,0.5470031490255833
+state,Minas Gerais,Dengue-Chikungunya,2,0.3107959964725749
+state,Minas Gerais,Dengue-Chikungunya,3,0.16504985472052938
+state,Minas Gerais,Dengue-Chikungunya,4,0.08385417716785348
+state,Minas Gerais,Dengue-Chikungunya,5,0.04035680475325712
+state,Minas Gerais,Dengue-Chikungunya,6,0.01511868660720426
+state,Minas Gerais,Dengue-Zika,-6,0.003609786981506268
+state,Minas Gerais,Dengue-Zika,-5,0.005523820259526326
+state,Minas Gerais,Dengue-Zika,-4,0.012835665776018418
+state,Minas Gerais,Dengue-Zika,-3,0.04480614837283011
+state,Minas Gerais,Dengue-Zika,-2,0.1233348544180886
+state,Minas Gerais,Dengue-Zika,-1,0.21592780256684685
+state,Minas Gerais,Dengue-Zika,0,0.24856633616482748
+state,Minas Gerais,Dengue-Zika,1,0.19247488416988584
+state,Minas Gerais,Dengue-Zika,2,0.11934020698305184
+state,Minas Gerais,Dengue-Zika,3,0.10620988693825505
+state,Minas Gerais,Dengue-Zika,4,0.07123448221180256
+state,Minas Gerais,Dengue-Zika,5,0.0249066418372124
+state,Minas Gerais,Dengue-Zika,6,-0.001112362555334342
+state,Minas Gerais,Chikungunya-Zika,-6,-0.0014850014592776145
+state,Minas Gerais,Chikungunya-Zika,-5,-0.003693595154099029
+state,Minas Gerais,Chikungunya-Zika,-4,-0.009148248474073173
+state,Minas Gerais,Chikungunya-Zika,-3,-0.017373234409843015
+state,Minas Gerais,Chikungunya-Zika,-2,-0.03672068295421385
+state,Minas Gerais,Chikungunya-Zika,-1,-0.07011548220219906
+state,Minas Gerais,Chikungunya-Zika,0,-0.07214014351225892
+state,Minas Gerais,Chikungunya-Zika,1,-0.03735015798840074
+state,Minas Gerais,Chikungunya-Zika,2,-0.014791437827640726
+state,Minas Gerais,Chikungunya-Zika,3,-0.006521862881550752
+state,Minas Gerais,Chikungunya-Zika,4,-0.0004353285341887613
+state,Minas Gerais,Chikungunya-Zika,5,-0.0025674301978331187
+state,Minas Gerais,Chikungunya-Zika,6,-0.008584295214736307
+state,Para,Dengue-Chikungunya,-6,0.03349145861694634
+state,Para,Dengue-Chikungunya,-5,0.02276316057061229
+state,Para,Dengue-Chikungunya,-4,-0.0011715062054652252
+state,Para,Dengue-Chikungunya,-3,-0.04681113680900031
+state,Para,Dengue-Chikungunya,-2,-0.031315521928136456
+state,Para,Dengue-Chikungunya,-1,0.07254289902161995
+state,Para,Dengue-Chikungunya,0,0.1702600661210883
+state,Para,Dengue-Chikungunya,1,0.15808971679614578
+state,Para,Dengue-Chikungunya,2,0.07979198507970123
+state,Para,Dengue-Chikungunya,3,-0.00024683533751778053
+state,Para,Dengue-Chikungunya,4,-0.050543416431591354
+state,Para,Dengue-Chikungunya,5,-0.05540201826403344
+state,Para,Dengue-Chikungunya,6,-0.07261521058482309
+state,Para,Dengue-Zika,-6,0.08198540563674926
+state,Para,Dengue-Zika,-5,0.07380557539985667
+state,Para,Dengue-Zika,-4,0.0722064782898821
+state,Para,Dengue-Zika,-3,0.11313511986824001
+state,Para,Dengue-Zika,-2,0.21405023371990967
+state,Para,Dengue-Zika,-1,0.2547946931656404
+state,Para,Dengue-Zika,0,0.18927303508532994
+state,Para,Dengue-Zika,1,0.08611057597718086
+state,Para,Dengue-Zika,2,0.047567421322868855
+state,Para,Dengue-Zika,3,0.07824642455267596
+state,Para,Dengue-Zika,4,0.07886992448797213
+state,Para,Dengue-Zika,5,0.062348674052814294
+state,Para,Dengue-Zika,6,0.05165194150584384
+state,Para,Chikungunya-Zika,-6,0.06557698206502785
+state,Para,Chikungunya-Zika,-5,-0.005255966640115629
+state,Para,Chikungunya-Zika,-4,-0.07343700014425694
+state,Para,Chikungunya-Zika,-3,-0.10449941060694068
+state,Para,Chikungunya-Zika,-2,-0.1858427502788581
+state,Para,Chikungunya-Zika,-1,-0.3112137763208741
+state,Para,Chikungunya-Zika,0,-0.5038615204243724
+state,Para,Chikungunya-Zika,1,-0.6459938938700599
+state,Para,Chikungunya-Zika,2,-0.5671714004590125
+state,Para,Chikungunya-Zika,3,-0.5677573688698573
+state,Para,Chikungunya-Zika,4,-0.5260293261879342
+state,Para,Chikungunya-Zika,5,-0.45941948833637203
+state,Para,Chikungunya-Zika,6,-0.36901801233207837
+state,Paraiba,Dengue-Chikungunya,-6,0.08218224308219586
+state,Paraiba,Dengue-Chikungunya,-5,0.136411612015726
+state,Paraiba,Dengue-Chikungunya,-4,0.22145618286294194
+state,Paraiba,Dengue-Chikungunya,-3,0.34789161846769656
+state,Paraiba,Dengue-Chikungunya,-2,0.4811999661545404
+state,Paraiba,Dengue-Chikungunya,-1,0.6203514181853825
+state,Paraiba,Dengue-Chikungunya,0,0.7276020789530967
+state,Paraiba,Dengue-Chikungunya,1,0.7429472617463391
+state,Paraiba,Dengue-Chikungunya,2,0.6858816369728022
+state,Paraiba,Dengue-Chikungunya,3,0.5392617466348832
+state,Paraiba,Dengue-Chikungunya,4,0.3855118405617888
+state,Paraiba,Dengue-Chikungunya,5,0.2691168824025958
+state,Paraiba,Dengue-Chikungunya,6,0.15691662275261148
+state,Paraiba,Dengue-Zika,-6,0.1314310360130414
+state,Paraiba,Dengue-Zika,-5,0.15379684012967781
+state,Paraiba,Dengue-Zika,-4,0.2201321070489393
+state,Paraiba,Dengue-Zika,-3,0.31142211090713146
+state,Paraiba,Dengue-Zika,-2,0.4091319522126178
+state,Paraiba,Dengue-Zika,-1,0.5468594722536959
+state,Paraiba,Dengue-Zika,0,0.5965775377987205
+state,Paraiba,Dengue-Zika,1,0.5610618575041294
+state,Paraiba,Dengue-Zika,2,0.47029287044654783
+state,Paraiba,Dengue-Zika,3,0.34477129323117833
+state,Paraiba,Dengue-Zika,4,0.25411013367151214
+state,Paraiba,Dengue-Zika,5,0.1695849259138224
+state,Paraiba,Dengue-Zika,6,0.056394262646514356
+state,Paraiba,Chikungunya-Zika,-6,0.20688936649308795
+state,Paraiba,Chikungunya-Zika,-5,0.257880664564289
+state,Paraiba,Chikungunya-Zika,-4,0.33061779826807736
+state,Paraiba,Chikungunya-Zika,-3,0.5073447195613736
+state,Paraiba,Chikungunya-Zika,-2,0.6264259171186531
+state,Paraiba,Chikungunya-Zika,-1,0.6497356531238695
+state,Paraiba,Chikungunya-Zika,0,0.553990441345867
+state,Paraiba,Chikungunya-Zika,1,0.3314590628479181
+state,Paraiba,Chikungunya-Zika,2,0.18052240868420022
+state,Paraiba,Chikungunya-Zika,3,0.12907627064896574
+state,Paraiba,Chikungunya-Zika,4,0.07220584389801059
+state,Paraiba,Chikungunya-Zika,5,0.02953847386963169
+state,Paraiba,Chikungunya-Zika,6,-0.031748474788017414
+state,Parana,Dengue-Chikungunya,-6,-0.0005427869749527664
+state,Parana,Dengue-Chikungunya,-5,-0.01949477888797884
+state,Parana,Dengue-Chikungunya,-4,-0.04955007925619349
+state,Parana,Dengue-Chikungunya,-3,-0.10600325819664502
+state,Parana,Dengue-Chikungunya,-2,-0.23105978894253484
+state,Parana,Dengue-Chikungunya,-1,-0.36047250153768823
+state,Parana,Dengue-Chikungunya,0,-0.4049655005629161
+state,Parana,Dengue-Chikungunya,1,-0.34188426504348834
+state,Parana,Dengue-Chikungunya,2,-0.23077312507770265
+state,Parana,Dengue-Chikungunya,3,-0.1244880193949781
+state,Parana,Dengue-Chikungunya,4,-0.05497938289129317
+state,Parana,Dengue-Chikungunya,5,-0.020186805384935242
+state,Parana,Dengue-Chikungunya,6,0.0004836043546345468
+state,Parana,Dengue-Zika,-6,0.004517331640950658
+state,Parana,Dengue-Zika,-5,0.002318594458171986
+state,Parana,Dengue-Zika,-4,0.0038587311176239304
+state,Parana,Dengue-Zika,-3,0.018474895902299622
+state,Parana,Dengue-Zika,-2,0.0541924923688271
+state,Parana,Dengue-Zika,-1,0.09131518765616993
+state,Parana,Dengue-Zika,0,0.09285758400529671
+state,Parana,Dengue-Zika,1,0.060016703184489095
+state,Parana,Dengue-Zika,2,0.030143237103682212
+state,Parana,Dengue-Zika,3,0.014387663062872206
+state,Parana,Dengue-Zika,4,0.006617497934615685
+state,Parana,Dengue-Zika,5,-0.0316907361597952
+state,Parana,Dengue-Zika,6,-0.05351012740456787
+state,Parana,Chikungunya-Zika,-6,-0.0035973032264121985
+state,Parana,Chikungunya-Zika,-5,-0.005323132298541937
+state,Parana,Chikungunya-Zika,-4,-0.00023610254740092203
+state,Parana,Chikungunya-Zika,-3,0.002314338547021874
+state,Parana,Chikungunya-Zika,-2,0.010243203028342578
+state,Parana,Chikungunya-Zika,-1,0.02533502270119223
+state,Parana,Chikungunya-Zika,0,0.02489519577019078
+state,Parana,Chikungunya-Zika,1,0.009951286873941138
+state,Parana,Chikungunya-Zika,2,0.00266023145384286
+state,Parana,Chikungunya-Zika,3,-0.017983454890544325
+state,Parana,Chikungunya-Zika,4,-0.04225220772824515
+state,Parana,Chikungunya-Zika,5,-0.03758396989486518
+state,Parana,Chikungunya-Zika,6,-0.0007149770791453321
+state,Pernambuco,Dengue-Chikungunya,-6,0.039364492802853174
+state,Pernambuco,Dengue-Chikungunya,-5,0.0604335913733529
+state,Pernambuco,Dengue-Chikungunya,-4,0.10223789953482362
+state,Pernambuco,Dengue-Chikungunya,-3,0.20892881333880636
+state,Pernambuco,Dengue-Chikungunya,-2,0.41985677246181313
+state,Pernambuco,Dengue-Chikungunya,-1,0.6548478373138628
+state,Pernambuco,Dengue-Chikungunya,0,0.7967202024865104
+state,Pernambuco,Dengue-Chikungunya,1,0.7774684319451262
+state,Pernambuco,Dengue-Chikungunya,2,0.6143498518915338
+state,Pernambuco,Dengue-Chikungunya,3,0.42091229126325597
+state,Pernambuco,Dengue-Chikungunya,4,0.24526457359748846
+state,Pernambuco,Dengue-Chikungunya,5,0.15257868404030117
+state,Pernambuco,Dengue-Chikungunya,6,0.09639919934440683
+state,Pernambuco,Dengue-Zika,-6,0.06651379002103776
+state,Pernambuco,Dengue-Zika,-5,0.09933059892715661
+state,Pernambuco,Dengue-Zika,-4,0.17744972602598935
+state,Pernambuco,Dengue-Zika,-3,0.3378176549442869
+state,Pernambuco,Dengue-Zika,-2,0.6006099055607039
+state,Pernambuco,Dengue-Zika,-1,0.7871636206801548
+state,Pernambuco,Dengue-Zika,0,0.8843072132013085
+state,Pernambuco,Dengue-Zika,1,0.8328319518226633
+state,Pernambuco,Dengue-Zika,2,0.6463308682434515
+state,Pernambuco,Dengue-Zika,3,0.3545847064502667
+state,Pernambuco,Dengue-Zika,4,0.20872062441751296
+state,Pernambuco,Dengue-Zika,5,0.12895702805804155
+state,Pernambuco,Dengue-Zika,6,0.08258810010110494
+state,Pernambuco,Chikungunya-Zika,-6,0.13884039234060613
+state,Pernambuco,Chikungunya-Zika,-5,0.18960940907158574
+state,Pernambuco,Chikungunya-Zika,-4,0.25861862981892164
+state,Pernambuco,Chikungunya-Zika,-3,0.4196093194211425
+state,Pernambuco,Chikungunya-Zika,-2,0.6163409725556491
+state,Pernambuco,Chikungunya-Zika,-1,0.7631046960731872
+state,Pernambuco,Chikungunya-Zika,0,0.7494098682461506
+state,Pernambuco,Chikungunya-Zika,1,0.6361297471559317
+state,Pernambuco,Chikungunya-Zika,2,0.4503138661023213
+state,Pernambuco,Chikungunya-Zika,3,0.3222277402603996
+state,Pernambuco,Chikungunya-Zika,4,0.20703796473154346
+state,Pernambuco,Chikungunya-Zika,5,0.10889698212852457
+state,Pernambuco,Chikungunya-Zika,6,0.08244986625577429
+state,Piaui,Dengue-Chikungunya,-6,-0.010297100618077391
+state,Piaui,Dengue-Chikungunya,-5,-0.009285146249526779
+state,Piaui,Dengue-Chikungunya,-4,0.01139523110534565
+state,Piaui,Dengue-Chikungunya,-3,0.0930340681279998
+state,Piaui,Dengue-Chikungunya,-2,0.29234426994062696
+state,Piaui,Dengue-Chikungunya,-1,0.5891318941431662
+state,Piaui,Dengue-Chikungunya,0,0.8018059150634221
+state,Piaui,Dengue-Chikungunya,1,0.6971966236805869
+state,Piaui,Dengue-Chikungunya,2,0.39826193125764436
+state,Piaui,Dengue-Chikungunya,3,0.1762817096020729
+state,Piaui,Dengue-Chikungunya,4,0.0712921007474832
+state,Piaui,Dengue-Chikungunya,5,0.033414656146462045
+state,Piaui,Dengue-Chikungunya,6,0.025059660839779892
+state,Piaui,Dengue-Zika,-6,0.07097251603792254
+state,Piaui,Dengue-Zika,-5,0.04964563357357885
+state,Piaui,Dengue-Zika,-4,0.05343555762282704
+state,Piaui,Dengue-Zika,-3,0.14291575632337075
+state,Piaui,Dengue-Zika,-2,0.3509261508863333
+state,Piaui,Dengue-Zika,-1,0.5854737038411109
+state,Piaui,Dengue-Zika,0,0.6258784095198683
+state,Piaui,Dengue-Zika,1,0.3643682846760873
+state,Piaui,Dengue-Zika,2,0.1764359304992558
+state,Piaui,Dengue-Zika,3,0.053003791243272994
+state,Piaui,Dengue-Zika,4,-0.003611257279491011
+state,Piaui,Dengue-Zika,5,-0.05130471776432365
+state,Piaui,Dengue-Zika,6,-0.040952702439109076
+state,Piaui,Chikungunya-Zika,-6,0.04009665141022526
+state,Piaui,Chikungunya-Zika,-5,0.007927718840483908
+state,Piaui,Chikungunya-Zika,-4,-0.004383204752824156
+state,Piaui,Chikungunya-Zika,-3,0.07025204832139836
+state,Piaui,Chikungunya-Zika,-2,0.31331519771665006
+state,Piaui,Chikungunya-Zika,-1,0.5751912135061694
+state,Piaui,Chikungunya-Zika,0,0.5373889770544876
+state,Piaui,Chikungunya-Zika,1,0.24919318604431312
+state,Piaui,Chikungunya-Zika,2,0.03472083927158731
+state,Piaui,Chikungunya-Zika,3,-0.04851839094710597
+state,Piaui,Chikungunya-Zika,4,-0.07703623254710537
+state,Piaui,Chikungunya-Zika,5,-0.0873999368364216
+state,Piaui,Chikungunya-Zika,6,-0.06646051457313865
+state,Rio Grande do Norte,Dengue-Chikungunya,-6,0.00152229950954533
+state,Rio Grande do Norte,Dengue-Chikungunya,-5,0.0541063070308806
+state,Rio Grande do Norte,Dengue-Chikungunya,-4,0.12547554432312544
+state,Rio Grande do Norte,Dengue-Chikungunya,-3,0.258527279417751
+state,Rio Grande do Norte,Dengue-Chikungunya,-2,0.3618752820413158
+state,Rio Grande do Norte,Dengue-Chikungunya,-1,0.5484527915147211
+state,Rio Grande do Norte,Dengue-Chikungunya,0,0.8218532295176716
+state,Rio Grande do Norte,Dengue-Chikungunya,1,0.8615105712100125
+state,Rio Grande do Norte,Dengue-Chikungunya,2,0.7049787265390675
+state,Rio Grande do Norte,Dengue-Chikungunya,3,0.5380949742551737
+state,Rio Grande do Norte,Dengue-Chikungunya,4,0.33035105616495813
+state,Rio Grande do Norte,Dengue-Chikungunya,5,0.17776772456747217
+state,Rio Grande do Norte,Dengue-Chikungunya,6,0.0728336012358395
+state,Rio Grande do Norte,Dengue-Zika,-6,-0.004932301969274009
+state,Rio Grande do Norte,Dengue-Zika,-5,0.03568288220455169
+state,Rio Grande do Norte,Dengue-Zika,-4,0.12858597536129734
+state,Rio Grande do Norte,Dengue-Zika,-3,0.29217280549089825
+state,Rio Grande do Norte,Dengue-Zika,-2,0.41604491888079453
+state,Rio Grande do Norte,Dengue-Zika,-1,0.643923978040966
+state,Rio Grande do Norte,Dengue-Zika,0,0.9246691098811188
+state,Rio Grande do Norte,Dengue-Zika,1,0.8092649632615022
+state,Rio Grande do Norte,Dengue-Zika,2,0.5252685573060921
+state,Rio Grande do Norte,Dengue-Zika,3,0.3659326888933461
+state,Rio Grande do Norte,Dengue-Zika,4,0.19806184719536848
+state,Rio Grande do Norte,Dengue-Zika,5,0.0932203662419693
+state,Rio Grande do Norte,Dengue-Zika,6,0.029216560719288482
+state,Rio Grande do Norte,Chikungunya-Zika,-6,0.02807980306925297
+state,Rio Grande do Norte,Chikungunya-Zika,-5,0.10990428590709903
+state,Rio Grande do Norte,Chikungunya-Zika,-4,0.22827816307667137
+state,Rio Grande do Norte,Chikungunya-Zika,-3,0.4079169181125166
+state,Rio Grande do Norte,Chikungunya-Zika,-2,0.5814668619242243
+state,Rio Grande do Norte,Chikungunya-Zika,-1,0.7851899015985981
+state,Rio Grande do Norte,Chikungunya-Zika,0,0.8575708451091677
+state,Rio Grande do Norte,Chikungunya-Zika,1,0.6021061538822565
+state,Rio Grande do Norte,Chikungunya-Zika,2,0.37798173549462766
+state,Rio Grande do Norte,Chikungunya-Zika,3,0.2709194753686263
+state,Rio Grande do Norte,Chikungunya-Zika,4,0.14121765914264037
+state,Rio Grande do Norte,Chikungunya-Zika,5,0.08030257971380032
+state,Rio Grande do Norte,Chikungunya-Zika,6,0.03989200597790632
+state,Rio Grande do Sul,Dengue-Chikungunya,-6,0.012650066816061078
+state,Rio Grande do Sul,Dengue-Chikungunya,-5,0.0063013712775870576
+state,Rio Grande do Sul,Dengue-Chikungunya,-4,0.010439030704016458
+state,Rio Grande do Sul,Dengue-Chikungunya,-3,0.06633906102855813
+state,Rio Grande do Sul,Dengue-Chikungunya,-2,0.20252654386577745
+state,Rio Grande do Sul,Dengue-Chikungunya,-1,0.2868934813407188
+state,Rio Grande do Sul,Dengue-Chikungunya,0,0.2126846914769739
+state,Rio Grande do Sul,Dengue-Chikungunya,1,0.04940241630498456
+state,Rio Grande do Sul,Dengue-Chikungunya,2,-0.011793536955900403
+state,Rio Grande do Sul,Dengue-Chikungunya,3,-0.022589853070155413
+state,Rio Grande do Sul,Dengue-Chikungunya,4,-0.02441815564547758
+state,Rio Grande do Sul,Dengue-Chikungunya,5,-0.034257350307404136
+state,Rio Grande do Sul,Dengue-Chikungunya,6,-0.026634835511784402
+state,Rio Grande do Sul,Dengue-Zika,-6,0.0026623586357059836
+state,Rio Grande do Sul,Dengue-Zika,-5,0.0018922304385507274
+state,Rio Grande do Sul,Dengue-Zika,-4,0.020599956228667803
+state,Rio Grande do Sul,Dengue-Zika,-3,0.04210488535858866
+state,Rio Grande do Sul,Dengue-Zika,-2,0.041684978655739065
+state,Rio Grande do Sul,Dengue-Zika,-1,0.04956621332945822
+state,Rio Grande do Sul,Dengue-Zika,0,0.017169274353378394
+state,Rio Grande do Sul,Dengue-Zika,1,-0.0833868902712294
+state,Rio Grande do Sul,Dengue-Zika,2,-0.1229680845125086
+state,Rio Grande do Sul,Dengue-Zika,3,-0.09053611787151011
+state,Rio Grande do Sul,Dengue-Zika,4,-0.05256835132243138
+state,Rio Grande do Sul,Dengue-Zika,5,-0.0392584344493825
+state,Rio Grande do Sul,Dengue-Zika,6,-0.03748825785464949
+state,Rio Grande do Sul,Chikungunya-Zika,-6,0.02344571749973102
+state,Rio Grande do Sul,Chikungunya-Zika,-5,0.045086155441517436
+state,Rio Grande do Sul,Chikungunya-Zika,-4,0.04193197419890075
+state,Rio Grande do Sul,Chikungunya-Zika,-3,0.016729053813916758
+state,Rio Grande do Sul,Chikungunya-Zika,-2,0.010533975064769913
+state,Rio Grande do Sul,Chikungunya-Zika,-1,0.03060581731079254
+state,Rio Grande do Sul,Chikungunya-Zika,0,-0.03828227249926923
+state,Rio Grande do Sul,Chikungunya-Zika,1,0.005407757973354278
+state,Rio Grande do Sul,Chikungunya-Zika,2,-0.03714343818827549
+state,Rio Grande do Sul,Chikungunya-Zika,3,-0.05132613542113997
+state,Rio Grande do Sul,Chikungunya-Zika,4,-0.005681877790759268
+state,Rio Grande do Sul,Chikungunya-Zika,5,0.000914892332746772
+state,Rio Grande do Sul,Chikungunya-Zika,6,-0.0421418054264743
+state,Rio de Janeiro,Dengue-Chikungunya,-6,0.010138281968688616
+state,Rio de Janeiro,Dengue-Chikungunya,-5,0.012962193746056292
+state,Rio de Janeiro,Dengue-Chikungunya,-4,0.017060374859171792
+state,Rio de Janeiro,Dengue-Chikungunya,-3,0.026991124952019864
+state,Rio de Janeiro,Dengue-Chikungunya,-2,0.05211165700658499
+state,Rio de Janeiro,Dengue-Chikungunya,-1,0.09486379997419388
+state,Rio de Janeiro,Dengue-Chikungunya,0,0.1282081394422569
+state,Rio de Janeiro,Dengue-Chikungunya,1,0.1205070451847946
+state,Rio de Janeiro,Dengue-Chikungunya,2,0.09267723592990088
+state,Rio de Janeiro,Dengue-Chikungunya,3,0.06199101085136621
+state,Rio de Janeiro,Dengue-Chikungunya,4,0.03629051288476846
+state,Rio de Janeiro,Dengue-Chikungunya,5,0.01919722142501131
+state,Rio de Janeiro,Dengue-Chikungunya,6,0.01095025101606457
+state,Rio de Janeiro,Dengue-Zika,-6,0.005171882210623282
+state,Rio de Janeiro,Dengue-Zika,-5,0.011929491635650121
+state,Rio de Janeiro,Dengue-Zika,-4,0.032784959915831115
+state,Rio de Janeiro,Dengue-Zika,-3,0.07505131087203316
+state,Rio de Janeiro,Dengue-Zika,-2,0.11893402054741192
+state,Rio de Janeiro,Dengue-Zika,-1,0.15446506967393278
+state,Rio de Janeiro,Dengue-Zika,0,0.17314368533050062
+state,Rio de Janeiro,Dengue-Zika,1,0.15928145814867328
+state,Rio de Janeiro,Dengue-Zika,2,0.13880617899695336
+state,Rio de Janeiro,Dengue-Zika,3,0.12083392717695925
+state,Rio de Janeiro,Dengue-Zika,4,0.11799666745751548
+state,Rio de Janeiro,Dengue-Zika,5,0.12479185946855657
+state,Rio de Janeiro,Dengue-Zika,6,0.12338367789540745
+state,Rio de Janeiro,Chikungunya-Zika,-6,0.013684287641549787
+state,Rio de Janeiro,Chikungunya-Zika,-5,0.03475504878949789
+state,Rio de Janeiro,Chikungunya-Zika,-4,0.07750101945008889
+state,Rio de Janeiro,Chikungunya-Zika,-3,0.12639232776863923
+state,Rio de Janeiro,Chikungunya-Zika,-2,0.1407463757298753
+state,Rio de Janeiro,Chikungunya-Zika,-1,0.12072047666382288
+state,Rio de Janeiro,Chikungunya-Zika,0,0.07781185579282081
+state,Rio de Janeiro,Chikungunya-Zika,1,0.038380196412155856
+state,Rio de Janeiro,Chikungunya-Zika,2,0.014688607424847601
+state,Rio de Janeiro,Chikungunya-Zika,3,0.006207993138076466
+state,Rio de Janeiro,Chikungunya-Zika,4,0.010743702070528723
+state,Rio de Janeiro,Chikungunya-Zika,5,0.020606877345084377
+state,Rio de Janeiro,Chikungunya-Zika,6,0.016603974584710152
+state,Rondonia,Dengue-Chikungunya,-6,0.014651442081210718
+state,Rondonia,Dengue-Chikungunya,-5,0.011219920961971311
+state,Rondonia,Dengue-Chikungunya,-4,0.01577927410937295
+state,Rondonia,Dengue-Chikungunya,-3,0.032455715358375305
+state,Rondonia,Dengue-Chikungunya,-2,0.04880143615025919
+state,Rondonia,Dengue-Chikungunya,-1,0.03687994391049319
+state,Rondonia,Dengue-Chikungunya,0,-0.025886816677999157
+state,Rondonia,Dengue-Chikungunya,1,-0.10817667032825298
+state,Rondonia,Dengue-Chikungunya,2,-0.16437511307551406
+state,Rondonia,Dengue-Chikungunya,3,-0.15421781525915992
+state,Rondonia,Dengue-Chikungunya,4,-0.11056383345200212
+state,Rondonia,Dengue-Chikungunya,5,-0.07342277623289853
+state,Rondonia,Dengue-Chikungunya,6,-0.04907431590758099
+state,Rondonia,Dengue-Zika,-6,0.03954290961064544
+state,Rondonia,Dengue-Zika,-5,0.03850009200027412
+state,Rondonia,Dengue-Zika,-4,0.04988504484732663
+state,Rondonia,Dengue-Zika,-3,0.06569142826992845
+state,Rondonia,Dengue-Zika,-2,0.11253376067229663
+state,Rondonia,Dengue-Zika,-1,0.20630052771033996
+state,Rondonia,Dengue-Zika,0,0.3181726229114825
+state,Rondonia,Dengue-Zika,1,0.3504261083586395
+state,Rondonia,Dengue-Zika,2,0.28802285859740673
+state,Rondonia,Dengue-Zika,3,0.23638813277229312
+state,Rondonia,Dengue-Zika,4,0.1861596629263379
+state,Rondonia,Dengue-Zika,5,0.10571107318824907
+state,Rondonia,Dengue-Zika,6,0.03884843625162571
+state,Rondonia,Chikungunya-Zika,-6,-0.002580469760862256
+state,Rondonia,Chikungunya-Zika,-5,0.0016645998183204241
+state,Rondonia,Chikungunya-Zika,-4,-0.00019206519315762848
+state,Rondonia,Chikungunya-Zika,-3,-0.005522371938561594
+state,Rondonia,Chikungunya-Zika,-2,0.015408657532802432
+state,Rondonia,Chikungunya-Zika,-1,0.04617791869583922
+state,Rondonia,Chikungunya-Zika,0,0.08104235795893608
+state,Rondonia,Chikungunya-Zika,1,0.07657614423034656
+state,Rondonia,Chikungunya-Zika,2,0.06985571441837521
+state,Rondonia,Chikungunya-Zika,3,0.07437446744862908
+state,Rondonia,Chikungunya-Zika,4,0.09520313513503958
+state,Rondonia,Chikungunya-Zika,5,0.10114405949416491
+state,Rondonia,Chikungunya-Zika,6,0.10386404268875625
+state,Roraima,Dengue-Chikungunya,-6,-0.04874390445857941
+state,Roraima,Dengue-Chikungunya,-5,-0.028245227509626464
+state,Roraima,Dengue-Chikungunya,-4,-0.012563190129525633
+state,Roraima,Dengue-Chikungunya,-3,-0.004568873136200998
+state,Roraima,Dengue-Chikungunya,-2,0.015031101311938924
+state,Roraima,Dengue-Chikungunya,-1,0.041303315057173634
+state,Roraima,Dengue-Chikungunya,0,0.08485960077014763
+state,Roraima,Dengue-Chikungunya,1,0.11075612962554947
+state,Roraima,Dengue-Chikungunya,2,0.10782941140265766
+state,Roraima,Dengue-Chikungunya,3,0.07358232023793161
+state,Roraima,Dengue-Chikungunya,4,0.034817072666660565
+state,Roraima,Dengue-Chikungunya,5,0.01572744892706727
+state,Roraima,Dengue-Chikungunya,6,0.012636823532329524
+state,Roraima,Dengue-Zika,-6,0.020405163855669435
+state,Roraima,Dengue-Zika,-5,0.04416468385512741
+state,Roraima,Dengue-Zika,-4,0.06958822038408878
+state,Roraima,Dengue-Zika,-3,0.11209700680432877
+state,Roraima,Dengue-Zika,-2,0.16233963896958137
+state,Roraima,Dengue-Zika,-1,0.166682054224642
+state,Roraima,Dengue-Zika,0,0.13780980179393248
+state,Roraima,Dengue-Zika,1,0.053554747149443166
+state,Roraima,Dengue-Zika,2,-0.004760235323479878
+state,Roraima,Dengue-Zika,3,-0.030899179089306315
+state,Roraima,Dengue-Zika,4,-0.029932686100528023
+state,Roraima,Dengue-Zika,5,-0.03782075311407035
+state,Roraima,Dengue-Zika,6,-0.0453908926526615
+state,Roraima,Chikungunya-Zika,-6,0.2870356564407242
+state,Roraima,Chikungunya-Zika,-5,0.4804616066004527
+state,Roraima,Chikungunya-Zika,-4,0.7106430965994278
+state,Roraima,Chikungunya-Zika,-3,0.760371460290418
+state,Roraima,Chikungunya-Zika,-2,0.6993089702462776
+state,Roraima,Chikungunya-Zika,-1,0.5646593773714396
+state,Roraima,Chikungunya-Zika,0,0.4554454798743235
+state,Roraima,Chikungunya-Zika,1,0.2550363282904609
+state,Roraima,Chikungunya-Zika,2,0.06903666544955347
+state,Roraima,Chikungunya-Zika,3,-0.07696039822877258
+state,Roraima,Chikungunya-Zika,4,-0.12883738954676988
+state,Roraima,Chikungunya-Zika,5,-0.14587846833114182
+state,Roraima,Chikungunya-Zika,6,-0.2055693188388391
+state,Santa Catarina,Dengue-Chikungunya,-6,0.01713261990654619
+state,Santa Catarina,Dengue-Chikungunya,-5,0.018806047740679004
+state,Santa Catarina,Dengue-Chikungunya,-4,0.002332537291817003
+state,Santa Catarina,Dengue-Chikungunya,-3,-0.06863432363920795
+state,Santa Catarina,Dengue-Chikungunya,-2,-0.25705583539113275
+state,Santa Catarina,Dengue-Chikungunya,-1,-0.4545027806418577
+state,Santa Catarina,Dengue-Chikungunya,0,-0.42434032494052354
+state,Santa Catarina,Dengue-Chikungunya,1,-0.24419558643332606
+state,Santa Catarina,Dengue-Chikungunya,2,-0.094309435812691
+state,Santa Catarina,Dengue-Chikungunya,3,-0.03782297160615258
+state,Santa Catarina,Dengue-Chikungunya,4,-0.029023252783439854
+state,Santa Catarina,Dengue-Chikungunya,5,-0.03539502729762758
+state,Santa Catarina,Dengue-Chikungunya,6,-0.04689287675582035
+state,Santa Catarina,Dengue-Zika,-6,-0.02189925196024523
+state,Santa Catarina,Dengue-Zika,-5,-0.028524145915362457
+state,Santa Catarina,Dengue-Zika,-4,-0.0334071356590301
+state,Santa Catarina,Dengue-Zika,-3,-0.018704460471841197
+state,Santa Catarina,Dengue-Zika,-2,0.023808458899932217
+state,Santa Catarina,Dengue-Zika,-1,0.06247042062959472
+state,Santa Catarina,Dengue-Zika,0,0.0576108235908269
+state,Santa Catarina,Dengue-Zika,1,0.04784016868094405
+state,Santa Catarina,Dengue-Zika,2,0.04811319465797141
+state,Santa Catarina,Dengue-Zika,3,0.06879836240449576
+state,Santa Catarina,Dengue-Zika,4,0.03502190810733544
+state,Santa Catarina,Dengue-Zika,5,0.0054966028365410384
+state,Santa Catarina,Dengue-Zika,6,-0.014789865666151706
+state,Santa Catarina,Chikungunya-Zika,-6,0.02875497733513314
+state,Santa Catarina,Chikungunya-Zika,-5,0.002977802488385971
+state,Santa Catarina,Chikungunya-Zika,-4,0.03332542678400204
+state,Santa Catarina,Chikungunya-Zika,-3,-0.006933795997921121
+state,Santa Catarina,Chikungunya-Zika,-2,0.0008510419327683544
+state,Santa Catarina,Chikungunya-Zika,-1,0.004660764268068716
+state,Santa Catarina,Chikungunya-Zika,0,0.033076004379601856
+state,Santa Catarina,Chikungunya-Zika,1,0.04907919258763852
+state,Santa Catarina,Chikungunya-Zika,2,0.015166294750233265
+state,Santa Catarina,Chikungunya-Zika,3,-0.026818407493223288
+state,Santa Catarina,Chikungunya-Zika,4,-0.042077051383387166
+state,Santa Catarina,Chikungunya-Zika,5,-0.05798795995795928
+state,Santa Catarina,Chikungunya-Zika,6,-0.029964582030884975
+state,Sao Paulo,Dengue-Chikungunya,-6,0.0007838924756250762
+state,Sao Paulo,Dengue-Chikungunya,-5,0.012108235271525027
+state,Sao Paulo,Dengue-Chikungunya,-4,0.01636012346873099
+state,Sao Paulo,Dengue-Chikungunya,-3,0.04943095321407109
+state,Sao Paulo,Dengue-Chikungunya,-2,0.1335297426744251
+state,Sao Paulo,Dengue-Chikungunya,-1,0.20793459466016284
+state,Sao Paulo,Dengue-Chikungunya,0,0.24826828794249609
+state,Sao Paulo,Dengue-Chikungunya,1,0.224746954283699
+state,Sao Paulo,Dengue-Chikungunya,2,0.16399553856726265
+state,Sao Paulo,Dengue-Chikungunya,3,0.10927325249785792
+state,Sao Paulo,Dengue-Chikungunya,4,0.07230561418772403
+state,Sao Paulo,Dengue-Chikungunya,5,0.055015959560783534
+state,Sao Paulo,Dengue-Chikungunya,6,0.06198619824961015
+state,Sao Paulo,Dengue-Zika,-6,0.0038007774261058264
+state,Sao Paulo,Dengue-Zika,-5,0.0058524385662695345
+state,Sao Paulo,Dengue-Zika,-4,0.01420026752957955
+state,Sao Paulo,Dengue-Zika,-3,0.039355979848450136
+state,Sao Paulo,Dengue-Zika,-2,0.063421829618471
+state,Sao Paulo,Dengue-Zika,-1,0.08792276440587173
+state,Sao Paulo,Dengue-Zika,0,0.10642037102540522
+state,Sao Paulo,Dengue-Zika,1,0.10210015845215593
+state,Sao Paulo,Dengue-Zika,2,0.07907635615583362
+state,Sao Paulo,Dengue-Zika,3,0.0581255040494283
+state,Sao Paulo,Dengue-Zika,4,0.06014936305635862
+state,Sao Paulo,Dengue-Zika,5,0.07319166078478162
+state,Sao Paulo,Dengue-Zika,6,0.053228943098729935
+state,Sao Paulo,Chikungunya-Zika,-6,-0.007043392418622503
+state,Sao Paulo,Chikungunya-Zika,-5,-0.006062424314289378
+state,Sao Paulo,Chikungunya-Zika,-4,-0.0009120834388754333
+state,Sao Paulo,Chikungunya-Zika,-3,0.006984681075637559
+state,Sao Paulo,Chikungunya-Zika,-2,0.016827636187430082
+state,Sao Paulo,Chikungunya-Zika,-1,0.03195475079593776
+state,Sao Paulo,Chikungunya-Zika,0,0.04382487036493162
+state,Sao Paulo,Chikungunya-Zika,1,0.04812824203435466
+state,Sao Paulo,Chikungunya-Zika,2,0.04102004750636526
+state,Sao Paulo,Chikungunya-Zika,3,0.02837064578126637
+state,Sao Paulo,Chikungunya-Zika,4,0.03173201224042603
+state,Sao Paulo,Chikungunya-Zika,5,0.035177840379301134
+state,Sao Paulo,Chikungunya-Zika,6,0.0175994732295841
+state,Sergipe,Dengue-Chikungunya,-6,0.07636907455501714
+state,Sergipe,Dengue-Chikungunya,-5,0.09301024877910631
+state,Sergipe,Dengue-Chikungunya,-4,0.10125067934492485
+state,Sergipe,Dengue-Chikungunya,-3,0.10277222396612903
+state,Sergipe,Dengue-Chikungunya,-2,0.12121470056960801
+state,Sergipe,Dengue-Chikungunya,-1,0.14341314793975307
+state,Sergipe,Dengue-Chikungunya,0,0.20520159934679266
+state,Sergipe,Dengue-Chikungunya,1,0.19828986095915926
+state,Sergipe,Dengue-Chikungunya,2,0.17102030003931368
+state,Sergipe,Dengue-Chikungunya,3,0.08419824056295343
+state,Sergipe,Dengue-Chikungunya,4,0.05380143686411033
+state,Sergipe,Dengue-Chikungunya,5,0.02867431396415612
+state,Sergipe,Dengue-Chikungunya,6,0.022028735592086207
+state,Sergipe,Dengue-Zika,-6,0.014275000038027279
+state,Sergipe,Dengue-Zika,-5,-0.022105974610319205
+state,Sergipe,Dengue-Zika,-4,-0.04164059680511977
+state,Sergipe,Dengue-Zika,-3,-0.03604826147655905
+state,Sergipe,Dengue-Zika,-2,-0.032575778970557676
+state,Sergipe,Dengue-Zika,-1,-0.03719246813438869
+state,Sergipe,Dengue-Zika,0,-0.07626951253381264
+state,Sergipe,Dengue-Zika,1,-0.1689054919136629
+state,Sergipe,Dengue-Zika,2,-0.2193653049520187
+state,Sergipe,Dengue-Zika,3,-0.24693174038684917
+state,Sergipe,Dengue-Zika,4,-0.15173951408547906
+state,Sergipe,Dengue-Zika,5,-0.05773117550822576
+state,Sergipe,Dengue-Zika,6,0.015533939330691904
+state,Sergipe,Chikungunya-Zika,-6,0.2089035207276902
+state,Sergipe,Chikungunya-Zika,-5,0.2102547630030355
+state,Sergipe,Chikungunya-Zika,-4,0.241860464091472
+state,Sergipe,Chikungunya-Zika,-3,0.29655982521740026
+state,Sergipe,Chikungunya-Zika,-2,0.42324910898867757
+state,Sergipe,Chikungunya-Zika,-1,0.4973157966177227
+state,Sergipe,Chikungunya-Zika,0,0.5135282940054262
+state,Sergipe,Chikungunya-Zika,1,0.34504420983359324
+state,Sergipe,Chikungunya-Zika,2,0.20526281966195448
+state,Sergipe,Chikungunya-Zika,3,0.12730139166561644
+state,Sergipe,Chikungunya-Zika,4,0.08304528651945263
+state,Sergipe,Chikungunya-Zika,5,0.04935592815949807
+state,Sergipe,Chikungunya-Zika,6,0.043883113864649645
+state,Tocantins,Dengue-Chikungunya,-6,-0.13681931963703672
+state,Tocantins,Dengue-Chikungunya,-5,-0.07434815163775448
+state,Tocantins,Dengue-Chikungunya,-4,-0.0642344253772431
+state,Tocantins,Dengue-Chikungunya,-3,-0.07187781655715236
+state,Tocantins,Dengue-Chikungunya,-2,-0.04460018797321375
+state,Tocantins,Dengue-Chikungunya,-1,0.009891636016741723
+state,Tocantins,Dengue-Chikungunya,0,0.055685527777893526
+state,Tocantins,Dengue-Chikungunya,1,0.08666230820184219
+state,Tocantins,Dengue-Chikungunya,2,0.14179092273907812
+state,Tocantins,Dengue-Chikungunya,3,0.2795237236905778
+state,Tocantins,Dengue-Chikungunya,4,0.3723651821817855
+state,Tocantins,Dengue-Chikungunya,5,0.3774547911274923
+state,Tocantins,Dengue-Chikungunya,6,0.28338551899197195
+state,Tocantins,Dengue-Zika,-6,0.010895038521806955
+state,Tocantins,Dengue-Zika,-5,0.031199489502000872
+state,Tocantins,Dengue-Zika,-4,0.050606884996421644
+state,Tocantins,Dengue-Zika,-3,0.06296616769040543
+state,Tocantins,Dengue-Zika,-2,0.07950320246557294
+state,Tocantins,Dengue-Zika,-1,0.11866152494860169
+state,Tocantins,Dengue-Zika,0,0.17996290298740555
+state,Tocantins,Dengue-Zika,1,0.18496654682339433
+state,Tocantins,Dengue-Zika,2,0.15234061216133254
+state,Tocantins,Dengue-Zika,3,0.11706634711529154
+state,Tocantins,Dengue-Zika,4,0.13228984230639498
+state,Tocantins,Dengue-Zika,5,0.10900004067807043
+state,Tocantins,Dengue-Zika,6,0.08614226176211785
+state,Tocantins,Chikungunya-Zika,-6,-0.008292093469641786
+state,Tocantins,Chikungunya-Zika,-5,-0.03246966418888372
+state,Tocantins,Chikungunya-Zika,-4,-0.07294190787924451
+state,Tocantins,Chikungunya-Zika,-3,-0.1440213441653816
+state,Tocantins,Chikungunya-Zika,-2,-0.15199475774992852
+state,Tocantins,Chikungunya-Zika,-1,-0.09754698590616898
+state,Tocantins,Chikungunya-Zika,0,-0.02880369430637148
+state,Tocantins,Chikungunya-Zika,1,0.05960433264261508
+state,Tocantins,Chikungunya-Zika,2,0.09363027772259182
+state,Tocantins,Chikungunya-Zika,3,0.13120501330872075
+state,Tocantins,Chikungunya-Zika,4,0.0631641354547903
+state,Tocantins,Chikungunya-Zika,5,0.0027107797602821644
+state,Tocantins,Chikungunya-Zika,6,-0.010665660270506559

@@ -78,7 +78,7 @@ box_summary <- function(df, by, col) {
   }, by = by][do.call(order_c, lapply(by, function(b) get(b)))]
 }
 
-pzfx_tables <- function() {
+clinical_tables_list <- function() {   # one entry per plotted clinical table (graphpad_pipeline.R read_tables)
   out <- list()
   for (virus in names(gp$FILES))
     for (tbl in gp$read_tables(virus)) out[[length(out) + 1]] <- list(virus = virus, title = tbl$title, df = gp$table_to_df(tbl))
@@ -198,9 +198,9 @@ main <- function() {
     sheet("Fig4_moran_points", rbindlist(rows), "Standardised mean incidence (z) vs spatial lag (Wz) per state", "plot_spatial (arbovirus_pipeline_en.R)"),
     sheet("Fig4_moran_stats", rbindlist(fits), "Global Moran's I, permutation p and fitted line", "run_moran")))
 
-  # ── Figures 5, 7, 8 (GraphPad clinical tables) ──
+  # ── Figures 5, 7, 8 (clinical tables, 2016-2026) ──
   cat("Figures 5, 7, 8 ...\n")
-  tables <- pzfx_tables()
+  tables <- clinical_tables_list()
   age_rows <- list(); age_summary <- list(); sex_rows <- list()
   for (virus in VIRUSES) {
     t <- find_table(tables, virus, "Age group"); df <- t$df
@@ -218,22 +218,22 @@ main <- function() {
     ts <- find_table(tables, virus, "Sex")
     sex_rows[[length(sex_rows) + 1]] <- categorical_long(ts$df, virus, ts$title)
   }
-  write_workbook("Figure5", "Figure 5 — Demographics (GraphPad source, through 2025)", list(
+  write_workbook("Figure5", "Figure 5 — Demographics (clinical tables 2016-2026, discarded notifications excluded; 2026 = January-September)", list(
     sheet("Fig5A_age_group_counts", rbindlist(age_rows),
           "Cases per age band per year. Violins resample 6,000 synthetic ages/year from these bins (seed 42); 'Ign/Blank' excluded",
-          "db/graphpad_data/*.pzfx; plot_age_group (graphpad_pipeline.R)"),
+          "clinical_tables/clinical_demographic_long.csv; plot_age_group (graphpad_pipeline.R)"),
     sheet("Fig5A_violin_quartiles", rbindlist(age_summary), "Median and quartiles of the resampled ages drawn as white dots / inner lines", "plot_age_group"),
     sheet("Fig5B_sex", rbindlist(sex_rows), paste0("Cases by sex and year, with the plotted percentages (dot-line). ", PCT_NOTE),
           "plot_proportion (graphpad_pipeline.R)")))
   fig7 <- list()
-  for (pp in list(c("ELISA", "A"), c("IgM", "B"), c("Hospitalization", "C"), c("Serotype", "D"))) {
+  for (pp in list(c("NS1", "A"), c("IgM", "B"), c("Hospitalization", "C"), c("Serotype", "D"))) {
     t <- find_table(tables, "Dengue", pp[1])
     fig7[[length(fig7) + 1]] <- sheet(sprintf("Fig7%s_%s", pp[2], pp[1]), categorical_long(t$df, "Dengue", t$title),
                                       sprintf("Dengue %s: counts and plotted percentages. %s", t$title, PCT_NOTE), "plot_proportion (graphpad_pipeline.R)")
   }
-  write_workbook("Figure7", "Figure 7 — Dengue clinical/laboratory profile (GraphPad source, through 2025)", fig7)
+  write_workbook("Figure7", "Figure 7 — Dengue clinical/laboratory profile (clinical tables 2016-2026; 2026 = January-September)", fig7)
   fig8 <- list()
-  for (spec in list(list("Chikungunya", "A", c("Classfication", "Criteria", "Evolution")),
+  for (spec in list(list("Chikungunya", "A", c("Classification", "Criteria", "Evolution")),
                     list("Zika", "B", c("Classification", "Criteria", "Evolution", "Pregnancy")))) {
     for (k in seq_along(spec[[3]])) {
       prefix <- spec[[3]][k]
@@ -243,7 +243,7 @@ main <- function() {
                                         sprintf("%s %s: counts and plotted percentages. %s", spec[[1]], t$title, PCT_NOTE), "plot_proportion (graphpad_pipeline.R)")
     }
   }
-  write_workbook("Figure8", "Figure 8 — Chikungunya and Zika clinical profile (GraphPad source, through 2025)", fig8)
+  write_workbook("Figure8", "Figure 8 — Chikungunya and Zika clinical profile (clinical tables 2016-2026, discarded notifications excluded; 2026 = January-September)", fig8)
 
   # ── Figure 6 ──
   cat("Figure 6 ...\n")
@@ -372,7 +372,7 @@ main <- function() {
           "plot_spearman_rho_only (arbovirus_pipeline_en.R)"),
     sheet("py_06c_rain_lag2", saved_py$Rain_Lag2_Incidence, "Rain lag-2 Spearman per state", "run_spearman_rain_lag2 (arbovirus_pipeline_en.R)"),
     sheet("py_07_best_lag", best, "Lag with the largest |rho| per state (also py_06d when filtered to significant rain)", "plot_spearman (arbovirus_pipeline_en.R)"),
-    sheet("clinical_monthly_heatmap", clin, "Monthly cases from the GraphPad tables ({virus}_01b_monthly_heatmap.png)", "plot_monthly (graphpad_pipeline.R)"),
+    sheet("clinical_monthly_heatmap", clin, "Monthly cases ({virus}_01b_monthly_heatmap.png)", "plot_monthly (graphpad_pipeline.R)"),
     sheet("clinical_state_totals", fu, "Cumulative cases per state ({virus}_05_federative_unit_totals.png)", "plot_federative_unit (graphpad_pipeline.R)"),
     sheet("alt_trend01_slope", slope, "First vs last year incidence (last year 2026 is annualised from Jan–Sep)", "fig_slope_chart (alt_results.R)"),
     sheet("alt_glm02_caterpillar", ps[Term == "Temp_Avg", ..cols], "Per-state NegBin temperature IRR with 95% CI", "fig_caterpillar_per_state (alt_results.R)"))))
@@ -383,7 +383,7 @@ main <- function() {
     sheet("bootstrap_ci_incidence", fread(file.path(OUT_MAIN, "bootstrap_ci_95_incidence.csv")), "Bootstrap 95% CIs, incidence", "bootstrap_ci.R"),
     sheet("global_moran", moran_df, "Global Moran's I", "run_moran"),
     sheet("clinical_demographic_2016_2026", fread(path_root("clinical_tables", "clinical_demographic_long.csv"), encoding = "UTF-8"),
-          "SINAN clinical/demographic breakdowns 2016–2026 (age bands differ from the GraphPad figures)",
+          "SINAN clinical/demographic breakdowns 2016–2026 (discarded notifications excluded)",
           "clinical_tables/clinical_demographic_long.csv")))
 
   cat("\nConsistency checks against saved outputs:\n")

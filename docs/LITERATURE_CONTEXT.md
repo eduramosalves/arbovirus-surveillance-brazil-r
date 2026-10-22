@@ -1,7 +1,9 @@
 # Literature context
 
 How four recent papers relate to the results of this project, and what the project can and cannot say
-against them. Written 2026-10-21 for the 2016–2026 analysis (SINAN release of 2026-10-06).
+against them. Written 2026-10-21 for the 2016–2026 analysis; **numbers updated 2026-10-22** after the rerun (SINAN
+downloaded again on 2026-10-22, 2026 limited to notifications up to 2026-09-30; a case is any notification not
+classified as discarded, for the three diseases).
 
 **Numbers from this project come from the regenerated outputs** (`outputs/`, `clinical_tables/`,
 `outputs/2026-10-08/additional/`), never from [`RESULTS_SUMMARY.md`](RESULTS_SUMMARY.md), which describes the
@@ -26,20 +28,23 @@ discusses the daily temperature range (DTR) and *Aedes* spread into colder areas
 
 *Against this project.*
 - **Consistent.** Dengue has a positive temperature association: the regenerated pooled NegBin model (state and
-  month fixed effects, cluster-robust SEs) gives an IRR of 1.104 per +1 °C (95% CI 1.025–1.190, p = 0.009).
-  Chikungunya is 1.054 (0.989–1.122, not significant); Zika is 1.091 (1.006–1.183, p = 0.035)
+  month fixed effects, cluster-robust SEs) gives an IRR of 1.106 per +1 °C (95% CI 1.026–1.191, p = 0.008).
+  Chikungunya is 1.029 (0.948–1.117, p = 0.493, not significant); Zika is 1.106 (1.001–1.221, p = 0.047)
   (`outputs/glm_negbin_pooled_fe.csv`).
 - **Consistent, with a caveat.** The response is non-linear. The DLNM puts the dengue temperature optimum at
-  27.2 °C (IRR 1.18), Zika at 29.6 °C (IRR 1.34), and chikungunya is flat (`dlnm_summary.csv`). Do not read this
+  27.5 °C (IRR 1.19); chikungunya (25.1 °C, IRR 1.01) and Zika (25.6 °C, IRR 1.00) are flat
+  (`dlnm_summary.csv`; the DLNM is not part of the manuscript). Do not read this
   as agreement or disagreement with Liu's 32–33 °C: Liu's thresholds mix mean, minimum and maximum temperatures,
   while this project uses the monthly mean of hourly readings, averaged over each state's stations.
 - **Gap.** The lag dimension covers 0–2 months only, there is no humidity, and there is no Tmin, Tmax or DTR.
-  The Delhi study's two-month optimum sits at the edge of this project's lag window.
+  The Delhi study's two-month optimum sits at the edge of this project's lag window; in the pooled lagged model
+  the dengue coefficient is largest at lag 2 (IRR 1.37), so a longer window could show a stronger association.
 - **Hypothesis.** Liu (and Lim, below) point to *Aedes* spread into colder, higher-latitude areas. Whether the
   southern states' dengue and chikungunya trends reflect this is untested here. The regenerated Figure S2B marks
-  two states for dengue and three for chikungunya with a significant increasing trend (raw p < 0.05). Which states
-  they are, and whether any survives FDR, must be read from `outputs/py_statistical_results.xlsx` before this
-  link is made.
+  two states for dengue (Rio Grande do Sul, Santa Catarina) and three for chikungunya (Mato Grosso do Sul, Goiás,
+  Minas Gerais) with a significant increasing trend (raw p < 0.05). After Benjamini–Hochberg correction only the
+  chikungunya increase in Mato Grosso do Sul remains (q = 0.029); no dengue trend does (smallest q = 0.344)
+  (`outputs/py_statistical_results.xlsx`). The chikungunya states are in the Central-West and Southeast.
 
 ## 2. Moura et al. 2020, *Aedes* oviposition in Natal, Rio Grande do Norte (abstract only)
 
@@ -70,11 +75,11 @@ misdiagnosis and under-reporting of Zika and chikungunya and call for integrated
 
 *Against this project.*
 - **Qualifies.** SINAN notifications are treated here as incidence. State differences in the maps (Figure 6,
-  Figure S2A) can reflect who gets tested and reported as well as who gets infected. The case definition also
-  differs by disease (dengue counts probable cases, chikungunya and Zika count all notifications), which limits
-  comparisons across diseases.
-- **Hypothesis.** Dengue shows strong spatial clustering (global Moran's I = 0.516, p = 0.001), but chikungunya
-  (0.004, p = 0.285) and Zika (−0.006, p = 0.326) show none, although Lim finds all three share a suitability
+  Figure S2A) can reflect who gets tested and reported as well as who gets infected. The case definition is the
+  same for the three diseases (every notification not classified as discarded), but the share discarded differs
+  (dengue 15%, chikungunya 35%, Zika 47%), which limits comparisons across diseases.
+- **Hypothesis.** Dengue shows strong spatial clustering (global Moran's I = 0.516, p = 0.001), chikungunya a
+  weaker one (0.231, p = 0.017) and Zika none (−0.105, p = 0.243), although Lim finds all three share a suitability
   niche. Differential reporting or diagnosis is one candidate explanation. Epidemic timing and introduction
   history are others. The data here cannot separate them.
 - **Consistent.** The co-circulation analysis (`adv_cocirculation.R`) treats the three diseases together, in line
@@ -97,16 +102,15 @@ using Qdenga (TAK-003) and Butantan-DV.
 *Against this project.*
 - **Consistent.** The national SINAN serotype records show DENV-3 rising. Among typed dengue records
   (DENV-1 to DENV-4 only), DENV-3 never exceeded 1.6% in 2016–2023 (0.2% in 2023), then reached 0.9% in 2024
-  (1,789 records), 14.0% in 2025 (6,857) and 29.9% in 2026, January–September (9,841). Figure 7 ends in 2025 and the captions do
-  not mention this.
+  (1,789 records), 14.0% in 2025 (6,857) and 29.8% in 2026, January–September (9,977).
 - **Qualifies.** These are national typed records, not Ceará. Nationally, DENV-2 holds most typed records in
   2025 (73.8%) and 2026 (64.2%), while the paper reports DENV-1 as predominant in Ceará. Where the typed
   records come from geographically is not known here. Typing covers 0.2–3.0% of notifications per year in
   2016–2025 and 7.1% in 2026.
 - **Qualifies.** A SOROTIPO value of `0`, which is not a serotype, appears under the label `codigo_0` in
   `clinical_tables/clinical_demographic_long.csv` from 2021: 134,407 records in 2023 (about three times all valid
-  typed records that year), 131,058 in 2024, 33,493 in 2025 and 17,748 in 2026. These are not counted as typed
-  above. How Figure 7D handles them is not documented.
+  typed records that year), 131,058 in 2024, 33,493 in 2025 and 17,700 in 2026. These are not counted as typed
+  above. Figure 7D folds them into "Ign/Blank"; the manuscript carries an author query on this treatment.
 - **Qualifies.** The paper counts laboratory-confirmed cases. This project counts probable dengue cases
   (all notifications except discarded). Absolute counts and incidence are not comparable.
 - **Gap.** No seasonality metric (peak month, season length) per state or region, for comparison with the paper's
@@ -121,8 +125,8 @@ using Qdenga (TAK-003) and Butantan-DV.
 These are mirrored in the limitations block of [`FIGURE_CAPTIONS.md`](FIGURE_CAPTIONS.md).
 
 1. Notifications are not incidence: reporting and diagnosis vary between states and between diseases (Lim).
-2. Dengue is probable cases, chikungunya and Zika are all notifications, and published laboratory-confirmed
-   series are not comparable in size (De Lima).
+2. Cases are confirmed plus probable (discarded notifications excluded) for the three diseases, and published
+   laboratory-confirmed series are not comparable in size (De Lima).
 3. Climate is a monthly state mean of hourly readings, with lags up to two months, and no humidity or daily range
    (Liu, Moura).
 4. State-level associations do not describe vector abundance or transmission inside a city (Moura).
@@ -130,11 +134,13 @@ These are mirrored in the limitations block of [`FIGURE_CAPTIONS.md`](FIGURE_CAP
 
 ## Open checks before any of the "Hypothesis" items is written up as a result
 
-- Whether the strongest climate association lies at the longest lag tested (lag 2). Read it from the Figure 3
-  source data; the extended-lag model planned for this project will test it.
-- Which states carry the dengue and chikungunya increasing trends, and whether any survives FDR.
-- Whether Rio Grande do Norte is still a dengue low-low state in the regenerated LISA output.
-- How Figure 7D treats the `codigo_0` serotype records.
+- Whether the strongest climate association lies at the longest lag tested (lag 2). The pooled lagged model puts the
+  dengue maximum at lag 2 (Zika at lag 1); only a model with a longer window can test it.
+- Which states carry the dengue and chikungunya increasing trends, and whether any survives FDR: answered above
+  (dengue RS and SC, none after correction; chikungunya MS, GO and MG, MS after correction).
+- Whether Rio Grande do Norte is still a dengue low-low state in the regenerated LISA output: yes (raw p < 0.05);
+  none of the local clusters except Goiás, Minas Gerais and Rio de Janeiro remains after correction.
+- How Figure 7D treats the `codigo_0` serotype records: folded into "Ign/Blank" (author query open).
 
 ## References
 

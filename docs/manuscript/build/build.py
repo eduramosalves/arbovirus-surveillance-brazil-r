@@ -21,6 +21,7 @@ sys.path.insert(0, str(SKILL))
 from lxml import etree  # noqa: E402
 
 import comments_text  # noqa: E402
+import figmap  # noqa: E402
 import ms_back  # noqa: E402
 import ms_discussion  # noqa: E402
 import ms_front  # noqa: E402
@@ -158,9 +159,7 @@ def plain(tokens):
 
 # ------------------------------------------------------------------ assemble blocks
 def assemble():
-    legends = ms_back.legends(str(PROJECT / "docs" / "FIGURE_CAPTIONS.md"))
-    head = ms_front.FRONT + ms_front.INTRO + ms_methods.METHODS + ms_results.RESULTS + ms_discussion.DISCUSSION + ms_back.BACK
-    return head, legends
+    return ms_front.FRONT + ms_front.INTRO + ms_methods.METHODS + ms_results.RESULTS + ms_discussion.DISCUSSION + ms_back.BACK
 
 
 def number_citations(blocks):
@@ -440,7 +439,16 @@ def patch_styles(path):
 def main(outdir):
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
-    head, legends = assemble()
+    head = assemble()
+    run_assertions()
+    # figures are numbered by the order of their first citation in the text (main and supplementary separately)
+    order_keys = figmap.cited_order([b["text"] for b in head])
+    uncited = [k for k in figmap.FIGURES if k not in order_keys]
+    assert not uncited, "figures never cited in the text: %s" % uncited
+    fignum = figmap.numbering(order_keys)
+    for b in head:
+        b["text"] = figmap.resolve(b["text"], fignum)
+    legends = ms_back.legends(str(PROJECT / "docs" / "FIGURE_CAPTIONS.md"), fignum)
     # tokens (numbers resolved first; citation numbers need the whole document)
     allblocks = head + legends
     for b in allblocks:
@@ -459,6 +467,7 @@ def main(outdir):
         if in_main and b["style"] == "Body":
             main_words += len(plain(b["tokens"]).split())
     calc = {"abstract_words": abstract_words, "main_words": main_words, "n_refs": len(order)}
+    check_text(head + legends)
     for b in allblocks:
         newt = []
         for t in b["tokens"]:
@@ -483,18 +492,30 @@ def main(outdir):
         if bdir.exists():
             shutil.rmtree(bdir)
         shutil.copytree(WORK / "orig", bdir)
+        # the comment parts come from the file as edited in Word (the co-author's comments, the user's
+        # instructions and the user's deletions); only the body, styles and footer are rebuilt
+        for part in ("comments.xml", "commentsExtended.xml", "commentsIds.xml", "commentsExtensible.xml", "people.xml"):
+            shutil.copy(USER_DIR / "word" / part, bdir / "word" / part)
         from comment import add_comment  # skill helper
-        cid_map = {str(k): k for k in range(3, 24) if k != 10}
-        replies = {}
-        for pid, text in comments_text.REPLIES.items():
+        cid_map, replies = comment_threads()
+        new_ids = []
+        for pid, text in comments_text.REPLIES_R2.items():
+            text = figmap.resolve(resolve_numbers(text), fignum)
+            if pid not in replies and pid not in {v for v in cid_map.values()}:
+                raise KeyError("no comment %s to reply to" % pid)
             cid, _, _ = add_comment(bdir, text, author=AUTHOR, initials=comments_text.INITIALS, parent_id=pid)
             replies.setdefault(pid, []).append(cid)
-        for key, text in comments_text.QUERIES.items():
-            cid, _, _ = add_comment(bdir, text, author=AUTHOR, initials=comments_text.INITIALS)
-            cid_map["q:" + key] = cid
-        fix_reply_parents(bdir, replies)
+            new_ids.append((pid, cid))
+        fix_reply_parents(bdir, {pid: [cid] for pid, cid in new_ids})
+        close_threads(bdir, replies, [cid_map["q:" + k] for k in comments_text.CLOSE_THREADS])
         ctx = Ctx(order, cid_map, replies)
-        # anchors check
+        # anchors check (anchors of comments the user deleted are dropped from the text)
+        anchors = [t[1] for b in full for t in b["tokens"] if t[0] == "cs"]
+        unknown = sorted({a for a in anchors if a not in cid_map})
+        if unknown:
+            print("note: anchors without a comment in the file (dropped): %s" % unknown)
+            for b in full:
+                b["tokens"] = [t for t in b["tokens"] if not (t[0] in ("cs", "ce") and t[1] in unknown)]
         anchors = [t[1] for b in full for t in b["tokens"] if t[0] == "cs"]
         missing = [c for c in cid_map if c not in anchors]
         dup = [c for c in set(anchors) if anchors.count(c) != 1]
@@ -535,14 +556,112 @@ def main(outdir):
         results[name] = str(zpath)
     # ---- reports
     used = [{"key": k, "fmt": s, "text": v, "src": SRC.get(k, "")} for (k, s), v in sorted(USED.items())]
-    json.dump({"calc": calc, "citation_order": order, "used": used}, open(out / "build_report.json", "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    figures = [{"key": k, "repo_label": figmap.FIGURES[k][0], "number": n, "files": figmap.FIGURES[k][2]}
+               for k, n in sorted(fignum.items(), key=lambda kv: (kv[1].startswith("S"), int(kv[1].lstrip("S"))))]
+    json.dump({"calc": calc, "citation_order": order, "figures": figures, "used": used},
+              open(out / "build_report.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     plain_all = []
     for b in full:
         plain_all.append("[%s] %s" % (b["style"], plain(b["tokens"]).replace("\t", " ")))
     (out / "manuscript_plain.txt").write_text("\n\n".join(plain_all), encoding="utf-8")
     print(json.dumps(calc), len(used), "numbers used;", len(order), "references")
     return results
+
+
+USER_DIR = WORK / "user"   # unpacked copy of the manuscript as edited in Word on 2026-10-22
+QUERY_KEYS = {"Figure 7D folds": "code0", "The supplementary DLNM": "dlnm", "docs/FIGURE_CAPTIONS.md quotes": "esdata",
+              "2026 is annualized": "ann2026"}
+
+
+def comment_threads():
+    """(cid_map, replies) of the comments in USER_DIR: cid_map maps anchor keys ('17', 'q:dlnm') to comment ids;
+    replies maps each thread root to the ids of its replies (in id order)."""
+    W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
+    W15 = "http://schemas.microsoft.com/office/word/2012/wordml"
+    cm = etree.parse(str(USER_DIR / "word" / "comments.xml")).getroot()
+    ext = etree.parse(str(USER_DIR / "word" / "commentsExtended.xml")).getroot()
+    para2id, info = {}, {}
+    for c in cm:
+        cid = int(c.get("{%s}id" % W_NS))
+        paras = [p.get("{%s}paraId" % W14) for p in c.iter("{%s}p" % W_NS)]
+        text = "\n".join("".join(t.text or "" for t in p.iter("{%s}t" % W_NS)) for p in c.iter("{%s}p" % W_NS))
+        for p in paras:
+            para2id[p] = cid
+        info[cid] = {"author": c.get("{%s}author" % W_NS), "text": text}
+    parent = {}
+    for e in ext:
+        pp = e.get("{%s}paraIdParent" % W15)
+        if pp:
+            parent[para2id[e.get("{%s}paraId" % W15)]] = para2id[pp]
+    cid_map, replies = {}, {}
+    for cid in sorted(info):
+        if cid in parent:
+            replies.setdefault(parent[cid], []).append(cid)
+        elif info[cid]["author"] == AUTHOR:
+            key = [k for pre, k in QUERY_KEYS.items() if info[cid]["text"].startswith(pre)]
+            assert key, "unrecognised query of the assistant: %r" % info[cid]["text"][:60]
+            cid_map["q:" + key[0]] = cid
+        else:
+            cid_map[str(cid)] = cid
+    return cid_map, replies
+
+
+def close_threads(bdir, replies, roots):
+    """Mark whole threads as resolved (w15:done) in commentsExtended.xml."""
+    W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
+    W15 = "http://schemas.microsoft.com/office/word/2012/wordml"
+    cm = etree.parse(str(bdir / "word" / "comments.xml")).getroot()
+    last = {int(c.get("{%s}id" % W_NS)): [p.get("{%s}paraId" % W14) for p in c.iter("{%s}p" % W_NS)] for c in cm}
+    ext_path = bdir / "word" / "commentsExtended.xml"
+    ext = etree.parse(str(ext_path))
+    by_para = {e.get("{%s}paraId" % W15): e for e in ext.getroot()}
+    for root in roots:
+        for cid in [root] + replies.get(root, []):
+            for pid in last[cid]:
+                if pid in by_para:
+                    by_para[pid].set("{%s}done" % W15, "1")
+    ext.write(str(ext_path), xml_declaration=True, encoding="UTF-8", standalone=True)
+
+
+def run_assertions():
+    """Evaluate the ASSERT lists of the text modules against numbers.csv: statements the prose makes about the data."""
+    def N(key):
+        v = NUMS[key]
+        try:
+            return float(v)
+        except ValueError:
+            return v
+    failed = []
+    for mod in (ms_front, ms_methods, ms_results, ms_discussion):
+        for expr, why in getattr(mod, "ASSERT", []):
+            try:
+                ok = bool(eval(expr, {"N": N, "set": set}))
+            except Exception as e:  # noqa: BLE001
+                ok, why = False, "%s [%s]" % (why, e)
+            if not ok:
+                failed.append("%s  ::  %s" % (why, expr))
+    if failed:
+        raise SystemExit("DATA ASSERTIONS FAILED (the text says something the data no longer support):\n  " + "\n  ".join(failed))
+    print("data assertions passed:", sum(len(getattr(m, "ASSERT", [])) for m in (ms_front, ms_methods, ms_results, ms_discussion)))
+
+
+WINDOW = re.compile(r"January(?:\s+to\s+|\s*[–-]\s*)September")
+
+
+def check_text(blocks):
+    """Build-time rules of the text: every paragraph that mentions 2026 must say that 2026 is a partial,
+    annualized year (January-September), and the DLNM must not be described."""
+    bad = []
+    for b in blocks:
+        if b["style"] not in ("Abstract", "Body", "Legend"):
+            continue
+        t = plain(b["tokens"])
+        if "2026" in t and not (WINDOW.search(t) and re.search(r"annualized|partial", t)):
+            bad.append("2026 without the January-September / annualized qualifier: " + t[:90])
+        if re.search(r"DLNM", t):
+            bad.append("DLNM still in the text: " + t[:90])
+    if bad:
+        raise SystemExit("TEXT CHECK FAILED:\n  " + "\n  ".join(bad))
 
 
 def fix_reply_parents(bdir, replies):

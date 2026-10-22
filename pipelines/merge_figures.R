@@ -6,7 +6,7 @@
 #   Figure 4 — Spatial autocorrelation (Moran scatterplot)
 #   Figure 5 — Patient demographics (age + sex, all three diseases)
 #   Figure 6 — Combined map: mean incidence class of the three diseases on one map of Brazil
-#   Figure 7 — Dengue clinical (ELISA, IgM, hospitalization, serotype)
+#   Figure 7 — Dengue clinical (NS1 antigen, IgM, hospitalization, serotype)
 #   Figure 8 — Chikungunya and Zika clinical
 #   Figure S1 — Annual incidence, one combined map per year (FigureS1_<year>) + overview grid
 #   Figure S2 — LISA clusters (A) and Mann-Kendall trends (B), each one combined map
@@ -144,7 +144,7 @@ main <- function() {
             list(cell(lisa, 1, 1, "A"), cell(trend, 1, 2, "B")))
 
   # ── Figure 7: Dengue clinical 2x2 ──
-  d7 <- lapply(c("ELISA", "IgM", "hospitalization", "serotype"), function(s)
+  d7 <- lapply(c("NS1", "IgM", "hospitalization", "serotype"), function(s)
     load_img(file.path(OUT_DIR, sprintf("Dengue_%s_%s.png", if (s == "serotype") "03" else "02", s))))
   fw <- 14
   composite("Figure7_dengue_clinical.png", fw, fw / ratio(d7[[1]]), heights = c(1, 1), widths = c(1, 1),
@@ -160,7 +160,7 @@ main <- function() {
   side <- function(fh, top, left) {
     lab <- function(txt, y, col) grid.text(txt, x = unit(left * 0.35, "in"), y = unit(y * fh, "in"), rot = 90,
                                            gp = gpar(fontsize = 11, fontface = "bold", col = col, fontfamily = PLOT_FONT))
-    lab("Chikungunya", 0.74, "#E67E22"); lab("Zika", 0.27, "#2980B9")
+    lab("Chikungunya", 0.74, VIRUS_COLOR[["Chikungunya"]]); lab("Zika", 0.27, VIRUS_COLOR[["Zika"]])
   }
   composite("Figure8_chikv_zika_clinical.png", fw, fh, heights = c(1, 1), widths = rep(1, 12), cells = cells,
             hgap = 0.06, wgap = 0.0, extra = side, left = 0.7)

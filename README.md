@@ -44,15 +44,25 @@ The project was ported from Python to R on 2026-10-09. The rebuilt `db/` is byte
 Python build, and the statistics match the Python results; the few expected differences
 (permutation p-values, bootstrap draws, …) are listed in [`docs/R_PORT_NOTES.md`](docs/R_PORT_NOTES.md).
 
-- **Data window:** 2016–2026 (CHIKV now includes 2016; 2026 is season-to-date, Jan–Sep)
+- **Data window:** 2016–2026 (CHIKV now includes 2016; 2026 is season-to-date, Jan–Sep, annualised in the annual results)
 - **Spatial unit:** 27 federative units (UF) · **Temporal unit:** monthly
-- **Generated:** 2026-10-08 (SINAN 2026 release of 2026-10-06)
+- **Generated:** 2026-10-22 (SINAN downloaded 2026-10-22; 2026 files = release of 2026-10-20, notifications up to 2026-09-30)
 
 The repository ships with the results already generated (`db/`, `clinical_tables/`, `outputs/`,
 `figures/`, `source_data/`). `run_all.R --skip-etl` regenerates them from `db/`; the full run first
 rebuilds `db/` from `raw/`. Output file names
 keep their original names (e.g. `py_statistical_results.xlsx`, `py_01_*.png`) so references in
 the papers and older notes stay valid.
+
+## What changed on 2026-10-22
+| Item | Before | Now |
+|---|---|---|
+| Case definition | dengue: all notifications minus discarded; chikungunya and Zika: **all notifications, discarded included** | **all three: all notifications minus discarded** (confirmed + probable). Chikungunya totals fall by 749,047 and Zika by 252,573 in 2016–2025 (`clinical_tables/discarded_counts.csv`) |
+| SINAN 2026 | release 2026-10-06 | release 2026-10-20, notifications dated up to 2026-09-30 only |
+| Clinical figures 5, 7, 8 | GraphPad `.pzfx` tables, 2016–2025, no chikungunya 2016, discarded included | `clinical_tables/`, 2016–2026, discarded excluded, SINAN standard age bands (ages of 2016–2020 were unreadable before: `"4003.0"`) |
+| GLM | per-state, per-state lagged, pooled | + pooled lagged model (`glm_*_pooled_lagged.csv`, terms `Temp_Cum0_2`, `Rain_Cum0_2`) |
+| Figure colours | chikungunya orange or green depending on the figure | one palette (`VIRUS_COLOR` in `R/utils.R`): dengue red, chikungunya green, Zika blue |
+| Sen's slope panel | all bars in the virus colour | only trends with p < 0.05 in colour, the others grey |
 
 ## What changed vs the 2026-10-05 results (`arbovirus-surveillance-brazil-2026`)
 | Input | Before | Now |
@@ -118,10 +128,10 @@ Rscript tools/fetch_raw_sources.R     # all official sources (resumable); --only
 Rscript run_all.R                     # ETL + everything; etl/check_db.R compares db/ with reference/expected_hashes.csv
 ```
 OpenDataSUS republishes the 2026 SINAN files weekly, so a fresh download is newer than the
-**2026-10-06 release** these results use and changes the 2026 counts (and the `check_db.R` hashes).
-The 2026-10-08 re-download matched the archived inputs byte for byte for all INMET and IBGE files
-and SINAN 2016–2024; the 2025 SINAN zips were re-packed with identical content (details in
-`docs/DATA_SOURCES.md`).
+**2026-10-20 release** these results use and changes the 2026 counts (and the `check_db.R` hashes), although
+only notifications up to 2026-09-30 are used. The 2026-10-08 re-download matched the archived inputs byte for byte
+for all INMET and IBGE files and SINAN 2016–2024; the 2025 SINAN zips were re-packed with identical content
+(details in `docs/DATA_SOURCES.md`). On 2026-10-22 only the SINAN files were downloaded again.
 
 ## Figures
 Main figures are in `figures/` (Figure 1–8), supplementary maps in `FigureS1_<year>.png`
@@ -154,14 +164,21 @@ All inputs were rebuilt from the raw official sources and **calibrated to reprod
 series** (full detail in `clinical_tables/` companion notes and below).
 
 **Cases** — SINAN notification microdata (DENGBR/CHIKBR/ZIKABR, 2016–2026). Counted by
-notification state (`SG_UF_NOT`) and month of notification (`DT_NOTIFIC`). Case definition is
-**disease-specific**, matching the original series:
-- **Dengue = probable cases** (all notifications minus `Descartado`),
-- **Chikungunya / Zika = all notifications**.
+notification state (`SG_UF_NOT`) and month of notification (`DT_NOTIFIC`). **One case definition for
+the three diseases (since 2026-10-22): every notification except those classified as discarded**,
+that is, confirmed plus probable cases (inconclusive and under-investigation notifications are kept).
+Discarded `CLASSI_FIN` codes: dengue 5; chikungunya 5 (and 2 in the early-2016 form); Zika 2. The dengue
+files from 2022 on contain no discarded notifications. `clinical_tables/discarded_counts.csv` lists, per
+disease and year, the notifications, the discarded ones excluded and the cases kept. Notifications of the
+2026 file dated after 2026-09-30 are left out, so 2026 always covers January–September. A state-month without a
+case is a **zero** (not missing) for every state that has notifications in that year's file; a state with no
+notification at all in the file (Espírito Santo 2021, chikungunya and Zika) stays missing. This matters because
+excluding discarded notifications leaves many empty state-months.
 
-Validated against the original `db/` totals across 29 overlapping state-years: **25 within 1%,
-28 within 5%** (only CHIKV 2020 differs more, −8.9%, a data-vintage difference). `Monthly_Inc_per100k
-= Cases / Population × 100000`.
+Before 2026-10-22 only dengue was filtered and chikungunya and Zika counted every notification (discarded
+ones too: 749,047 and 252,573 in 2016–2025); the earlier series were validated against the original `db/`
+on that basis (25 of 29 overlapping state-years within 1%). The new chikungunya and Zika totals are
+therefore not comparable with the old ones. `Monthly_Inc_per100k = Cases / Population × 100000`.
 
 **Population** — parsed from the raw IBGE files by `etl/build_population.R`:
 2016–2023 from the census-consistent *Projeções da População, Revisão 2024*
@@ -210,6 +227,10 @@ bootstrap use fixed seeds, so reruns reproduce the numbers. Re-downloading with
 - **`docs/RESULTS_SUMMARY.*` describes the ORIGINAL 2016–2025 analysis.** The figures/tables in
   `outputs/` and `figures/` here are the regenerated 2016–2026 results; where climate (esp. rain)
   is involved, re-read the numbers from these regenerated outputs rather than the old narrative.
-- **Clinical *figures*** from the core pipeline (`outputs/Dengue_*`, etc.) are built from the
-  GraphPad `.pzfx` source, which runs through **2025**; the **2016–2026 clinical *tables*** are in
-  `clinical_tables/`.
+- **Clinical figures** (Figures 5, 7, 8 and `outputs/Dengue_*`, `Chikungunya_*`, `Zika_*`) are drawn from
+  `clinical_tables/clinical_demographic_long.csv` (2016–2026, discarded notifications excluded). Until
+  2026-10-22 they came from hand-made GraphPad `.pzfx` tables that ended in 2025 (kept in
+  `reference/graphpad_data/` for comparison only).
+- **2026 limitations.** 2026 covers January–September and its annual values are annualised (× 12 / 9),
+  which overstates the year because October–December carry a small share of the cases. It is kept in the
+  trends, mean incidence, Moran's I and LISA; read every 2026-dependent result with that in mind.

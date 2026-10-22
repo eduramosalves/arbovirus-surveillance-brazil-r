@@ -23,7 +23,7 @@ ALPHA <- 0.05
 # Fixed seed so Moran's I permutation p-values are reproducible run-to-run
 PERM_SEED <- 12345
 
-COLORS <- c(Dengue = "#C0392B", Chikungunya = "#E67E22", Zika = "#2980B9")
+COLORS <- VIRUS_COLOR   # defined once in R/utils.R
 REGION_COLORS <- c(Norte = "#1B7837", Nordeste = "#762A83", Sudeste = "#E08214", Sul = "#4393C3", "Centro-Oeste" = "#D6604D")
 
 STATE_CENTROIDS <- data.frame(
@@ -170,10 +170,13 @@ plot_mann_kendall <- function(mk_results) {
   ord <- all_mk[, .(m = mean(Sen_Slope)), by = Location_Name][order(m)]$Location_Name
   all_mk[, Location_Name := factor(Location_Name, ord)]
   all_mk[, Virus := factor(Virus, names(COLORS))]
-  p <- ggplot(all_mk, aes(Location_Name, Sen_Slope, fill = Virus)) +
+  # Only trends with p < 0.05 carry the virus colour; the others are grey, as in the Kendall's tau panel
+  all_mk[, FillKey := factor(ifelse(Significant, as.character(Virus), "Not significant"), c(names(COLORS), "Not significant"))]
+  p <- ggplot(all_mk, aes(Location_Name, Sen_Slope, fill = FillKey, group = Virus)) +
     geom_col(position = position_dodge(width = 0.84), width = 0.84, alpha = 0.85, colour = "white", linewidth = 0.15) +
     geom_hline(yintercept = 0, linetype = "dashed", linewidth = 0.35) +
-    scale_fill_manual(values = COLORS, name = NULL) +
+    scale_fill_manual(values = c(COLORS, "Not significant" = "#CCCCCC"), name = NULL,
+                      labels = c(paste(names(COLORS), "(p < 0.05)"), "Not significant")) +
     labs(x = NULL, y = "Sen's Slope (cases/100k per year)") +
     theme_mpl(10) + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7.5), axis.title.y = element_text(size = 9),
                           legend.position = "inside", legend.position.inside = c(0.02, 0.98), legend.justification = c(0, 1),

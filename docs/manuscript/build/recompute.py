@@ -120,8 +120,10 @@ def mean_inc(d, u):
 
 check("mean annual incidence GO dengue", "{:,.1f}".format(mean_inc("DENV", "GO")))
 check("mean annual incidence DF dengue", "{:,.1f}".format(mean_inc("DENV", "DF")))
-check("mean annual incidence MS chikungunya", "{:,.1f}".format(mean_inc("CHIKV", "MS")))
-check("mean annual incidence TO Zika", "{:,.1f}".format(mean_inc("ZIKV", "TO")))
+check("mean annual incidence MT chikungunya", "{:,.1f}".format(mean_inc("CHIKV", "MT")))
+check("mean annual incidence CE chikungunya", "{:,.1f}".format(mean_inc("CHIKV", "CE")))
+check("mean annual incidence MT Zika", "{:,.1f}".format(mean_inc("ZIKV", "MT")))
+check("mean annual incidence RJ Zika", "{:,.1f}".format(mean_inc("ZIKV", "RJ")))
 
 # 5 Mann-Kendall + Sen (dengue RS, chikungunya MS)
 def mk(series):
@@ -168,7 +170,7 @@ def spearman(d, u, col):
         cr = clim.get((u, y, m))
         if cr is None or cr[col] in ("", None):
             continue
-        xs.append(c / pop[(uf_id[u], y)] * 1e5)
+        xs.append(round(c / pop[(uf_id[u], y)] * 1e5, 2))   # db/ stores the monthly incidence rounded to 2 decimals
         ys.append(float(cr[col]))
     return float(np.corrcoef(rank(xs), rank(ys))[0, 1])
 
@@ -177,8 +179,10 @@ check("Spearman dengue MG temperature lag 2", "{:.3f}".format(spearman("DENV", "
 check("Spearman dengue RJ temperature lag 2", "{:.3f}".format(spearman("DENV", "RJ", "Temp_Lag2")))
 mean_l2 = np.mean([spearman("DENV", u, "Temp_Lag2") for u in loc.values()])
 check("mean Spearman dengue temperature lag 2", "{:.3f}".format(mean_l2))
-mean_r2 = np.mean([spearman("CHIKV", u, "Rain_Lag2") for u in loc.values()])
-check("mean Spearman chikungunya rainfall lag 2", "{:.3f}".format(mean_r2))
+mean_c2 = np.mean([spearman("CHIKV", u, "Temp_Lag2") for u in loc.values()])
+check("mean Spearman chikungunya temperature lag 2", "{:.3f}".format(mean_c2))
+mean_z0 = np.mean([spearman("ZIKV", u, "Temp_Avg") for u in loc.values()])
+check("mean Spearman Zika temperature lag 0", "{:.3f}".format(mean_z0).replace("-", "−"))
 
 # 7 Moran's I dengue (kNN k=5 on planar polygon centroids)
 gj = json.load(open(ROOT + "db/brazil_states.geojson", encoding="utf-8")) if False else json.load(open(ROOT + "reference/brazil_states.geojson", encoding="utf-8"))
