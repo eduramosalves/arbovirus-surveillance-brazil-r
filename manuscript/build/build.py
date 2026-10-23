@@ -5,6 +5,7 @@ Usage: python build.py <outdir>
 import csv
 import difflib
 import json
+import os
 import random
 import re
 import shutil
@@ -15,7 +16,8 @@ from xml.sax.saxutils import escape
 
 WORK = Path(__file__).parent.resolve()
 sys.path.insert(0, str(WORK))
-SKILL = Path("C:/Users/Usuario/.claude/skills/synced/6d8e999c-5f17-479f-a00d-ae2a9687f861_77b8edd7-91ee-4c29-be3b-4d1cbe281602/docx/scripts")
+# folder of the docx skill (comment.py); set DOCX_SKILL_DIR on another machine
+SKILL = Path(os.environ.get("DOCX_SKILL_DIR", "C:/Users/Usuario/.claude/skills/synced/6d8e999c-5f17-479f-a00d-ae2a9687f861_77b8edd7-91ee-4c29-be3b-4d1cbe281602/docx/scripts"))
 sys.path.insert(0, str(SKILL))
 
 from lxml import etree  # noqa: E402
@@ -30,7 +32,7 @@ import ms_results  # noqa: E402
 import refs as refmod  # noqa: E402
 from msbase import ORIG, conv_cit, strip_runin  # noqa: E402
 
-PROJECT = Path("C:/Users/Usuario/arbovirus-surveillance-brazil-r-eduardo")
+PROJECT = WORK.parents[1]   # repository root (this file is manuscript/build/build.py)
 W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 DATE = "2026-10-21T12:00:00Z"
 AUTHOR = comments_text.AUTHOR
@@ -448,7 +450,7 @@ def main(outdir):
     fignum = figmap.numbering(order_keys)
     for b in head:
         b["text"] = figmap.resolve(b["text"], fignum)
-    legends = ms_back.legends(str(PROJECT / "docs" / "FIGURE_CAPTIONS.md"), fignum)
+    legends = ms_back.legends(str(PROJECT / "manuscript" / "FIGURE_CAPTIONS.md"), fignum)
     # tokens (numbers resolved first; citation numbers need the whole document)
     allblocks = head + legends
     for b in allblocks:
@@ -569,6 +571,7 @@ def main(outdir):
 
 
 USER_DIR = WORK / "user"   # unpacked copy of the manuscript as edited in Word on 2026-10-22
+# the keys are phrases of the authors' existing comments (they still say docs/FIGURE_CAPTIONS.md); do not rename
 QUERY_KEYS = {"Figure 7D folds": "code0", "The supplementary DLNM": "dlnm", "docs/FIGURE_CAPTIONS.md quotes": "esdata",
               "2026 is annualized": "ann2026"}
 

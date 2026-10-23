@@ -110,7 +110,7 @@ annual incidence, Mann-Kendall, Spearman, global Moran, mean incidence, LISA, an
 - **Figures 5, 7 and 8 are drawn from `clinical_tables/clinical_demographic_long.csv`** (2016–2026, discarded
   notifications excluded, SINAN standard age bands). Until 2026-10-22 they came from hand-made GraphPad `.pzfx` tables
   that ended in 2025, counted discarded chikungunya and Zika notifications and had no chikungunya for 2016; those files are kept
-  in `reference/graphpad_data/` and `parse_pzfx()` in `pipelines/graphpad_pipeline.R` only to compare the two sources.
+  in `_unused/reference/graphpad_data/`, only to compare the two sources (the `.pzfx` reader was removed from `pipelines/graphpad_pipeline.R`).
   The 2016–2020 ages were unreadable in the clinical tables before the same date (the old files store ages as `"4003.0"`).
 - **The age violins are resampled.** They draw 6,000 synthetic ages per year from the binned counts
   (seed 42). The Source Data gives the bin counts plus the plotted quartiles.

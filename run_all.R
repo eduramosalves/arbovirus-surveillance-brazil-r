@@ -25,4 +25,4 @@ for (s in steps) {
   rc <- run_script(path_root(s))
   if (rc != 0) { cat(sprintf("%s failed (exit %d)\n", s, rc)); quit(status = 1) }
 }
-cat("\nALL STEPS FINISHED. Results: outputs/, figures/, source_data/, clinical_tables/\n")
+cat("\nALL STEPS FINISHED. Results: outputs/<topic>/, figures/<kind>/, source_data/, clinical_tables/\n")

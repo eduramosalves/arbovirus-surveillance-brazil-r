@@ -6,12 +6,13 @@ import math
 import re
 import sys
 import zipfile
+from pathlib import Path
 from collections import defaultdict
 from xml.etree import ElementTree as ET
 
 import numpy as np
 
-ROOT = "C:/Users/Usuario/arbovirus-surveillance-brazil-r-eduardo/"
+ROOT = str(Path(__file__).resolve().parents[2]).replace("\\", "/") + "/"   # repository root
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
@@ -277,7 +278,7 @@ bp = irls(0.0)
 check("pooled Poisson IRR dengue temperature", "{:.2f}".format(math.exp(bp[0])))
 nums = json.load(open(sys.argv[1].replace("Alves ER et al JMV 2026.docx", "build_report.json")))
 alpha = None
-for r in csv.DictReader(open(ROOT + "outputs/glm_negbin_pooled_fe.csv")):
+for r in csv.DictReader(open(ROOT + "outputs/regression/glm_negbin_pooled_fe.csv")):
     if r["Virus"] == "Dengue" and r["Term"] == "Temp_Avg":
         alpha = float(r["alpha"]); n_exp = int(r["n"])
 print("   (n observations: %d independent vs %d exported)" % (len(rowsD), n_exp))

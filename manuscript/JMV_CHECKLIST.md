@@ -19,7 +19,7 @@ Round 1 written 2026-10-21, **updated 2026-10-22 (round 2)** for `Alves ER et al
 | Title page | Title, running title, authors, affiliations, two corresponding authors, ORCID iDs (placeholder), funding (placeholder), word counts | running-title length UNVERIFIED |
 | Back matter | Author contributions, Acknowledgments, Funding, Conflict of interest, Data availability, Ethics, Supporting information | placeholders for what only the authors can state |
 | Page layout | Times New Roman 12 pt, double spacing, 1-inch margins, US Letter, continuous line numbers (kept from the draft), page numbers | UNVERIFIED (A4?); the "St. Jude - Confidential" footers were never enabled and are removed |
-| Figures | Separate files, never embedded; legends after the references, in order of citation (Figures 1–8, S1–S7); copies under the manuscript numbers in `docs/manuscript/figures/` | file format and resolution UNVERIFIED (see section 4) |
+| Figures | Separate files, never embedded; legends after the references, in order of citation (Figures 1–8, S1–S7); copies under the manuscript numbers in `manuscript/figures/` | file format and resolution UNVERIFIED (see section 4) |
 | Partial year 2026 | Every paragraph and legend that uses 2026 states that it covers January–September and is annualized (build check); abstract, Methods 2.1/2.5, Results, Discussion, limitations and conclusion | author instruction (comment 51), not a journal rule |
 | Tables | None |  |
 | Reporting guideline | RECORD (STROBE extension), cited in Methods; checklist in `RECORD_CHECKLIST.md` | UNVERIFIED whether JMV requires the checklist |
@@ -44,7 +44,7 @@ Round 1 written 2026-10-21, **updated 2026-10-22 (round 2)** for `Alves ER et al
 
 **Round 2.** The sentences on the distributed lag non-linear model (DLNM) were deleted from Methods 2.9, Results 3.6 and the Discussion (comment 55); the pooled lagged model replaces them.
 
-## 4. Figure files (copies in `docs/manuscript/figures/`; the pipeline keeps its own names)
+## 4. Figure files (copies in `manuscript/figures/`; the pipeline keeps its own names)
 
 | Manuscript file | Pixels | Stored dpi |
 |---|---|---|

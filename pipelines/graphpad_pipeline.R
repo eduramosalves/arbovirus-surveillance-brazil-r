@@ -3,7 +3,7 @@
 # ================================================================================
 #  Reads clinical_tables/clinical_demographic_long.csv (etl/build_cases_clinical.R; dengue, chikungunya and
 #  Zika 2016-2026, discarded notifications excluded) and draws the clinical graphs with GraphPad-Prism-like
-#  styling. Until 2026-10-22 the source was a set of GraphPad Prism files (.pzfx, through 2025); see section 1b.
+#  styling. Until 2026-10-22 the source was a set of GraphPad Prism files (.pzfx, through 2025; kept in _unused/).
 #
 #  Plot recipes per table type
 #  ---------------------------
@@ -16,8 +16,7 @@
 #    Age group YYYY-YYYY            -> violin plot of the reconstructed age distribution
 #    Federative unit YYYY-YYYY      -> horizontal bar chart of cumulative totals
 #                                      (colored by Brazilian macro-region)
-#    General Data (Dengue only)     -> exported to CSV (data dictionary only)
-#  Output: PNG files in <repo>/outputs, all prefixed with the virus.
+#  Output: PNG files in <repo>/outputs/clinical/, all prefixed with the virus.
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({
@@ -31,10 +30,7 @@
 })
 source(file.path(.root, "R", "utils.R"))
 source(path_root("pipelines", "data_loader.R"))
-quiet_library("ggplot2", "xml2")
-
-INPUT_DIR <- file.path(DB_DIR, "graphpad_data")
-FILES <- c(Dengue = "GPad_Dengue_analysis.pzfx", Chikungunya = "GPad_chikungunya_analysis.pzfx", Zika = "GPad_zika_analysis.pzfx")
+quiet_library("ggplot2")
 
 # Virus colors: VIRUS_COLOR from R/utils.R (one palette for every figure)
 REGION_COLOR <- c(Norte = "#1B7837", Nordeste = "#762A83", Sudeste = "#E08214", Sul = "#4393C3", "Centro-Oeste" = "#D6604D")
@@ -114,24 +110,8 @@ desaturate <- function(col, prop) {
 }
 
 # ==============================================================================
-# 1. PARSE THE .pzfx FILES
+# 1. TABLE OBJECTS
 # ==============================================================================
-parse_pzfx <- function(path) {
-  doc <- xml_ns_strip(read_xml(path))
-  txt <- function(node) if (length(node) && !inherits(node, "xml_missing")) trimws(xml_text(node)) else ""
-  lapply(xml_find_all(doc, "/*/Table"), function(t) {
-    title <- txt(xml_find_first(t, "./Title"))
-    sub <- xml_find_first(t, "./RowTitlesColumn/Subcolumn")
-    row_titles <- if (!inherits(sub, "xml_missing")) trimws(xml_text(xml_find_all(sub, "./d"))) else character()
-    columns <- lapply(xml_find_all(t, "./YColumn"), function(yc) {
-      sc <- xml_find_first(yc, "./Subcolumn")
-      vals <- if (!inherits(sc, "xml_missing")) suppressWarnings(as.numeric(trimws(xml_text(xml_find_all(sc, "./d"))))) else numeric()
-      list(title = txt(xml_find_first(yc, "./Title")), values = vals)
-    })
-    list(id = xml_attr(t, "ID"), title = title, row_titles = row_titles, columns = columns)
-  })
-}
-
 # rows = row titles (named "Year"), one column per series. A repeated series title keeps the
 # position of its first occurrence and the values of its last (Python dict semantics).
 table_to_df <- function(tbl) {
@@ -148,7 +128,7 @@ table_to_df <- function(tbl) {
 # Since 2026-10-22 the clinical figures (5, 7, 8) are drawn from clinical_tables/clinical_demographic_long.csv
 # (etl/build_cases_clinical.R, 2016-2026, discarded notifications excluded for all three diseases) instead of the
 # hand-made GraphPad Prism files (through 2025; they counted discarded chikungunya and Zika notifications and had no
-# chikungunya for 2016). parse_pzfx() is kept only to compare the two sources. Category names are the ones
+# chikungunya for 2016). Category names are the ones
 # the plot code already labels (CATEGORY_LABEL ...).
 CLIN_FILE <- path_root("clinical_tables", "clinical_demographic_long.csv")
 DISEASE_CODE <- c(Dengue = "DENV", Chikungunya = "CHIKV", Zika = "ZIKV")
@@ -240,7 +220,7 @@ read_tables <- function(virus) {
 # 2. PLOT RECIPES
 # ==============================================================================
 save_plot <- function(p, fname, w, h) {
-  save_png(p, file.path(OUTPUT_DIR, fname), w, h, dpi = 150)
+  save_png(p, out_file(fname), w, h, dpi = 150)
   cat(sprintf("    Saved -> %s\n", fname))
 }
 
@@ -446,13 +426,6 @@ dispatch_table <- function(tbl, virus) {
   title <- tbl$title
   cat(sprintf("  • %s  (%d rows × %d cols)\n", title, length(tbl$row_titles), length(tbl$columns)))
   df <- table_to_df(tbl)
-  if (title == "General Data") {
-    # Export the raw master table to CSV; no single graph would be readable
-    out <- file.path(OUTPUT_DIR, sprintf("%s_00_general_data.csv", virus))
-    write_csv_py(df, out)
-    cat(sprintf("    Exported -> %s  (74-column master sheet)\n", basename(out)))
-    return(invisible())
-  }
   if (startsWith(title, "Monthly")) plot_monthly(df, virus, title)
   else if (startsWith(title, "Age group")) plot_age_group(df, virus, title)
   else if (startsWith(title, "Federative unit")) plot_federative_unit(df, virus, title)
@@ -464,7 +437,6 @@ dispatch_table <- function(tbl, virus) {
   }
 }
 
-read_tables_pzfx <- function(virus) parse_pzfx(file.path(INPUT_DIR, FILES[[virus]]))   # legacy source, for comparison only
 find_table <- function(tables, prefix) {
   for (t in tables) if (startsWith(t$title, prefix)) return(table_to_df(t))
   NULL
@@ -473,15 +445,15 @@ find_table <- function(tables, prefix) {
 main <- function() {
   sep <- strrep("=", 70)
   cat(sprintf("\n%s\n  CLINICAL TABLES -> R PLOTTING PIPELINE\n%s\n", sep, sep))
-  for (virus in names(FILES)) {
+  for (virus in names(DISEASE_CODE)) {
     cat(sprintf("\n[%s] reading %s\n", virus, basename(CLIN_FILE)))
     tables <- read_tables(virus)
     cat(sprintf("  Found %d tables\n", length(tables)))
     for (tbl in tables) dispatch_table(tbl, virus)
   }
   log <- rbindlist(EXCLUSIONS)
-  write_csv_py(log, file.path(OUTPUT_DIR, "figure_exclusions.csv"))
-  writeLines(exclusion_captions(log), file.path(OUTPUT_DIR, "figure_exclusions_captions.txt"), useBytes = TRUE)
+  write_csv_py(log, out_file("figure_exclusions.csv"))
+  writeLines(exclusion_captions(log), out_file("figure_exclusions_captions.txt"), useBytes = TRUE)
   cat(sprintf("\n  Excluded ignored/blank records logged -> figure_exclusions.csv (%d tables), figure_exclusions_captions.txt\n",
               length(EXCLUSIONS)))
   write_caption_notes("graphpad_pipeline.R")

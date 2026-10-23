@@ -1,8 +1,9 @@
 # Computes every number quoted in the manuscript from the repository's own files.
 # Output: numbers.csv  (key, value, src).  Raw values only; the builder formats them.
 suppressPackageStartupMessages({library(readxl); library(data.table)})
-ROOT <- "C:/Users/Usuario/arbovirus-surveillance-brazil-r-eduardo"
-OUTF <- file.path(dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1]), winslash = "/")), "numbers.csv")
+HERE <- dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1]), winslash = "/"))
+ROOT <- normalizePath(file.path(HERE, "..", ".."), winslash = "/")   # repository root (this file is manuscript/build/numbers.R)
+OUTF <- file.path(HERE, "numbers.csv")
 setwd(ROOT)
 
 rows <- list()
@@ -30,7 +31,7 @@ join_names <- function(ufs) {
 # ---------------- location lookups ----------------
 L <- fread("db/normalized_dim_location.csv", encoding = "UTF-8")
 nm2uf <- setNames(L$State_Code, strip(L$Location_Name))
-ai <- sheet("outputs/py_statistical_results.xlsx", "Annual_Incidence")
+ai <- sheet("outputs/descriptive/py_statistical_results.xlsx", "Annual_Incidence")
 regmap <- unique(ai[, .(UF = UF_Code, Region = RC[Region])])
 uf_region <- setNames(regmap$Region, regmap$UF)
 
@@ -92,21 +93,21 @@ for (d in DIS) {
 }
 
 # ---------------- mean annual incidence, Moran, LISA, Mann-Kendall (geo_spatial_stats) ----------------
-S_MI <- "outputs/geo_spatial_stats.xlsx / Mean_Incidence"
-mi <- sheet("outputs/geo_spatial_stats.xlsx", "Mean_Incidence")
+S_MI <- "outputs/spatial/geo_spatial_stats.xlsx / Mean_Incidence"
+mi <- sheet("outputs/spatial/geo_spatial_stats.xlsx", "Mean_Incidence")
 mi[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)])]
 for (d in DIS) {
   z <- mi[V == d][order(-Mean_Inc)]
   for (i in seq_len(nrow(z))) { add(paste0("minc.", d, ".", z$UF[i]), z$Mean_Inc[i], S_MI); add(paste0("rankof.", d, ".", z$UF[i]), i, S_MI) }
   for (k in 1:6) { add(paste0("rank_minc.", d, ".", k), z$UF[k], S_MI); add(paste0("rank_minc_val.", d, ".", k), z$Mean_Inc[k], S_MI) }
 }
-gm <- sheet("outputs/geo_spatial_stats.xlsx", "Global_Moran")
+gm <- sheet("outputs/spatial/geo_spatial_stats.xlsx", "Global_Moran")
 for (i in seq_len(nrow(gm))) { d <- VC[[gm$Virus[i]]]
-  add(paste0("moran.", d, ".I"), gm$I[i], "outputs/geo_spatial_stats.xlsx / Global_Moran")
-  add(paste0("moran.", d, ".p"), gm$p_sim[i], "outputs/geo_spatial_stats.xlsx / Global_Moran")
-  add(paste0("moran.", d, ".z"), gm$z_sim[i], "outputs/geo_spatial_stats.xlsx / Global_Moran") }
-li <- sheet("outputs/geo_spatial_stats.xlsx", "LISA_Clusters"); li[, V := VC[Virus]]
-S_LI <- "outputs/geo_spatial_stats.xlsx / LISA_Clusters"
+  add(paste0("moran.", d, ".I"), gm$I[i], "outputs/spatial/geo_spatial_stats.xlsx / Global_Moran")
+  add(paste0("moran.", d, ".p"), gm$p_sim[i], "outputs/spatial/geo_spatial_stats.xlsx / Global_Moran")
+  add(paste0("moran.", d, ".z"), gm$z_sim[i], "outputs/spatial/geo_spatial_stats.xlsx / Global_Moran") }
+li <- sheet("outputs/spatial/geo_spatial_stats.xlsx", "LISA_Clusters"); li[, V := VC[Virus]]
+S_LI <- "outputs/spatial/geo_spatial_stats.xlsx / LISA_Clusters"
 for (d in DIS) for (cat in c("HH", "LL", "HL", "LH")) {
   u <- li[V == d & LISA_Cat == cat]$Abbr
   add(paste0("lisa_n.", d, ".", cat), length(u), S_LI); add(paste0("lisa_names.", d, ".", cat), join_names(u), S_LI)
@@ -114,8 +115,8 @@ for (d in DIS) for (cat in c("HH", "LL", "HL", "LH")) {
   add(paste0("lisafdr_n.", d, ".", cat), length(uf), S_LI); add(paste0("lisafdr_names.", d, ".", cat), join_names(uf), S_LI)
 }
 for (i in seq_len(nrow(li))) { k <- paste0("lisa.", li$V[i], ".", li$Abbr[i]); add(paste0(k, ".cat"), li$LISA_Cat[i], S_LI); add(paste0(k, ".p"), li$LISA_p[i], S_LI); add(paste0(k, ".q"), li$q_value[i], S_LI) }
-mk <- sheet("outputs/py_statistical_results.xlsx", "Mann_Kendall"); mk[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)])]
-S_MK <- "outputs/py_statistical_results.xlsx / Mann_Kendall"
+mk <- sheet("outputs/descriptive/py_statistical_results.xlsx", "Mann_Kendall"); mk[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)])]
+S_MK <- "outputs/descriptive/py_statistical_results.xlsx / Mann_Kendall"
 for (i in seq_len(nrow(mk))) { k <- paste0("mk.", mk$V[i], ".", mk$UF[i])
   add(paste0(k, ".tau"), mk$Tau[i], S_MK); add(paste0(k, ".slope"), mk$Sen_Slope[i], S_MK)
   add(paste0(k, ".p"), mk$p_value[i], S_MK); add(paste0(k, ".q"), mk$q_value[i], S_MK); add(paste0(k, ".trend"), mk$Trend[i], S_MK) }
@@ -126,8 +127,8 @@ for (d in DIS) { z <- mk[V == d]
   add(paste0("mk_nyears.", d), max(z$n_years), S_MK) }
 
 # ---------------- Spearman ----------------
-sp <- sheet("outputs/py_statistical_results.xlsx", "Spearman_Lag"); sp[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)], R = RC[Region])]
-S_SP <- "outputs/py_statistical_results.xlsx / Spearman_Lag"
+sp <- sheet("outputs/descriptive/py_statistical_results.xlsx", "Spearman_Lag"); sp[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)], R = RC[Region])]
+S_SP <- "outputs/descriptive/py_statistical_results.xlsx / Spearman_Lag"
 for (d in DIS) for (v in c("Temp", "Rain")) for (l in 0:2) {
   z <- sp[V == d & Variable == v & Lag == l]; k <- paste0("sp.", d, ".", v, ".", l)
   add(paste0(k, ".mean"), mean(z$Rho), S_SP); add(paste0(k, ".nstates"), nrow(z), S_SP)
@@ -147,8 +148,8 @@ for (d in DIS) for (v in c("Temp", "Rain")) {
 
 # ---------------- GLM ----------------
 rd <- function(f) fread(f)
-S_GP <- "outputs/glm_negbin_pooled_fe.csv"
-pf <- rd("outputs/glm_negbin_pooled_fe.csv"); pp <- rd("outputs/glm_poisson_pooled_fe.csv")
+S_GP <- "outputs/regression/glm_negbin_pooled_fe.csv"
+pf <- rd("outputs/regression/glm_negbin_pooled_fe.csv"); pp <- rd("outputs/regression/glm_poisson_pooled_fe.csv")
 vmap <- c(Dengue = "DENV", Chikungunya = "CHIKV", Zika = "ZIKV")
 for (i in which(pf$Term %in% c("Temp_Avg", "Rain_mm"))) {
   d <- vmap[[pf$Virus[i]]]; t <- pf$Term[i]; k <- paste0("glmp.", d, ".", t)
@@ -163,7 +164,7 @@ for (i in which(pf$Term %in% c("Temp_Avg", "Rain_mm"))) {
     add(paste0(k, ".hi", m), exp(m * (pf$Coef[i] + crit * pf$SE[i])), paste0(S_GP, " (exp(", m, " x (Coef + crit x SE)))"))
   }
 }
-S_PP <- "outputs/glm_poisson_pooled_fe.csv"
+S_PP <- "outputs/regression/glm_poisson_pooled_fe.csv"
 for (i in which(pp$Term %in% c("Temp_Avg"))) { d <- vmap[[pp$Virus[i]]]; k <- paste0("glmpois.", d, ".Temp_Avg")
   add(paste0(k, ".irr"), pp$IRR[i], S_PP); add(paste0(k, ".lo"), pp$IRR_CI_L[i], S_PP); add(paste0(k, ".hi"), pp$IRR_CI_U[i], S_PP); add(paste0("glmpois.", d, ".aic"), pp$AIC[i], S_PP) }
 # check that the CI is z-based
@@ -176,12 +177,12 @@ countsig <- function(df, term, src, tag) {
     add(paste0(k, ".nfdr"), sum(z$Significant_FDR %in% TRUE), src)
     zp <- z[p_value < 0.05 & Coef > 0]; add(paste0(k, ".medirr_sigpos"), if (nrow(zp)) median(zp$IRR) else NA_real_, src) }
 }
-ps <- rd("outputs/glm_negbin_per_state.csv"); lg <- rd("outputs/glm_negbin_lagged.csv")
-for (t in c("Temp_Avg", "Rain_mm")) countsig(ps, t, "outputs/glm_negbin_per_state.csv", "glms")
-for (t in c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Rain_mm", "Rain_Lag1", "Rain_Lag2")) countsig(lg, t, "outputs/glm_negbin_lagged.csv", "glml")
+ps <- rd("outputs/regression/glm_negbin_per_state.csv"); lg <- rd("outputs/regression/glm_negbin_lagged.csv")
+for (t in c("Temp_Avg", "Rain_mm")) countsig(ps, t, "outputs/regression/glm_negbin_per_state.csv", "glms")
+for (t in c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Rain_mm", "Rain_Lag1", "Rain_Lag2")) countsig(lg, t, "outputs/regression/glm_negbin_lagged.csv", "glml")
 # ---------------- bootstrap ----------------
-for (f in c("cases", "incidence")) { b <- rd(sprintf("outputs/bootstrap_ci_95_%s.csv", f))
-  for (i in seq_len(nrow(b))) { k <- paste0("boot.", f, ".", b$Disease[i]); s <- sprintf("outputs/bootstrap_ci_95_%s.csv", f)
+for (f in c("cases", "incidence")) { b <- rd(sprintf("outputs/bootstrap/bootstrap_ci_95_%s.csv", f))
+  for (i in seq_len(nrow(b))) { k <- paste0("boot.", f, ".", b$Disease[i]); s <- sprintf("outputs/bootstrap/bootstrap_ci_95_%s.csv", f)
     add(paste0(k, ".mean"), b$Mean[i], s); add(paste0(k, ".lo"), b$Bootstrap_CI_Lower[i], s); add(paste0(k, ".hi"), b$Bootstrap_CI_Upper[i], s); add(paste0(k, ".n"), b$n[i], s) } }
 
 # ---------------- clinical / demographic (GraphPad tables behind Figures 5, 7, 8) ----------------
@@ -247,7 +248,7 @@ for (d in DIS) { x <- dd[Disease == d]
   for (i in seq_len(nrow(x))) add(paste0("disc.", d, ".y", x$Year[i]), x$Discarded[i], S_DC) }
 
 # pooled model with lags 0-2 entered jointly (one model per virus; Temp_Cum0_2 / Rain_Cum0_2 = sum of the three lag terms)
-S_PL <- "outputs/glm_negbin_pooled_lagged.csv"
+S_PL <- "outputs/regression/glm_negbin_pooled_lagged.csv"
 pl <- fread(S_PL)
 for (v in names(vmap)) { d <- vmap[[v]]
   for (t in c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Temp_Cum0_2", "Rain_mm", "Rain_Lag1", "Rain_Lag2", "Rain_Cum0_2")) {
@@ -274,8 +275,8 @@ lm26 <- as.POSIXct(mf[grepl("26\\.csv", file)]$last_modified, format = "%a, %d %
 add("meta.sinan_release", fmt_day(as.Date(max(lm26))), paste0(S_MAN, " (latest Last-Modified of the 2026 files)"))
 
 # ---------------- exclusions (figure_exclusions.csv) ----------------
-fe <- fread("outputs/figure_exclusions.csv")
-S_FE <- "outputs/figure_exclusions.csv"
+fe <- fread("outputs/figure_notes/figure_exclusions.csv")
+S_FE <- "outputs/figure_notes/figure_exclusions.csv"
 fe <- fe[as.character(Year) == "All"]
 for (spec in list(c("Figure 7C", "Dengue", "hosp"), c("Figure 7D", "Dengue", "sero"), c("Figure 7A", "Dengue", "elisa"), c("Figure 7B", "Dengue", "igm"))) {
   z <- fe[Figure == spec[1] & Virus == spec[2]]
@@ -284,7 +285,7 @@ for (spec in list(c("Figure 7C", "Dengue", "hosp"), c("Figure 7D", "Dengue", "se
 cat("Figure labels in figure_exclusions:", paste(unique(fe$Figure), collapse = "; "), "\n")
 
 # ---------------- additional families ----------------
-S_AI <- "outputs/py_statistical_results.xlsx / Annual_Incidence"
+S_AI <- "outputs/descriptive/py_statistical_results.xlsx / Annual_Incidence"
 ai[, `:=`(V = VC[Virus], UF = nm2uf[strip(Location_Name)])]
 for (i in seq_len(nrow(ai))) add(paste0("ann_state.", ai$V[i], ".", ai$UF[i], ".", ai$Year[i]), ai$Annual_Inc_100k[i], S_AI)
 for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Trend == tr]
@@ -292,7 +293,7 @@ for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Tren
                  add(paste0("mk_qmin.", d, ".", tr), min(z$q_value), S_MK) } }
 psr <- merge(ps[Term == "Temp_Avg" & p_value < 0.05 & Coef > 0], data.table(Location_Name = L$Location_Name, UF = L$State_Code), by = "Location_Name")
 psr[, R := uf_region[UF]]
-for (d in names(vmap)) for (r in c("N", "NE", "SE", "S", "CO")) add(paste0("glms.", vmap[[d]], ".Temp_Avg.posreg.", r), nrow(psr[Virus == d & R == r]), "outputs/glm_negbin_per_state.csv")
+for (d in names(vmap)) for (r in c("N", "NE", "SE", "S", "CO")) add(paste0("glms.", vmap[[d]], ".Temp_Avg.posreg.", r), nrow(psr[Virus == d & R == r]), "outputs/regression/glm_negbin_per_state.csv")
 for (i in which(pp$Term == "Temp_Avg")) add(paste0("glmpois.", vmap[[pp$Virus[i]]], ".disp"), pp$dispersion[i], S_PP)
 hz2 <- sheet("source_data/Figure7.xlsx", "Fig7C_Hospitalization")[, .(n = sum(Count)), by = Category]
 add("cl.DENV.hosp.known", hz2[Category %in% c("Positive", "Negative")][, sum(n)], "source_data/Figure7.xlsx / Fig7C_Hospitalization")
@@ -320,18 +321,18 @@ for (d in DIS) for (cat in c("HH", "LL", "HL", "LH")) add(paste0("lisa_uf.", d, 
 
 D2 <- D[, .(n = sum(Cases)), by = .(Disease, UF)][order(Disease, -n)]
 for (d in DIS) for (k in 1:2) { uf <- D2[Disease == d]$UF[k]
-  add(paste0("rank_of_topcases.", d, ".", k), mi[V == d & UF == uf][order(-Mean_Inc)][, .I][1] * 0 + which(mi[V == d][order(-Mean_Inc)]$UF == uf), "outputs/geo_spatial_stats.xlsx / Mean_Incidence (rank of the state with the k-th largest case total)") }
+  add(paste0("rank_of_topcases.", d, ".", k), mi[V == d & UF == uf][order(-Mean_Inc)][, .I][1] * 0 + which(mi[V == d][order(-Mean_Inc)]$UF == uf), "outputs/spatial/geo_spatial_stats.xlsx / Mean_Incidence (rank of the state with the k-th largest case total)") }
 add("cl.DENV.age.20_59_share", as.numeric(sheet("source_data/Figure5.xlsx", "Fig5A_age_group_counts")[Virus == "Dengue" & Age_group %in% c("20-39", "40-59"), sum(Cases)]) / as.numeric(sheet("source_data/Figure5.xlsx", "Fig5A_age_group_counts")[Virus == "Dengue" & Age_group != "Ign/Blank", sum(Cases)]), S5A)
 
 for (d in DIS) { m <- D[Disease == d & Year <= 2025, .(n = sum(Cases)), by = Month]
   add(paste0("seas.", d, ".q4_share"), sum(m[Month >= 10]$n) / sum(m$n), S_SEAS) }
 tp <- sapply(2016:2025, function(y) tail(ct[Dimension == "serotype" & Disease == "DENV" & Year == y & Category %in% paste0("DENV", 1:4), sum(Count)], 1) / ct[Dimension == "serotype" & Disease == "DENV" & Year == y, sum(Count)])
 add("ct.sero_typed_pct_min", min(tp), S_CT); add("ct.sero_typed_pct_max", max(tp), S_CT)
-fe_all <- fread("outputs/figure_exclusions.csv")
+fe_all <- fread("outputs/figure_notes/figure_exclusions.csv")
 for (spec in list(c("Figure 7A", "elisa"), c("Figure 7B", "igm"))) { z <- fe_all[Figure == spec[1] & Virus == "Dengue" & as.character(Year) == "2025"]
-  if (nrow(z)) add(paste0("fe.DENV.", spec[2], ".pct2025"), z$pct_excluded[1], "outputs/figure_exclusions.csv")
+  if (nrow(z)) add(paste0("fe.DENV.", spec[2], ".pct2025"), z$pct_excluded[1], "outputs/figure_notes/figure_exclusions.csv")
   z2 <- fe_all[Figure == spec[1] & Virus == "Dengue" & as.character(Year) %in% as.character(2016:2024)]
-  add(paste0("fe.DENV.", spec[2], ".pctmin1624"), min(z2$pct_excluded), "outputs/figure_exclusions.csv"); add(paste0("fe.DENV.", spec[2], ".pctmax1624"), max(z2$pct_excluded), "outputs/figure_exclusions.csv") }
+  add(paste0("fe.DENV.", spec[2], ".pctmin1624"), min(z2$pct_excluded), "outputs/figure_notes/figure_exclusions.csv"); add(paste0("fe.DENV.", spec[2], ".pctmax1624"), max(z2$pct_excluded), "outputs/figure_notes/figure_exclusions.csv") }
 
 # FDR-significant trends: names by direction
 for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Trend == tr & Significant_FDR %in% TRUE][order(q_value)]
@@ -340,7 +341,7 @@ for (d in DIS) for (tr in c("increasing", "decreasing")) { z <- mk[V == d & Tren
   zz <- mk[V == d & Trend == tr]; add(paste0("mk_all_names.", d, ".", tr), join_names(zz[order(p_value)]$UF), S_MK) }
 
 # state-years without any SINAN notification record (the files, not the discarded ones)
-S_GAP <- "outputs/figure_exclusions_state_years.csv"
+S_GAP <- "outputs/figure_notes/figure_exclusions_state_years.csv"
 gp <- fread(S_GAP, encoding = "UTF-8")
 gp[, uf := nm2uf[strip(Location_Name)]]
 gp_txt <- gp[, .(dis = paste(sub("Chikungunya", "chikungunya", Virus), collapse = " and ")), by = .(uf, Year)]

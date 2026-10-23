@@ -80,7 +80,7 @@ box_summary <- function(df, by, col) {
 
 clinical_tables_list <- function() {   # one entry per plotted clinical table (graphpad_pipeline.R read_tables)
   out <- list()
-  for (virus in names(gp$FILES))
+  for (virus in names(gp$DISEASE_CODE))
     for (tbl in gp$read_tables(virus)) out[[length(out) + 1]] <- list(virus = virus, title = tbl$title, df = gp$table_to_df(tbl))
   out
 }
@@ -106,7 +106,7 @@ read_adv <- function(name) {
   for (cc in names(d)) if (inherits(d[[cc]], c("IDate", "Date"))) set(d, j = cc, value = format(d[[cc]], "%Y-%m-%d"))
   d
 }
-read_glm <- function(fam, spec) fread(file.path(OUT_MAIN, sprintf("glm_%s_%s.csv", fam, spec)))
+read_glm <- function(fam, spec) fread(out_file(sprintf("glm_%s_%s.csv", fam, spec)))
 sheet <- function(name, data, description, source) list(name, as.data.frame(data, check.names = FALSE), description, source)
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -116,8 +116,8 @@ main <- function() {
   annual <- compute_annual(datasets)
   gdf_states <- get_brazil_states()
   read_all <- function(p) setNames(lapply(excel_sheets(p), function(s) as.data.table(read_excel(p, s))), excel_sheets(p))
-  saved_py <- read_all(file.path(OUT_MAIN, "py_statistical_results.xlsx"))
-  saved_geo <- read_all(file.path(OUT_MAIN, "geo_spatial_stats.xlsx"))
+  saved_py <- read_all(out_file("py_statistical_results.xlsx"))
+  saved_geo <- read_all(out_file("geo_spatial_stats.xlsx"))
 
   ann_all <- concat_virus(annual)
   check_equal("Annual incidence == py_statistical_results/Annual_Incidence", ann_all, saved_py$Annual_Incidence,
@@ -305,10 +305,10 @@ main <- function() {
   write_workbook("GLM_Figures", "GLM figures (glm_fig1–glm_fig5)", list(
     sheet("glm_fig1_pooled_irr", g1[, c("Family", cols, "cov_type", "n"), with = FALSE],
           "Pooled state+month FE IRRs for temperature and rainfall, by model family (* = Significant)",
-          "outputs/glm_*_pooled_fe.csv; plot_glm_results.R"),
-    sheet("glm_fig2_state_heatmap", g2[, ..cols], "Per-state NegBin IRRs (heatmap colour = log2 IRR)", "outputs/glm_negbin_per_state.csv; plot_glm_results.R"),
-    sheet("glm_fig3_lag_profile", g3, "Median and IQR of per-state NegBin IRRs by lag", "outputs/glm_negbin_lagged.csv; plot_glm_results.R"),
-    sheet("glm_fig4_aic", g4, "Median AIC across states per family × specification × virus", "outputs/glm_*_*.csv; plot_glm_results.R"),
+          "outputs/regression/glm_*_pooled_fe.csv; plot_glm_results.R"),
+    sheet("glm_fig2_state_heatmap", g2[, ..cols], "Per-state NegBin IRRs (heatmap colour = log2 IRR)", "outputs/regression/glm_negbin_per_state.csv; plot_glm_results.R"),
+    sheet("glm_fig3_lag_profile", g3, "Median and IQR of per-state NegBin IRRs by lag", "outputs/regression/glm_negbin_lagged.csv; plot_glm_results.R"),
+    sheet("glm_fig4_aic", g4, "Median AIC across states per family × specification × virus", "outputs/regression/glm_*_*.csv; plot_glm_results.R"),
     sheet("glm_fig5_forest", g5[, c(cols, "log2_IRR", "log2_CI_L", "log2_CI_U"), with = FALSE],
           "Significant per-state NegBin climate IRRs (forest plot on log2 scale)", "plot_glm_results.R")))
 
@@ -325,7 +325,7 @@ main <- function() {
     nrow(chk) > 0 && all((is.na(chk$Incidence) & is.na(chk$Observed)) | abs(chk$Incidence - chk$Observed) <= 1e-8 + 1e-5 * abs(chk$Observed), na.rm = TRUE))
   its <- read_adv("its_pandemic_effects.csv"); fva <- read_adv("forecast_vs_actual.csv")
   ccf <- read_adv("cocirculation_ccf.csv"); coo <- read_adv("cocirculation_cooccurrence.csv")
-  write_workbook("Additional_Figures", sprintf("Additional analyses (outputs/%s/additional/)", ac$RUN_DATE), list(
+  write_workbook("Additional_Figures", "Additional analyses (outputs/additional/)", list(
     sheet("dlnm_exposure_response", read_adv("dlnm_exposure_response.csv"), "DLNM cumulative exposure-response IRR curves", "adv_dlnm.R"),
     sheet("dlnm_summary", read_adv("dlnm_summary.csv"), "Temperature optimum and model summary", "adv_dlnm.R"),
     sheet("cocirc_ccf_national", ccf[Level == "national"], "Cross-correlation by lag, national", "adv_cocirculation.R"),
@@ -379,8 +379,8 @@ main <- function() {
 
   # Tables: copy-through of the saved result tables
   write_workbook("Tables", "Result tables", list(
-    sheet("bootstrap_ci_cases", fread(file.path(OUT_MAIN, "bootstrap_ci_95_cases.csv")), "Bootstrap 95% CIs, cases", "bootstrap_ci.R"),
-    sheet("bootstrap_ci_incidence", fread(file.path(OUT_MAIN, "bootstrap_ci_95_incidence.csv")), "Bootstrap 95% CIs, incidence", "bootstrap_ci.R"),
+    sheet("bootstrap_ci_cases", fread(out_file("bootstrap_ci_95_cases.csv")), "Bootstrap 95% CIs, cases", "bootstrap_ci.R"),
+    sheet("bootstrap_ci_incidence", fread(out_file("bootstrap_ci_95_incidence.csv")), "Bootstrap 95% CIs, incidence", "bootstrap_ci.R"),
     sheet("global_moran", moran_df, "Global Moran's I", "run_moran"),
     sheet("clinical_demographic_2016_2026", fread(path_root("clinical_tables", "clinical_demographic_long.csv"), encoding = "UTF-8"),
           "SINAN clinical/demographic breakdowns 2016–2026 (discarded notifications excluded)",

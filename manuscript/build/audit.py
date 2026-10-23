@@ -15,7 +15,9 @@ q = lambda t: "{%s}%s" % (W, t)
 out = Path(sys.argv[1])
 CLEAN = out / "Alves ER et al JMV 2026.docx"
 RED = out / "Alves ER et al JMV 2026 (redline).docx"
-ORIG = Path("C:/Users/Usuario/arbovirus-surveillance-brazil-r-eduardo/Alves ER et al JVI 2026.docx")
+_ROOT = Path(__file__).resolve().parents[2]
+# the original draft sits at the repository root (or in manuscript/ once the manuscript files have been moved there)
+ORIG = next(p for p in (_ROOT / "Alves ER et al JVI 2026.docx", _ROOT / "manuscript" / "Alves ER et al JVI 2026.docx") if p.exists())
 ok = True
 
 

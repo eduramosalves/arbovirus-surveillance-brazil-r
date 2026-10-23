@@ -17,7 +17,7 @@ Every table the R code writes was compared, cell by cell, with the Python result
 |---|---|
 | `db/*.csv`, `clinical_tables/clinical_demographic_long.csv` | **Byte-identical** (sha256 in `reference/expected_hashes.csv`; `etl/check_db.R` reports OK) |
 | Annual incidence, Mann-Kendall (τ, S, p, Sen slope/intercept, trend), Spearman (ρ, p, q), rain lag-2, global Moran's I, mean incidence, Local I and quadrants | Identical (≤ 1e-9) |
-| Co-circulation, COVID ITS, epidemic thresholds, `Dengue_00_general_data.csv` | Identical (≤ 1e-9; the CSV is byte-identical) |
+| Co-circulation, COVID ITS, epidemic thresholds, `Dengue_00_general_data.csv` | Identical (≤ 1e-9; the CSV was byte-identical; it has since been retired, see `_unused/outputs/`) |
 | Poisson / quasi-Poisson GLMs | Identical to ~1e-10 (coefficients, SEs, p, AIC) |
 | Negative-binomial GLMs | Within ~1e-6 (α is the optimum of a 1-D search with tolerance 1e-6) |
 | Spatial regression | Coefficients within 1e-6, AIC / log-likelihood identical |
@@ -86,6 +86,6 @@ The port reproduces what the Python code did, including a few choices worth know
 
 ## Environment
 
-R 4.6.1 with the CRAN packages in `R/install_packages.R` (versions in `R_SESSION_INFO.txt`).
+R 4.6.1 with the CRAN packages in `R/install_packages.R` (versions in `docs/R_SESSION_INFO.txt`).
 Binary packages are used on Windows and macOS, so Rtools is not needed. On Linux, `sf` needs the
 system libraries GDAL, GEOS, PROJ and udunits.

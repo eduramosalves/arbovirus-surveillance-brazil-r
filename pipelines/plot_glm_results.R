@@ -3,7 +3,7 @@
 # ================================================================================
 #  Reads the CSVs produced by glm_common.R (run_models / export_results) and
 #  generates publication-style figures of the climate IRRs.
-#  Outputs (PNG, 300 dpi) -> figures/:
+#  Outputs (PNG, 300 dpi) -> figures/glm/:
 #    glm_fig1_pooled_climate_irr.png   : pooled-FE IRR bars (Temp, Rain) by virus and model family
 #    glm_fig2_per_state_heatmap.png    : per-state IRR heatmap (negbin), Temp/Rain
 #    glm_fig3_lag_profile.png          : median IRR by lag (0/1/2) for Temp & Rain
@@ -37,9 +37,9 @@ theme_glm <- function() {
   theme_mpl(9, grid = FALSE) + theme(plot.title = element_text(size = 11), axis.title = element_text(size = 10),
                                      legend.text = element_text(size = 9))
 }
-read_glm <- function(family, spec) fread(file.path(OUTPUT_DIR, sprintf("glm_%s_%s.csv", family, spec)))
+read_glm <- function(family, spec) fread(out_file(sprintf("glm_%s_%s.csv", family, spec)))
 save_fig <- function(p, name, w, h) {
-  out <- file.path(FIGURES_DIR, name)
+  out <- fig_file(name)
   save_png(p, out, w, h, dpi = 300)
   cat(sprintf("  saved -> %s\n", out))
 }

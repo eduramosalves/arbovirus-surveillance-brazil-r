@@ -10,7 +10,7 @@
 #  State-level p-values get Benjamini-Hochberg q-values within each virus.
 #  A trend-sensitivity table compares the linear slope on t with and without the
 #  pandemic months.
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    its_pandemic_effects.csv, its_trend_sensitivity.csv, its_national.png
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.

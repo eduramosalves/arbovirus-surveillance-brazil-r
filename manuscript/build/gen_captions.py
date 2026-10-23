@@ -1,4 +1,4 @@
-"""Write docs/FIGURE_CAPTIONS.md from the regenerated outputs (figure_caption_values.csv, figure_exclusions_captions.txt,
+"""Write manuscript/FIGURE_CAPTIONS.md from the regenerated outputs (figure_caption_values.csv, figure_exclusions_captions.txt,
 numbers.csv). Usage: python gen_captions.py <project root> <numbers.csv>"""
 import csv
 import re
@@ -7,7 +7,7 @@ from pathlib import Path
 
 root = Path(sys.argv[1])
 N = {r["key"]: r["value"] for r in csv.DictReader(open(sys.argv[2], encoding="utf-8"))}
-cv = list(csv.DictReader(open(root / "outputs" / "figure_caption_values.csv", encoding="utf-8")))
+cv = list(csv.DictReader(open(root / "outputs" / "figure_notes" / "figure_caption_values.csv", encoding="utf-8")))
 
 
 def val(figure, item, panel=None, start=None):
@@ -22,7 +22,7 @@ def i(k):
 
 
 def exc(fig):
-    for line in open(root / "outputs" / "figure_exclusions_captions.txt", encoding="utf-8"):
+    for line in open(root / "outputs" / "figure_notes" / "figure_exclusions_captions.txt", encoding="utf-8"):
         if line.startswith(fig + "."):
             return line[len(fig) + 2:].strip()
     raise KeyError(fig)
@@ -43,12 +43,12 @@ P26c = "2026 covers January–September only (a partial year); percentages are n
 
 text = f"""# Figure captions
 
-Captions for the figures in `figures/`, written to be pasted into the manuscript. Generated on 2026-10-22 by
-`docs/manuscript/build/gen_captions.py` from the regenerated outputs (`outputs/figure_caption_values.csv`,
-`outputs/figure_exclusions_captions.txt`, `numbers.csv`): SINAN downloaded 2026-10-22, 2026 files = release of 2026-10-20,
+Captions for the figures in `figures/` (`main/`, `supplementary/`, `glm/`), written to be pasted into the manuscript. Generated on 2026-10-22 by
+`manuscript/build/gen_captions.py` from the regenerated outputs (`outputs/figure_notes/figure_caption_values.csv`,
+`outputs/figure_notes/figure_exclusions_captions.txt`, `numbers.csv`): SINAN downloaded 2026-10-22, 2026 files = release of 2026-10-20,
 notifications up to 2026-09-30, cases = every notification not classified as discarded. If the pipeline is rerun, regenerate
 this file. The numbering of the supplementary figures (S1, S2, GLM Figures 1-5) is the repository's; the manuscript numbers
-figures by order of citation (see `docs/manuscript/SYNC_LOG.md`).
+figures by order of citation (see `manuscript/SYNC_LOG.md`).
 
 Abbreviations used throughout: UF, federative unit (state); IRR, incidence rate ratio; CI, confidence
 interval; FE, fixed effects; LISA, local indicator of spatial association.
@@ -159,7 +159,7 @@ association; left, negative).
 ## Methods and limitations (text for the manuscript)
 
 The Methods and limitations of the manuscript are in `Alves ER et al JMV 2026.docx` and are built from the repository outputs
-(`docs/manuscript/`). Points specific to the figures:
+(`manuscript/`). Points specific to the figures:
 
 - **Case definition.** For the three diseases a case is every notification not classified as discarded (confirmed and probable).
   The discarded notifications excluded are {i('disc.DENV.disc')} (dengue), {i('disc.CHIKV.disc')} (chikungunya) and {i('disc.ZIKV.disc')} (Zika),
@@ -167,7 +167,7 @@ The Methods and limitations of the manuscript are in `Alves ER et al JMV 2026.do
 - **Missing values.** In the clinical figures (5, 7, 8) percentages and distributions are calculated on records with a known value.
   Records coded as ignored or blank in SINAN were excluded from numerators and denominators, except the blank classification of chikungunya and Zika
   (a notification not yet classified, drawn as its own category). Recorded answers such as "not performed" or "inconclusive" were kept as
-  categories. The number and percentage excluded for each figure and year are in `outputs/figure_exclusions.csv`.
+  categories. The number and percentage excluded for each figure and year are in `outputs/figure_notes/figure_exclusions.csv`.
 - **2026.** 2026 covers January–September (notifications dated up to 2026-09-30) and its annual values are annualized (×12/9), which overstates
   the year because October–December carry {float(N['seas.DENV.q4_share'])*100:.1f}% (dengue), {float(N['seas.CHIKV.q4_share'])*100:.1f}% (chikungunya) and
   {float(N['seas.ZIKV.q4_share'])*100:.1f}% (Zika) of the cases of 2016–2025. It is kept in the trends, mean incidence, Moran’s I and LISA.
@@ -178,5 +178,5 @@ The Methods and limitations of the manuscript are in `Alves ER et al JMV 2026.do
   and counted as not typed.
 - **Supplementary Figure S1.** Classes are pooled over all years so that colours are comparable across years; years with low incidence therefore fall mostly in class 1.
 """
-(root / "docs" / "FIGURE_CAPTIONS.md").write_text(text, encoding="utf-8")
+(root / "manuscript" / "FIGURE_CAPTIONS.md").write_text(text, encoding="utf-8")
 print("written", len(text), "characters")

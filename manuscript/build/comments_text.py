@@ -7,18 +7,18 @@ queries (44-47); the user's instructions (ids 48-55) sit in these threads. Texts
 
 REPLIES_R2 = {
     3: "Rechecked after the rerun. Every incidence value in the text is computed from the repository files and logged with its source "
-       "(docs/manuscript/SYNC_LOG.md). Mean annual incidence of dengue: {u:rank_minc.DENV.1:cap} {n:rank_minc_val.DENV.1:d1}, "
+       "(manuscript/SYNC_LOG.md). Mean annual incidence of dengue: {u:rank_minc.DENV.1:cap} {n:rank_minc_val.DENV.1:d1}, "
        "{u:rank_minc.DENV.2} {n:rank_minc_val.DENV.2:d1}, {u:rank_minc.DENV.3} {n:rank_minc_val.DENV.3:d1} per 100,000 (2016–2026, with "
        "2026 annualized from January–September).",
     4: "Reran as asked, on the corrected data. Moran’s I of the mean annual incidence with the new case definition: dengue "
        "{n:moran.DENV.I:d3} (p {n:moran.DENV.p:pv}), chikungunya {n:moran.CHIKV.I:d3} (p {n:moran.CHIKV.p:pv}; now significant, "
        "with high–high units in the Northeast) and Zika {n:moran.ZIKV.I:d3} (p {n:moran.ZIKV.p:pv}). The text and the legends take "
-       "them from one file (outputs/geo_spatial_stats.xlsx, sheet Global_Moran). The mean annual incidence includes 2026, a partial "
+       "them from one file (outputs/spatial/geo_spatial_stats.xlsx, sheet Global_Moran). The mean annual incidence includes 2026, a partial "
        "year (January–September) annualized, and this is now stated wherever these statistics appear.",
     5: "Done. Figures are numbered by the order in which the text first cites them (main figures 1–8, supplementary S1–S7), the "
        "legends follow that order, and the cross-references inside the legends were renumbered. Figure citations were removed from the "
        "Methods and the annual maps were added to the Results (they had never been cited). The figure files are copied under the new "
-       "numbers in docs/manuscript/figures/ (the repository keeps its own file names); the mapping is in docs/manuscript/SYNC_LOG.md.",
+       "numbers in manuscript/figures/ (the repository keeps its own file names); the mapping is in manuscript/SYNC_LOG.md.",
     6: "Went through each point. (1) Titles: the figures have no in-plot titles, only the panel names Dengue, Chikungunya and Zika. "
        "(2) Legend close to the figure: the keys sit inside each panel, next to the data. (3) Non-significant increases/decreases: in the maps "
        "and in the Kendall’s τ panel only p < 0.05 carries colour; in the Sen’s slope panel ({F:trend:B}) the non-significant bars "

@@ -5,7 +5,7 @@ notifications across the **27 Brazilian federative units**, monthly, **2016–20
 
 A reproducible **R** project: the code that turns the raw official files into every table and
 figure, the cleaned analysis tables (`db/`), and the generated results. Clone it anywhere and run
-one script; no paths need editing. **New here? Start with [`GUIDE.md`](GUIDE.md).**
+one script; no paths need editing. **New here? Start with [`docs/GUIDE.md`](docs/GUIDE.md).**
 
 > **Raw data are not stored in this repository** (`raw/`, about 1.7 GB). On a fresh clone, run with
 > `--skip-etl`: it rebuilds every result from the committed `db/`. To rebuild `db/` itself, see
@@ -26,14 +26,14 @@ bash run_all.sh
 system("Rscript run_all.R")      # run_all.R accepts --skip-etl and --skip-install
 ```
 The script installs any missing CRAN packages (`R/install_packages.R`, binary builds; the
-versions used are recorded in `R_SESSION_INFO.txt`), then runs:
+versions used are recorded in `docs/R_SESSION_INFO.txt`), then runs:
 
 | Step | Command | Produces |
 |---|---|---|
 | 1 | `etl/build_db.R` | `db/` + `clinical_tables/` from `raw/` (checked against `reference/expected_hashes.csv`) |
-| 2 | `pipelines/run_all.R` | 9 core stages → `outputs/`, `figures/` |
-| 3 | `pipelines/additional/run_additional_analyses.R` | `outputs/2026-10-08/additional/` |
-| 4 | `pipelines/alt_results.R` | alternative-view figures |
+| 2 | `pipelines/run_all.R` | 9 core stages → `outputs/<topic>/`, `figures/<kind>/` |
+| 3 | `pipelines/additional/run_additional_analyses.R` | `outputs/additional/` |
+| 4 | `pipelines/alt_results.R` | `figures/alternatives/` |
 | 5 | `pipelines/build_source_data.R` | `source_data/` (one xlsx per figure) |
 
 Flags: `-SkipEtl` / `--skip-etl` reuse an existing `db/`; `-SkipInstall` / `--skip-install`
@@ -52,9 +52,13 @@ The repository ships with the results already generated (`db/`, `clinical_tables
 `figures/`, `source_data/`). `run_all.R --skip-etl` regenerates them from `db/`; the full run first
 rebuilds `db/` from `raw/`. Output file names
 keep their original names (e.g. `py_statistical_results.xlsx`, `py_01_*.png`) so references in
-the papers and older notes stay valid.
+the papers and older notes stay valid. They are grouped in sub-folders by topic (see [Folder layout](#folder-layout)).
 
 ## What changed on 2026-10-22
+The repository was also reorganised that day: results grouped by topic (`outputs/<topic>/`, `figures/<kind>/`), the manuscript
+material gathered in `manuscript/`, and everything unused moved to `_unused/`. Nothing was deleted; the old-to-new path list is in
+[`docs/CLEANUP_2026-10-22.md`](docs/CLEANUP_2026-10-22.md).
+
 | Item | Before | Now |
 |---|---|---|
 | Case definition | dengue: all notifications minus discarded; chikungunya and Zika: **all notifications, discarded included** | **all three: all notifications minus discarded** (confirmed + probable). Chikungunya totals fall by 749,047 and Zika by 252,573 in 2016–2025 (`clinical_tables/discarded_counts.csv`) |
@@ -78,14 +82,21 @@ the results comes from the 2026 data.
 ---
 
 ## Folder layout
+Data flows one way: `raw/` → (`etl/`) → `db/` + `clinical_tables/` → (`pipelines/`) → `outputs/` → `figures/` → `source_data/`.
 ```
-arbovirus-brazil-portable/
-├── README.md                 # this file
+arbovirus-surveillance-brazil-r-eduardo/
+├── README.md  LICENSE  CITATION.cff  .gitignore  .github/workflows/pipeline.yml   # manual CI run of the core pipeline
 ├── run_all.R                 # one-command rebuild (packages + all steps)
 ├── run_all.ps1 / run_all.sh  # wrappers that find Rscript and run run_all.R
-├── R/                        # shared R code: utils.R, stats.R, install_packages.R
-├── R_SESSION_INFO.txt        # R + package versions of the last install
-├── raw/                      # RAW official files (not in git; only MANIFEST.csv is committed)
+│
+├── R/                        # CODE: shared helpers (utils.R holds the output-folder layout), stats.R, install_packages.R
+├── etl/                      # raw → db/ + clinical_tables/ (build_db.R runs it all)
+├── pipelines/                # all analysis code
+│   ├── run_all.R             # core 9-stage orchestrator
+│   └── additional/           # advanced analyses (DLNM, forecast, spatial reg, ITS, …)
+├── tools/                    # raw-source re-download + archive comparison (see docs/DATA_SOURCES.md)
+│
+├── raw/                      # DATA: RAW official files (not in git; only MANIFEST.csv is committed)
 │   ├── sinan/                # DENGBR/CHIKBR/ZIKABR 16–26 .csv.zip (OpenDataSUS)
 │   ├── inmet/                # 2016.zip … 2026.zip hourly station data
 │   ├── ibge/                 # population: DOU estimates + Projeções 2024
@@ -94,28 +105,41 @@ arbovirus-brazil-portable/
 ├── reference/                # fixed inputs not rebuilt from raw
 │   ├── dim_location.csv          # 27 UF ids/names
 │   ├── brazil_states.geojson     # merged state polygons used by the maps
-│   ├── graphpad_data/            # GraphPad clinical source (.pzfx, through 2025)
 │   ├── original_db/              # original 2016–2025 series, for calibration printouts only
 │   └── expected_hashes.csv       # sha256 of the db/ + clinical_tables/ these results came from
-├── etl/                      # raw → db/ + clinical_tables/ (build_db.R runs it all)
-├── pipelines/                # all analysis code
-│   ├── run_all.R             # core 9-stage orchestrator
-│   └── additional/           # advanced analyses (DLNM, forecast, spatial reg, ITS, …)
-├── tools/                    # raw-source re-download + archive comparison (see docs/DATA_SOURCES.md)
+├── db/                       # normalized analysis inputs
+├── clinical_tables/          # clinical/demographic breakdowns 2016–2026 + discarded_counts.csv
+│
+├── outputs/                  # RESULTS: tables and plots, by topic
+│   ├── descriptive/          # incidence, Mann–Kendall trends, Spearman correlations (py_*)
+│   ├── spatial/              # maps, Moran's I, LISA (geo_*)
+│   ├── clinical/             # clinical and demographic plots per disease (Dengue_*, Chikungunya_*, Zika_*)
+│   ├── regression/           # GLM tables (glm_*)
+│   ├── bootstrap/            # bootstrap confidence intervals
+│   ├── additional/           # advanced analyses (DLNM, co-circulation, forecast, ITS, thresholds, spatial regression)
+│   └── figure_notes/         # caption values and records excluded per figure
+├── figures/                  # composite publication figures
+│   ├── main/                 # Figure 1–8
+│   ├── supplementary/        # Figure S1 (maps by year + overview) and Figure S2
+│   ├── glm/                  # regression figures (glm_fig1–5)
+│   └── alternatives/         # 3 alternative-view figures (+ README)
+├── source_data/              # one xlsx per figure, one sheet per panel
+│
+├── manuscript/               # PAPER (Journal of Medical Virology): build tools, legends, logs
+│   ├── build/                # scripts that build the .docx from the repository outputs (see its README)
+│   ├── figures/              # the figures renamed by order of citation (Figure1.png … FigureS7.png)
+│   ├── history/              # the manuscript as the authors edited it before round 2
+│   ├── FIGURE_CAPTIONS.md  SYNC_LOG.md  JMV_CHECKLIST.md  RECORD_CHECKLIST.md
+│   ├── Alves ER et al JVI 2026.docx              # the original draft (never edited)
+│   └── Alves ER et al JMV 2026.docx  (+ "(redline)" copy with tracked changes)   # the manuscript
 ├── docs/
+│   ├── GUIDE.md                  # start here: what to open, what each folder holds
 │   ├── DATA_SOURCES.md           # raw-data URLs, access date, checksums, Source Data index
 │   ├── LITERATURE_CONTEXT.md     # results set against four recent papers + references
-│   ├── RESULTS_SUMMARY.md/html   # ORIGINAL 2016–2025 narrative (see note below)
-│   ├── README_original.md        # original project README (Python era)
 │   ├── R_PORT_NOTES.md           # Python → R port: method mapping, verification, known differences
-│   └── alt_results_README.md
-│   (generated; rebuilt by run_all)
-├── db/                       # normalized analysis inputs
-├── clinical_tables/          # clinical/demographic breakdowns 2016–2026
-├── outputs/                  # tables + plots (outputs/2026-10-08/additional/ = advanced analyses)
-├── figures/                  # composite publication figures (Figure 1–8, S1–S2, GLM figures)
-├── alt_results/              # 3 alternative-view figures
-└── source_data/              # one xlsx per figure, one sheet per panel
+│   ├── R_SESSION_INFO.txt        # R + package versions of the last install
+│   └── CLEANUP_2026-10-22.md     # every file that moved in the reorganisation (old path → new path)
+└── _unused/                  # files nothing uses any more, kept under their old paths (see _unused/README.md)
 ```
 
 ## Raw data
@@ -134,18 +158,18 @@ for all INMET and IBGE files and SINAN 2016–2024; the 2025 SINAN zips were re-
 (details in `docs/DATA_SOURCES.md`). On 2026-10-22 only the SINAN files were downloaded again.
 
 ## Figures
-Main figures are in `figures/` (Figure 1–8), supplementary maps in `FigureS1_<year>.png`
-(2016–2026, plus `FigureS1_overview.png`) and `FigureS2_lisa_trend.png`, and the numbers behind each
-panel in `source_data/`. Every map uses one design: a single map of Brazil with one symbol per state
+Main figures are in `figures/main/` (Figure 1–8), supplementary maps in `figures/supplementary/` (`FigureS1_<year>.png`,
+2016–2026, plus `FigureS1_overview.png`, and `FigureS2_lisa_trend.png`), regression figures in `figures/glm/`, and the numbers
+behind each panel in `source_data/`. Every map uses one design: a single map of Brazil with one symbol per state
 and disease (circle = dengue, triangle = chikungunya, square = Zika), filled by the mapped category.
 Figures carry no in-plot titles. Text for the captions is generated with them:
-- `outputs/figure_caption_values.csv`: statistics, colour keys and class bounds per figure panel;
-- `outputs/figure_exclusions.csv` and `figure_exclusions_captions.txt`: records with ignored/blank
+- `outputs/figure_notes/figure_caption_values.csv`: statistics, colour keys and class bounds per figure panel;
+- `outputs/figure_notes/figure_exclusions.csv` and `figure_exclusions_captions.txt`: records with ignored/blank
   values left out of each clinical figure (n and %), plus ready-to-use caption sentences;
-- `outputs/figure_exclusions_state_years.csv`: state-years without SINAN records.
+- `outputs/figure_notes/figure_exclusions_state_years.csv`: state-years without SINAN records.
 
 Draft captions for every figure, with a methods/limitations paragraph, are in
-[`docs/FIGURE_CAPTIONS.md`](docs/FIGURE_CAPTIONS.md). How the results relate to recent literature
+[`manuscript/FIGURE_CAPTIONS.md`](manuscript/FIGURE_CAPTIONS.md). How the results relate to recent literature
 (temperature and dengue transmission, *Aedes* oviposition, reporting bias across arboviruses, dengue
 serotype turnover) is in [`docs/LITERATURE_CONTEXT.md`](docs/LITERATURE_CONTEXT.md).
 
@@ -224,13 +248,13 @@ bootstrap use fixed seeds, so reruns reproduce the numbers. Re-downloading with
 - **2026 is season-to-date** (cases Jan–Sep; climate Jan–Sep, late months partial; climate present
   for 26/27 states). Annual-incidence values for 2026 are annualised from reported months.
 - **CHIKV 2016 is new** vs the original series (which began CHIKV in 2017).
-- **`docs/RESULTS_SUMMARY.*` describes the ORIGINAL 2016–2025 analysis.** The figures/tables in
+- **The old `RESULTS_SUMMARY.*` (now in `_unused/docs/`) describes the ORIGINAL 2016–2025 analysis.** The figures/tables in
   `outputs/` and `figures/` here are the regenerated 2016–2026 results; where climate (esp. rain)
   is involved, re-read the numbers from these regenerated outputs rather than the old narrative.
-- **Clinical figures** (Figures 5, 7, 8 and `outputs/Dengue_*`, `Chikungunya_*`, `Zika_*`) are drawn from
+- **Clinical figures** (Figures 5, 7, 8 and `outputs/clinical/`) are drawn from
   `clinical_tables/clinical_demographic_long.csv` (2016–2026, discarded notifications excluded). Until
   2026-10-22 they came from hand-made GraphPad `.pzfx` tables that ended in 2025 (kept in
-  `reference/graphpad_data/` for comparison only).
+  `_unused/reference/graphpad_data/` for comparison only).
 - **2026 limitations.** 2026 covers January–September and its annual values are annualised (× 12 / 9),
   which overstates the year because October–December carry a small share of the cases. It is kept in the
   trends, mean incidence, Moran's I and LISA; read every 2026-dependent result with that in mind.

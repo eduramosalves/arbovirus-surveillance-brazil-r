@@ -311,7 +311,7 @@ run_models <- function(model_family) {
 
 # Write one CSV per specification + one Excel workbook with all spec results.
 export_results <- function(model_family, results) {
-  base <- file.path(OUTPUT_DIR, paste0("glm_", gsub("-", "_", model_family)))
+  base <- out_file(paste0("glm_", gsub("-", "_", model_family)))
   for (spec in SPEC_NAMES) {
     df <- results[[spec]]
     if (!nrow(df)) next

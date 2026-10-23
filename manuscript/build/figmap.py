@@ -6,7 +6,7 @@ In the text a figure is cited as {F:key} -> "Figure 3", {F:key:A} -> "Figure 3A"
 """
 import re
 
-# key: (label used by docs/FIGURE_CAPTIONS.md, supplementary?, repository files)
+# key: (label used by manuscript/FIGURE_CAPTIONS.md, supplementary?, repository files)
 FIGURES = {
     "incid":   ("Figure 1", False, ["Figure1_incidence_regional.png"]),
     "trend":   ("Figure 2", False, ["Figure2_trend_analysis.png"]),

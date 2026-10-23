@@ -6,6 +6,23 @@
 *.part
 *.chunk
 
+# Office lock files, OS and Python junk
+~$*
+Thumbs.db
+desktop.ini
+*.tmp
+__pycache__/
+
+# manuscript build scratch (created by the steps in manuscript/build/README.md)
+manuscript/build/orig/
+manuscript/build/user/
+manuscript/build/out/
+manuscript/build/build_clean/
+manuscript/build/build_redline/
+manuscript/build/venv/
+manuscript/build/orig_markup.txt
+manuscript/build/original.docx
+
 # raw official sources (1.7 GB; re-download with tools/fetch_raw_sources.R)
 raw/*
 !raw/MANIFEST.csv

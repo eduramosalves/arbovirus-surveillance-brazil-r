@@ -6,7 +6,7 @@ downloaded again on 2026-10-22, 2026 limited to notifications up to 2026-09-30; 
 classified as discarded, for the three diseases).
 
 **Numbers from this project come from the regenerated outputs** (`outputs/`, `clinical_tables/`,
-`outputs/2026-10-08/additional/`), never from [`RESULTS_SUMMARY.md`](RESULTS_SUMMARY.md), which describes the
+`outputs/additional/`), never from [`RESULTS_SUMMARY.md`](../_unused/docs/RESULTS_SUMMARY.md), which describes the
 older 2016–2025 run. Each statement is tagged:
 
 - **Consistent**: the project's result points the same way as the paper.
@@ -30,7 +30,7 @@ discusses the daily temperature range (DTR) and *Aedes* spread into colder areas
 - **Consistent.** Dengue has a positive temperature association: the regenerated pooled NegBin model (state and
   month fixed effects, cluster-robust SEs) gives an IRR of 1.106 per +1 °C (95% CI 1.026–1.191, p = 0.008).
   Chikungunya is 1.029 (0.948–1.117, p = 0.493, not significant); Zika is 1.106 (1.001–1.221, p = 0.047)
-  (`outputs/glm_negbin_pooled_fe.csv`).
+  (`outputs/regression/glm_negbin_pooled_fe.csv`).
 - **Consistent, with a caveat.** The response is non-linear. The DLNM puts the dengue temperature optimum at
   27.5 °C (IRR 1.19); chikungunya (25.1 °C, IRR 1.01) and Zika (25.6 °C, IRR 1.00) are flat
   (`dlnm_summary.csv`; the DLNM is not part of the manuscript). Do not read this
@@ -44,7 +44,7 @@ discusses the daily temperature range (DTR) and *Aedes* spread into colder areas
   two states for dengue (Rio Grande do Sul, Santa Catarina) and three for chikungunya (Mato Grosso do Sul, Goiás,
   Minas Gerais) with a significant increasing trend (raw p < 0.05). After Benjamini–Hochberg correction only the
   chikungunya increase in Mato Grosso do Sul remains (q = 0.029); no dengue trend does (smallest q = 0.344)
-  (`outputs/py_statistical_results.xlsx`). The chikungunya states are in the Central-West and Southeast.
+  (`outputs/descriptive/py_statistical_results.xlsx`). The chikungunya states are in the Central-West and Southeast.
 
 ## 2. Moura et al. 2020, *Aedes* oviposition in Natal, Rio Grande do Norte (abstract only)
 
@@ -122,7 +122,7 @@ using Qdenga (TAK-003) and Butantan-DV.
 
 ## Limitations these papers add to the manuscript text
 
-These are mirrored in the limitations block of [`FIGURE_CAPTIONS.md`](FIGURE_CAPTIONS.md).
+These are mirrored in the limitations block of [`FIGURE_CAPTIONS.md`](../manuscript/FIGURE_CAPTIONS.md).
 
 1. Notifications are not incidence: reporting and diagnosis vary between states and between diseases (Lim).
 2. Cases are confirmed plus probable (discarded notifications excluded) for the three diseases, and published

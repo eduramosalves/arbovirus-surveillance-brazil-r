@@ -42,7 +42,7 @@ _FIXES = [("hospitalisation", "hospitalization"), ("standardised", "standardized
 
 
 def legend_blocks(path):
-    """Figure legends of docs/FIGURE_CAPTIONS.md as (repository label, title, body); the repository label is the
+    """Figure legends of manuscript/FIGURE_CAPTIONS.md as (repository label, title, body); the repository label is the
     heading used there ('Figure 6', 'GLM Figure 3')."""
     text = open(path, encoding="utf-8").read()
     sec = text[text.index("## Main figures"):text.index("## Methods and limitations")]

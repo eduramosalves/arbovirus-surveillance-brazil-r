@@ -1,4 +1,4 @@
-"""Generate docs/manuscript/{SYNC_LOG,JMV_CHECKLIST,RECORD_CHECKLIST}.md (round 2, 2026-10-22).
+"""Generate manuscript/{SYNC_LOG,JMV_CHECKLIST,RECORD_CHECKLIST}.md (round 2, 2026-10-22).
 Usage: python gen_logs.py <outdir> <destdir>"""
 import csv
 import json
@@ -17,7 +17,7 @@ from msbase import ORIG  # noqa: E402
 rep = json.load(open(out / "build_report.json", encoding="utf-8"))
 calc = rep["calc"]
 N = {r["key"]: r["value"] for r in csv.DictReader(open(WORK / "numbers.csv", encoding="utf-8"))}
-PROJECT = Path("C:/Users/Usuario/arbovirus-surveillance-brazil-r-eduardo")
+PROJECT = WORK.parents[1]   # repository root (this file is manuscript/build/gen_logs.py)
 MAIN_WORDS = "{:,}".format(calc["main_words"])
 M = "\u2212"
 
@@ -47,11 +47,11 @@ A("")
 A("Round 1 written 2026-10-21; **round 2 written 2026-10-22**, after the eight instructions tagged \"@claude for ERA\" in `Alves ER et al JMV 2026.docx`. "
   "Covers `Alves ER et al JMV 2026.docx` (clean) and `Alves ER et al JMV 2026 (redline).docx` (every text change tracked against the draft, author *Claude for ERA*), "
   "both built from `Alves ER et al JVI 2026.docx`, which was not modified. The file as edited by the authors before round 2 is kept in "
-  "`docs/manuscript/history/`.")
+  "`manuscript/history/`.")
 A("")
 A("**How the numbers were produced.** Every number in the Abstract, Results, Discussion and Methods was computed from the repository files "
   "by `build/numbers.R` (R 4.6.1) into `numbers.csv`, and inserted into the text by key. The table in section 3 lists each inserted number "
-  "with its source file. Legends are the text of `docs/FIGURE_CAPTIONS.md`. Statements the prose makes about the data (who trends, which model "
+  "with its source file. Legends are the text of `manuscript/FIGURE_CAPTIONS.md`. Statements the prose makes about the data (who trends, which model "
   "peaks at which lag, \"nearly half were discarded\") are checked at build time against `numbers.csv` (%d assertions), so the text cannot drift from the data. "
   "A second, independent computation in Python (section 6) reproduced 43 headline values from the raw tables." % calc.get("n_asserts", 34))
 A("")
@@ -74,12 +74,12 @@ for r in [
          N["meta.sinan_access"].strip('"'), N["meta.sinan_release"].strip('"'), f("seas.DENV.q4_share", "pct1"), f("seas.ZIKV.q4_share", "pct1"))),
     ("52 (ERA)", "\"renumber and reorder everything having in mind the order that the images are cited\"",
      "Figures numbered by first citation (main 1\u20138, supplementary S1\u2013S7); legends reordered; cross-references inside legends renumbered; figure citations removed from Methods; the annual maps, never cited before, are now cited. "
-     "Copies under the new numbers: `docs/manuscript/figures/`; table in section 8."),
+     "Copies under the new numbers: `manuscript/figures/`; table in section 8."),
     ("53 (ERA)", "\"follow all the comments from Galileu\"",
      "Replies posted in each thread (threads left open for Galileu). Figure style (his comment 6): one colour per virus defined once in `R/utils.R` (dengue red, chikungunya green, Zika blue); "
      "grey bars for non-significant Sen's slopes (only significant trends carry colour); figures have no in-plot titles; keys sit next to the data."),
     ("54 (ERA)", "\"what should we do now?\" (lag model)",
-     "You chose to add a pooled lagged model (FU and month fixed effects, lags 0\u20132 jointly, FU-clustered SE; `outputs/glm_*_pooled_lagged.csv`). Results report the IRR per lag and the IRR of a change sustained over lags 0\u20132; the per-FU lagged models stay."),
+     "You chose to add a pooled lagged model (FU and month fixed effects, lags 0\u20132 jointly, FU-clustered SE; `outputs/regression/glm_*_pooled_lagged.csv`). Results report the IRR per lag and the IRR of a change sustained over lags 0\u20132; the per-FU lagged models stay."),
     ("55 (ERA)", "\"you can delete it if it doesn't break the logic\" (DLNM)",
      "DLNM deleted from Methods, Results, Discussion and the author query (the logic holds); the analysis files stay in `outputs/`. A build check fails if \"DLNM\" reappears."),
     ("(not a comment)", "Figures 5, 7, 8 (your choice)",
@@ -99,7 +99,7 @@ rows = [
      "%s / %s / %s" % (f("disc.DENV.cases", "i"), f("disc.CHIKV.cases", "i"), f("disc.ZIKV.cases", "i")), "`db/normalized_fact_cases.csv`"),
     ("Moran's I, dengue / chikungunya / Zika", "0.562 (p = 0.001) / \u22120.036 (0.460) / \u22120.008 (0.352)", "0.516 / 0.004 / \u22120.006 (p 0.001 / 0.285 / 0.326)",
      "%s / %s / %s (p %s / %s / %s)" % (f("moran.DENV.I", "d3"), f("moran.CHIKV.I", "d3"), f("moran.ZIKV.I", "d3"), f("moran.DENV.p", "d3"), f("moran.CHIKV.p", "d3"), f("moran.ZIKV.p", "d3")),
-     "`outputs/geo_spatial_stats.xlsx`, Global_Moran"),
+     "`outputs/spatial/geo_spatial_stats.xlsx`, Global_Moran"),
     ("Mean annual incidence, dengue top 3", "DF 1,825.6; GO 1,742.7; MG 1,647.7", "GO 1,782.4; DF 1,693.7; MG 1,538.7",
      "%s %s; %s %s; %s %s" % tuple(x for k in (1, 2, 3) for x in (uf("rank_minc.DENV.%d" % k), f("rank_minc_val.DENV.%d" % k))), "`geo_spatial_stats.xlsx`, Mean_Incidence"),
     ("Chikungunya top mean incidence", "MS 421.8", "MS 498.4; CE 324.9; MT 294.5",
@@ -118,7 +118,7 @@ rows = [
     ("Zika 2016 vs later years", "\"roughly 8\u201310 times\"", "6.8\u201314.9 times (complete years 2017\u20132025)",
      "%s\u2013%s times (complete years 2017\u20132025)" % (f("zika_ratio_min"), f("zika_ratio_max")), "`source_data/Figure1.xlsx`"),
     ("\u21c4 Pooled temperature IRR, dengue", "2.10 (1.96\u20132.26)", "1.10 (1.02\u20131.19)",
-     "%s (%s\u2013%s)" % (f("glmp.DENV.Temp_Avg.irr", "d2"), f("glmp.DENV.Temp_Avg.lo", "d2"), f("glmp.DENV.Temp_Avg.hi", "d2")), "`outputs/glm_negbin_pooled_fe.csv`"),
+     "%s (%s\u2013%s)" % (f("glmp.DENV.Temp_Avg.irr", "d2"), f("glmp.DENV.Temp_Avg.lo", "d2"), f("glmp.DENV.Temp_Avg.hi", "d2")), "`outputs/regression/glm_negbin_pooled_fe.csv`"),
     ("\u21c4 Pooled temperature IRR, chikungunya", "1.32 (1.24\u20131.41), significant", "1.05 (0.99\u20131.12), **not significant**",
      "%s (%s\u2013%s), **not significant**" % (f("glmp.CHIKV.Temp_Avg.irr", "d2"), f("glmp.CHIKV.Temp_Avg.lo", "d2"), f("glmp.CHIKV.Temp_Avg.hi", "d2")), "same"),
     ("\u21c4 Pooled temperature IRR, Zika", "0.90 (0.84\u20130.97), inverse", "1.09 (1.01\u20131.18), **positive**",
@@ -135,7 +135,7 @@ rows = [
      "%s / %s / %s" % (f("glml.DENV.Temp_Lag2.nsig", "i"), f("glml.CHIKV.Temp_Lag2.nsig", "i"), f("glml.ZIKV.Temp_Lag2.nsig", "i")), "`glm_negbin_lagged.csv`"),
     ("**New** pooled lagged model, temperature IRR per \u00b0C", "\u2014", "\u2014",
      "dengue lag 2 %s, sustained 0\u20132 %s; chikungunya lag 2 borderline (p %s); Zika peaks at lag 1 (%s)" % (
-         f("glmpl.DENV.Temp_Lag2.irr", "d2"), f("glmpl.DENV.Temp_Cum0_2.irr", "d2"), f("glmpl.CHIKV.Temp_Lag2.p", "d3"), f("glmpl.ZIKV.Temp_Lag1.irr", "d2")), "`outputs/glm_negbin_pooled_lagged.csv`"),
+         f("glmpl.DENV.Temp_Lag2.irr", "d2"), f("glmpl.DENV.Temp_Cum0_2.irr", "d2"), f("glmpl.CHIKV.Temp_Lag2.p", "d3"), f("glmpl.ZIKV.Temp_Lag1.irr", "d2")), "`outputs/regression/glm_negbin_pooled_lagged.csv`"),
     ("Hospitalization (comment 13)", "15,788,792 not hospitalized; 529,203 hospitalized", "529,203 hospitalized; 10,642,808 not; 5,145,984 ignored/blank (sum 16,317,995)",
      "%s hospitalized; %s not; %s ignored/blank (sum %s)" % (f("cl.DENV.hosp.Positive", "i"), f("cl.DENV.hosp.Negative", "i"), f("cl.DENV.hosp.IgnBlank", "i"), f("cl.DENV.hosp.total", "i")), "`source_data/Figure7.xlsx`"),
     ("Placeholders", "[X], xxxxx, [REF IBGE??]", "chikungunya men 800,258; DENV-2 117,958; DENV-3 8,766; DENV-4 747",
@@ -151,7 +151,7 @@ A("")
 A("| Draft statement | Manuscript statement | Evidence in the repository |")
 A("|---|---|---|")
 for r in [
-    ("Analyses in Python 3.12 (pandas, statsmodels, GeoPandas\u2026)", "R 4.6.1; data.table, readxl, sf, spdep, classInt, ggplot2, patchwork", "`R_SESSION_INFO.txt`; `docs/R_PORT_NOTES.md`"),
+    ("Analyses in Python 3.12 (pandas, statsmodels, GeoPandas\u2026)", "R 4.6.1; data.table, readxl, sf, spdep, classInt, ggplot2, patchwork", "`docs/R_SESSION_INFO.txt`; `docs/R_PORT_NOTES.md`"),
     ("Temperature from CPC/NCEP grid; rainfall from INMET and CPTEC/INPE", "INMET hourly automatic stations, \u2265240 (temperature) / \u2265360 (rainfall) valid hourly readings per station-month, unweighted mean per FU", "`etl/build_climate.R`"),
     ("Spatial weights: Queen contiguity with kNN fallback", "Row-standardized kNN (k = 5) on polygon centroids only", "`pipelines/data_loader.R`; `R/stats.R`"),
     ("\"No adjustment for multiple comparisons\"", "Raw p reported with Benjamini\u2013Hochberg q-values", "`R/utils.R` (`p.adjust(method = \"BH\")`); `Significant_FDR` columns"),
@@ -161,7 +161,7 @@ for r in [
     ("Discarded and under-investigation cases excluded; FU of residence", "**All three diseases**: every notification not classified as discarded (confirmed + probable, inconclusive and under investigation kept); FU/month of notification", "`etl/build_cases_clinical.R` (`DISCARD`, `MAP_CLASSI_BY`); `README.md`"),
     ("Population: 2022 Census and intercensal estimates [REF]", "IBGE projections (2024 revision) 2016\u20132023; DOU 1-July estimates 2024\u20132026", "`etl/build_population.R`; `docs/DATA_SOURCES.md`"),
     ("Study period to December 31, 2025", "To September 30, 2026 (SINAN download of 2026-10-22; 2026 annualized \u00d712/9)", "`etl/build_cases_clinical.R` (`CAP_YEAR`, `LAST_NOTIFICATION_DATE`); `pipelines/data_loader.R`"),
-    ("(not stated)", "State-months without a notification are zeros inside the observed span of a state-year; a state-year with no notification at all (Espirito Santo 2021, chikungunya and Zika) is missing, not zero", "`etl/build_cases_clinical.R` (zero-fill); `outputs/figure_exclusions_state_years.csv`"),
+    ("(not stated)", "State-months without a notification are zeros inside the observed span of a state-year; a state-year with no notification at all (Espirito Santo 2021, chikungunya and Zika) is missing, not zero", "`etl/build_cases_clinical.R` (zero-fill); `outputs/figure_notes/figure_exclusions_state_years.csv`"),
 ]:
     A("| " + " | ".join(r) + " |")
 A("")
@@ -176,7 +176,7 @@ for u in rep["used"]:
 A("")
 A("## 4. Values taken verbatim from other repository documents")
 A("")
-A("- Figure legends: `docs/FIGURE_CAPTIONS.md` (generated by `build/gen_captions.py` from `outputs/figure_caption_values.csv`, `figure_exclusions*.csv`). Renumbered by order of citation; "
+A("- Figure legends: `manuscript/FIGURE_CAPTIONS.md` (generated by `build/gen_captions.py` from `outputs/figure_notes/figure_caption_values.csv`, `figure_exclusions*.csv`). Renumbered by order of citation; "
   "\"UF\" becomes \"FU\"; American spelling; legends of S4 and S5 note that rainfall is drawn per 1 mm while the text uses 100 mm.")
 A("- Literature thresholds (Liu 2023: 14.8 \u00b0C minimum, 32\u201333 \u00b0C optimum maximum; Lim 2025; Moura 2020 at abstract level; de Lima 2026: DENV-3 detection in Cear\u00e1 in July 2025): `docs/LITERATURE_CONTEXT.md` (its numbers predate round 2 and are not used).")
 A("- Not verified against the original source: the Espirito Santo 2021 counts (2,901 chikungunya, 872 Zika) quoted in the old caption file; the cited page could not be read, so the numbers are left out of the manuscript (author query attached, still open).")
@@ -203,7 +203,7 @@ for t in [
     "**Discarded notifications: handled.** All three diseases now exclude them (section 0). Judgement to confirm: the early-2016 chikungunya form codes confirmed / discarded as 1 / 2 (like the Zika form), the later form as 13 / 5. On the 2016 file codes 1 and 2 follow the same January–April pattern and the same 2.2 : 1 ratio as 13 and 5, and code 2 has almost no deaths from the disease (4 of 28,500, against 0 for code 5), while code 1 behaves as confirmed; so codes 2 and 5 are treated as discarded for chikungunya. Please confirm with the BMoH data dictionary.",
     "**Annualized 2026.** \u00d712/9 overstates 2026 because October\u2013December hold %s / %s / %s of the cases (dengue / chikungunya / Zika, 2016\u20132025). 2026 enters the trends, mean incidence, Moran's I and LISA, with the qualifier required by comment 51. No sensitivity analysis without 2026 was run (not requested)." % (f("seas.DENV.q4_share", "pct1"), f("seas.CHIKV.q4_share", "pct1"), f("seas.ZIKV.q4_share", "pct1")),
     "**Zero months.** Excluding discarded notifications leaves many state-months without cases; they are zeros inside the observed span (otherwise annualization and the models would use only the months with cases). Espirito Santo 2021 (chikungunya and Zika) has no notification at all in the national files and stays missing; the national totals of those two diseases are therefore slightly low for 2021. Source of the gap unverified.",
-    "**Clinical tables.** Figures 5, 7, 8 now come from `clinical_tables/clinical_demographic_long.csv`. Fixes in the ETL: age parsing (the 2016–2020 files store age as a float string such as \"4003.0\", so every age of those files was read as unknown), SINAN age bands, disease-specific classification labels with an `Unclassified` (not yet classified) category. The old GraphPad tables (`reference/graphpad_data`) are kept for comparison only.",
+    "**Clinical tables.** Figures 5, 7, 8 now come from `clinical_tables/clinical_demographic_long.csv`. Fixes in the ETL: age parsing (the 2016–2020 files store age as a float string such as \"4003.0\", so every age of those files was read as unknown), SINAN age bands, disease-specific classification labels with an `Unclassified` (not yet classified) category. The old GraphPad tables (`_unused/reference/graphpad_data`) are kept for comparison only.",
     "**Serotype value 0** (not a valid serotype; 134,407 records in 2023) is folded into Ign/Blank in Figure 7D. The author query remains open; Methods do not yet describe it.",
     "**Figure 7A/7B labels**: the panel previously called \"ELISA\" is the NS1 antigen result (SINAN field RESUL_NS1, matched by yearly counts); 7B is the IgM serology. Now labelled so. Please confirm.",
     "**Zika lag**: the pooled lagged model peaks at lag 1 while the per-FU lagged models have most significant FU at lag 2 (the text says both).",
@@ -213,7 +213,7 @@ for t in [
 A("")
 A("## 8. Figure map (numbers by order of first citation)")
 A("")
-A("| Manuscript | Draft (old numbering) | Repository files | Copy in `docs/manuscript/figures/` |")
+A("| Manuscript | Draft (old numbering) | Repository files | Copy in `manuscript/figures/` |")
 A("|---|---|---|---|")
 DRAFT = {"Figure 6": "Fig 1A\u2013B maps", "Supplementary Figure S1": "Fig 1C annual maps", "Supplementary Figure S2": "Fig 1D LISA and trend maps",
          "Figure 1": "Fig 2 incidence", "Figure 4": "Fig 3 Moran scatter", "Figure 5": "Fig 4 age and sex", "Figure 7": "Fig 5 dengue clinical",
@@ -225,7 +225,7 @@ for fg in rep["figures"]:
     files = fg["files"]
     copies = ["Figure%s.png" % num] if len(files) == 1 else ["Figure%s_%s.png" % (num, Path(x).stem.split("_", 1)[1]) for x in files]
     A("| %s | %s | %s | %s |" % (label, DRAFT.get(fg["repo_label"], "(new)"), ", ".join("`%s`" % x for x in files), ", ".join("`%s`" % x for x in copies)))
-A("| not cited | S1A\u2013C state totals, S2A\u2013C seasonal heatmaps, Table S11 | `outputs/*_05_federative_unit_totals.png`, `*_01b_monthly_heatmap.png`, `outputs/glm_*_results.xlsx` | |")
+A("| not cited | S1A\u2013C state totals, S2A\u2013C seasonal heatmaps, Table S11 | `outputs/clinical/*_05_federative_unit_totals.png`, `outputs/clinical/*_01b_monthly_heatmap.png`, `outputs/regression/glm_*_results.xlsx` | |")
 A("")
 A("## 9. Reference list")
 A("")
@@ -275,7 +275,7 @@ for r in [
     ("Title page", "Title, running title, authors, affiliations, two corresponding authors, ORCID iDs (placeholder), funding (placeholder), word counts", "running-title length UNVERIFIED"),
     ("Back matter", "Author contributions, Acknowledgments, Funding, Conflict of interest, Data availability, Ethics, Supporting information", "placeholders for what only the authors can state"),
     ("Page layout", "Times New Roman 12 pt, double spacing, 1-inch margins, US Letter, continuous line numbers (kept from the draft), page numbers", "UNVERIFIED (A4?); the \"St. Jude - Confidential\" footers were never enabled and are removed"),
-    ("Figures", "Separate files, never embedded; legends after the references, in order of citation (Figures 1\u20138, S1\u2013S7); copies under the manuscript numbers in `docs/manuscript/figures/`", "file format and resolution UNVERIFIED (see section 4)"),
+    ("Figures", "Separate files, never embedded; legends after the references, in order of citation (Figures 1\u20138, S1\u2013S7); copies under the manuscript numbers in `manuscript/figures/`", "file format and resolution UNVERIFIED (see section 4)"),
     ("Partial year 2026", "Every paragraph and legend that uses 2026 states that it covers January\u2013September and is annualized (build check); abstract, Methods 2.1/2.5, Results, Discussion, limitations and conclusion", "author instruction (comment 51), not a journal rule"),
     ("Tables", "None", ""),
     ("Reporting guideline", "RECORD (STROBE extension), cited in Methods; checklist in `RECORD_CHECKLIST.md`", "UNVERIFIED whether JMV requires the checklist"),
@@ -299,7 +299,7 @@ B("> " + imp)
 B("")
 B("**Round 2.** The sentences on the distributed lag non-linear model (DLNM) were deleted from Methods 2.9, Results 3.6 and the Discussion (comment 55); the pooled lagged model replaces them.")
 B("")
-B("## 4. Figure files (copies in `docs/manuscript/figures/`; the pipeline keeps its own names)")
+B("## 4. Figure files (copies in `manuscript/figures/`; the pipeline keeps its own names)")
 B("")
 B("| Manuscript file | Pixels | Stored dpi |")
 B("|---|---|---|")
@@ -308,7 +308,7 @@ for fg in rep["figures"]:
     files = fg["files"]
     for x in files:
         name = ("Figure%s.png" % num) if len(files) == 1 else ("Figure%s_%s.png" % (num, Path(x).stem.split("_", 1)[1]))
-        w, h, dpi = png_info(PROJECT / "figures" / x)
+        w, h, dpi = png_info(next((PROJECT / "figures").rglob(x)))
         B("| `%s` | %d \u00d7 %d | %s |" % (name, w, h, dpi or "n/a"))
 B("")
 B("Journals usually ask for TIFF or EPS at 300 dpi or more (line art at higher resolution). **UNVERIFIED for JMV.** PNG was left as is.")

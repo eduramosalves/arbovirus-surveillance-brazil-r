@@ -1,11 +1,11 @@
 # Figure captions
 
-Captions for the figures in `figures/`, written to be pasted into the manuscript. Generated on 2026-10-22 by
-`docs/manuscript/build/gen_captions.py` from the regenerated outputs (`outputs/figure_caption_values.csv`,
-`outputs/figure_exclusions_captions.txt`, `numbers.csv`): SINAN downloaded 2026-10-22, 2026 files = release of 2026-10-20,
+Captions for the figures in `figures/` (`main/`, `supplementary/`, `glm/`), written to be pasted into the manuscript. Generated on 2026-10-22 by
+`manuscript/build/gen_captions.py` from the regenerated outputs (`outputs/figure_notes/figure_caption_values.csv`,
+`outputs/figure_notes/figure_exclusions_captions.txt`, `numbers.csv`): SINAN downloaded 2026-10-22, 2026 files = release of 2026-10-20,
 notifications up to 2026-09-30, cases = every notification not classified as discarded. If the pipeline is rerun, regenerate
 this file. The numbering of the supplementary figures (S1, S2, GLM Figures 1-5) is the repository's; the manuscript numbers
-figures by order of citation (see `docs/manuscript/SYNC_LOG.md`).
+figures by order of citation (see `manuscript/SYNC_LOG.md`).
 
 Abbreviations used throughout: UF, federative unit (state); IRR, incidence rate ratio; CI, confidence
 interval; FE, fixed effects; LISA, local indicator of spatial association.
@@ -116,7 +116,7 @@ association; left, negative).
 ## Methods and limitations (text for the manuscript)
 
 The Methods and limitations of the manuscript are in `Alves ER et al JMV 2026.docx` and are built from the repository outputs
-(`docs/manuscript/`). Points specific to the figures:
+(`manuscript/`). Points specific to the figures:
 
 - **Case definition.** For the three diseases a case is every notification not classified as discarded (confirmed and probable).
   The discarded notifications excluded are 3,002,212 (dengue), 846,972 (chikungunya) and 263,816 (Zika),
@@ -124,7 +124,7 @@ The Methods and limitations of the manuscript are in `Alves ER et al JMV 2026.do
 - **Missing values.** In the clinical figures (5, 7, 8) percentages and distributions are calculated on records with a known value.
   Records coded as ignored or blank in SINAN were excluded from numerators and denominators, except the blank classification of chikungunya and Zika
   (a notification not yet classified, drawn as its own category). Recorded answers such as "not performed" or "inconclusive" were kept as
-  categories. The number and percentage excluded for each figure and year are in `outputs/figure_exclusions.csv`.
+  categories. The number and percentage excluded for each figure and year are in `outputs/figure_notes/figure_exclusions.csv`.
 - **2026.** 2026 covers January–September (notifications dated up to 2026-09-30) and its annual values are annualized (×12/9), which overstates
   the year because October–December carry 4.8% (dengue), 6.4% (chikungunya) and
   4.2% (Zika) of the cases of 2016–2025. It is kept in the trends, mean incidence, Moran’s I and LISA.
