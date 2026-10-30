@@ -3,7 +3,9 @@
 Provenance for every raw input of the 2016–2026 arbovirus analysis, and an index of the
 journal-style Source Data files. Raw files were re-downloaded from the official sources on
 **2026-10-08** and checked against the archived copies the results were built from
-(`data/updated_data.rar`, `data/metereologicos.rar`).
+(`data/updated_data.rar`, `data/metereologicos.rar`). **The 33 SINAN files were downloaded again on
+2026-10-22** (OpenDataSUS had republished the 2026 files on 2026-10-20); everything below about SINAN
+refers to that download unless a date says otherwise.
 
 ## 1. Raw sources
 
@@ -27,12 +29,14 @@ All of these are Brazilian federal open data, published under the Política de D
 - **Not used:** the pre-census DOU estimates for 2016–2021. They sit 1–1.5% above the projections
   nationally and up to 11% above for single states (Amapá), and would break the series at 2022.
 
-**Local copy:** `raw/` (99 files, about 1.7 GB) holds the exact files the results were built from.
-It is not committed to the git repository; only `raw/MANIFEST.csv` is. SINAN 2026 is the **2026-10-06 release**, downloaded 2026-10-08 with
-`tools/fetch_raw_sources.py` (now `tools/fetch_raw_sources.R`). `raw/MANIFEST.csv` lists bytes and sha256 for each file. Running
-`fetch_raw_sources.R` again replaces the 2026 SINAN files with whatever release is current. After
-that, `etl/check_db.R` reports differences for the 2026 case counts until
-`reference/expected_hashes.csv` is regenerated.
+**Local copy:** `raw/` is not committed to the git repository; only `raw/MANIFEST.csv` is. The full set
+was 99 files (about 1.7 GB). On 2026-10-22 only the 33 SINAN files (about 0.6 GB) were downloaded again, with
+`Rscript tools/fetch_raw_sources.R --only sinan`; the INMET, IBGE and boundary files were not, and `db/`
+climate, population and boundaries were not rebuilt (their hashes in `reference/expected_hashes.csv` still
+match). The SINAN rows of `raw/MANIFEST.csv` now list the bytes and sha256 of the 2026-10-22 download; `raw/sources_manifest.csv`
+(git-ignored) adds the URL, `Last-Modified` and access time of each file. The 2026 SINAN files are the **release of 2026-10-20**
+(the 2026-10-06 release used before cannot be fetched any more); the 2016–2024 files, and the 2025 files, have the
+same content as before.
 
 ## 2. Fresh downloads vs the archived inputs
 
@@ -42,17 +46,39 @@ that, `etl/check_db.R` reports differences for the 2026 case counts until
 | Re-zipped, same CSV content | `DENGBR25`, `CHIKBR25`, `ZIKABR25` (inner CSV CRC identical) |
 | Newer data | `DENGBR26` 460,356 → 465,323 records; `CHIKBR26` 130,003 → 131,830; `ZIKABR26` 12,682 → 12,971 |
 
-The 2026 SINAN files are preliminary, and OpenDataSUS republishes them weekly. **These results
-use the release of 2026-10-06** (notifications through Sep 25–27, still no October). The earlier
-2026-10-05 results used the 2026-09-26 release, which is archived in `updated_data.rar`. The
-newer release adds about 1% more records. State the release date in the methods.
+The 2026 SINAN files are preliminary, and OpenDataSUS republishes them weekly. State the release date in the methods.
+
+**2026-10-22 download.** 27 of the 33 SINAN files are byte-identical to the 2026-10-08 build (all of 2016–2024). The
+2025 files were re-zipped (`Last-Modified` 2026-10-20; same size) and the 2026 files have new content:
+
+| 2026 file | Records, release 2026-10-06 | Records, release 2026-10-20 |
+|---|---|---|
+| `DENGBR26` | 465,323 | 470,451 |
+| `CHIKBR26` | 131,830 | 133,490 |
+| `ZIKABR26` | 12,971 | 13,384 |
+
+The newer files reach into October. **Only notifications dated up to 2026-09-30 are used** (`LAST_NOTIFICATION_DATE` in
+`etl/build_cases_clinical.R`; 1,901 dengue, 151 chikungunya and 1 Zika notifications are left out), so 2026 still covers
+January–September, now with late notifications of those months filled in. Earlier results (2026-10-05, 2026-10-08)
+used the releases of 2026-09-26 and 2026-10-06.
 
 ## 3. From raw files to `db/`
 
 `etl/build_db.R` runs the whole build (population, cases + clinical tables, climate, checks).
 The field decodes are in `etl/build_cases_clinical.R`. In short:
-- **Cases:** counted by notification state (`SG_UF_NOT`) and month of `DT_NOTIFIC`.
-  DENV counts probable cases (`CLASSI_FIN ≠ 5`). CHIKV and ZIKV count all notifications.
+- **Cases:** counted by notification state (`SG_UF_NOT`) and month of `DT_NOTIFIC`. **One definition for the three
+  diseases (since 2026-10-22): every notification except those classified as discarded**, that is, confirmed plus
+  probable (inconclusive and under-investigation notifications stay in). Discarded `CLASSI_FIN` codes: dengue 5; chikungunya 5,
+  and 2 in the early-2016 form (which coded confirmed / discarded as 1 / 2, like the Zika form; checked on the 2016 file: same
+  seasonal shape and 2.2 : 1 ratio as codes 13 / 5, and code 2 has almost no deaths from the disease); Zika 2. The dengue files
+  from 2022 on contain no discarded notifications at all. `clinical_tables/discarded_counts.csv` gives, per disease and
+  year, the notifications, those dropped by the 2026 date cap, the discarded ones excluded, and the cases kept.
+  Before 2026-10-22 only dengue was filtered, and chikungunya and Zika counted every notification.
+  **Zero months:** a state-month without a case is written as 0 (`normalized_fact_cases.csv` is a complete
+  state × month grid) for every state that has notifications in that year's file, counted before the discarded ones
+  are dropped; a state with no notification at all in the file (Espírito Santo 2021, chikungunya and Zika) is left
+  absent, that is, missing. Before this, absent months were treated as not reported and annual totals were annualized
+  over the months present, which would have inflated the small Zika counts.
 - **Climate:** INMET hourly data. −9999 values are masked. A station-month counts only with ≥ 240 valid
   temperature readings or ≥ 360 valid rain readings. State values are the mean across stations.
   When a year zip holds several cumulative snapshots of one station (`2026.zip` has files ending
@@ -81,8 +107,11 @@ annual incidence, Mann-Kendall, Spearman, global Moran, mean incidence, LISA, an
 | `Tables` | Bootstrap CIs, global Moran, clinical breakdowns for 2016–2026 |
 
 **Caveats:**
-- **Figures 5, 7 and 8 end in 2025.** They are drawn from the GraphPad `.pzfx` tables. The 2016–2026
-  breakdowns in `clinical_tables/` use different age bands.
+- **Figures 5, 7 and 8 are drawn from `clinical_tables/clinical_demographic_long.csv`** (2016–2026, discarded
+  notifications excluded, SINAN standard age bands). Until 2026-10-22 they came from hand-made GraphPad `.pzfx` tables
+  that ended in 2025, counted discarded chikungunya and Zika notifications and had no chikungunya for 2016; those files are kept
+  in `_unused/reference/graphpad_data/`, only to compare the two sources (the `.pzfx` reader was removed from `pipelines/graphpad_pipeline.R`).
+  The 2016–2020 ages were unreadable in the clinical tables before the same date (the old files store ages as `"4003.0"`).
 - **The age violins are resampled.** They draw 6,000 synthetic ages per year from the binned counts
   (seed 42). The Source Data gives the bin counts plus the plotted quartiles.
 - **2026 is annualised.** All 2026 annual incidence is annualised from January–September.

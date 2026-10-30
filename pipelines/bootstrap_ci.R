@@ -4,7 +4,7 @@
 #  Adds non-parametric bootstrap CIs (1000 resamples, percentile method) alongside
 #  the normal-approximation CIs.  More robust to the right-skew typical
 #  of count and incidence data.
-#  Output files (in ./outputs/):
+#  Output files (in ./outputs/bootstrap/):
 #    bootstrap_ci_95_cases.csv
 #    bootstrap_ci_95_incidence.csv
 #    ci_comparison.xlsx     (joins normal-approx and bootstrap CIs in one table)
@@ -60,10 +60,10 @@ main <- function() {
                 rc$Normal_CI_Lower, rc$Normal_CI_Upper, rc$Bootstrap_CI_Lower, rc$Bootstrap_CI_Upper))
   }
   df_cases <- rbindlist(rows_cases); df_inc <- rbindlist(rows_inc)
-  write_csv_py(df_cases, file.path(OUTPUT_DIR, "bootstrap_ci_95_cases.csv"))
-  write_csv_py(df_inc, file.path(OUTPUT_DIR, "bootstrap_ci_95_incidence.csv"))
+  write_csv_py(df_cases, out_file("bootstrap_ci_95_cases.csv"))
+  write_csv_py(df_inc, out_file("bootstrap_ci_95_incidence.csv"))
   cat("\n  Saved -> bootstrap_ci_95_cases.csv\n  Saved -> bootstrap_ci_95_incidence.csv\n")
-  write_xlsx_sheets(list(Cases = df_cases, Incidence_per100k = df_inc), file.path(OUTPUT_DIR, "ci_comparison.xlsx"))
+  write_xlsx_sheets(list(Cases = df_cases, Incidence_per100k = df_inc), out_file("ci_comparison.xlsx"))
   cat("  Saved -> ci_comparison.xlsx\n\nDone.\n\n")
 }
 

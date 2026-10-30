@@ -10,7 +10,7 @@
 #  The crossbasis is dlnm::crossbasis(argvar = ns(knots), arglag = "lin") written
 #  out with splines::ns: knots at the 33.3/66.7 % (temperature) or 50 % (rain)
 #  quantiles of the distinct pooled lag 0-2 exposure values, boundary knots at its range.
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    dlnm_exposure_response.csv   cumulative IRR curves vs Temp / Rain, with 95% CI
 #    dlnm_summary.csv             per-virus temperature optimum + overdispersion
 #    dlnm_exposure_response.png   figure (3 viruses x {Temperature, Rainfall})

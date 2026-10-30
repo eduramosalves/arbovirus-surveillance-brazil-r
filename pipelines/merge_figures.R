@@ -1,12 +1,12 @@
 # merge_figures.R
-# Combines existing pipeline PNGs into composite article figures (figures/, 200 dpi).
+# Combines existing pipeline PNGs into composite article figures (figures/main/ and figures/supplementary/, 200 dpi).
 #   Figure 1 — Temporal incidence & regional distribution
 #   Figure 2 — Trend analysis (Mann-Kendall + Sen's slope)
 #   Figure 3 — Climate-disease correlations (Spearman)
 #   Figure 4 — Spatial autocorrelation (Moran scatterplot)
 #   Figure 5 — Patient demographics (age + sex, all three diseases)
 #   Figure 6 — Combined map: mean incidence class of the three diseases on one map of Brazil
-#   Figure 7 — Dengue clinical (ELISA, IgM, hospitalization, serotype)
+#   Figure 7 — Dengue clinical (NS1 antigen, IgM, hospitalization, serotype)
 #   Figure 8 — Chikungunya and Zika clinical
 #   Figure S1 — Annual incidence, one combined map per year (FigureS1_<year>) + overview grid
 #   Figure S2 — LISA clusters (A) and Mann-Kendall trends (B), each one combined map
@@ -53,7 +53,7 @@ draw_img <- function(img, label = NULL) {
 # `extra` is a function drawn last (e.g. side labels).
 composite <- function(name, fw, fh, heights, widths, cells, hgap = 0.04, wgap = 0.03, extra = NULL, left = 0.3) {
   top <- 0.4
-  path <- file.path(SAVE_TO, name)
+  path <- fig_file(name)
   ragg::agg_png(path, width = fw + left, height = fh + top, units = "in", res = DPI, background = "white")
   grid.newpage()
   nr <- length(heights); nc <- length(widths)
@@ -95,7 +95,7 @@ cell <- function(img, row, col, label = NULL) list(img = img, row = row, col = c
 
 # ── Figures 1-3: two stacked panels ──────────────────────────────────────────
 two_rows <- function(a, b, name) {
-  i1 <- load_img(file.path(OUT_DIR, a)); i2 <- load_img(file.path(OUT_DIR, b))
+  i1 <- load_img(out_file(a)); i2 <- load_img(out_file(b))
   fw <- 18
   fh <- fw * (1 / ratio(i1) + 1 / ratio(i2)) * 0.5 + 0.3
   composite(name, fw, fh, heights = c(img_h(i1) / img_w(i1), img_h(i2) / img_w(i2)), widths = 1,
@@ -103,19 +103,18 @@ two_rows <- function(a, b, name) {
 }
 
 main <- function() {
-  dir.create(SAVE_TO, showWarnings = FALSE)
   two_rows("py_01_annual_incidence.png", "py_03_boxplot_regional.png", "Figure1_incidence_regional.png")
   two_rows("py_04_mannkendall_tau.png", "py_05_sens_slope.png", "Figure2_trend_analysis.png")
   two_rows("py_06_spearman_summary.png", "py_08_lag_profile_region.png", "Figure3_climate_correlations.png")
 
   # ── Figure 4 ──
-  im <- load_img(file.path(OUT_DIR, "py_10_moran_scatterplot.png"))
+  im <- load_img(out_file("py_10_moran_scatterplot.png"))
   composite("Figure4_spatial_autocorrelation.png", 16, 16 / ratio(im), 1, 1, list(cell(im, 1, 1)))
 
   # ── Figure 5: age violins (row A) + sex (row B) ──
   diseases <- c("Dengue", "Chikungunya", "Zika")
-  ages <- lapply(diseases, function(d) load_img(file.path(OUT_DIR, sprintf("%s_04_age_group_violin.png", d))))
-  sexes <- lapply(diseases, function(d) load_img(file.path(OUT_DIR, sprintf("%s_03_sex.png", d))))
+  ages <- lapply(diseases, function(d) load_img(out_file(sprintf("%s_04_age_group_violin.png", d))))
+  sexes <- lapply(diseases, function(d) load_img(out_file(sprintf("%s_03_sex.png", d))))
   fw <- 18
   fh <- fw * (1 / (ratio(ages[[1]]) * 3) + 1 / (ratio(sexes[[1]]) * 3)) + 0.5
   cells <- c(lapply(1:3, function(i) cell(ages[[i]], 1, i, if (i == 1) "A")),
@@ -124,13 +123,13 @@ main <- function() {
             cells = cells, hgap = 0.05)
 
   # ── Figure 6: combined three-disease map ──
-  combo <- load_img(file.path(OUT_DIR, "geo_07_combined_map.png"))
+  combo <- load_img(out_file("geo_07_combined_map.png"))
   composite("Figure6_combined_map.png", 8, 8 / ratio(combo), 1, 1, list(cell(combo, 1, 1)))
 
   # ── Figure S1: one map per year (the year is tagged on each map) + an overview grid ──
   yrs <- sort(as.integer(sub("^geo_02_temporal_([0-9]{4})\\.png$", "\\1",
-                             list.files(OUT_DIR, pattern = "^geo_02_temporal_[0-9]{4}\\.png$"))))
-  ty <- lapply(yrs, function(y) load_img(file.path(OUT_DIR, sprintf("geo_02_temporal_%d.png", y))))
+                             list.files(out_dir("spatial"), pattern = "^geo_02_temporal_[0-9]{4}\\.png$"))))
+  ty <- lapply(yrs, function(y) load_img(out_file(sprintf("geo_02_temporal_%d.png", y))))
   for (i in seq_along(yrs))
     composite(sprintf("FigureS1_%d.png", yrs[i]), 8, 8 / ratio(ty[[i]]), 1, 1, list(cell(ty[[i]], 1, 1)))
   nc <- 4; nr <- ceiling(length(yrs) / nc)
@@ -138,21 +137,21 @@ main <- function() {
             lapply(seq_along(yrs), function(i) cell(ty[[i]], (i - 1) %/% nc + 1, (i - 1) %% nc + 1)))
 
   # ── Figure S2: LISA clusters (A) and Mann-Kendall trends (B) ──
-  lisa <- load_img(file.path(OUT_DIR, "geo_05_lisa_clusters.png"))
-  trend <- load_img(file.path(OUT_DIR, "geo_06_trend_map.png"))
+  lisa <- load_img(out_file("geo_05_lisa_clusters.png"))
+  trend <- load_img(out_file("geo_06_trend_map.png"))
   composite("FigureS2_lisa_trend.png", 16, 8 / ratio(lisa) + 0.3, 1, rep(1, 2),
             list(cell(lisa, 1, 1, "A"), cell(trend, 1, 2, "B")))
 
   # ── Figure 7: Dengue clinical 2x2 ──
-  d7 <- lapply(c("ELISA", "IgM", "hospitalization", "serotype"), function(s)
-    load_img(file.path(OUT_DIR, sprintf("Dengue_%s_%s.png", if (s == "serotype") "03" else "02", s))))
+  d7 <- lapply(c("NS1", "IgM", "hospitalization", "serotype"), function(s)
+    load_img(out_file(sprintf("Dengue_%s_%s.png", if (s == "serotype") "03" else "02", s))))
   fw <- 14
   composite("Figure7_dengue_clinical.png", fw, fw / ratio(d7[[1]]), heights = c(1, 1), widths = c(1, 1),
             cells = list(cell(d7[[1]], 1, 1, "A"), cell(d7[[2]], 1, 2, "B"), cell(d7[[3]], 2, 1, "C"), cell(d7[[4]], 2, 2, "D")))
 
   # ── Figure 8: Chikungunya (3 panels) over Zika (4 panels) on a 12-column grid ──
-  chik <- lapply(c("classification", "criteria", "evolution"), function(s) load_img(file.path(OUT_DIR, sprintf("Chikungunya_03_%s.png", s))))
-  zika <- lapply(c("classification", "criteria", "evolution", "pregnancy"), function(s) load_img(file.path(OUT_DIR, sprintf("Zika_03_%s.png", s))))
+  chik <- lapply(c("classification", "criteria", "evolution"), function(s) load_img(out_file(sprintf("Chikungunya_03_%s.png", s))))
+  zika <- lapply(c("classification", "criteria", "evolution", "pregnancy"), function(s) load_img(out_file(sprintf("Zika_03_%s.png", s))))
   fw <- 18
   fh <- fw * 2 / (4 * ratio(chik[[1]])) + 0.4
   cells <- c(lapply(1:3, function(i) cell(chik[[i]], 1, c((i - 1) * 4 + 1, i * 4), if (i == 1) "A")),
@@ -160,7 +159,7 @@ main <- function() {
   side <- function(fh, top, left) {
     lab <- function(txt, y, col) grid.text(txt, x = unit(left * 0.35, "in"), y = unit(y * fh, "in"), rot = 90,
                                            gp = gpar(fontsize = 11, fontface = "bold", col = col, fontfamily = PLOT_FONT))
-    lab("Chikungunya", 0.74, "#E67E22"); lab("Zika", 0.27, "#2980B9")
+    lab("Chikungunya", 0.74, VIRUS_COLOR[["Chikungunya"]]); lab("Zika", 0.27, VIRUS_COLOR[["Zika"]])
   }
   composite("Figure8_chikv_zika_clinical.png", fw, fh, heights = c(1, 1), widths = rep(1, 12), cells = cells,
             hgap = 0.06, wgap = 0.0, extra = side, left = 0.7)

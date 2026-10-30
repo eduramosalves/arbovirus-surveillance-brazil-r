@@ -4,7 +4,7 @@
 #  Global Moran's I, LISA clusters and Mann-Kendall trends per state, and every map
 #  figure: mean incidence (Figure 6), annual incidence per year (Figure S1), LISA and
 #  trend maps (Figure S2) -- all drawn as one map with the three diseases as symbols.
-#  Reads the normalized DB and writes to <repo>/outputs/.
+#  Reads the normalized DB and writes to <repo>/outputs/spatial/.
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({
@@ -174,7 +174,7 @@ symbol_map <- function(gdf_states, sym, fill_values, fill_name, fill_labels, not
           legend.background = element_rect(fill = "white", colour = NA))
 }
 save_map <- function(p, fname) {
-  save_png(p, file.path(OUTPUT_DIR, fname), 8, 7.4, dpi = 200)
+  save_png(p, out_file(fname), 8, 7.4, dpi = 200)
   cat(sprintf("    Saved -> %s\n", fname))
 }
 note_counts <- function(fname, sym, col, labels) {   # e.g. "HH 8 | LL 4 | ..." per disease
@@ -276,12 +276,12 @@ missing_state_years <- function(gdf_states, annual) {
                            Abbr = unname(NAME_TO_ABBR[Location_Name]), Year, Reason = "no SINAN notification records")]
   })
   out <- rbindlist(rows)
-  write_csv_py(out, file.path(OUTPUT_DIR, "figure_exclusions_state_years.csv"))
+  write_csv_py(out, out_file("figure_exclusions_state_years.csv"))
   cat(sprintf("    Saved -> figure_exclusions_state_years.csv (%d state-years without records)\n", nrow(out)))
 }
 
 export_stats <- function(mean_inc, mk_results, lisa_results, moran_global) {
-  path <- file.path(OUTPUT_DIR, "geo_spatial_stats.xlsx")
+  path <- out_file("geo_spatial_stats.xlsx")
   cols <- c("Location_Name", "Region", "Abbr", "Mean_Inc", "LISA_Cat", "Local_I", "LISA_p", "LISA_Quadrant",
             "q_value", "Significant_FDR", "LISA_Cat_FDR")
   sheets <- list(

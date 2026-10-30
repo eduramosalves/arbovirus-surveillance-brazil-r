@@ -18,6 +18,40 @@ Sys.setenv(TZ = "UTC")
 
 path_root <- function(...) file.path(ROOT, ...)
 
+# ---------------------------------------------------------------------------------------------
+# Where results live. This is the ONLY place that knows the folder layout of outputs/ and figures/:
+# the sub-folder of a result file follows from its name (the first matching pattern wins).
+#   outputs/additional/  is written by pipelines/additional/ (adv_common.R)
+#   figures/alternatives/ is written by pipelines/alt_results.R
+# ---------------------------------------------------------------------------------------------
+OUTPUT_LAYOUT <- c(
+  "^py_"                        = "descriptive",   # arbovirus_pipeline_en.R: incidence, trends, correlations
+  "^geo_"                       = "spatial",       # arbovirus_geospatial.R: maps, Moran, LISA
+  "^(Chikungunya|Dengue|Zika)_" = "clinical",      # graphpad_pipeline.R: clinical and demographic plots
+  "^glm_"                       = "regression",    # glm_common.R and the glm_*.R wrappers
+  "^(bootstrap_|ci_comparison)" = "bootstrap",     # bootstrap_ci.R
+  "^figure_"                    = "figure_notes"   # caption values and records excluded per figure
+)
+FIGURE_LAYOUT <- c(
+  "^Figure[0-9]" = "main",           # Figures 1-8
+  "^FigureS"     = "supplementary",  # Supplementary Figures S1 and S2
+  "^glm_fig"     = "glm"             # regression figures
+)
+.layout_topic <- function(name, layout) {
+  hit <- which(vapply(names(layout), function(p) grepl(p, name), NA))
+  if (!length(hit)) stop(sprintf("'%s' is not covered by the layout table in R/utils.R", name))
+  layout[[hit[1]]]
+}
+# Folder of a result topic (created on demand), e.g. out_dir("spatial") = <root>/outputs/spatial
+out_dir <- function(topic) { d <- path_root("outputs", topic); dir.create(d, recursive = TRUE, showWarnings = FALSE); d }
+# Full path of an output / figure file from its name (the sub-folder is created on demand)
+out_file <- function(name) file.path(out_dir(.layout_topic(name, OUTPUT_LAYOUT)), name)
+fig_file <- function(name) {
+  d <- path_root("figures", .layout_topic(name, FIGURE_LAYOUT))
+  dir.create(d, recursive = TRUE, showWarnings = FALSE)
+  file.path(d, name)
+}
+
 quiet_library <- function(...) {
   for (p in c(...)) suppressPackageStartupMessages(library(p, character.only = TRUE))
 }
@@ -222,7 +256,7 @@ FIGURE_OF <- c(
   Dengue_03_sex = "Figure 5B", Chikungunya_03_sex = "Figure 5B", Zika_03_sex = "Figure 5B",
   geo_07_combined_map = "Figure 6",
   geo_05_lisa_clusters = "Figure S2A", geo_06_trend_map = "Figure S2B",
-  Dengue_02_ELISA = "Figure 7A", Dengue_02_IgM = "Figure 7B", Dengue_02_hospitalization = "Figure 7C", Dengue_03_serotype = "Figure 7D",
+  Dengue_02_NS1 = "Figure 7A", Dengue_02_IgM = "Figure 7B", Dengue_02_hospitalization = "Figure 7C", Dengue_03_serotype = "Figure 7D",
   Chikungunya_03_classification = "Figure 8A", Chikungunya_03_criteria = "Figure 8A", Chikungunya_03_evolution = "Figure 8A",
   Zika_03_classification = "Figure 8B", Zika_03_criteria = "Figure 8B", Zika_03_evolution = "Figure 8B", Zika_03_pregnancy = "Figure 8B",
   glm_fig1_pooled_climate_irr = "GLM Figure 1", glm_fig2_per_state_heatmap = "GLM Figure 2", glm_fig3_lag_profile = "GLM Figure 3",
@@ -234,7 +268,7 @@ figure_of <- function(output_file) {
 }
 
 # Figures carry no in-plot titles; the text they used to hold (former titles, statistics, colour keys)
-# is kept for the manuscript captions in outputs/figure_caption_values.csv. caption_note() collects
+# is kept for the manuscript captions in outputs/figure_notes/figure_caption_values.csv. caption_note() collects
 # rows; write_caption_notes(script) replaces that script's rows in the file.
 .caption_rows <- new.env()
 .caption_rows$rows <- list()
@@ -244,7 +278,7 @@ caption_note <- function(output_file, item, value, panel = "") {
   invisible()
 }
 write_caption_notes <- function(script) {
-  path <- path_root("outputs", "figure_caption_values.csv")
+  path <- out_file("figure_caption_values.csv")
   new <- do.call(rbind, .caption_rows$rows)
   new <- cbind(Script = rep(script, NROW(new)), new)
   old <- if (file.exists(path)) data.table::fread(path, encoding = "UTF-8", colClasses = "character", na.strings = NULL) else NULL
@@ -275,6 +309,10 @@ mpl_colours <- function(name, n = 256) mpl_cmap(name)(seq(0, 1, length.out = n))
 
 # matplotlib scatter `s` (points^2) -> ggplot point size (mm)
 mpl_s_to_size <- function(s) sqrt(s) / ggplot2::.pt
+
+# One colour per virus for every figure (the manuscript uses it throughout). Chikungunya is green, not
+# orange, so it is not confused with dengue (red).
+VIRUS_COLOR <- c(Dengue = "#d7263d", Chikungunya = "#1b998b", Zika = "#2e86ab")
 
 # matplotlib "tab10" colour cycle
 TAB10 <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf")

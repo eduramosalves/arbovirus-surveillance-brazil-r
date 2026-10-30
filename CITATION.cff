@@ -24,3 +24,54 @@ keywords:
   - epidemiology
   - spatial analysis
   - R
+# Literature the results are discussed against; see docs/LITERATURE_CONTEXT.md. Authors are first author
+# plus "et al."; full author lists are in the papers.
+references:
+  - type: article
+    authors:
+      - family-names: Liu
+        given-names: Zhuanzhuan
+      - name: "et al."
+    title: "The effect of temperature on dengue virus transmission by Aedes mosquitoes"
+    journal: "Frontiers in Cellular and Infection Microbiology"
+    year: 2023
+    volume: 13
+    start: 1242173
+    doi: "10.3389/fcimb.2023.1242173"
+  - type: article
+    authors:
+      - family-names: Moura
+        given-names: Márcia Cristina Bernardo de Melo
+      - name: "et al."
+    title: "Spatio-temporal dynamics of Aedes aegypti and Aedes albopictus oviposition in an urban area of northeastern Brazil"
+    journal: "Tropical Medicine & International Health"
+    year: 2020
+    volume: 25
+    issue: 12
+    start: 1510
+    end: 1521
+    doi: "10.1111/tmi.13491"
+  - type: article
+    authors:
+      - family-names: Lim
+        given-names: Ahyoung
+      - name: "et al."
+    title: "The overlapping global distribution of dengue, chikungunya, Zika and yellow fever"
+    journal: "Nature Communications"
+    year: 2025
+    volume: 16
+    issue: 1
+    start: 3418
+    doi: "10.1038/s41467-025-58609-5"
+  - type: article
+    authors:
+      - family-names: de Lima
+        given-names: Shirlene T.S.
+      - name: "et al."
+    title: "Transmission dynamics of dengue virus, Ceará State, Brazil, 2010–2025"
+    journal: "Emerging Infectious Diseases"
+    year: 2026
+    month: 11
+    volume: 32
+    issue: 11
+    doi: "10.3201/eid3211.260609"

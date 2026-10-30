@@ -9,7 +9,7 @@
 #  using the KNN-5 row-standardised weights of the main pipeline.
 #  AIC follows the spreg conventions of the original outputs:
 #    OLS 2k + n(log(2 pi RSS/n) + 1) with k = 3; ML_Lag 2*4 - 2 logLik; ML_Error 2*3 - 2 logLik.
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    spatial_regression_coefficients.csv, spatial_regression_diagnostics.csv,
 #    spatial_regression.png
 # ================================================================================

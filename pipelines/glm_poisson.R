@@ -4,10 +4,10 @@
 #  Cases ~ Climate + offset(log Population), family = Poisson, link = log.
 #  Three model specs (per-state, lagged, pooled with state fixed effects).
 #  Output:
-#    outputs/glm_poisson_per_state.csv
-#    outputs/glm_poisson_lagged.csv
-#    outputs/glm_poisson_pooled_fe.csv
-#    outputs/glm_poisson_results.xlsx
+#    outputs/regression/glm_poisson_per_state.csv
+#    outputs/regression/glm_poisson_lagged.csv
+#    outputs/regression/glm_poisson_pooled_fe.csv
+#    outputs/regression/glm_poisson_results.xlsx
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({

@@ -8,7 +8,7 @@
 #    4. adv_covid_its.R           COVID-19 interrupted time series
 #    5. adv_forecast.R            out-of-sample SARIMA backtest
 #    6. adv_epidemic_threshold.R  epidemic thresholds (Serfling-type baseline)
-#  All outputs land in outputs/<RUN_DATE>/additional/ (see adv_common.R OUT_ROOT).
+#  All outputs land in outputs/additional/ (see adv_common.R OUT_ROOT).
 #  Each stage runs in its own R process; a failure is logged and the run
 #  continues, exiting 1 at the end if any stage failed. Mirrors pipelines/run_all.R.
 # ================================================================================

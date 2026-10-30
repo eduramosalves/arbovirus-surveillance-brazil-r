@@ -2,7 +2,7 @@
 #  ALTERNATIVE-VIEW FIGURES
 # ================================================================================
 #  Three alternative presentations of the main results, read back from the
-#  pipeline outputs (no statistics are recomputed). Written to alt_results/ at 300 dpi:
+#  pipeline outputs (no statistics are recomputed). Written to figures/alternatives/ at 300 dpi:
 #    trend01_slope_first_last.png   slope chart, first vs last year, MK-significant states coloured
 #    trend03_sen_dotbar.png         sorted Sen-slope dot-and-bar per state
 #    glm02_caterpillar_temp_irr.png per-state temperature IRR (NegBin), sorted
@@ -24,11 +24,10 @@ source(path_root("pipelines", "data_loader.R"))
 quiet_library("ggplot2", "patchwork", "readxl")
 
 OUT_MAIN <- OUTPUT_DIR
-OUT <- path_root("alt_results")
-dir.create(OUT, showWarnings = FALSE)
+OUT <- path_root("figures", "alternatives")
+dir.create(OUT, recursive = TRUE, showWarnings = FALSE)
 
 VIRUS_ORDER <- c("Dengue", "Chikungunya", "Zika")
-VIRUS_COLOR <- c(Dengue = "#d7263d", Chikungunya = "#1b998b", Zika = "#2e86ab")
 
 theme_alt <- function() {
   theme_mpl(8.5, grid = FALSE) + theme(plot.title = element_text(size = 11, face = "bold"), axis.title = element_text(size = 10),
@@ -42,9 +41,9 @@ save_alt <- function(p, name, w, h) {
 }
 
 # ---- data loaders ----------------------------------------------------------------
-annual_incidence <- function() as.data.table(read_excel(file.path(OUT_MAIN, "py_statistical_results.xlsx"), sheet = "Annual_Incidence"))
-mann_kendall <- function() as.data.table(read_excel(file.path(OUT_MAIN, "py_statistical_results.xlsx"), sheet = "Mann_Kendall"))
-glm_csv <- function(family, spec) fread(file.path(OUT_MAIN, sprintf("glm_%s_%s.csv", family, spec)))
+annual_incidence <- function() as.data.table(read_excel(out_file("py_statistical_results.xlsx"), sheet = "Annual_Incidence"))
+mann_kendall <- function() as.data.table(read_excel(out_file("py_statistical_results.xlsx"), sheet = "Mann_Kendall"))
+glm_csv <- function(family, spec) fread(out_file(sprintf("glm_%s_%s.csv", family, spec)))
 
 # matplotlib "symlog" axis (linthresh 10, linscale 1, base 10)
 symlog_trans <- function(linthresh = 10) {

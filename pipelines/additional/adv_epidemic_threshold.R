@@ -5,7 +5,7 @@
 #  annual harmonics (K=2), fitted on all reported months. Expected = expm1(fit);
 #  epidemic threshold = expm1(fit + 1.96 * sd(residuals)) (sd with divisor n);
 #  a month is "epidemic" when the observed incidence exceeds the threshold.
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    epidemic_threshold_monthly.csv   national + regional monthly series with flags
 #    epidemic_threshold_summary.csv   per geography: months flagged and which
 #    epidemic_threshold_national.png
