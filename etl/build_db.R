@@ -1,5 +1,5 @@
 # Build the analysis inputs from raw data:
-#   reference/ -> db/ (dim_location, brazil_states.geojson, graphpad_data/)
+#   reference/ -> db/ (dim_location, brazil_states.geojson)
 #   raw/ibge   -> db/normalized_fact_population.csv
 #   raw/sinan  -> db/normalized_fact_cases.csv + clinical_tables/
 #   raw/inmet  -> db/normalized_fact_climate.csv
@@ -19,9 +19,6 @@ source(path_root("etl", "_paths.R"))
 
 file.copy(file.path(REF, "dim_location.csv"), file.path(DB, "normalized_dim_location.csv"), overwrite = TRUE, copy.date = TRUE)
 file.copy(file.path(REF, "brazil_states.geojson"), file.path(DB, "brazil_states.geojson"), overwrite = TRUE, copy.date = TRUE)
-dir.create(file.path(DB, "graphpad_data"), showWarnings = FALSE)
-file.copy(list.files(file.path(REF, "graphpad_data"), full.names = TRUE), file.path(DB, "graphpad_data"),
-          overwrite = TRUE, copy.date = TRUE)
 cat("reference files copied into db/\n")
 
 for (script in c("build_population.R", "build_cases_clinical.R", "build_climate.R", "check_db.R")) {

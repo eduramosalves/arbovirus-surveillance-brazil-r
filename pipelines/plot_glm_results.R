@@ -3,7 +3,7 @@
 # ================================================================================
 #  Reads the CSVs produced by glm_common.R (run_models / export_results) and
 #  generates publication-style figures of the climate IRRs.
-#  Outputs (PNG, 300 dpi) -> figures/:
+#  Outputs (PNG, 300 dpi) -> figures/glm/:
 #    glm_fig1_pooled_climate_irr.png   : pooled-FE IRR bars (Temp, Rain) by virus and model family
 #    glm_fig2_per_state_heatmap.png    : per-state IRR heatmap (negbin), Temp/Rain
 #    glm_fig3_lag_profile.png          : median IRR by lag (0/1/2) for Temp & Rain
@@ -25,7 +25,6 @@ source(path_root("pipelines", "data_loader.R"))
 quiet_library("ggplot2", "patchwork")
 
 VIRUS_ORDER  <- c("Dengue", "Chikungunya", "Zika")
-VIRUS_COLOR  <- c(Dengue = "#d7263d", Chikungunya = "#1b998b", Zika = "#2e86ab")
 FAMILY_ORDER <- c("poisson", "quasi_poisson", "negbin")
 FAMILY_LABEL <- c(poisson = "Poisson", quasi_poisson = "Quasi-Poisson", negbin = "Negative Binomial")
 FAMILY_COLOR <- setNames(mpl_cmap("viridis")(0.2 + 0.3 * 0:2), FAMILY_LABEL)
@@ -38,9 +37,9 @@ theme_glm <- function() {
   theme_mpl(9, grid = FALSE) + theme(plot.title = element_text(size = 11), axis.title = element_text(size = 10),
                                      legend.text = element_text(size = 9))
 }
-read_glm <- function(family, spec) fread(file.path(OUTPUT_DIR, sprintf("glm_%s_%s.csv", family, spec)))
+read_glm <- function(family, spec) fread(out_file(sprintf("glm_%s_%s.csv", family, spec)))
 save_fig <- function(p, name, w, h) {
-  out <- file.path(FIGURES_DIR, name)
+  out <- fig_file(name)
   save_png(p, out, w, h, dpi = 300)
   cat(sprintf("  saved -> %s\n", out))
 }
@@ -95,9 +94,15 @@ fig2_per_state_heatmap <- function() {
 
 fig3_lag_profile <- function() {
   df <- read_glm("negbin", "lagged")
+  pooled <- read_glm("negbin", "pooled_lagged")   # one pooled model per virus: IRR and 95% CI of each lag term
   panels <- list(list(LAG_TERMS_TEMP, "IRR per +1 °C (mean temperature)"),
                  list(LAG_TERMS_RAIN, "IRR per +1 mm (rainfall)"))
   plots <- lapply(panels, function(pn) {
+    pl <- rbindlist(lapply(VIRUS_ORDER, function(v) rbindlist(lapply(seq_along(pn[[1]]), function(i) {
+      r <- pooled[Virus == v & Term == pn[[1]][i]]
+      if (!nrow(r)) return(NULL)
+      data.table(Virus = factor(v, VIRUS_ORDER), Lag = i - 1, IRR = r$IRR[1], lo = r$IRR_CI_L[1], hi = r$IRR_CI_U[1])
+    }))))
     d <- rbindlist(lapply(VIRUS_ORDER, function(v) rbindlist(lapply(seq_along(pn[[1]]), function(i) {
       x <- df[Virus == v & Term == pn[[1]][i]]$IRR; x <- x[is.finite(x)]
       data.table(Virus = v, Lag = i - 1, med = if (length(x)) median(x) else NA_real_,
@@ -109,30 +114,33 @@ fig3_lag_profile <- function() {
       geom_ribbon(aes(ymin = lo, ymax = hi), alpha = 0.15, colour = NA) +
       geom_hline(yintercept = 1, colour = "grey50", linewidth = 0.8 / 2.13, linetype = "dashed") +
       geom_line(linewidth = 2 / 2.13) + geom_point(size = 7 / .pt * 1.3) +
+      geom_pointrange(data = pl, aes(Lag, IRR, ymin = lo, ymax = hi, colour = Virus), inherit.aes = FALSE, shape = 18,
+                      size = 0.9, linewidth = 0.6, position = position_nudge(x = 0.06), show.legend = FALSE) +
       scale_colour_manual(values = VIRUS_COLOR, name = NULL) + scale_fill_manual(values = VIRUS_COLOR, name = NULL) +
       scale_x_continuous(breaks = 0:2, labels = LAG_LABELS) +
       labs(x = "Lag (months)", y = pn[[2]]) + theme_glm() +
       theme(legend.position = "inside", legend.position.inside = c(0.02, 0.98), legend.justification = c(0, 1))
   })
   caption_note("glm_fig3_lag_profile.png", "Former title", "Per-state NegBin GLM with lagged climate predictors and month FE — median IRR across states")
-  caption_note("glm_fig3_lag_profile.png", "Key (former title)", "Line = median IRR across states; shaded = IQR")
+  caption_note("glm_fig3_lag_profile.png", "Key (former title)",
+               "Line = median IRR across states; shaded = IQR; diamond with bar = pooled model with lags 0-2 entered jointly (IRR, 95% CI)")
   save_fig(wrap_plots(plots, nrow = 1), "glm_fig3_lag_profile.png", 12, 5)
 }
 
 fig4_aic_comparison <- function() {
-  specs <- c("per_state", "lagged", "pooled_fe")
+  specs <- c("per_state", "lagged", "pooled_fe", "pooled_lagged")
+  spec_lab <- c(per_state = "per-state", lagged = "per-state\nlagged", pooled_fe = "pooled FE", pooled_lagged = "pooled FE\nlagged")
   agg <- rbindlist(lapply(FAMILY_ORDER, function(fam) rbindlist(lapply(specs, function(spec) {
     u <- unique(read_glm(fam, spec)[, .(Virus, Location_Name, AIC)])[is.finite(AIC)]
     u[, .(AIC_median = median(AIC), AIC_n = .N), by = Virus][, `:=`(Family = fam, Spec = spec)]
   }))))
   agg[, `:=`(Fam = factor(FAMILY_LABEL[Family], FAMILY_LABEL),
-             SpecLab = factor(c(per_state = "per-state", lagged = "lagged", pooled_fe = "pooled FE")[Spec],
-                              c("per-state", "lagged", "pooled FE")))]
+             SpecLab = factor(spec_lab[Spec], unname(spec_lab)))]
   agg[, x := as.integer(SpecLab) + (match(Family, FAMILY_ORDER) - 2) * BAR_W]
   panels <- lapply(VIRUS_ORDER, function(v) {
     ggplot(agg[Virus == v], aes(x, AIC_median, fill = Fam)) +
       geom_col(width = BAR_W, colour = "black", linewidth = 0.6 / 2.13) +
-      scale_x_continuous(breaks = 1:3, labels = levels(agg$SpecLab)) +
+      scale_x_continuous(breaks = seq_along(levels(agg$SpecLab)), labels = levels(agg$SpecLab)) +
       scale_y_log10() + scale_fill_manual(values = FAMILY_COLOR, name = NULL) +
       labs(title = v, x = NULL, y = "Median AIC  (log scale; lower = better fit)") + theme_glm() +
       theme(plot.title = element_text(colour = VIRUS_COLOR[[v]]), legend.text = element_text(size = 8),

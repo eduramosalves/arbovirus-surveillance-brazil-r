@@ -6,10 +6,10 @@
 #  over-dispersion without specifying a different distribution
 #  (R's family = quasipoisson()).
 #  Output:
-#    outputs/glm_quasi_poisson_per_state.csv
-#    outputs/glm_quasi_poisson_lagged.csv
-#    outputs/glm_quasi_poisson_pooled_fe.csv
-#    outputs/glm_quasi_poisson_results.xlsx
+#    outputs/regression/glm_quasi_poisson_per_state.csv
+#    outputs/regression/glm_quasi_poisson_lagged.csv
+#    outputs/regression/glm_quasi_poisson_pooled_fe.csv
+#    outputs/regression/glm_quasi_poisson_results.xlsx
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({

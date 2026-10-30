@@ -6,10 +6,10 @@
 #    Var(Y) = mu + alpha * mu^2
 #  where alpha > 0 is the dispersion parameter estimated by maximum likelihood.
 #  Output:
-#    outputs/glm_negbin_per_state.csv
-#    outputs/glm_negbin_lagged.csv
-#    outputs/glm_negbin_pooled_fe.csv
-#    outputs/glm_negbin_results.xlsx
+#    outputs/regression/glm_negbin_per_state.csv
+#    outputs/regression/glm_negbin_lagged.csv
+#    outputs/regression/glm_negbin_pooled_fe.csv
+#    outputs/regression/glm_negbin_results.xlsx
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({

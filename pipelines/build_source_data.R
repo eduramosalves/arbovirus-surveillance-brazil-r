@@ -78,9 +78,9 @@ box_summary <- function(df, by, col) {
   }, by = by][do.call(order_c, lapply(by, function(b) get(b)))]
 }
 
-pzfx_tables <- function() {
+clinical_tables_list <- function() {   # one entry per plotted clinical table (graphpad_pipeline.R read_tables)
   out <- list()
-  for (virus in names(gp$FILES))
+  for (virus in names(gp$DISEASE_CODE))
     for (tbl in gp$read_tables(virus)) out[[length(out) + 1]] <- list(virus = virus, title = tbl$title, df = gp$table_to_df(tbl))
   out
 }
@@ -106,7 +106,7 @@ read_adv <- function(name) {
   for (cc in names(d)) if (inherits(d[[cc]], c("IDate", "Date"))) set(d, j = cc, value = format(d[[cc]], "%Y-%m-%d"))
   d
 }
-read_glm <- function(fam, spec) fread(file.path(OUT_MAIN, sprintf("glm_%s_%s.csv", fam, spec)))
+read_glm <- function(fam, spec) fread(out_file(sprintf("glm_%s_%s.csv", fam, spec)))
 sheet <- function(name, data, description, source) list(name, as.data.frame(data, check.names = FALSE), description, source)
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -116,8 +116,8 @@ main <- function() {
   annual <- compute_annual(datasets)
   gdf_states <- get_brazil_states()
   read_all <- function(p) setNames(lapply(excel_sheets(p), function(s) as.data.table(read_excel(p, s))), excel_sheets(p))
-  saved_py <- read_all(file.path(OUT_MAIN, "py_statistical_results.xlsx"))
-  saved_geo <- read_all(file.path(OUT_MAIN, "geo_spatial_stats.xlsx"))
+  saved_py <- read_all(out_file("py_statistical_results.xlsx"))
+  saved_geo <- read_all(out_file("geo_spatial_stats.xlsx"))
 
   ann_all <- concat_virus(annual)
   check_equal("Annual incidence == py_statistical_results/Annual_Incidence", ann_all, saved_py$Annual_Incidence,
@@ -198,9 +198,9 @@ main <- function() {
     sheet("Fig4_moran_points", rbindlist(rows), "Standardised mean incidence (z) vs spatial lag (Wz) per state", "plot_spatial (arbovirus_pipeline_en.R)"),
     sheet("Fig4_moran_stats", rbindlist(fits), "Global Moran's I, permutation p and fitted line", "run_moran")))
 
-  # ── Figures 5, 7, 8 (GraphPad clinical tables) ──
+  # ── Figures 5, 7, 8 (clinical tables, 2016-2026) ──
   cat("Figures 5, 7, 8 ...\n")
-  tables <- pzfx_tables()
+  tables <- clinical_tables_list()
   age_rows <- list(); age_summary <- list(); sex_rows <- list()
   for (virus in VIRUSES) {
     t <- find_table(tables, virus, "Age group"); df <- t$df
@@ -218,22 +218,22 @@ main <- function() {
     ts <- find_table(tables, virus, "Sex")
     sex_rows[[length(sex_rows) + 1]] <- categorical_long(ts$df, virus, ts$title)
   }
-  write_workbook("Figure5", "Figure 5 — Demographics (GraphPad source, through 2025)", list(
+  write_workbook("Figure5", "Figure 5 — Demographics (clinical tables 2016-2026, discarded notifications excluded; 2026 = January-September)", list(
     sheet("Fig5A_age_group_counts", rbindlist(age_rows),
           "Cases per age band per year. Violins resample 6,000 synthetic ages/year from these bins (seed 42); 'Ign/Blank' excluded",
-          "db/graphpad_data/*.pzfx; plot_age_group (graphpad_pipeline.R)"),
+          "clinical_tables/clinical_demographic_long.csv; plot_age_group (graphpad_pipeline.R)"),
     sheet("Fig5A_violin_quartiles", rbindlist(age_summary), "Median and quartiles of the resampled ages drawn as white dots / inner lines", "plot_age_group"),
     sheet("Fig5B_sex", rbindlist(sex_rows), paste0("Cases by sex and year, with the plotted percentages (dot-line). ", PCT_NOTE),
           "plot_proportion (graphpad_pipeline.R)")))
   fig7 <- list()
-  for (pp in list(c("ELISA", "A"), c("IgM", "B"), c("Hospitalization", "C"), c("Serotype", "D"))) {
+  for (pp in list(c("NS1", "A"), c("IgM", "B"), c("Hospitalization", "C"), c("Serotype", "D"))) {
     t <- find_table(tables, "Dengue", pp[1])
     fig7[[length(fig7) + 1]] <- sheet(sprintf("Fig7%s_%s", pp[2], pp[1]), categorical_long(t$df, "Dengue", t$title),
                                       sprintf("Dengue %s: counts and plotted percentages. %s", t$title, PCT_NOTE), "plot_proportion (graphpad_pipeline.R)")
   }
-  write_workbook("Figure7", "Figure 7 — Dengue clinical/laboratory profile (GraphPad source, through 2025)", fig7)
+  write_workbook("Figure7", "Figure 7 — Dengue clinical/laboratory profile (clinical tables 2016-2026; 2026 = January-September)", fig7)
   fig8 <- list()
-  for (spec in list(list("Chikungunya", "A", c("Classfication", "Criteria", "Evolution")),
+  for (spec in list(list("Chikungunya", "A", c("Classification", "Criteria", "Evolution")),
                     list("Zika", "B", c("Classification", "Criteria", "Evolution", "Pregnancy")))) {
     for (k in seq_along(spec[[3]])) {
       prefix <- spec[[3]][k]
@@ -243,7 +243,7 @@ main <- function() {
                                         sprintf("%s %s: counts and plotted percentages. %s", spec[[1]], t$title, PCT_NOTE), "plot_proportion (graphpad_pipeline.R)")
     }
   }
-  write_workbook("Figure8", "Figure 8 — Chikungunya and Zika clinical profile (GraphPad source, through 2025)", fig8)
+  write_workbook("Figure8", "Figure 8 — Chikungunya and Zika clinical profile (clinical tables 2016-2026, discarded notifications excluded; 2026 = January-September)", fig8)
 
   # ── Figure 6 ──
   cat("Figure 6 ...\n")
@@ -305,10 +305,10 @@ main <- function() {
   write_workbook("GLM_Figures", "GLM figures (glm_fig1–glm_fig5)", list(
     sheet("glm_fig1_pooled_irr", g1[, c("Family", cols, "cov_type", "n"), with = FALSE],
           "Pooled state+month FE IRRs for temperature and rainfall, by model family (* = Significant)",
-          "outputs/glm_*_pooled_fe.csv; plot_glm_results.R"),
-    sheet("glm_fig2_state_heatmap", g2[, ..cols], "Per-state NegBin IRRs (heatmap colour = log2 IRR)", "outputs/glm_negbin_per_state.csv; plot_glm_results.R"),
-    sheet("glm_fig3_lag_profile", g3, "Median and IQR of per-state NegBin IRRs by lag", "outputs/glm_negbin_lagged.csv; plot_glm_results.R"),
-    sheet("glm_fig4_aic", g4, "Median AIC across states per family × specification × virus", "outputs/glm_*_*.csv; plot_glm_results.R"),
+          "outputs/regression/glm_*_pooled_fe.csv; plot_glm_results.R"),
+    sheet("glm_fig2_state_heatmap", g2[, ..cols], "Per-state NegBin IRRs (heatmap colour = log2 IRR)", "outputs/regression/glm_negbin_per_state.csv; plot_glm_results.R"),
+    sheet("glm_fig3_lag_profile", g3, "Median and IQR of per-state NegBin IRRs by lag", "outputs/regression/glm_negbin_lagged.csv; plot_glm_results.R"),
+    sheet("glm_fig4_aic", g4, "Median AIC across states per family × specification × virus", "outputs/regression/glm_*_*.csv; plot_glm_results.R"),
     sheet("glm_fig5_forest", g5[, c(cols, "log2_IRR", "log2_CI_L", "log2_CI_U"), with = FALSE],
           "Significant per-state NegBin climate IRRs (forest plot on log2 scale)", "plot_glm_results.R")))
 
@@ -325,7 +325,7 @@ main <- function() {
     nrow(chk) > 0 && all((is.na(chk$Incidence) & is.na(chk$Observed)) | abs(chk$Incidence - chk$Observed) <= 1e-8 + 1e-5 * abs(chk$Observed), na.rm = TRUE))
   its <- read_adv("its_pandemic_effects.csv"); fva <- read_adv("forecast_vs_actual.csv")
   ccf <- read_adv("cocirculation_ccf.csv"); coo <- read_adv("cocirculation_cooccurrence.csv")
-  write_workbook("Additional_Figures", sprintf("Additional analyses (outputs/%s/additional/)", ac$RUN_DATE), list(
+  write_workbook("Additional_Figures", "Additional analyses (outputs/additional/)", list(
     sheet("dlnm_exposure_response", read_adv("dlnm_exposure_response.csv"), "DLNM cumulative exposure-response IRR curves", "adv_dlnm.R"),
     sheet("dlnm_summary", read_adv("dlnm_summary.csv"), "Temperature optimum and model summary", "adv_dlnm.R"),
     sheet("cocirc_ccf_national", ccf[Level == "national"], "Cross-correlation by lag, national", "adv_cocirculation.R"),
@@ -372,18 +372,18 @@ main <- function() {
           "plot_spearman_rho_only (arbovirus_pipeline_en.R)"),
     sheet("py_06c_rain_lag2", saved_py$Rain_Lag2_Incidence, "Rain lag-2 Spearman per state", "run_spearman_rain_lag2 (arbovirus_pipeline_en.R)"),
     sheet("py_07_best_lag", best, "Lag with the largest |rho| per state (also py_06d when filtered to significant rain)", "plot_spearman (arbovirus_pipeline_en.R)"),
-    sheet("clinical_monthly_heatmap", clin, "Monthly cases from the GraphPad tables ({virus}_01b_monthly_heatmap.png)", "plot_monthly (graphpad_pipeline.R)"),
+    sheet("clinical_monthly_heatmap", clin, "Monthly cases ({virus}_01b_monthly_heatmap.png)", "plot_monthly (graphpad_pipeline.R)"),
     sheet("clinical_state_totals", fu, "Cumulative cases per state ({virus}_05_federative_unit_totals.png)", "plot_federative_unit (graphpad_pipeline.R)"),
     sheet("alt_trend01_slope", slope, "First vs last year incidence (last year 2026 is annualised from Jan–Sep)", "fig_slope_chart (alt_results.R)"),
     sheet("alt_glm02_caterpillar", ps[Term == "Temp_Avg", ..cols], "Per-state NegBin temperature IRR with 95% CI", "fig_caterpillar_per_state (alt_results.R)"))))
 
   # Tables: copy-through of the saved result tables
   write_workbook("Tables", "Result tables", list(
-    sheet("bootstrap_ci_cases", fread(file.path(OUT_MAIN, "bootstrap_ci_95_cases.csv")), "Bootstrap 95% CIs, cases", "bootstrap_ci.R"),
-    sheet("bootstrap_ci_incidence", fread(file.path(OUT_MAIN, "bootstrap_ci_95_incidence.csv")), "Bootstrap 95% CIs, incidence", "bootstrap_ci.R"),
+    sheet("bootstrap_ci_cases", fread(out_file("bootstrap_ci_95_cases.csv")), "Bootstrap 95% CIs, cases", "bootstrap_ci.R"),
+    sheet("bootstrap_ci_incidence", fread(out_file("bootstrap_ci_95_incidence.csv")), "Bootstrap 95% CIs, incidence", "bootstrap_ci.R"),
     sheet("global_moran", moran_df, "Global Moran's I", "run_moran"),
     sheet("clinical_demographic_2016_2026", fread(path_root("clinical_tables", "clinical_demographic_long.csv"), encoding = "UTF-8"),
-          "SINAN clinical/demographic breakdowns 2016–2026 (age bands differ from the GraphPad figures)",
+          "SINAN clinical/demographic breakdowns 2016–2026 (discarded notifications excluded)",
           "clinical_tables/clinical_demographic_long.csv")))
 
   cat("\nConsistency checks against saved outputs:\n")

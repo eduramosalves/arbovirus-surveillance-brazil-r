@@ -1,14 +1,14 @@
 # ================================================================================
-#  GRAPHPAD PRISM (.pzfx) -> R PLOTTING PIPELINE
+#  CLINICAL TABLES -> R PLOTTING PIPELINE (Figures 5, 7, 8 and the supplementary clinical plots)
 # ================================================================================
-#  Reads the three GraphPad Prism files for Brazilian arbovirus surveillance
-#  (Dengue 2016-2025, Chikungunya 2017-2025, Zika 2016-2025) and draws the
-#  clinical graphs with GraphPad-Prism-like styling.
+#  Reads clinical_tables/clinical_demographic_long.csv (etl/build_cases_clinical.R; dengue, chikungunya and
+#  Zika 2016-2026, discarded notifications excluded) and draws the clinical graphs with GraphPad-Prism-like
+#  styling. Until 2026-10-22 the source was a set of GraphPad Prism files (.pzfx, through 2025; kept in _unused/).
 #
 #  Plot recipes per table type
 #  ---------------------------
 #    Monthly YYYY-YYYY              -> heat-map (years x months)
-#    Sex / ELISA / IgM / Hosp /
+#    Sex / NS1 / IgM / Hosp /
 #    Serotype / Evolution /
 #    Criteria / Classification /
 #    Pregnancy                      -> dot-line chart of % per category over the years
@@ -16,8 +16,7 @@
 #    Age group YYYY-YYYY            -> violin plot of the reconstructed age distribution
 #    Federative unit YYYY-YYYY      -> horizontal bar chart of cumulative totals
 #                                      (colored by Brazilian macro-region)
-#    General Data (Dengue only)     -> exported to CSV (data dictionary only)
-#  Output: PNG files in <repo>/outputs, all prefixed with the virus.
+#  Output: PNG files in <repo>/outputs/clinical/, all prefixed with the virus.
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({
@@ -31,13 +30,9 @@
 })
 source(file.path(.root, "R", "utils.R"))
 source(path_root("pipelines", "data_loader.R"))
-quiet_library("ggplot2", "xml2")
+quiet_library("ggplot2")
 
-INPUT_DIR <- file.path(DB_DIR, "graphpad_data")
-FILES <- c(Dengue = "GPad_Dengue_analysis.pzfx", Chikungunya = "GPad_chikungunya_analysis.pzfx", Zika = "GPad_zika_analysis.pzfx")
-
-# Virus signature colors (consistent with the epidemiological pipeline)
-VIRUS_COLOR <- c(Dengue = "#C0392B", Chikungunya = "#E67E22", Zika = "#2980B9")
+# Virus colors: VIRUS_COLOR from R/utils.R (one palette for every figure)
 REGION_COLOR <- c(Norte = "#1B7837", Nordeste = "#762A83", Sudeste = "#E08214", Sul = "#4393C3", "Centro-Oeste" = "#D6604D")
 
 # ── GraphPad-Prism look ───────────────────────────────────────────────────────
@@ -86,7 +81,7 @@ exclusion_captions <- function(log) {
   fmt <- function(x) formatC(x, format = "d", big.mark = ",")
   all <- log[Year == "All" & Figure != "Supplementary"]
   all[, Variable := sub("^Classfication", "Classification", sub(" [0-9].*$", "", Table))]   # Prism file typo
-  all[!Variable %in% c("ELISA", "IgM"), Variable := tolower(Variable)]
+  all[!Variable %in% c("NS1 antigen", "IgM"), Variable := tolower(Variable)]
   all[, pct := ifelse(pct_excluded < 0.1, "<0.1%", sprintf("%.1f%%", pct_excluded))]
   all[, Fig := sub("[A-Z]$", "", Figure)]
   vapply(sort_c(unique(all$Fig)), function(f) {
@@ -115,24 +110,8 @@ desaturate <- function(col, prop) {
 }
 
 # ==============================================================================
-# 1. PARSE THE .pzfx FILES
+# 1. TABLE OBJECTS
 # ==============================================================================
-parse_pzfx <- function(path) {
-  doc <- xml_ns_strip(read_xml(path))
-  txt <- function(node) if (length(node) && !inherits(node, "xml_missing")) trimws(xml_text(node)) else ""
-  lapply(xml_find_all(doc, "/*/Table"), function(t) {
-    title <- txt(xml_find_first(t, "./Title"))
-    sub <- xml_find_first(t, "./RowTitlesColumn/Subcolumn")
-    row_titles <- if (!inherits(sub, "xml_missing")) trimws(xml_text(xml_find_all(sub, "./d"))) else character()
-    columns <- lapply(xml_find_all(t, "./YColumn"), function(yc) {
-      sc <- xml_find_first(yc, "./Subcolumn")
-      vals <- if (!inherits(sc, "xml_missing")) suppressWarnings(as.numeric(trimws(xml_text(xml_find_all(sc, "./d"))))) else numeric()
-      list(title = txt(xml_find_first(yc, "./Title")), values = vals)
-    })
-    list(id = xml_attr(t, "ID"), title = title, row_titles = row_titles, columns = columns)
-  })
-}
-
 # rows = row titles (named "Year"), one column per series. A repeated series title keeps the
 # position of its first occurrence and the values of its last (Python dict semantics).
 table_to_df <- function(tbl) {
@@ -144,10 +123,104 @@ table_to_df <- function(tbl) {
 }
 
 # ==============================================================================
+# 1b. CLINICAL TABLES -> the table objects the plots expect
+# ==============================================================================
+# Since 2026-10-22 the clinical figures (5, 7, 8) are drawn from clinical_tables/clinical_demographic_long.csv
+# (etl/build_cases_clinical.R, 2016-2026, discarded notifications excluded for all three diseases) instead of the
+# hand-made GraphPad Prism files (through 2025; they counted discarded chikungunya and Zika notifications and had no
+# chikungunya for 2016). Category names are the ones
+# the plot code already labels (CATEGORY_LABEL ...).
+CLIN_FILE <- path_root("clinical_tables", "clinical_demographic_long.csv")
+DISEASE_CODE <- c(Dengue = "DENV", Chikungunya = "CHIKV", Zika = "ZIKV")
+MONTH_COLS <- c("JAN", "FEV", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+LAB_MAP  <- c("Reagente/Positivo" = "Positive", "Nao reagente/Negativo" = "Negative", Inconclusivo = "Inconclusive",
+              "Nao realizado" = "Not accomplished")
+LAB_COLS <- c("Positive", "Negative", "Inconclusive", "Ign/Blank", "Not accomplished")
+SEX_MAP  <- c(Masculino = "M", Feminino = "F", Ignorado = "Ign")
+AGE_MAP  <- c("<1" = "<1 year", "1-4" = "1-4", "5-9" = "5-9", "10-14" = "10-14", "15-19" = "15-19", "20-39" = "20-39",
+              "40-59" = "40-59", "60-64" = "60-64", "65-69" = "65-69", "70-79" = "70-79", "80+" = "80 e +")
+AGE_COLS <- c("Ign/Blank", "<1 year", "1-4", "5-9", "10-14", "15-19", "20-39", "40-59", "60-64", "65-69", "70-79", "80 e +")
+EVO_MAP  <- c(Cura = "Cure", "Obito pelo agravo" = "Death", "Obito por outras causas" = "Death by other cause",
+              "Obito em investigacao" = "Death in investigation")
+EVO_COLS <- c("Ign/Blank", "Cure", "Death", "Death by other cause", "Death in investigation")
+CRIT_MAP <- c(Laboratorial = "Laboratorial", "Clinico-epidemiologico" = "Clinic-epidemiological", "Em investigacao" = "In investigation")
+CRIT_COLS <- c("Ign/Blank", "Laboratorial", "Clinic-epidemiological", "In investigation")
+PREG_MAP <- c("1o trimestre" = "1º Trimester", "2o trimestre" = "2º Trimester", "3o trimestre" = "3º Trimester",
+              "Idade gestacional ignorada" = "Pregnancy age ignored", Nao = "Non pregnant", "Nao se aplica" = "Not applicable")
+PREG_COLS <- c("Ign/Blank", "1º Trimester", "2º Trimester", "3º Trimester", "Pregnancy age ignored", "Non pregnant",
+               "Not applicable")
+# One entry per table: name, ETL dimension, ETL category -> column, columns in plot order. A category that is not
+# listed (ignored, blank, unknown codes) goes to the "Ign/Blank" column ("Blank" for sex). In the classification
+# tables a blank classification is not "missing": the notification is still open (probable case), so it is
+# drawn as its own category ("Unclassified").
+TABLE_SPECS <- list(
+  Dengue = list(
+    list("Monthly"),
+    list("NS1 antigen", "ns1_result", LAB_MAP, LAB_COLS),
+    list("IgM", "serology_igm_result", LAB_MAP, LAB_COLS),
+    list("Hospitalization", "hospitalization", c(Sim = "Positive", Nao = "Negative"), c("Positive", "Negative", "Ign/Blank")),
+    list("Sex", "sex", SEX_MAP, c("M", "F", "Ign", "Blank")),
+    list("Serotype", "serotype", c(DENV1 = "DENV 1", DENV2 = "DENV 2", DENV3 = "DENV 3", DENV4 = "DENV 4"),
+         c("DENV 1", "DENV 2", "DENV 3", "DENV 4", "Ign/Blank")),
+    list("Age group", "age_group", AGE_MAP, AGE_COLS),
+    list("Federative unit")),
+  Chikungunya = list(
+    list("Monthly"),
+    list("Age group", "age_group", AGE_MAP, AGE_COLS),
+    list("Sex", "sex", SEX_MAP, c("M", "F", "Ign", "Blank")),
+    list("Federative unit"),
+    list("Evolution", "evolution", EVO_MAP, EVO_COLS),
+    list("Criteria", "criterion", CRIT_MAP, CRIT_COLS),
+    list("Classification", "classification",
+         c(Chikungunya = "Chikungunya", Inconclusivo = "Inconclusive", "Ignorado/NA" = "Unclassified"),
+         c("Ign/Blank", "Chikungunya", "Inconclusive", "Unclassified"))),
+  Zika = list(
+    list("Federative unit"),
+    list("Sex", "sex", SEX_MAP, c("M", "F", "Ign", "Blank")),
+    list("Monthly"),
+    list("Age group", "age_group", AGE_MAP, AGE_COLS),
+    list("Pregnancy", "pregnancy", PREG_MAP, PREG_COLS),
+    list("Evolution", "evolution", EVO_MAP, EVO_COLS),
+    list("Criteria", "criterion", CRIT_MAP, CRIT_COLS),
+    list("Classification", "classification",
+         c(Confirmado = "Confirmed", Inconclusivo = "Inconclusive", "Ignorado/NA" = "Unclassified"),
+         c("Ign/Blank", "Confirmed", "Inconclusive", "Unclassified"))))
+
+read_tables <- function(virus) {
+  cl <- fread(CLIN_FILE, encoding = "UTF-8")[Disease == DISEASE_CODE[[virus]]]
+  years <- sort(unique(cl$Year))
+  make <- function(nm, cols, vals) list(id = NA_character_, title = sprintf("%s %d-%d", nm, min(years), max(years)),
+                                        row_titles = as.character(years),
+                                        columns = lapply(seq_along(cols), function(i) list(title = cols[i], values = vals[[i]])))
+  count <- function(d, cols) lapply(cols, function(cc) vapply(years, function(y) as.numeric(sum(d[Year == y & Col == cc]$Count)), 0))
+  lapply(TABLE_SPECS[[virus]], function(sp) {
+    nm <- sp[[1]]
+    if (nm == "Monthly") {                                         # state-month counts of db/normalized_fact_cases.csv
+      fc <- fread(file.path(DB_DIR, "normalized_fact_cases.csv"))[Disease == DISEASE_CODE[[virus]]]
+      vals <- lapply(1:12, function(m) vapply(years, function(y) {
+        s <- fc[Year == y & Month == m]; if (nrow(s)) sum(s$Cases) else NA_real_      # NA = month not covered (2026 after the cap)
+      }, 0))
+      return(make(nm, MONTH_COLS, vals))
+    }
+    if (nm == "Federative unit") {
+      g <- cl[Dimension == "federative_unit"]; g[, Col := Category]
+      cols <- sort_c(unique(g$Col))
+      return(make(nm, cols, count(g, cols)))
+    }
+    g <- cl[Dimension == sp[[2]]]; map <- sp[[3]]; cols <- sp[[4]]
+    other <- if ("Blank" %in% cols) "Blank" else "Ign/Blank"
+    g[, Col := ifelse(Category %in% names(map), unname(map[Category]), other)]
+    vals <- count(g, cols)
+    keep <- vapply(vals, function(v) any(v > 0), NA)                # all-zero categories are not drawn
+    make(nm, cols[keep], vals[keep])
+  })
+}
+
+# ==============================================================================
 # 2. PLOT RECIPES
 # ==============================================================================
 save_plot <- function(p, fname, w, h) {
-  save_png(p, file.path(OUTPUT_DIR, fname), w, h, dpi = 150)
+  save_png(p, out_file(fname), w, h, dpi = 150)
   cat(sprintf("    Saved -> %s\n", fname))
 }
 
@@ -161,7 +234,7 @@ plot_monthly <- function(df, virus, table_title) {
   vmax <- max(long$v, na.rm = TRUE)
   lab <- long[!is.na(long$v) & long$v > 0, ]
   p <- ggplot(long, aes(Month, Year, fill = v)) + geom_raster() +
-    scale_fill_gradientn(colours = c("#FFFFFF", VIRUS_COLOR[[virus]]), name = "Cases", labels = space_thousands,
+    scale_fill_gradientn(colours = c("#FFFFFF", VIRUS_COLOR[[virus]]), name = "Cases", labels = space_thousands, na.value = "grey90",
                          guide = guide_colourbar(barheight = unit(0.8 * (0.45 * length(years) + 2) - 0.6, "in"),
                                                  title.position = "right", title.theme = element_text(angle = 90, size = 11))) +
     scale_x_discrete(expand = c(0, 0)) + scale_y_discrete(expand = c(0, 0)) +
@@ -186,13 +259,14 @@ CATEGORY_LABEL <- c(M = "Male", F = "Female", "Not accomplished" = "Not performe
                     Chikungunya = "Confirmed", "Clinic-epidemiological" = "Clinical-epidemiological",
                     "1º Trimester" = "1st trimester", "2º Trimester" = "2nd trimester", "3º Trimester" = "3rd trimester",
                     "Pregnancy age ignored" = "Pregnant, trimester unknown", "Death by other cause" = "Death (other cause)",
+                    Unclassified = "Under investigation or blank",
                     "Other causes" = "Death (other cause)", "Death in investigation" = "Death under investigation",
                     "Non pregnant" = "Not pregnant")
 # Labels that only apply to one table (keyed like VARIABLE_LABEL); they take precedence over CATEGORY_LABEL.
 TABLE_CATEGORY_LABEL <- list(Hospitalization = c(Positive = "Hospitalized", Negative = "Not hospitalized"))
 # Legend title naming the variable of each table (first word of the pzfx table title); it identifies
 # the panel now that there is no plot title (ELISA and IgM share the same categories).
-VARIABLE_LABEL <- c(ELISA = "ELISA result", IgM = "IgM result", Hospitalization = "Hospitalization", Sex = "Sex",
+VARIABLE_LABEL <- c(NS1 = "NS1 antigen result", IgM = "IgM result", Hospitalization = "Hospitalization", Sex = "Sex",
                     Serotype = "Serotype", Evolution = "Outcome", Criteria = "Confirmation criterion",
                     Classification = "Final classification", Classfication = "Final classification",   # Prism file typo
                     Pregnancy = "Pregnancy status")
@@ -343,7 +417,7 @@ plot_federative_unit <- function(df, virus, table_title) {
 # ==============================================================================
 # 3. DISPATCH PER TABLE
 # ==============================================================================
-PLOT_SLUGS <- c(ELISA = "02_ELISA", IgM = "02_IgM", Hospitalization = "02_hospitalization", Sex = "03_sex",
+PLOT_SLUGS <- c(NS1 = "02_NS1", IgM = "02_IgM", Hospitalization = "02_hospitalization", Sex = "03_sex",
                 Serotype = "03_serotype", Evolution = "03_evolution", Criteria = "03_criteria",
                 Classification = "03_classification", Classfication = "03_classification",  # Prism file typo
                 Pregnancy = "03_pregnancy")
@@ -352,13 +426,6 @@ dispatch_table <- function(tbl, virus) {
   title <- tbl$title
   cat(sprintf("  • %s  (%d rows × %d cols)\n", title, length(tbl$row_titles), length(tbl$columns)))
   df <- table_to_df(tbl)
-  if (title == "General Data") {
-    # Export the raw master table to CSV; no single graph would be readable
-    out <- file.path(OUTPUT_DIR, sprintf("%s_00_general_data.csv", virus))
-    write_csv_py(df, out)
-    cat(sprintf("    Exported -> %s  (74-column master sheet)\n", basename(out)))
-    return(invisible())
-  }
   if (startsWith(title, "Monthly")) plot_monthly(df, virus, title)
   else if (startsWith(title, "Age group")) plot_age_group(df, virus, title)
   else if (startsWith(title, "Federative unit")) plot_federative_unit(df, virus, title)
@@ -370,7 +437,6 @@ dispatch_table <- function(tbl, virus) {
   }
 }
 
-read_tables <- function(virus) parse_pzfx(file.path(INPUT_DIR, FILES[[virus]]))
 find_table <- function(tables, prefix) {
   for (t in tables) if (startsWith(t$title, prefix)) return(table_to_df(t))
   NULL
@@ -378,16 +444,16 @@ find_table <- function(tables, prefix) {
 
 main <- function() {
   sep <- strrep("=", 70)
-  cat(sprintf("\n%s\n  GRAPHPAD PRISM (.pzfx) -> R PLOTTING PIPELINE\n%s\n", sep, sep))
-  for (virus in names(FILES)) {
-    cat(sprintf("\n[%s] reading %s\n", virus, FILES[[virus]]))
+  cat(sprintf("\n%s\n  CLINICAL TABLES -> R PLOTTING PIPELINE\n%s\n", sep, sep))
+  for (virus in names(DISEASE_CODE)) {
+    cat(sprintf("\n[%s] reading %s\n", virus, basename(CLIN_FILE)))
     tables <- read_tables(virus)
     cat(sprintf("  Found %d tables\n", length(tables)))
     for (tbl in tables) dispatch_table(tbl, virus)
   }
   log <- rbindlist(EXCLUSIONS)
-  write_csv_py(log, file.path(OUTPUT_DIR, "figure_exclusions.csv"))
-  writeLines(exclusion_captions(log), file.path(OUTPUT_DIR, "figure_exclusions_captions.txt"), useBytes = TRUE)
+  write_csv_py(log, out_file("figure_exclusions.csv"))
+  writeLines(exclusion_captions(log), out_file("figure_exclusions_captions.txt"), useBytes = TRUE)
   cat(sprintf("\n  Excluded ignored/blank records logged -> figure_exclusions.csv (%d tables), figure_exclusions_captions.txt\n",
               length(EXCLUSIONS)))
   write_caption_notes("graphpad_pipeline.R")

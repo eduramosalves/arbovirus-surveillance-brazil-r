@@ -11,7 +11,7 @@
 #  conditional-sum-of-squares starting values and L-BFGS-B with forward-difference
 #  gradients. (stats::arima uses a different initialisation and rejects
 #  non-stationary AR fits, so it would not reproduce these numbers.)
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    forecast_backtest_metrics.csv   MAE / RMSE / MAPE / PI coverage per geography
 #    forecast_vs_actual.csv          national + regional hold-out predictions
 #    forecast_national.png

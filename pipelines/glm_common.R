@@ -7,13 +7,16 @@
 #  Month fixed effects absorb the seasonal cycle, so climate IRRs describe
 #  departures from the usual seasonal pattern rather than seasonality itself.
 #
-#  Three model specifications per model family:
+#  Four model specifications per model family:
 #    spec="per_state" : one GLM per (Disease, State) on its monthly time series
 #                       Predictors: Temp_Avg, Rain_mm, C(Month)
 #    spec="lagged"    : per (Disease, State) with lag-0/1/2 Temp and Rain, plus C(Month)
 #    spec="pooled_fe" : one GLM per Disease, pooled across all states with
 #                       State as a categorical fixed effect.
 #                       Predictors: Temp_Avg, Rain_mm, C(Month), C(Location_Name)
+#    spec="pooled_lagged" : the pooled model with lag-0/1/2 Temp and Rain entered jointly (no lag
+#                       constraint). Terms Temp_Cum0_2 / Rain_Cum0_2 are the sums of the three lag
+#                       coefficients (the effect of a change sustained over lags 0-2), with their own SE.
 #
 #  Standard errors (column `cov_type`):
 #    - Poisson / Negative Binomial, per-state and lagged : HAC (Newey-West, 3 lags,
@@ -44,11 +47,19 @@ LAGGED_PREDICTORS <- c("Temp_Avg", "Temp_Lag1", "Temp_Lag2", "Rain_mm", "Rain_La
 FORMULA_BASE   <- "Cases ~ Temp_Avg + Rain_mm + C(Month)"
 FORMULA_LAGGED <- "Cases ~ Temp_Avg + Temp_Lag1 + Temp_Lag2 + Rain_mm + Rain_Lag1 + Rain_Lag2 + C(Month)"
 FORMULA_FE     <- "Cases ~ Temp_Avg + Rain_mm + C(Month) + C(Location_Name)"
+FORMULA_LAGGED_FE <- paste("Cases ~ Temp_Avg + Temp_Lag1 + Temp_Lag2 + Rain_mm + Rain_Lag1 + Rain_Lag2",
+                           "+ C(Month) + C(Location_Name)")
+# Sums of the lag coefficients: the effect of a change sustained over lags 0-2 (one IRR per variable).
+COMBOS_LAGGED <- list(Temp_Cum0_2 = c("Temp_Avg", "Temp_Lag1", "Temp_Lag2"),
+                      Rain_Cum0_2 = c("Rain_mm", "Rain_Lag1", "Rain_Lag2"))
 
 SPECS <- list(
   list(spec = "per_state", predictors = BASE_PREDICTORS,   formula = FORMULA_BASE,   pooled = FALSE, min_n = 24),
   list(spec = "lagged",    predictors = LAGGED_PREDICTORS, formula = FORMULA_LAGGED, pooled = FALSE, min_n = 30),
-  list(spec = "pooled_fe", predictors = BASE_PREDICTORS,   formula = FORMULA_FE,     pooled = TRUE,  min_n = 50))
+  list(spec = "pooled_fe", predictors = BASE_PREDICTORS,   formula = FORMULA_FE,     pooled = TRUE,  min_n = 50),
+  list(spec = "pooled_lagged", predictors = LAGGED_PREDICTORS, formula = FORMULA_LAGGED_FE, pooled = TRUE, min_n = 50,
+       combos = COMBOS_LAGGED))
+SPEC_NAMES <- vapply(SPECS, function(sp) sp$spec, "")
 
 # Drop NA on predictors and dependent variables; require Population > 0.
 # Row order (state, year, month) is preserved, which HAC SEs rely on.
@@ -213,23 +224,31 @@ model_vcov <- function(f, X) {
 
 # Per-coefficient rows. `scale` (quasi-Poisson) inflates model-based SEs and switches
 # inference to the t distribution.
-summarize_fit <- function(coefs, V, scale = NULL, df_resid = NA) {
-  se <- sqrt(diag(V))
+summarize_fit <- function(coefs, V, scale = NULL, df_resid = NA, combos = NULL) {
+  est <- unname(coefs); vr <- diag(V); nm <- names(coefs)
+  # `combos`: named list of coefficient names whose SUM is reported as an extra term, with the variance taken
+  # from V (for example the effect of a change sustained over lags 0-2 = Temp_Avg + Temp_Lag1 + Temp_Lag2).
+  for (cn in names(combos)) {
+    idx <- match(combos[[cn]], nm)
+    if (anyNA(idx)) next
+    est <- c(est, sum(coefs[idx])); vr <- c(vr, sum(V[idx, idx])); nm <- c(nm, cn)
+  }
+  se <- sqrt(vr)
   if (is.null(scale)) {
-    z <- coefs / se; p <- 2 * stats::pnorm(-abs(z)); crit <- stats::qnorm(0.975)
+    z <- est / se; p <- 2 * stats::pnorm(-abs(z)); crit <- stats::qnorm(0.975)
   } else {
-    se <- se * sqrt(scale); z <- coefs / se
+    se <- se * sqrt(scale); z <- est / se
     p <- 2 * stats::pt(abs(z), df_resid, lower.tail = FALSE); crit <- stats::qt(0.975, df_resid)
   }
-  data.table(Term = names(coefs), Coef = unname(coefs), SE = unname(se), IRR = exp(unname(coefs)),
-             IRR_CI_L = exp(unname(coefs - crit * se)), IRR_CI_U = exp(unname(coefs + crit * se)),
+  data.table(Term = nm, Coef = est, SE = unname(se), IRR = exp(est),
+             IRR_CI_L = exp(est - crit * se), IRR_CI_U = exp(est + crit * se),
              z = unname(z), p_value = unname(p), Significant = unname(p) < ALPHA)
 }
 
 information_criteria <- function(llf, k, n) list(AIC = -2 * llf + 2 * k, BIC = -2 * llf + k * log(n))
 
 # One model; returns list(rows, aux, llf, converged)
-fit_family <- function(model_family, sub, predictors, pooled) {
+fit_family <- function(model_family, sub, predictors, pooled, combos = NULL) {
   X <- design_matrix(sub, predictors, pooled)
   n <- nrow(sub)
   k <- qr(X)$rank
@@ -237,11 +256,11 @@ fit_family <- function(model_family, sub, predictors, pooled) {
     f <- fit_poisson(X, sub)
     disp <- pearson_dispersion(f, sub$Cases, k)
     if (model_family == "poisson") {
-      rows <- summarize_fit(f$params, robust_vcov(f, X, sub, pooled))
+      rows <- summarize_fit(f$params, robust_vcov(f, X, sub, pooled), combos = combos)
       aux <- c(list(dispersion = disp, alpha = NA_real_, overdispersion = disp, cov_type = if (pooled) "cluster" else "HAC"),
                information_criteria(f$llf, k, n))
     } else {
-      rows <- summarize_fit(f$params, model_vcov(f, X), scale = disp, df_resid = n - k)
+      rows <- summarize_fit(f$params, model_vcov(f, X), scale = disp, df_resid = n - k, combos = combos)
       aux <- c(list(dispersion = disp, alpha = NA_real_, overdispersion = disp, cov_type = "quasi (Pearson scale, t)"),
                information_criteria(f$llf, k, n))
     }
@@ -253,7 +272,7 @@ fit_family <- function(model_family, sub, predictors, pooled) {
     aux <- c(list(dispersion = pearson_dispersion(f, sub$Cases, k), alpha = nb$alpha, overdispersion = nb$alpha,
                   cov_type = if (pooled) "cluster" else "HAC"),
              information_criteria(f$llf, k + 1, n))
-    return(list(rows = summarize_fit(f$params, robust_vcov(f, X, sub, pooled)), aux = aux, llf = f$llf,
+    return(list(rows = summarize_fit(f$params, robust_vcov(f, X, sub, pooled), combos = combos), aux = aux, llf = f$llf,
                 converged = isTRUE(f$converged) && isTRUE(f$profile_converged)))
   }
   stop(model_family)
@@ -273,7 +292,7 @@ run_models <- function(model_family) {
       for (uf in names(units)) {
         sub <- prepare_glm_frame(units[[uf]], sp$predictors)
         if (nrow(sub) < sp$min_n || sum(sub$Cases) == 0) next
-        res <- tryCatch(fit_family(model_family, sub, sp$predictors, sp$pooled),
+        res <- tryCatch(fit_family(model_family, sub, sp$predictors, sp$pooled, sp$combos),
                         error = function(e) { cat(sprintf("    fit failed for %s %s: %s\n", virus, uf, conditionMessage(e))); NULL })
         if (is.null(res)) next
         common <- c(list(Virus = virus, Location_Name = uf, Model = model_family, Spec = sp$spec, n = nrow(sub)),
@@ -290,17 +309,17 @@ run_models <- function(model_family) {
   results
 }
 
-# Write three CSVs + one Excel workbook with all spec results.
+# Write one CSV per specification + one Excel workbook with all spec results.
 export_results <- function(model_family, results) {
-  base <- file.path(OUTPUT_DIR, paste0("glm_", gsub("-", "_", model_family)))
-  for (spec in c("per_state", "lagged", "pooled_fe")) {
+  base <- out_file(paste0("glm_", gsub("-", "_", model_family)))
+  for (spec in SPEC_NAMES) {
     df <- results[[spec]]
     if (!nrow(df)) next
     write_csv_py(df, sprintf("%s_%s.csv", base, spec))
     cat(sprintf("    Saved -> %s_%s.csv (%d rows)\n", basename(base), spec, nrow(df)))
   }
   sheets <- list()
-  for (spec in c("per_state", "lagged", "pooled_fe")) {
+  for (spec in SPEC_NAMES) {
     if (nrow(results[[spec]])) sheets[[spec]] <- results[[spec]]
     dg <- results[[paste0(spec, "_diag")]]
     if (!is.null(dg) && nrow(dg)) sheets[[paste0(spec, "_diagnostics")]] <- dg
@@ -312,7 +331,7 @@ export_results <- function(model_family, results) {
 # Console summary: number of significant Temp / Rain coefficients by spec and virus.
 summary_climate_only <- function(results, model_family) {
   cat(sprintf("\n  [%s] summary of climate IRRs (Temp_Avg, Rain_mm):\n", model_family))
-  for (spec in c("per_state", "lagged", "pooled_fe")) {
+  for (spec in SPEC_NAMES) {
     df <- results[[spec]]
     if (!nrow(df)) next
     clim <- df[Term %in% c("Temp_Avg", "Rain_mm")]

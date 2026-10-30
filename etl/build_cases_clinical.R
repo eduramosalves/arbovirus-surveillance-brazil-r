@@ -43,13 +43,16 @@ MAP_CLASSI <- c("1" = "Dengue classico (schema antigo)", "2" = "Dengue c/ compli
   "4" = "SCD (antigo)", "5" = "Descartado", "8" = "Inconclusivo", "10" = "Dengue", "11" = "Dengue c/ sinais de alarme",
   "12" = "Dengue grave", "13" = "Chikungunya")
 MAP_LAB <- c("1" = "Reagente/Positivo", "2" = "Nao reagente/Negativo", "3" = "Inconclusivo", "4" = "Nao realizado", "9" = "Ignorado")
-AGE_BINS   <- c(0, 1, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 999)
-AGE_LABELS <- c("<1", "1-4", "5-9", "10-14", "15-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80+")
+# SINAN standard age bands (the ones the manuscript describes)
+AGE_BINS   <- c(0, 1, 5, 10, 15, 20, 40, 60, 65, 70, 80, 999)
+AGE_LABELS <- c("<1", "1-4", "5-9", "10-14", "15-19", "20-39", "40-59", "60-64", "65-69", "70-79", "80+")
 
 # NU_IDADE_N "4yyy" = years, "1/2/3xxx" = hours/days/months (< 1 year). Anything else -> NA.
+# The 2016-2020 files store it as a float string ("4003.0"); the ".0" is removed first. Before this fix every
+# age of those files was read as unknown.
 # Applied to the distinct raw values only; returns the age band label (NA = unknown).
 age_band <- function(u) {
-  x <- py_strip(ifelse(is.na(u), "", u))
+  x <- sub("\\.0+$", "", py_strip(ifelse(is.na(u), "", u)))
   ok <- grepl("^[0-9]{1,4}$", x)
   x <- ifelse(ok, paste0(strrep("0", pmax(0, 4 - nchar(x))), x), NA_character_)   # str.zfill(4)
   unit <- substr(x, 1, 1)
@@ -85,16 +88,31 @@ iso_month <- function(u) {
   m
 }
 
-DISCARD <- list(DENV = "5", CHIKV = character(), ZIKV = character())
-COMMON <- list(list("sex", "CS_SEXO", MAP_SEX), list("criterion", "CRITERIO", MAP_CRIT),
-               list("evolution", "EVOLUCAO", MAP_EVO), list("classification", "CLASSI_FIN", MAP_CLASSI))
+# One case definition for the three diseases: every notification EXCEPT those classified as discarded, that is,
+# confirmed + probable (inconclusive and under-investigation notifications are kept as probable cases).
+# CLASSI_FIN code of "Descartado": dengue 5; chikungunya 5 (and 2 in the early-2016 form); Zika 2 (the Zika form
+# codes 1 / 2 / 8 as confirmed / discarded / inconclusive). Before 2026-10-22 only dengue was filtered.
+# Chikungunya: the early-2016 form coded confirmed / discarded as 1 / 2 (like the Zika form) and the later form
+# as 13 / 5. Checked on the 2016 file: codes 1 and 2 follow the same January-April pattern, have the same 2.2 : 1
+# ratio as 13 and 5 (2.0 : 1), and code 2 has almost no deaths from the disease (4 of 28,500, as code 5 has 0),
+# while code 1 behaves as confirmed. So for chikungunya codes 2 and 5 are discarded.
+DISCARD <- list(DENV = "5", CHIKV = c("5", "2"), ZIKV = "2")
+MAP_CLASSI_CHIKV <- c("1" = "Chikungunya", "13" = "Chikungunya", "2" = "Descartado", "5" = "Descartado", "8" = "Inconclusivo")
+MAP_CLASSI_ZIKV  <- c("1" = "Confirmado", "2" = "Descartado", "8" = "Inconclusivo")
+MAP_CLASSI_BY <- list(DENV = MAP_CLASSI, CHIKV = MAP_CLASSI_CHIKV, ZIKV = MAP_CLASSI_ZIKV)
+# SINAN republishes the current-year files weekly. Notifications dated after this day are left out of the
+# CAP_YEAR file, so that year always covers the same window (January-September 2026).
+CAP_YEAR <- 2026L
+LAST_NOTIFICATION_DATE <- "2026-09-30"
+common_dims <- function(dis) list(list("sex", "CS_SEXO", MAP_SEX), list("criterion", "CRITERIO", MAP_CRIT),
+                                  list("evolution", "EVOLUCAO", MAP_EVO), list("classification", "CLASSI_FIN", MAP_CLASSI_BY[[dis]]))
 EXTRA <- list(DENV = list(list("hospitalization", "HOSPITALIZ", MAP_HOSP), list("serotype", "SOROTIPO", MAP_SORO),
                           list("ns1_result", "RESUL_NS1", MAP_LAB), list("pcr_result", "RESUL_PCR_", MAP_LAB),
                           list("serology_igm_result", "RESUL_SORO", MAP_LAB)),
               ZIKV = list(list("pregnancy", "CS_GESTANT", MAP_GEST)),
               CHIKV = list())
 
-cases_parts <- list(); clin_rows <- list(); dropped <- 0; total_rows <- 0
+cases_parts <- list(); clin_rows <- list(); disc_log <- list(); dropped <- 0; total_rows <- 0
 t0 <- Sys.time()
 tmpdir <- file.path(tempdir(), "sinan"); dir.create(tmpdir, showWarnings = FALSE)
 zips <- sort_c(list.files(SINAN_DIR, pattern = "BR.*\\.csv\\.zip$", full.names = TRUE))
@@ -105,14 +123,21 @@ for (zf in zips) {
   unzip(zf, files = entry, exdir = tmpdir, junkpaths = TRUE)
   csv <- file.path(tmpdir, basename(entry))
   header <- names(fread(csv, nrows = 0, encoding = "Latin-1"))
-  dims <- Filter(function(d) d[[2]] %in% header, c(COMMON, EXTRA[[dis]]))
+  dims <- Filter(function(d) d[[2]] %in% header, c(common_dims(dis), EXTRA[[dis]]))
   agecol <- if ("NU_IDADE_N" %in% header) "NU_IDADE_N" else NULL
   need <- unique(c("DT_NOTIFIC", "SG_UF_NOT", vapply(dims, `[[`, "", 2), agecol))
   need <- need[need %in% header]
   ch <- fread(csv, select = need, colClasses = "character", encoding = "Latin-1", na.strings = PD_NA,
               strip.white = FALSE, showProgress = FALSE)
   unlink(csv)
-  nrows <- nrow(ch); n_disc <- 0
+  nrows <- nrow(ch); n_disc <- 0; n_late <- 0
+  if (yr == CAP_YEAR && "DT_NOTIFIC" %in% names(ch)) {            # ISO dates compare correctly as text
+    late <- !is.na(ch$DT_NOTIFIC) & ch$DT_NOTIFIC > LAST_NOTIFICATION_DATE
+    n_late <- sum(late); ch <- ch[!late]
+  }
+  # States with at least one notification in this file, counted BEFORE the discarded ones are dropped
+  present <- unique(unname(code2id[ch[, .N, by = SG_UF_NOT]$SG_UF_NOT]))
+  present <- present[!is.na(present)]
   drop_codes <- DISCARD[[dis]]
   # apply the per-disease case definition to the whole analysis population
   if (length(drop_codes) && "CLASSI_FIN" %in% names(ch)) {
@@ -128,6 +153,17 @@ for (zf in zips) {
   non_iso <- non_iso + sum(g$N[!is.na(g$DT_NOTIFIC) & is.na(um[match(g$DT_NOTIFIC, ud)])])
   g[, Month := um[match(DT_NOTIFIC, ud)]]
   c_cases <- g[!is.na(lid) & !is.na(Month), .(Cases = sum(N)), by = .(lid, Month)]
+  # A state-month without a case is a ZERO, not a missing value, for every state that has notifications in the file
+  # (with discarded notifications excluded many small state-months have no case, and the analyses must not drop them
+  # or annualize over the months that happen to have cases). A state with no notification at all in the file
+  # (Espirito Santo 2021, chikungunya and Zika) is not filled: it stays missing. The cap year ends in September.
+  last_m <- if (yr == CAP_YEAR) as.integer(substr(LAST_NOTIFICATION_DATE, 6, 7)) else 12L
+  if (nrow(c_cases) && length(present)) {
+    cases_before <- sum(c_cases$Cases)
+    c_cases <- merge(CJ(lid = present, Month = seq_len(last_m)), c_cases, by = c("lid", "Month"), all.x = TRUE)
+    c_cases[is.na(Cases), Cases := 0L]
+    stopifnot(sum(c_cases$Cases) == cases_before)
+  }
   c_fed <- g[!is.na(lid), .(Count = sum(N)), by = lid]
   if (nrow(c_cases))
     cases_parts[[length(cases_parts) + 1]] <- data.table(Location_ID = as.integer(c_cases$lid), Disease = dis, Year = yr,
@@ -155,8 +191,10 @@ for (zf in zips) {
     clin_rows[[length(clin_rows) + 1]] <- data.table(Disease = dis, Year = yr, Dimension = "federative_unit",
                                                      Category = unname(id2name[as.character(c_fed$lid)]), Count = as.integer(c_fed$Count))
   total_rows <- total_rows + nrows
-  valid <- sum(c_cases$Cases); dropped <- dropped + (nrows - n_disc - valid)
-  cat(sprintf("  %-18s %-5s %d notif=%8d discarded=%8d case_pop=%8d\n", base, dis, yr, nrows, n_disc, valid))
+  valid <- sum(c_cases$Cases); dropped <- dropped + (nrows - n_late - n_disc - valid)
+  disc_log[[length(disc_log) + 1]] <- data.table(Disease = dis, Year = yr, Notifications = nrows, After_date_cap = n_late,
+                                                 Discarded = n_disc, Cases = valid)
+  cat(sprintf("  %-18s %-5s %d notif=%8d after_cap=%6d discarded=%8d case_pop=%8d\n", base, dis, yr, nrows, n_late, n_disc, valid))
   flush.console()
   rm(ch, g); invisible(gc(verbose = FALSE))
 }
@@ -172,6 +210,11 @@ fc[, Cases := as.double(Cases)]
 write_csv_py(fc, file.path(DB, "normalized_fact_cases.csv"))
 cat(sprintf("\nnormalized_fact_cases.csv: (%d, %d) | rows_read=%s dropped_no_state_or_month=%s\n", nrow(fc), ncol(fc),
             format(total_rows, big.mark = ","), format(dropped, big.mark = ",")))
+
+# ---- notifications, discarded and kept, per disease and year ----
+dl <- rbindlist(disc_log)[order_c(Disease, Year)]
+write_csv_py(dl, file.path(CLIN, "discarded_counts.csv"))
+cat("discarded_counts.csv: notifications, dropped by the date cap, discarded (excluded) and cases kept per disease-year\n")
 
 # ---- clinical long + per-disease xlsx ----
 cl <- rbindlist(clin_rows)

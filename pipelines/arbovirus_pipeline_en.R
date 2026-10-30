@@ -3,7 +3,7 @@
 # ================================================================================
 #  Descriptives, Mann-Kendall trends, Spearman climate correlations and global
 #  Moran's I. Reads the normalized DB via load_pipeline_datasets() and writes to
-#  <repo>/outputs/.
+#  <repo>/outputs/descriptive/.
 # ================================================================================
 # Locate the project root (the folder holding R/utils.R) from this file, Rscript --file= or the working dir.
 .root <- local({
@@ -23,7 +23,7 @@ ALPHA <- 0.05
 # Fixed seed so Moran's I permutation p-values are reproducible run-to-run
 PERM_SEED <- 12345
 
-COLORS <- c(Dengue = "#C0392B", Chikungunya = "#E67E22", Zika = "#2980B9")
+COLORS <- VIRUS_COLOR   # defined once in R/utils.R
 REGION_COLORS <- c(Norte = "#1B7837", Nordeste = "#762A83", Sudeste = "#E08214", Sul = "#4393C3", "Centro-Oeste" = "#D6604D")
 
 STATE_CENTROIDS <- data.frame(
@@ -66,7 +66,7 @@ plot_descriptive <- function(annual, datasets) {
     else p + theme(legend.position = "none")
   })
   caption_note("py_01_annual_incidence.png", "Former title", "Annual Arbovirus Incidence in Brazil (per 100,000 inhabitants)")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_01_annual_incidence.png"), 18, 5.5)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_01_annual_incidence.png"), 18, 5.5)
   cat("    Saved -> py_01_annual_incidence.png\n")
 
   panels <- lapply(names(annual), function(virus) {
@@ -83,7 +83,7 @@ plot_descriptive <- function(annual, datasets) {
             axis.line = element_blank(), axis.title.x = element_text(size = 9))
   })
   caption_note("py_02_heatmap_state_year.png", "Former title", "Annual Incidence by State (per 100,000 inhabitants)")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_02_heatmap_state_year.png"), 22, 9)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_02_heatmap_state_year.png"), 22, 9)
   cat("    Saved -> py_02_heatmap_state_year.png\n")
 
   order_r <- c("Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste")
@@ -98,7 +98,7 @@ plot_descriptive <- function(annual, datasets) {
       theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 8), axis.title.y = element_text(size = 9))
   })
   caption_note("py_03_boxplot_regional.png", "Former title", "Monthly Incidence Distribution by Region")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_03_boxplot_regional.png"), 18, 5.5)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_03_boxplot_regional.png"), 18, 5.5)
   cat("    Saved -> py_03_boxplot_regional.png\n")
 
   all_data <- rbindlist(lapply(names(datasets), function(v) datasets[[v]][!is.na(Monthly_Inc_100k)][, Virus := v]))
@@ -108,7 +108,7 @@ plot_descriptive <- function(annual, datasets) {
     labs(x = NULL, y = "Monthly Incidence / 100k") +
     theme_mpl(10) + theme(axis.text.x = element_text(size = 11))
   caption_note("py_03b_boxplot_disease_comparison.png", "Former title", "Monthly Incidence Comparison by Disease (per 100,000 inhabitants)")
-  save_png(p, file.path(OUTPUT_DIR, "py_03b_boxplot_disease_comparison.png"), 8, 5.5)
+  save_png(p, out_file("py_03b_boxplot_disease_comparison.png"), 8, 5.5)
   cat("    Saved -> py_03b_boxplot_disease_comparison.png\n")
 }
 
@@ -163,23 +163,26 @@ plot_mann_kendall <- function(mk_results) {
       legend_br
   })
   caption_note("py_04_mannkendall_tau.png", "Former title", "Mann-Kendall Test — Kendall's Tau by State (coloured bars = p < 0.05)")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_04_mannkendall_tau.png"), 18, 9)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_04_mannkendall_tau.png"), 18, 9)
   cat("    Saved -> py_04_mannkendall_tau.png\n")
 
   all_mk <- rbindlist(mk_results)
   ord <- all_mk[, .(m = mean(Sen_Slope)), by = Location_Name][order(m)]$Location_Name
   all_mk[, Location_Name := factor(Location_Name, ord)]
   all_mk[, Virus := factor(Virus, names(COLORS))]
-  p <- ggplot(all_mk, aes(Location_Name, Sen_Slope, fill = Virus)) +
+  # Only trends with p < 0.05 carry the virus colour; the others are grey, as in the Kendall's tau panel
+  all_mk[, FillKey := factor(ifelse(Significant, as.character(Virus), "Not significant"), c(names(COLORS), "Not significant"))]
+  p <- ggplot(all_mk, aes(Location_Name, Sen_Slope, fill = FillKey, group = Virus)) +
     geom_col(position = position_dodge(width = 0.84), width = 0.84, alpha = 0.85, colour = "white", linewidth = 0.15) +
     geom_hline(yintercept = 0, linetype = "dashed", linewidth = 0.35) +
-    scale_fill_manual(values = COLORS, name = NULL) +
+    scale_fill_manual(values = c(COLORS, "Not significant" = "#CCCCCC"), name = NULL,
+                      labels = c(paste(names(COLORS), "(p < 0.05)"), "Not significant")) +
     labs(x = NULL, y = "Sen's Slope (cases/100k per year)") +
     theme_mpl(10) + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7.5), axis.title.y = element_text(size = 9),
                           legend.position = "inside", legend.position.inside = c(0.02, 0.98), legend.justification = c(0, 1),
                           legend.background = element_rect(colour = "grey80", fill = "white"))
   caption_note("py_05_sens_slope.png", "Former title", "Sen's Slope by State — Rate of Change in Incidence")
-  save_png(p, file.path(OUTPUT_DIR, "py_05_sens_slope.png"), 13, 6)
+  save_png(p, out_file("py_05_sens_slope.png"), 13, 6)
   cat("    Saved -> py_05_sens_slope.png\n")
 }
 
@@ -238,7 +241,7 @@ plot_spearman <- function(spearman) {
   })
   caption_note("py_06_spearman_summary.png", "Former title", "Spearman Correlation: Monthly Incidence × Climate")
   caption_note("py_06_spearman_summary.png", "Key (former title)", "Cells = mean Rho across states; * = ≥ 50% of states with p < 0.05")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_06_spearman_summary.png"), 14, 4.5)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_06_spearman_summary.png"), 14, 4.5)
   cat("    Saved -> py_06_spearman_summary.png\n")
 
   panels <- list()
@@ -257,7 +260,7 @@ plot_spearman <- function(spearman) {
   }
   caption_note("py_07_spearman_state_bestlag.png", "Former title", "Spearman's Rho by State — Lag with Highest Absolute Correlation")
   caption_note("py_07_spearman_state_bestlag.png", "Key (former title)", "Opaque bar = p < 0.05; L0/L1/L2 = optimal lag; top row temperature, bottom row rainfall")
-  save_png(wrap_plots(panels, nrow = 2), file.path(OUTPUT_DIR, "py_07_spearman_state_bestlag.png"), 20, 12)
+  save_png(wrap_plots(panels, nrow = 2), out_file("py_07_spearman_state_bestlag.png"), 20, 12)
   cat("    Saved -> py_07_spearman_state_bestlag.png\n")
 
   all_sp <- rbindlist(spearman)
@@ -280,7 +283,7 @@ plot_spearman <- function(spearman) {
     legend.background = element_rect(colour = "grey80", fill = "white"), legend.key.width = unit(22, "pt"))
   p <- p & guides(colour = guide_legend(ncol = 6, byrow = TRUE), linetype = guide_legend(ncol = 6, byrow = TRUE))
   caption_note("py_08_lag_profile_region.png", "Former title", "Lag Profile: Mean Rho by Region and Time Lag")
-  save_png(p, file.path(OUTPUT_DIR, "py_08_lag_profile_region.png"), 14, 5)
+  save_png(p, out_file("py_08_lag_profile_region.png"), 14, 5)
   cat("    Saved -> py_08_lag_profile_region.png\n")
 }
 
@@ -300,7 +303,7 @@ plot_spearman_rho_only <- function(spearman) {
       theme(axis.line = element_blank(), axis.text.y = element_text(size = 6.5), axis.text.x = element_text(size = 8, angle = 35, hjust = 1))
   })
   caption_note("py_06b_spearman_rho_only.png", "Former title", "Spearman's Rho by State — All Variables and Lags")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_06b_spearman_rho_only.png"), 22, 10)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_06b_spearman_rho_only.png"), 22, 10)
   cat("    Saved -> py_06b_spearman_rho_only.png\n")
 }
 
@@ -328,7 +331,7 @@ plot_spearman_rain_significant <- function(spearman) {
   })
   caption_note("py_06d_rain_significant_states.png", "Former title", "States with Significant Spearman Correlation: Rainfall × Incidence")
   caption_note("py_06d_rain_significant_states.png", "Key (former title)", "Best significant lag shown (L0/L1/L2); p < 0.05")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_06d_rain_significant_states.png"), 18, 8)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_06d_rain_significant_states.png"), 18, 8)
   cat("    Saved -> py_06d_rain_significant_states.png\n")
 }
 
@@ -371,7 +374,7 @@ plot_spearman_rain_lag2 <- function(rain_lag2) {
   })
   caption_note("py_06c_spearman_rain_lag2.png", "Former title", "Spearman Correlation: Rainfall (month t) × Incidence (month t+2)")
   caption_note("py_06c_spearman_rain_lag2.png", "Key (former title)", "Opaque bar = p < 0.05")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_06c_spearman_rain_lag2.png"), 18, 9)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_06c_spearman_rain_lag2.png"), 18, 9)
   cat("    Saved -> py_06c_spearman_rain_lag2.png\n")
 }
 
@@ -433,7 +436,7 @@ plot_spatial <- function(spatial, moran_results, gdf_states) {
       theme_mpl(10) + virus_title(virus, 10) + theme(axis.title = element_text(size = 9))
   })
   caption_note("py_10_moran_scatterplot.png", "Former title", "Moran Scatterplot — Spatial Autocorrelation")
-  save_png(wrap_plots(panels, nrow = 1), file.path(OUTPUT_DIR, "py_10_moran_scatterplot.png"), 16, 5)
+  save_png(wrap_plots(panels, nrow = 1), out_file("py_10_moran_scatterplot.png"), 16, 5)
   cat("    Saved -> py_10_moran_scatterplot.png\n")
 }
 
@@ -441,7 +444,7 @@ plot_spatial <- function(spatial, moran_results, gdf_states) {
 # 6. EXPORT
 # ==============================================================================
 export_results <- function(annual, mk_results, sp_results, moran_results, rain_lag2_results = NULL) {
-  path <- file.path(OUTPUT_DIR, "py_statistical_results.xlsx")
+  path <- out_file("py_statistical_results.xlsx")
   annual_all <- rbindlist(lapply(names(annual), function(v) copy(annual[[v]])[, Virus := v]))
   sheets <- list(Annual_Incidence = annual_all, Mann_Kendall = rbindlist(mk_results), Spearman_Lag = rbindlist(sp_results))
   if (length(moran_results))

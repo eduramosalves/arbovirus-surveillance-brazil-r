@@ -7,7 +7,7 @@
 #      z-scored) for lags -6..+6 months (+k = first virus leads by k months),
 #    - the lag with the largest |CCF| and a naive t-test p-value (FDR across states),
 #    - co-occurrence of "active" months (incidence above the series' own median).
-#  Outputs (outputs/<date>/additional/):
+#  Outputs (outputs/additional/):
 #    cocirculation_ccf.csv, cocirculation_bestlag.csv, cocirculation_cooccurrence.csv,
 #    cocirculation_heatmap.png (national CCF curves + co-activity bars)
 # ================================================================================

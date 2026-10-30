@@ -2,17 +2,15 @@
 #  ADV_COMMON — shared helpers for the additional-analyses pipeline
 # ================================================================================
 #  Reuses pipelines/data_loader.R for data access. Every analysis module sources
-#  this to resolve the dated output root, build national/regional/state monthly
+#  this to resolve the output folder, build national/regional/state monthly
 #  series generically, add seasonal harmonic terms, and save tables/figures.
-#  Output root: outputs/<RUN_DATE>/additional/   (CSV + PNG together)
+#  Output folder: outputs/additional/   (CSV + PNG together)
 #  Sourced after R/utils.R.
 # ================================================================================
 source(path_root("pipelines", "data_loader.R"))
 quiet_library("ggplot2", "patchwork")
 
-RUN_DATE <- "2026-10-08"
-OUT_ROOT <- file.path(OUTPUT_DIR, RUN_DATE, "additional")
-dir.create(OUT_ROOT, recursive = TRUE, showWarnings = FALSE)
+OUT_ROOT <- out_dir("additional")
 
 SEED <- 42
 set.seed(SEED)

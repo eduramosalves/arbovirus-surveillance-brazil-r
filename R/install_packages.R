@@ -1,9 +1,9 @@
 # Install the CRAN packages this project needs (binary builds on Windows/macOS, so no Rtools).
 # Usage (from any folder):  Rscript R/install_packages.R
-# Writes R_SESSION_INFO.txt at the project root with the R and package versions used.
+# Writes docs/R_SESSION_INFO.txt with the R and package versions used.
 
 PACKAGES <- c(
-  "data.table", "readxl", "writexl", "xml2", "stringi", "jsonlite", "digest", "curl",
+  "data.table", "readxl", "writexl", "stringi", "jsonlite", "digest", "curl",
   "sf", "spdep", "spatialreg", "classInt",
   "sandwich", "lmtest", "MASS", "dlnm", "KFAS",
   "ggplot2", "patchwork", "scales", "ragg", "png"
@@ -38,5 +38,5 @@ if (length(still)) {
 
 info <- c(R.version.string, "",
           sprintf("%-12s %s", PACKAGES, vapply(PACKAGES, function(p) as.character(packageVersion(p)), "")))
-writeLines(info, file.path(ROOT, "R_SESSION_INFO.txt"))
+writeLines(info, file.path(ROOT, "docs", "R_SESSION_INFO.txt"))
 cat("All", length(PACKAGES), "packages available.\n")
