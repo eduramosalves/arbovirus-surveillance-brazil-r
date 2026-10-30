@@ -26,3 +26,6 @@ manuscript/build/original.docx
 # raw official sources (1.7 GB; re-download with tools/fetch_raw_sources.R)
 raw/*
 !raw/MANIFEST.csv
+
+# local TIFF copies of the manuscript figures (made from manuscript/figures/*.png)
+figures_tif/
